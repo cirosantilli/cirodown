@@ -17,8 +17,8 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="images"><a  href="" title="link to this element">Images (<code>\Image</code> and <code>\image</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#images">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-356">🔗</a></span><div class="p" id="p-356">A block image with <a href="block-vs-inline-macros">capital</a> 'i' <code>Image</code> showcasing most of the image properties <a href="#image-my-test-image">Figure 4. "The title of my image."</a>.
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="images"><a href="" title="link to this element">Images (<code>\Image</code> and <code>\image</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href=".#images">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-357">🔗</a></span><div class="p" id="p-357">A block image with <a href="block-vs-inline-macros">capital</a> 'i' <code>Image</code> showcasing most of the image properties <a href="#image-my-test-image">Figure 4. "The title of my image."</a>.
 <div class="code-caption-container" id="code-135">
 <pre><code>Have a look at this amazing image: \x[image-my-test-image].
 
@@ -29,20 +29,20 @@
 {height=200}
 {source=https://en.wikipedia.org/wiki/File:Tianasquare.jpg}
 {description=The description of my image.}
-</code></pre></div><div class="p" id="p-357">which renders as:</div><blockquote id="q-57"><div class="p" id="p-358">Have a look at this amazing image: <a href="#image-my-test-image">Figure 4. "The title of my image."</a>.</div><figure id="image-my-test-image">
+</code></pre></div><div class="p" id="p-358">which renders as:</div><blockquote id="q-57"><div class="p" id="p-359">Have a look at this amazing image: <a href="#image-my-test-image">Figure 4. "The title of my image."</a>.</div><figure id="image-my-test-image">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="200" width="600"></a>
-<figcaption><a  href="#image-my-test-image"><span class="caption-prefix">Figure 4</span></a>. The title of my image. <a  href="https://en.wikipedia.org/wiki/File:Tianasquare.jpg">Source</a>. The description of my image.</figcaption>
+<figcaption><a href="#image-my-test-image"><span class="caption-prefix">Figure 4</span></a>. The title of my image. <a href="https://en.wikipedia.org/wiki/File:Tianasquare.jpg">Source</a>. The description of my image.</figcaption>
 </figure>
 </blockquote>
 This exemplifies the following parameters:<div><ul id="ul-50">
 <li id="l-146"><code>description</code>: similar to <code>title</code>, but allow for further explanations without them appearing in <a href="internal-cross-references">cross references</a> to the image</li>
 <li id="l-147"><code>source</code>: a standardized way to credit an image by linking to a URL that contains further image metadata
 </li>
-</ul></div>For further discussion on the effects of ID see: <a href="image-id">full</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-359">🔗</a></span><div class="p" id="p-359">And this is how you make an inline image inline one with lower case <code>i</code>:
+</ul></div>For further discussion on the effects of ID see: <a href="image-id">full</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-360">🔗</a></span><div class="p" id="p-360">And this is how you make an inline image inline one with lower case <code>i</code>:
 <div class="code-caption-container" id="code-136">
 <pre><code>My inline \image[Tank_man_standing_in_front_of_some_tanks.jpg][test image] is awesome.
-</code></pre></div><div class="p" id="p-360">which renders as:</div><blockquote id="q-58"><div class="p" id="p-361">My inline <img src="Tank_man_standing_in_front_of_some_tanks.jpg" height="315" alt="test image"> is awesome.</div></blockquote>
-Inline images can't have captions.</div></div><div><span class="hide-hover"><a href="index-split#p-362">🔗</a></span><div class="p" id="p-362">The <code>description</code> can have multiple paragraphs just like any other element, but we don't recommend this style because it makes it hard for readers to see what is part of the image caption and what is part of the next paragraph.
+</code></pre></div><div class="p" id="p-361">which renders as:</div><blockquote id="q-58"><div class="p" id="p-362">My inline <img src="Tank_man_standing_in_front_of_some_tanks.jpg" height="315" alt="test image"> is awesome.</div></blockquote>
+Inline images can't have captions.</div></div><div><span class="hide-hover"><a href="index-split#p-363">🔗</a></span><div class="p" id="p-363">The <code>description</code> can have multiple paragraphs just like any other element, but we don't recommend this style because it makes it hard for readers to see what is part of the image caption and what is part of the next paragraph.
 <div class="code-caption-container" id="code-137">
 <pre><code>\Image[Tank_man_standing_in_front_of_some_tanks.jpg]
 {id=image-my-test-image-description-paragraphs}
@@ -54,15 +54,15 @@ Description paragraph 2.
 }
 
 Paragraph after.
-</code></pre></div><div class="p" id="p-363">which renders as:</div><blockquote id="q-59"><figure id="image-my-test-image-description-paragraphs">
+</code></pre></div><div class="p" id="p-364">which renders as:</div><blockquote id="q-59"><figure id="image-my-test-image-description-paragraphs">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
-<figcaption><a  href="#image-my-test-image-description-paragraphs"><span class="caption-prefix">Figure 5</span></a>. The title of my image. <a  href="https://en.wikipedia.org/wiki/File:Tianasquare.jpg">Source</a>. <div class="p" id="p-364">Description paragraph 1.</div><div class="p" id="p-365">Description paragraph 2.
+<figcaption><a href="#image-my-test-image-description-paragraphs"><span class="caption-prefix">Figure 5</span></a>. The title of my image. <a href="https://en.wikipedia.org/wiki/File:Tianasquare.jpg">Source</a>. <div class="p" id="p-365">Description paragraph 1.</div><div class="p" id="p-366">Description paragraph 2.
 </div></figcaption>
 </figure>
-<div class="p" id="p-366">Paragraph after.</div></blockquote>
-Maybe we could improve this with some CSS styling, but generally when you want multiple paragraphs inside the image, you might instead be better off making an <a href="internal-cross-file-references">internal cross reference</a> to the the image and adding your extended explanation outside.</div></div><div><span class="hide-hover"><a href="index-split#p-367">🔗</a></span><div class="p" id="p-367">And now an image outside of <a href="cirodownexample"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="#image-my-test-image-toplevel">🔗</a></span><figure id="image-my-test-image-toplevel">
+<div class="p" id="p-367">Paragraph after.</div></blockquote>
+Maybe we could improve this with some CSS styling, but generally when you want multiple paragraphs inside the image, you might instead be better off making an <a href="internal-cross-file-references">internal cross reference</a> to the the image and adding your extended explanation outside.</div></div><div><span class="hide-hover"><a href="index-split#p-368">🔗</a></span><div class="p" id="p-368">And now an image outside of <a href="cirodownexample"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="#image-my-test-image-toplevel">🔗</a></span><figure id="image-my-test-image-toplevel">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
-<figcaption><a  href="#image-my-test-image-toplevel"><span class="caption-prefix">Figure 6</span></a></figcaption>
+<figcaption><a href="#image-my-test-image-toplevel"><span class="caption-prefix">Figure 6</span></a></figcaption>
 </figure>
 </div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
@@ -87,7 +87,7 @@ Maybe we could improve this with some CSS styling, but generally when you want m
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/43abc78a4b6be3254a498d7225845a66a0c71b26">43abc78a4b6be3254a498d7225845a66a0c71b26</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/017a7a34dfe8356dca178d3cc401f39e5ff5324c">017a7a34dfe8356dca178d3cc401f39e5ff5324c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

@@ -2468,7 +2468,7 @@ function html_katex_convert(ast, context) {
 }
 
 function html_self_link(ast, context) {
-  return ` ${x_href_attr(ast, context)}`;
+  return x_href_attr(ast, context);
 }
 
 /** https://stackoverflow.com/questions/14313183/javascript-regex-how-do-i-check-if-the-string-is-ascii-only/14313213#14313213 */
@@ -2572,7 +2572,7 @@ function macro_image_video_block_convert_function(ast, context) {
   }
   if (source !== '') {
     force_separator = true;
-    source = ` <a ${html_attr('href', source)}>Source</a>.`;
+    source = ` <a${html_attr('href', source)}>Source</a>.`;
   }
   let alt_val;
   const has_caption = (ast.id !== undefined) && caption_number_visible(ast, context);
@@ -4142,7 +4142,11 @@ function x_href_parts(target_id_ast, context) {
         if (context.options.html_x_extension) {
           target_output_path_basename += '.' + HTML_EXT;
         } else if (target_output_path_basename === INDEX_BASENAME_NOEXT) {
-          target_output_path_basename = '';
+          if (href_path_dirname_rel === '') {
+            target_output_path_basename = '.';
+          } else {
+            target_output_path_basename = '';
+          }
         }
       }
       href_path = path_join(href_path_dirname_rel,

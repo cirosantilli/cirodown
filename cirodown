@@ -664,11 +664,14 @@ if (commander.helpMacros) {
       cirodown_json_dir = initial_dir;
     }
   }
+  let split_headers;
   if (publish) {
     // GitHub pages target is the only one for now.
     html_x_extension = false;
+    split_headers = true;
   } else {
     html_x_extension = commander.htmlXExtension;
+    split_headers = commander.splitHeaders;
   }
 
   let options = {
@@ -710,7 +713,7 @@ if (commander.helpMacros) {
       return undefined;
     },
     render: true,
-    split_headers: commander.splitHeaders,
+    split_headers: split_headers,
     template_vars: {},
     xss_unsafe: commander.xssUnsafe,
   };

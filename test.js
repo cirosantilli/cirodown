@@ -2918,6 +2918,10 @@ assert_executable(
 const complex_filesystem = {
   'README.ciro': `= Index
 
+\\x[notindex][link to notindex]
+
+\\x[notindex-h2][link to notindex h2]
+
 \\x[toplevel-scope]
 
 \\x[toplevel-scope/toplevel-scope-h2]
@@ -2939,12 +2943,31 @@ $$
 $$
 \\mycmd
 $$
+
+== Index scope
+{scope}
+
+=== Index scope 2
+{scope}
 `,
-  'notindex.ciro': `= Notindex`,
+  'notindex.ciro': `= Notindex
+
+\\x[index][link to index]
+
+\\x[h2][link to h2]
+
+== notindex h2
+`,
   'toplevel-scope.ciro': `= Toplevel scope
 {scope}
 
 == Toplevel scope h2
+
+== Nested scope
+{scope}
+
+=== Nested scope 2
+{scope}
 `,
   'subdir/index.ciro': `= Subdir index
 
@@ -2968,13 +2991,19 @@ assert_executable(
     expect_filesystem_xpath: {
       'index.html': [
         "//x:h1[@id='index']",
+        "//x:div[@class='p']//x:a[@href='notindex.html' and text()='link to notindex']",
+        "//x:div[@class='p']//x:a[@href='notindex.html#notindex-h2' and text()='link to notindex h2']",
         "//x:a[@href='subdir/index.html' and text()='link to subdir']",
         "//x:a[@href='subdir/index.html#index-h2' and text()='link to subdir index h2']",
         "//x:a[@href='subdir/notindex.html' and text()='link to subdir notindex']",
         "//x:a[@href='subdir/notindex.html#notindex-h2' and text()='link to subdir notindex h2']",
+        "//x:h2[@id='index-scope']//x:a[@href='index-scope.html' and text()='split']",
+        "//x:h3[@id='index-scope/index-scope-2']//x:a[@href='index-scope/index-scope-2.html' and text()='split']",
       ],
       'notindex.html': [
         "//x:h1[@id='notindex']",
+        "//x:div[@class='p']//x:a[@href='index.html' and text()='link to index']",
+        "//x:div[@class='p']//x:a[@href='index.html#h2' and text()='link to h2']",
       ],
       'subdir/index.html': [
         "//x:h1[@id='subdir']",
@@ -3003,7 +3032,31 @@ assert_executable(
       ],
       'subdir/notindex-h2.html': [
         "//x:h1[@id='notindex-h2']",
-      ]
+      ],
+      'index-scope.html': [
+        "//x:h1[@id='index-scope']//x:a[@href='index.html#index-scope' and text()='nosplit']",
+      ],
+      'index-scope/index-scope-2.html': [
+        // TODO nested scopes not removing correctly, was giving ../index.html#index-scope-2
+        //"//x:h1[@id='index-scope-2']//x:a[@href='../index.html#index-scope/index-scope-2' and text()='nosplit']",
+      ],
+      'toplevel-scope.html': [
+        "//x:h2[@id='nested-scope']//x:a[@href='toplevel-scope/nested-scope.html' and text()='split']",
+        "//x:h3[@id='nested-scope/nested-scope-2']//x:a[@href='toplevel-scope/nested-scope/nested-scope-2.html' and text()='split']",
+      ],
+      'toplevel-scope-split.html': [
+        "//x:h1[@id='toplevel-scope']//x:a[@href='toplevel-scope.html' and text()='nosplit']",
+      ],
+      'toplevel-scope/toplevel-scope-h2.html': [
+        "//x:h1[@id='toplevel-scope-h2']//x:a[@href='../toplevel-scope.html#toplevel-scope-h2' and text()='nosplit']",
+      ],
+      'toplevel-scope/nested-scope.html': [
+        "//x:h1[@id='nested-scope']//x:a[@href='../toplevel-scope.html#nested-scope' and text()='nosplit']",
+      ],
+      'toplevel-scope/nested-scope/nested-scope-2.html': [
+        // TODO nested scopes not removing correctly, was giving ../../toplevel-scope.html#nested-scope-2
+        //"//x:h1[@id='nested-scope-2']//x:a[@href='../../toplevel-scope.html#nested-scope/nested-scope-2' and text()='nosplit']",
+      ],
     }
   }
 );
@@ -3019,7 +3072,14 @@ assert_executable(
     ],
     expect_filesystem_xpath: {
       'out/publish/out/publish/index.html': [
+        "//x:div[@class='p']//x:a[@href='notindex' and text()='link to notindex']",
+        "//x:div[@class='p']//x:a[@href='notindex#notindex-h2' and text()='link to notindex h2']",
         "//x:style[contains(text(),'@import \"cirodown.min.css\"')]",
+      ],
+      'out/publish/out/publish/notindex.html': [
+        "//x:h1[@id='notindex']",
+        "//x:div[@class='p']//x:a[@href='.' and text()='link to index']",
+        "//x:div[@class='p']//x:a[@href='.#h2' and text()='link to h2']",
       ],
       'out/publish/out/publish/toplevel-scope/toplevel-scope-h2.html': [
         "//x:style[contains(text(),'@import \"../cirodown.min.css\"')]",

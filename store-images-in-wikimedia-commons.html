@@ -17,46 +17,46 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="store-images-in-wikimedia-commons"><a  href="" title="link to this element">Store images in Wikimedia Commons</a><span>  | <a href="where-to-store-images">↑ parent "Where to store images"</a> | <a href="#store-images-in-wikimedia-commons">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-401">🔗</a></span><div class="p" id="p-401">Wikimedia Commons is another great possibility to upload your images to:
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="store-images-in-wikimedia-commons"><a href="" title="link to this element">Store images in Wikimedia Commons</a><span>  | <a href="where-to-store-images">↑ parent "Where to store images"</a> | <a href=".#store-images-in-wikimedia-commons">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-402">🔗</a></span><div class="p" id="p-402">Wikimedia Commons is another great possibility to upload your images to:
 <div class="code-caption-container" id="code-150">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg]
 {source=https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg}
-</code></pre></div><div class="p" id="p-402">which renders as:</div><blockquote id="q-68"><figure id="image-18">
+</code></pre></div><div class="p" id="p-403">which renders as:</div><blockquote id="q-68"><figure id="image-18">
 <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315"></a>
-<figcaption><a  href="index-split#image-18"><span class="caption-prefix">Figure 13</span></a>.  <a  href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
+<figcaption><a href="index-split#image-18"><span class="caption-prefix">Figure 13</span></a>.  <a href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-403">🔗</a></span><div class="p" id="p-403">Cirodown likes Wikimedia Commons so much that we automatically parse the image URL and if it is from Wikimedia Commons, automatically deduce the <code>source</code> for you. So the above image renders the same without the <code>source</code> argument:
+</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-404">🔗</a></span><div class="p" id="p-404">Cirodown likes Wikimedia Commons so much that we automatically parse the image URL and if it is from Wikimedia Commons, automatically deduce the <code>source</code> for you. So the above image renders the same without the <code>source</code> argument:
 <div class="code-caption-container" id="code-151">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg]
-</code></pre></div><div class="p" id="p-404">which renders as:</div><blockquote id="q-69"><figure id="image-19">
+</code></pre></div><div class="p" id="p-405">which renders as:</div><blockquote id="q-69"><figure id="image-19">
 <a href="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315"></a>
-<figcaption><a  href="index-split#image-19"><span class="caption-prefix">Figure 14</span></a>.  <a  href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
+<figcaption><a href="index-split#image-19"><span class="caption-prefix">Figure 14</span></a>.  <a href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-405">🔗</a></span><div class="p" id="p-405">And like for non-Wikimedia images, you can automatically generate a <code>title</code> from the <code>src</code> by setting the <code>titleFromSrc</code> <a href="boolean-named-arguments">boolean named argument</a> or if <code>title-from-src</code> is set as the default <a href="media-providers">media provider</a> for the media type: 
+</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-406">🔗</a></span><div class="p" id="p-406">And like for non-Wikimedia images, you can automatically generate a <code>title</code> from the <code>src</code> by setting the <code>titleFromSrc</code> <a href="boolean-named-arguments">boolean named argument</a> or if <code>title-from-src</code> is set as the default <a href="media-providers">media provider</a> for the media type: 
 <div class="code-caption-container" id="code-152">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg]
 {titleFromSrc}
-</code></pre></div><div class="p" id="p-406">which renders as:</div><blockquote id="q-70"><figure id="image-gel-electrophoresis-insert-comb">
+</code></pre></div><div class="p" id="p-407">which renders as:</div><blockquote id="q-70"><figure id="image-gel-electrophoresis-insert-comb">
 <a href="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315"></a>
-<figcaption><a  href="#image-gel-electrophoresis-insert-comb"><span class="caption-prefix">Figure 15</span></a>. Gel electrophoresis insert comb. <a  href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
+<figcaption><a href="#image-gel-electrophoresis-insert-comb"><span class="caption-prefix">Figure 15</span></a>. Gel electrophoresis insert comb. <a href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-407">🔗</a></span><div class="p" id="p-407">And a quick test for a more complex thumb resized URL:
+</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-408">🔗</a></span><div class="p" id="p-408">And a quick test for a more complex thumb resized URL:
 <div class="code-caption-container" id="code-153">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg]
-</code></pre></div><div class="p" id="p-408">which renders as:</div><blockquote id="q-71"><figure id="image-21">
+</code></pre></div><div class="p" id="p-409">which renders as:</div><blockquote id="q-71"><figure id="image-21">
 <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315"></a>
-<figcaption><a  href="index-split#image-21"><span class="caption-prefix">Figure 16</span></a>.  <a  href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
+<figcaption><a href="index-split#image-21"><span class="caption-prefix">Figure 16</span></a>.  <a href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-409">🔗</a></span><div class="p" id="p-409">If you really absolutely want to turn off the <code>source</code>, you can explicitly set:
+</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-410">🔗</a></span><div class="p" id="p-410">If you really absolutely want to turn off the <code>source</code>, you can explicitly set:
 <div class="code-caption-container" id="code-154">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg]
 {source=}
-</code></pre></div><div class="p" id="p-410">which renders as:</div><blockquote id="q-72"><figure id="image-22">
+</code></pre></div><div class="p" id="p-411">which renders as:</div><blockquote id="q-72"><figure id="image-22">
 <a href="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315" alt="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg"></a>
 </figure>
 </blockquote>
-but you don't want to do that for the most commonly Wikimedia Commons used license of CC-BY+ , do you? :-)</div></div><div><span class="hide-hover"><a href="index-split#p-411">🔗</a></span><div class="p" id="p-411">Upsides of using Wikimedia Commons for your images:<div><ul id="ul-54">
+but you don't want to do that for the most commonly Wikimedia Commons used license of CC-BY+ , do you? :-)</div></div><div><span class="hide-hover"><a href="index-split#p-412">🔗</a></span><div class="p" id="p-412">Upsides of using Wikimedia Commons for your images:<div><ul id="ul-54">
 <li id="l-154">makes it easier for other writers to find and reuse your images</li>
 <li id="l-155">automatically generates resized versions of the uploaded images into several common dimensions so you can pick the smallest one that fits your desired <a href="image-height">image height</a> to reduce bandwidth usage</li>
 <li id="l-156">if you have so many images that they would blow even the size of a <a href="store-images-in-a-separate-media-repository">separate media repository</a>, this will still work
@@ -69,7 +69,7 @@ but you don't want to do that for the most commonly Wikimedia Commons used licen
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/43abc78a4b6be3254a498d7225845a66a0c71b26">43abc78a4b6be3254a498d7225845a66a0c71b26</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/017a7a34dfe8356dca178d3cc401f39e5ff5324c">017a7a34dfe8356dca178d3cc401f39e5ff5324c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
