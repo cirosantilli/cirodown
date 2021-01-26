@@ -3,12 +3,20 @@
 <head>
 <meta charset=utf-8>
 <title>&lt;code&gt;\x&lt;/code&gt; within &lt;code&gt;title&lt;/code&gt; restrictions</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
 <style>@import "cirodown.min.css";
 
 </style>
-
+<link rel="stylesheet" type="text/css" href="main.css">
 </head>
-<body class="cirodown">
+<body>
+<header>
+<a href="/">Ciro Santilli???</a>
+<a href="/cirodown">Cirodown!!!</a>
+<a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
+<a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
+</header>
+<main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="x-within-title-restrictions"><a  href="" title="link to this element"><code>\x</code> within <code>title</code> restrictions</a><span>  | <a href="internal-cross-references">↑ parent "Internal cross references"</a> | <a href="#x-within-title-restrictions">nosplit</a></span></h1>
 </div><div><span class="hide-hover"><a href="index-split#p-182">🔗</a></span><div class="p" id="p-182">If you use <code>\x</code> within a <code>title</code>, which most commonly happens for <a href="images">image titles</a>, that can generate complex dependencies, which would either be harder to implement, or lead to infinite recursion.</div></div><div><span class="hide-hover"><a href="index-split#p-183">🔗</a></span><div class="p" id="p-183">To prevent such problems, Cirodown emits an error if you use an <code>\x</code> without content in the <code>title</code> of one of the following elements without an explicit ID:<div><ul id="ul-22">
 <li id="l-64"><div class="p" id="p-184"><a href="headers">header</a>. For example, the following gives an error:
@@ -95,7 +103,21 @@ or:
 \Image[myimg.jpg]
 {id=myimage2}
 {title=\x[myimage1][my content 1].}
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
+<footer>
+<div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
+<div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/43abc78a4b6be3254a498d7225845a66a0c71b26">43abc78a4b6be3254a498d7225845a66a0c71b26</a></div>
+</footer>
+<script>
+<!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-47867706-1', 'auto');
+ga('send', 'pageview');
+</script>
 <script src="cirodown.runtime.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
@@ -103,6 +125,5 @@ or:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
-
 </body>
 </html>

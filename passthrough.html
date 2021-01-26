@@ -3,12 +3,20 @@
 <head>
 <meta charset=utf-8>
 <title>Passthrough</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
 <style>@import "cirodown.min.css";
 
 </style>
-
+<link rel="stylesheet" type="text/css" href="main.css">
 </head>
-<body class="cirodown">
+<body>
+<header>
+<a href="/">Ciro Santilli???</a>
+<a href="/cirodown">Cirodown!!!</a>
+<a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
+<a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
+</header>
+<main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="passthrough"><a  href="" title="link to this element">Passthrough (<code>\Passthrough</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#passthrough">nosplit</a></span></h1>
 </div><div><span class="hide-hover"><a href="index-split#p-513">🔗</a></span><div class="p" id="p-513">Dumps its contents directly into the rendered output.</div></div><div><span class="hide-hover"><a href="index-split#p-514">🔗</a></span><div class="p" id="p-514">This construct is not XSS safe, see: <a href="xss-unsafe">Section 6.1. "xss-unsafe (<code>--xss-unsafe</code>)"</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-515">🔗</a></span><div class="p" id="p-515">Here for example we define a paragraph in raw HTML:
 <div class="code-caption-container" id="code-198">
@@ -16,7 +24,21 @@
 &lt;p&gt;Hello &lt;b&gt;raw&lt;/b&gt; HTML!&lt;/p&gt;
 ]]
 </code></pre></div><div class="p" id="p-516">which renders as:</div><blockquote id="q-109"><div class="p" id="p-517"><p>Hello <b>raw</b> HTML!</p>
-</div></blockquote></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+</div></blockquote></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
+<footer>
+<div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
+<div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/43abc78a4b6be3254a498d7225845a66a0c71b26">43abc78a4b6be3254a498d7225845a66a0c71b26</a></div>
+</footer>
+<script>
+<!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-47867706-1', 'auto');
+ga('send', 'pageview');
+</script>
 <script src="cirodown.runtime.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
@@ -24,6 +46,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
-
 </body>
 </html>
