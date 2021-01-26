@@ -206,14 +206,31 @@ function convert_input(input, options, convert_input_options={}) {
 
     let includes_local = [];
     let scripts_local = [];
+    let template_includes_relative = [];
+    let template_scripts_relative = [];
 
     if (!convert_input_options.external_css_and_js) {
       includes_local.push(...cirodown_nodejs.CSS_LOCAL_INCLUDES);
       scripts_local.push(...cirodown_nodejs.JS_LOCAL_INCLUDES);
     }
 
-    includes_local.push(convert_input_options.out_css_path);
-    scripts_local.push(convert_input_options.out_js_path);
+    if (convert_input_options.publish) {
+      template_includes_relative.push(
+        path.relative(
+          convert_input_options.outdir,
+          convert_input_options.out_css_path
+        )
+      );
+      template_scripts_relative.push(
+        path.relative(
+          convert_input_options.outdir,
+          convert_input_options.out_js_path
+        )
+      );
+    } else {
+      includes_local.push(convert_input_options.out_css_path);
+      scripts_local.push(convert_input_options.out_js_path);
+    }
 
     if (
       options.outfile !== undefined &&
@@ -239,6 +256,8 @@ function convert_input(input, options, convert_input_options={}) {
 
     new_options.template_vars.style = `\n${includes_str}`;
     new_options.template_vars.post_body = `${scripts_str}`;
+    new_options.template_styles_relative = template_includes_relative;
+    new_options.template_scripts_relative = template_scripts_relative;
   }
   // Finally, do the conversion!
   const output = cirodown.convert(input, new_options, new_options.extra_returns);
@@ -294,8 +313,8 @@ function convert_path(input_path, options, convert_input_options) {
   let input_path_basename_noext = input_path_parse.name;
   let path_relative_to_cirodown_json;
   let input_path_relative_to_cirodown_json;
-  if (options.cirodown_json_dir !== undefined) {
-    path_relative_to_cirodown_json = path.relative(options.cirodown_json_dir, input_path_parse.dir);
+  if (convert_input_options.cirodown_json_dir !== undefined) {
+    path_relative_to_cirodown_json = path.relative(convert_input_options.cirodown_json_dir, input_path_parse.dir);
     input_path_relative_to_cirodown_json = path.join(path_relative_to_cirodown_json, input_path_parse.base);
   }
   let toplevel_id;
@@ -317,7 +336,7 @@ function convert_path(input_path, options, convert_input_options) {
     }
   }
   if (!convert_input_options.commander.htmlEmbed) {
-    let root_relpath = path.relative(input_path_parse.dir, options.cirodown_json_dir)
+    let root_relpath = path.relative(input_path_parse.dir, convert_input_options.cirodown_json_dir)
     if (root_relpath !== '') {
       root_relpath += cirodown.URL_SEP;
     }
@@ -438,7 +457,7 @@ function convert_path_to_file(base_path, input_path, options, convert_input_opti
       } else {
         // Otherwise, just copy the file over if needed.
         const output_path = output_path_noext + input_path_parse.ext;
-        if (output_path !== input_path) {
+        if (output_path !== path.resolve(input_path)) {
           console.log(`copy ${input_path}`);
           fs.copyFileSync(input_path, output_path);
         }
@@ -581,7 +600,7 @@ commander.option('--help-macros', 'print the metadata of all macros to stdout in
 commander.option('-l, --log <log...>', 'http://cirosantilli.com/cirodown#log');
 commander.option('--no-html-x-extension', 'http://cirosantilli.com/cirodown#no-html-x-extension');
 commander.option('--no-db', 'ignore the ID database, mostly for testing https://cirosantilli.com/cirosantilli#internal-cross-file-references-internals');
-commander.option('--outdir <outdir>', 'if the output would be saved to a file e.g. when building a directory, use this directory as the root');
+commander.option('--outdir <outdir>', 'http://cirosantilli.com/cirodown#outdir');
 commander.option('-o, --outfile <outfile>', 'http://cirosantilli.com/cirodown#outfile');
 commander.option('-O, --output-format <output-format>', 'https://cirosantilli.com/cirodown#output-format', 'html');
 commander.option('-p --publish', 'http://cirosantilli.com/cirodown#publish', false);
@@ -655,7 +674,6 @@ if (commander.helpMacros) {
   let options = {
     body_only: commander.bodyOnly,
     cirodown_json: cirodown_json,
-    cirodown_json_dir: cirodown_json_dir,
     embed_includes: commander.embedIncludes,
     embed_resources: commander.embedResources,
     html_x_extension: html_x_extension,
@@ -740,7 +758,7 @@ if (commander.helpMacros) {
   }
   let outdir;
   if (commander.outdir === undefined) {
-    outdir = '.';
+    outdir = cirodown_json_dir;
   } else {
     outdir = commander.outdir;
   }
@@ -811,6 +829,7 @@ A link to another file: \\x[and-now-an-include]
   // Options that are not directly passed to cirodown.convert
   // but rather used only by this cirodown executable.
   let convert_input_options = {
+    cirodown_json_dir: cirodown_json_dir,
     commander: commander,
     encoding: cirodown_nodejs.ENCODING,
     external_css_and_js: false,
@@ -819,6 +838,7 @@ A link to another file: \\x[and-now-an-include]
     out_css_path: cirodown_nodejs.PACKAGE_OUT_CSS_LOCAL_PATH,
     out_js_path: cirodown_nodejs.PACKAGE_OUT_JS_LOCAL_PATH,
     outdir: outdir,
+    publish: publish,
   };
   if (inputPath === undefined) {
     // Input from stdin.
@@ -829,7 +849,7 @@ A link to another file: \\x[and-now-an-include]
     if (!fs.existsSync(inputPath)) {
       cli_error(`input_path does not exist: "${inputPath}"`);
     }
-    let tmpdir = path.join(cirodown_json_dir, TMP_DIRNAME);
+    let tmpdir = path.join(outdir, TMP_DIRNAME);
     let publish_dir;
     let publish_out_dir;
     let cmd_options = {
@@ -935,7 +955,7 @@ A link to another file: \\x[and-now-an-include]
 
           // Set some variables especially for publishing.
           actual_input_dir = publish_dir;
-          options.cirodown_json_dir = actual_input_dir;
+          convert_input_options.cirodown_json_dir = actual_input_dir;
           publish_outdir = path.join(publish_out_dir, 'publish');
           convert_input_options.out_css_path = path.join(publish_outdir, cirodown_nodejs.PACKAGE_OUT_CSS_BASENAME);
           convert_input_options.out_js_path = path.join(publish_outdir, cirodown_nodejs.PACKAGE_OUT_JS_BASENAME);

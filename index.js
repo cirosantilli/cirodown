@@ -2154,6 +2154,16 @@ function convert_init_context(options={}, extra_returns={}) {
   // A toplevel scope, to implement conversion of files in subdirectories.
   if (!('split_headers' in options)) { options.split_headers = false; }
   if (!('template' in options)) { options.template = undefined; }
+  if (!('template_scripts_relative' in options)) {
+    // Like template_styles_relative but for sripts.
+    options.template_scripts_relative = [];
+  }
+  if (!('template_styles_relative' in options)) {
+    // CSS styles relative to cirodown.json. Must be resolved by cirodown.convert.
+    // because of split headers. The relative path expanded result gets prepended
+    // to `options.template_vars.style`.
+    options.template_styles_relative = [];
+  }
   if (!('template_vars' in options)) { options.template_vars = {}; }
     if (!('head' in options.template_vars)) { options.template_vars.head = ''; }
     if (!('root_relpath' in options.template_vars)) { options.template_vars.root_relpath = ''; }
@@ -5311,6 +5321,19 @@ const DEFAULT_MACRO_LIST = [
           title: convert_arg(title, context),
         };
         Object.assign(render_env, context.options.template_vars);
+
+        // Resolve relative styles and scripts.
+        let relative_scripts = [];
+        for (const script of context.options.template_scripts_relative) {
+          relative_scripts.push(`<script src="${context.options.template_vars.root_relpath}${script}"></script>\n`);
+        }
+        render_env.post_body = relative_scripts.join('') + render_env.post_body;
+        let relative_styles = [];
+        for (const style of context.options.template_styles_relative) {
+          relative_styles.push(`@import "${context.options.template_vars.root_relpath}${style}";\n`);
+        }
+        render_env.style = relative_styles.join('') + render_env.style;
+
         ret = (new Liquid()).parseAndRenderSync(
           template,
           render_env,

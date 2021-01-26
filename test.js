@@ -3008,7 +3008,7 @@ assert_executable(
   }
 );
 assert_executable(
-  'executable: publish dry run does not blow up',
+  'executable: --dry --publish works',
   {
     args: ['--dry-run', '--publish', '.'],
     filesystem: complex_filesystem,
@@ -3017,6 +3017,14 @@ assert_executable(
       ['git', ['add', '.']],
       ['git', ['commit', '-m', '0']],
     ],
+    expect_filesystem_xpath: {
+      'out/publish/out/publish/index.html': [
+        "//x:style[contains(text(),'@import \"cirodown.min.css\"')]",
+      ],
+      //'out/publish/out/publish/subdir/index.html': [
+      //  "//x:style[contains(text(),'@import \"../cirodown.min.css\"')]",
+      //],
+    },
   }
 );
 assert_executable(
@@ -3092,5 +3100,29 @@ assert_executable(
     expect_filesystem_xpath: {
       'subdir/notindex.html': ["//x:h1[@id='notindex']"],
     },
+  }
+);
+assert_executable(
+  'executable: convert with --outdir',
+  {
+    args: ['--outdir', 'my_outdir', '.'],
+    filesystem: {
+      'README.ciro': `= Index`,
+      'subdir/index.ciro': `= Subdir index`,
+      'subdir/notindex.ciro': `= Subdir notindex`,
+      'cirodown.json': `{}\n`,
+    },
+    expect_exists: ['my_outdir/out'],
+    expect_not_exists: [
+      'out',
+      'index.html',
+      'subdir/index.html',
+      'subdir/notindex.html',
+    ],
+    expect_filesystem_xpath: {
+      'my_outdir/index.html': ["//x:h1[@id='index']"],
+      'my_outdir/subdir/index.html': ["//x:h1[@id='subdir']"],
+      'my_outdir/subdir/notindex.html': ["//x:h1[@id='notindex']"],
+    }
   }
 );
