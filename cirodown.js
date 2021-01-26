@@ -2032,7 +2032,7 @@ function convert_header(cur_arg_list, context, has_toc) {
     context.header_graph = new HeaderTreeNode();
     context.header_graph.add_child(first_ast.header_graph_node);
     context.header_graph_top_level = first_ast.header_graph_node.get_level();
-    const output_path = output_path_from_ast(first_ast, context);
+    const output_path = output_path_from_ast(first_ast, context)[0];
     if (options.log['split-headers']) {
       console.error('split-headers: ' + output_path);
     }
@@ -2648,8 +2648,8 @@ function object_subset(source_object, keys) {
  *   !split_headers -> subdir/index.html
  * subdir/subdir-h2
  */
-function output_path(input_path, id, context={}) {
-  const [dirname, basename] = output_path_parts(input_path, id, context);
+function output_path(input_path, id, context={}, split_suffix=undefined) {
+  const [dirname, basename] = output_path_parts(input_path, id, context, split_suffix);
   return [
     path_join(dirname, basename + '.' + HTML_EXT, context.options.path_sep),
     dirname,
@@ -2659,12 +2659,16 @@ function output_path(input_path, id, context={}) {
 
 /** Helper for when we have an actual AstNode. */
 function output_path_from_ast(ast, context) {
-  return output_path(ast.source_location.path, ast.id, context)[0];
+  let split_suffix;
+  if (ast.args.splitSuffix !== undefined) {
+    split_suffix = convert_arg(ast.args.splitSuffix, context);
+  }
+  return output_path(ast.source_location.path, ast.id, context, split_suffix);
 }
 
 /* Return dirname and basename without extension of the
  * path to where an AST gets rendered to. */
-function output_path_parts(input_path, id, context) {
+function output_path_parts(input_path, id, context, split_suffix=undefined) {
   let ret = '';
   const [dirname, basename] = path_split(input_path, context.options.path_sep);
   const renamed_basename_noext = rename_basename(noext(basename));
@@ -2731,6 +2735,12 @@ function output_path_parts(input_path, id, context) {
       // the ID just gives the output path directly.
       dirname_ret = id_dirname;
       basename_ret = id_basename;
+    }
+    if (split_suffix !== undefined) {
+      if (split_suffix === '') {
+        split_suffix = 'split';
+      }
+      basename_ret += '-' + split_suffix;
     }
     return [dirname_ret, basename_ret];
   } else {
@@ -4125,8 +4135,14 @@ function x_href_parts(target_id_ast, context) {
   } else {
     const [toplevel_output_path_dirname, toplevel_output_path_basename] =
       path_split(context.toplevel_output_path, context.options.path_sep);
-    let [full_output_path, target_output_path_dirname, target_output_path_basename] = output_path(
-      target_id_ast.source_location.path, target_id_ast.id, context);
+    let [
+      full_output_path,
+      target_output_path_dirname,
+      target_output_path_basename
+    ] = output_path_from_ast(
+      target_id_ast,
+      context,
+    );
     if (full_output_path === context.toplevel_output_path) {
       href_path = ''
     } else {
@@ -4835,6 +4851,9 @@ const DEFAULT_MACRO_LIST = [
         new MacroArgument({
           name: 'scope',
           boolean: true,
+        }),
+        new MacroArgument({
+          name: 'splitSuffix',
         }),
         new MacroArgument({
           name: Macro.TITLE2_ARGUMENT_NAME,

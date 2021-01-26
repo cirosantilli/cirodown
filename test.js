@@ -2922,6 +2922,8 @@ const complex_filesystem = {
 
 \\x[notindex-h2][link to notindex h2]
 
+\\x[has-split-suffix][link to has split suffix]
+
 \\x[toplevel-scope]
 
 \\x[toplevel-scope/toplevel-scope-h2]
@@ -2949,6 +2951,9 @@ $$
 
 === Index scope 2
 {scope}
+
+== Has split suffix
+{splitSuffix}
 `,
   'notindex.ciro': `= Notindex
 
@@ -2993,6 +2998,7 @@ assert_executable(
         "//x:h1[@id='index']",
         "//x:div[@class='p']//x:a[@href='notindex.html' and text()='link to notindex']",
         "//x:div[@class='p']//x:a[@href='notindex.html#notindex-h2' and text()='link to notindex h2']",
+        "//x:div[@class='p']//x:a[@href='#has-split-suffix' and text()='link to has split suffix']",
         "//x:a[@href='subdir/index.html' and text()='link to subdir']",
         "//x:a[@href='subdir/index.html#index-h2' and text()='link to subdir index h2']",
         "//x:a[@href='subdir/notindex.html' and text()='link to subdir notindex']",
@@ -3005,6 +3011,9 @@ assert_executable(
         "//x:div[@class='p']//x:a[@href='index.html' and text()='link to index']",
         "//x:div[@class='p']//x:a[@href='index.html#h2' and text()='link to h2']",
       ],
+      'has-split-suffix-split.html': [
+        "//x:h1[@id='has-split-suffix']",
+      ],
       'subdir/index.html': [
         "//x:h1[@id='subdir']",
         "//x:h2[@id='index-h2']",
@@ -3013,6 +3022,9 @@ assert_executable(
       ],
       'subdir/index-split.html': [
         "//x:h1[@id='index']",
+        // Check that split suffix works. Should be has-split-suffix-split.html,
+        // not has-split-suffix.html.
+        "//x:div[@class='p']//x:a[@href='has-split-suffix-split.html' and text()='link to has split suffix']",
       ],
       'subdir/notindex.html': [
         "//x:h1[@id='notindex']",

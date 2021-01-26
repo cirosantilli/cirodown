@@ -18,44 +18,44 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="image-id"><a href="" title="link to this element">Image IDs and captions</a><span>  | <a href="images">↑ parent "Images"</a> | <a href=".#image-id">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-370">🔗</a></span><div class="p" id="p-370">Here is an image without a description but with an ID so we can link to it: <a href="#image-my-test-image-2">Figure 7</a>.
-<div class="code-caption-container" id="code-138">
+</div><div><span class="hide-hover"><a href="index-split#p-377">🔗</a></span><div class="p" id="p-377">Here is an image without a description but with an ID so we can link to it: <a href="#image-my-test-image-2">Figure 7</a>.
+<div class="code-caption-container" id="code-144">
 <pre><code>Have a look at this amazing image: \x[image-my-test-image-2].
 
 \Image[Tank_man_standing_in_front_of_some_tanks.jpg]
 {id=image-my-test-image-2}
-</code></pre></div><div class="p" id="p-371">which renders as:</div><blockquote id="q-60"><div class="p" id="p-372">Have a look at this amazing image: <a href="#image-my-test-image-2">Figure 7</a>.</div><figure id="image-my-test-image-2">
+</code></pre></div><div class="p" id="p-378">which renders as:</div><blockquote id="q-60"><div class="p" id="p-379">Have a look at this amazing image: <a href="#image-my-test-image-2">Figure 7</a>.</div><figure id="image-my-test-image-2">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-my-test-image-2"><span class="caption-prefix">Figure 7</span></a></figcaption>
 </figure>
 </blockquote>
-This works because <a href="cross-reference-full-argument"><code>full</code> is the default cross reference style for <code>Image</code></a>, otherwise the link text would be empty since there is no <code>title</code>, and cirodown would raise an error.</div></div><div><span class="hide-hover"><a href="index-split#p-373">🔗</a></span><div class="p" id="p-373">Cirodown can optionally deduce the title from the basename of the <code>src</code> argument if the <code>titleFromSrc</code> <a href="boolean-named-arguments">boolean named argument</a> is given, or if <code>title-from-src</code> is set as the default <a href="media-providers">media provider</a> for the media type: 
-<div class="code-caption-container" id="code-139">
+This works because <a href="cross-reference-full-argument"><code>full</code> is the default cross reference style for <code>Image</code></a>, otherwise the link text would be empty since there is no <code>title</code>, and cirodown would raise an error.</div></div><div><span class="hide-hover"><a href="index-split#p-380">🔗</a></span><div class="p" id="p-380">Cirodown can optionally deduce the title from the basename of the <code>src</code> argument if the <code>titleFromSrc</code> <a href="boolean-named-arguments">boolean named argument</a> is given, or if <code>title-from-src</code> is set as the default <a href="media-providers">media provider</a> for the media type: 
+<div class="code-caption-container" id="code-145">
 <pre><code>Have a look at this amazing image: \x[image-tank-man-standing-in-front-of-some-tanks].
 
 \Image[Tank_man_standing_in_front_of_some_tanks.jpg]
 {titleFromSrc}
-</code></pre></div><div class="p" id="p-374">which renders as:</div><blockquote id="q-61"><div class="p" id="p-375">Have a look at this amazing image: <a href="#image-tank-man-standing-in-front-of-some-tanks">Figure 8. "Tank man standing in front of some tanks."</a>.</div><figure id="image-tank-man-standing-in-front-of-some-tanks">
+</code></pre></div><div class="p" id="p-381">which renders as:</div><blockquote id="q-61"><div class="p" id="p-382">Have a look at this amazing image: <a href="#image-tank-man-standing-in-front-of-some-tanks">Figure 8. "Tank man standing in front of some tanks."</a>.</div><figure id="image-tank-man-standing-in-front-of-some-tanks">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-tank-man-standing-in-front-of-some-tanks"><span class="caption-prefix">Figure 8</span></a>. Tank man standing in front of some tanks.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-376">🔗</a></span><div class="p" id="p-376">If the image has neither ID nor title, then it does not get a caption at all, and it is not possible to link to it with an <a href="internal-cross-references">internal cross reference</a>, e.g.:
-<div class="code-caption-container" id="code-140">
+</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-383">🔗</a></span><div class="p" id="p-383">If the image has neither ID nor title, then it does not get a caption at all, and it is not possible to link to it with an <a href="internal-cross-references">internal cross reference</a>, e.g.:
+<div class="code-caption-container" id="code-146">
 <pre><code>\Image[Tank_man_standing_in_front_of_some_tanks.jpg]
-</code></pre></div><div class="p" id="p-377">which renders as:</div><blockquote id="q-62"><figure id="image-9">
+</code></pre></div><div class="p" id="p-384">which renders as:</div><blockquote id="q-62"><figure id="image-9">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315" alt="Tank_man_standing_in_front_of_some_tanks.jpg"></a>
 </figure>
 </blockquote>
 The image does however get an automatically generated ID based on its image number, and it is possible for readers to link to that ID on the rendered version, e.g. as:
-<div class="code-caption-container" id="code-141">
+<div class="code-caption-container" id="code-147">
 <pre><code>#image-123
 </code></pre></div>
-This link is of course not stable across document revisions however, since if an image is added before that one, the link will break. This kind of image is discouraged, because in paged output formats like PDF, it could float away from the text that refers to the image.</div></div><div><span class="hide-hover"><a href="index-split#p-378">🔗</a></span><div class="p" id="p-378">We can also see that such an image does not increment the Figure count:
-<div class="code-caption-container" id="code-142">
+This link is of course not stable across document revisions however, since if an image is added before that one, the link will break. This kind of image is discouraged, because in paged output formats like PDF, it could float away from the text that refers to the image.</div></div><div><span class="hide-hover"><a href="index-split#p-385">🔗</a></span><div class="p" id="p-385">We can also see that such an image does not increment the Figure count:
+<div class="code-caption-container" id="code-148">
 <pre><code>\Image[Tank_man_standing_in_front_of_some_tanks.jpg]{id=image-my-test-image-count-before}
 \Image[Tank_man_standing_in_front_of_some_tanks.jpg]
 \Image[Tank_man_standing_in_front_of_some_tanks.jpg]{id=image-my-test-image-count-after}
-</code></pre></div><div class="p" id="p-379">which renders as:</div><blockquote id="q-63"><div class="p" id="p-380"><figure id="image-my-test-image-count-before">
+</code></pre></div><div class="p" id="p-386">which renders as:</div><blockquote id="q-63"><div class="p" id="p-387"><figure id="image-my-test-image-count-before">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-my-test-image-count-before"><span class="caption-prefix">Figure 9</span></a></figcaption>
 </figure>
@@ -68,11 +68,11 @@ This link is of course not stable across document revisions however, since if an
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-my-test-image-count-after"><span class="caption-prefix">Figure 10</span></a></figcaption>
 </figure>
-</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-381">🔗</a></span><div class="p" id="p-381">If the image has any visible metadata such as <code>source</code> or <code>description</code> however, then the caption does show and the Figure count gets incremented:
-<div class="code-caption-container" id="code-143">
+</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-388">🔗</a></span><div class="p" id="p-388">If the image has any visible metadata such as <code>source</code> or <code>description</code> however, then the caption does show and the Figure count gets incremented:
+<div class="code-caption-container" id="code-149">
 <pre><code>\Image[Tank_man_standing_in_front_of_some_tanks.jpg]{source=https://en.wikipedia.org/wiki/File:Tianasquare.jpg}
 \Image[Tank_man_standing_in_front_of_some_tanks.jpg]{description=This is the description of my image.}
-</code></pre></div><div class="p" id="p-382">which renders as:</div><blockquote id="q-64"><div class="p" id="p-383"><figure id="image-13">
+</code></pre></div><div class="p" id="p-389">which renders as:</div><blockquote id="q-64"><div class="p" id="p-390"><figure id="image-13">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="index-split#image-13"><span class="caption-prefix">Figure 11</span></a>.  <a href="https://en.wikipedia.org/wiki/File:Tianasquare.jpg">Source</a>.</figcaption>
 </figure>
@@ -85,7 +85,7 @@ This link is of course not stable across document revisions however, since if an
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/017a7a34dfe8356dca178d3cc401f39e5ff5324c">017a7a34dfe8356dca178d3cc401f39e5ff5324c</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c531ea3fb0e0e03dd292c1b7e1af9ab7b5136d3a">c531ea3fb0e0e03dd292c1b7e1af9ab7b5136d3a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

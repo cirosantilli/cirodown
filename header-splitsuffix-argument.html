@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Header &lt;code&gt;splitSuffix&lt;/code&gt; argument</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
+<style>@import "cirodown.min.css";
+
+</style>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+<header>
+<a href="/">Ciro Santilli???</a>
+<a href="/cirodown">Cirodown!!!</a>
+<a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
+<a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
+</header>
+<main class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="header-splitsuffix-argument"><a href="" title="link to this element">Header <code>splitSuffix</code> argument</a><span>  | <a href="headers">↑ parent "Headers"</a> | <a href=".#header-splitsuffix-argument">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-291">🔗</a></span><div class="p" id="p-291">If given, adds a custom suffix to the output filename of the header when using <a href="split-headers"><code>--split-headers</code></a>.</div></div><div><span class="hide-hover"><a href="index-split#p-292">🔗</a></span><div class="p" id="p-292">If the given suffix is empty, it defaults to <code>-split</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-293">🔗</a></span><div class="p" id="p-293">For example, given:
+<div class="code-caption-container" id="code-111">
+<pre><code>= my h1
+
+== my h2
+</code></pre></div>
+a <code>--split-headers</code> conversion would normally place <code>my h2</code> into a file called:
+<div class="code-caption-container" id="code-112">
+<pre><code>my-h2.html
+</code></pre></div>
+However, if we instead wrote:
+<div class="code-caption-container" id="code-113">
+<pre><code>== my h2
+{splitSuffix}
+</code></pre></div>
+it would not be placed under:
+<div class="code-caption-container" id="code-114">
+<pre><code>my-h2-split.html
+</code></pre></div>
+and if we set a custom one as:
+<div class="code-caption-container" id="code-115">
+<pre><code>== my h2
+{splitSuffix=asdf}
+</code></pre></div>
+it would go instead to:
+<div class="code-caption-container" id="code-116">
+<pre><code>my-h2-asdf.html
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-294">🔗</a></span><div class="p" id="p-294">This option is useful if the root of your website is written in Cirodown, and you want to both:<div><ul id="ul-34">
+<li id="l-95">have a section that talks about some other project</li>
+<li id="l-96">host the documentation of that project inside the project source tree</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-295">🔗</a></span><div class="p" id="p-295">For example, <a href="https://cirosantilli.com">https://cirosantilli.com</a> with source at <a href="https://github.com/cirosantilli/cirosantilli.github.io">https://github.com/cirosantilli/cirosantilli.github.io</a> has a quick section about Cirodown: <a href="https://cirosantilli.com#cirodown">https://cirosantilli.com#cirodown</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-296">🔗</a></span><div class="p" id="p-296">Therefore, without a custom suffix, the split header version of that header would go to <a href="https://cirosantilli.com/cirodown">https://cirosantilli.com/cirodown</a>, which would collide with this documentation, that is present in a separate repository: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-297">🔗</a></span><div class="p" id="p-297">Therefore a <code>splitHeader</code> property is used, making the split header version fall under <code>/cirodown-split</code>, and leaving the nicer <code>/cirodown</code> for the more important project toplevel.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
+<footer>
+<div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
+<div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c531ea3fb0e0e03dd292c1b7e1af9ab7b5136d3a">c531ea3fb0e0e03dd292c1b7e1af9ab7b5136d3a</a></div>
+</footer>
+<script>
+<!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-47867706-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+</body>
+</html>
