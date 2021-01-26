@@ -3008,9 +3008,9 @@ assert_executable(
   }
 );
 assert_executable(
-  'executable: --dry --publish works',
+  'executable: --dry-run --split-headers --publish works',
   {
-    args: ['--dry-run', '--publish', '.'],
+    args: ['--dry-run', '--split-headers', '--publish', '.'],
     filesystem: complex_filesystem,
     pre_exec: [
       ['git', ['init']],
@@ -3021,9 +3021,12 @@ assert_executable(
       'out/publish/out/publish/index.html': [
         "//x:style[contains(text(),'@import \"cirodown.min.css\"')]",
       ],
-      //'out/publish/out/publish/subdir/index.html': [
-      //  "//x:style[contains(text(),'@import \"../cirodown.min.css\"')]",
-      //],
+      'out/publish/out/publish/toplevel-scope/toplevel-scope-h2.html': [
+        "//x:style[contains(text(),'@import \"../cirodown.min.css\"')]",
+      ],
+      'out/publish/out/publish/subdir/index.html': [
+        "//x:style[contains(text(),'@import \"../cirodown.min.css\"')]",
+      ],
     },
   }
 );
