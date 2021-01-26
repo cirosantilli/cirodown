@@ -12,14 +12,18 @@ if (typeof performance === 'undefined') {
 } else {
   globals.performance = performance;
 }
-const pluralize = require('pluralize');
 const lodash = require('lodash');
+const path = require('path');
+const pluralize = require('pluralize');
 
 // consts used by classes.
 const UNICODE_LINK = String.fromCodePoint(0x1F517);
 
 class AstNode {
   /**
+   * Abstract syntax tree node. This is the base node type that
+   * represents the parsed output.
+   *
    * @param {AstType} node_type -
    * @param {String} macro_name - - if node_type === AstType.PLAINTEXT or AstType.ERROR: fixed to
    *                                AstType.PLAINTEXT_MACRO_NAME
@@ -45,10 +49,19 @@ class AstNode {
     if (!(Macro.ID_ARGUMENT_NAME in options)) {
       options.id = undefined;
     }
-    if (!('level' in options)) {
-      options.level = undefined;
+    if (!('header_graph_node_parent_id' in options)) {
+      options.header_graph_node_parent_id = undefined;
+    }
+    if (!('is_first_header_in_input_file' in options)) {
+      options.is_first_header_in_input_file = false;
     }
     if (!('parent_node' in options)) {
+      // AstNode. This is different from header_graph_node because
+      // it points to the parent ast node, i.e. the ast_node that
+      // contains this inside one of its arguments.
+      //
+      // header_graph_node on the other hand points to the header tree.
+      // The header tree is currently not even connected via arguments.
       options.parent_node = undefined;
     }
     if (!('text' in options)) {
@@ -61,7 +74,14 @@ class AstNode {
 
     // For elements that have an id.
     // {String} or undefined.
+    // Includes scope. Ideally, we should remove that requirement to not duplicate.
+    // the information. // But it will require a large hard refactor... lazy.
     this.id = options.id;
+
+    // Current running scope. This is inherited from the scope of the ancestor headers.
+    // An element with {scope} set does not get this option set (except if due to ancestors),
+    // only its children do.
+    this.scope = options.scope;
 
     // For elements that are of AstType.PLAINTEXT.
     this.text = options.text
@@ -69,6 +89,7 @@ class AstNode {
 
     this.args = args;
     this.first_toplevel_child = options.first_toplevel_child;
+    this.is_first_header_in_input_file = options.is_first_header_in_input_file;
     // This is the Nth macro of this type that appears in the document.
     this.macro_count = undefined;
     // This is the Nth macro of this type that is visible,
@@ -77,17 +98,19 @@ class AstNode {
     // it is possible to force non-indexed IDs to count as well with
     // caption_number_visible.
     this.macro_count_visible = undefined;
-    // AstNode. TODO get rid of this and always use parent_argument.parent_node instead,
-    // to reduce the duplication of information.
     this.parent_node = options.parent_node;
     // AstArgument
     this.parent_argument = undefined;
-    // {TreeNode} that points to the element.
+    // {HeaderTreeNode} that points to the element.
     // This is used for both headers and non headers:
     // the only difference is that non-headers are not connected as
     // children of their parent. But they still know who the parent is.
     // This was originally required for header scope resolution.
     this.header_graph_node = options.header_graph_node;
+    // When fetching Nodes from the database, we only serialize the ID.
+    // Then to get the actual parent node, further DB querries are done
+    // as needed.
+    this.header_graph_node_parent_id = options.header_graph_node_parent_id;
     this.validation_error = undefined;
     this.validation_output = {};
 
@@ -100,16 +123,12 @@ class AstNode {
     // This was added to the tree from an include.
     this.from_include = options.from_include;
 
-    // Header only fields.
-    // {Number}
-    this.level = options.level;
     // Includes under this header.
     this.includes = [];
 
     for (const argname in args) {
       for (const arg of args[argname]) {
-        arg.parent_node = this;
-        arg.argument_name = argname;
+        this.setup_argument(argname, arg);
       }
     }
   }
@@ -126,7 +145,7 @@ class AstNode {
    *                 content that is passed for an external tool for processing, for example
    *                 Math equations to KaTeX, In that case, the arguments need to be passed as is,
    *                 otherwise e.g. `1 < 2` would escape the `<` to `&lt;` and KaTeX would receive bad input.
-   *        - {TreeNode} header_graph - TreeNode graph containing AstNode headers
+   *        - {HeaderTreeNode} header_graph - HeaderTreeNode graph containing AstNode headers
    *        - {Object} ids - map of document IDs to their description:
    *                 - 'prefix': prefix to add for a  full reference, e.g. `Figure 1`, `Section 2`, etc.
    *                 - {AstArgument} 'title': the title of the element linked to
@@ -201,6 +220,35 @@ class AstNode {
     return out;
   }
 
+  /** Works with both actual this.header_graph_node and
+   * this.header_graph_node_parent_id when coming from a database. */
+  get_header_parent_id() {
+    if (
+      this.header_graph_node !== undefined &&
+      this.header_graph_node.parent_node !== undefined &&
+      this.header_graph_node.parent_node.value !== undefined
+    ) {
+      return this.header_graph_node.parent_node.value.id;
+    } else {
+      return this.header_graph_node_parent_id;
+    }
+  }
+
+  /* Like get_header_parent_id, but returns the parent AST. */
+  get_header_parent(context) {
+    const header_parent_id = this.get_header_parent_id();
+    if (header_parent_id === undefined) {
+      return undefined;
+    } else {
+      return context.id_provider.get(header_parent_id, context);
+    }
+  }
+
+  setup_argument(argname, arg) {
+    arg.parent_node = this;
+    arg.argument_name = argname;
+  }
+
   /** Manual implementation. There must be a better way, but I can't find it... */
   static fromJSON(json_string) {
     let json = JSON.parse(json_string);
@@ -212,6 +260,9 @@ class AstNode {
       {
         text: json.text,
         first_toplevel_child: json.first_toplevel_child,
+        is_first_header_in_input_file: json.is_first_header_in_input_file,
+        header_graph_node_parent_id: json.header_graph_node_parent_id,
+        scope: json.scope,
       }
     );
     let nodes = [toplevel_ast];
@@ -229,6 +280,7 @@ class AstNode {
             {
               text: ast.text,
               first_toplevel_child: ast.first_toplevel_child,
+              is_first_header_in_input_file: ast.is_first_header_in_input_file,
             }
           );
           new_arg.push(new_ast);
@@ -241,14 +293,24 @@ class AstNode {
   }
 
   toJSON() {
-    return {
+    const ret = {
       macro_name: this.macro_name,
       node_type:  symbol_to_string(this.node_type),
+      scope:      this.scope,
       source_location: this.source_location,
       text:       this.text,
       args:       this.args,
       first_toplevel_child: this.first_toplevel_child,
+      is_first_header_in_input_file: this.is_first_header_in_input_file,
     }
+    if (
+      this.header_graph_node !== undefined &&
+      this.header_graph_node.parent_node !== undefined &&
+      this.header_graph_node.parent_node.value !== undefined
+    ) {
+      ret.header_graph_node_parent_id = this.header_graph_node.parent_node.value.id;
+    }
+    return ret;
   }
 }
 exports.AstNode = AstNode;
@@ -323,8 +385,22 @@ class ErrorMessage {
 }
 
 class FileProvider {
-  /* Get entry by path. */
-  get(path) { throw new Error('unimplemented'); }
+  /* Get entry by path.
+   * @return Object
+   *        - path {String}: source path
+   *        - toplevel_id {String}
+   */
+  get(path) {
+    let get_ret = this.get_path_entry(path);
+    if (get_ret === undefined) {
+      return undefined;
+    } else {
+      return get_ret;
+    }
+  }
+
+  get_path_entry(path) { throw new Error('unimplemented'); }
+
   /* Get entry by ID. */
   get_id(id) { throw new Error('unimplemented'); }
 }
@@ -348,7 +424,7 @@ class IdProvider {
 
   /**
    * @param {String} id
-   * @param {TreeNode} header_graph_node
+   * @param {HeaderTreeNode} header_graph_node
    * @return {Union[AstNode,undefined]}.
    *         undefined: ID not found
    *         Otherwise, the ast node for the given ID
@@ -357,8 +433,12 @@ class IdProvider {
     if (id[0] === Macro.HEADER_SCOPE_SEPARATOR) {
       return this.get_noscope(id.substr(1), context);
     } else {
-      if (header_graph_node !== undefined) {
-        let parent_scope_id = get_parent_scope_id(header_graph_node, context);
+      if (
+        header_graph_node !== undefined &&
+        header_graph_node.parent_node !== undefined &&
+        header_graph_node.parent_node.value !== undefined
+      ) {
+        let parent_scope_id = calculate_scope(header_graph_node.parent_node.value, context);
         if (parent_scope_id !== undefined) {
           let resolved_scope_id = this.get_noscope(
             parent_scope_id + Macro.HEADER_SCOPE_SEPARATOR + id, context);
@@ -382,14 +462,43 @@ class IdProvider {
   }
 
   /** Like get, but do not resolve scope. */
-  get_noscope(id, context) { throw new Error('unimplemented'); }
+  get_noscope(id, context) {
+    let get_ret = this.get_noscope_entry(id);
+    if (get_ret === undefined) {
+      return undefined;
+    } else {
+      const ast = AstNode.fromJSON(get_ret.ast_json);
+      ast.input_path = get_ret.path;
+      ast.id = id;
+      if (context !== undefined) {
+        validate_ast(ast, context);
+      }
+      return ast;
+    }
+  }
+
+  get_noscope_entry(id) { throw new Error('unimplemented'); }
 
   /**
    * @param {String} id
    * @return {Array[AstNode]}: all header nodes that have the given ID
    *                           as a parent includer.
    */
-  get_includes(id, context) { throw new Error('unimplemented'); }
+  get_includes(to_id, context) {
+    let all_rets = this.get_includes_entries(to_id);
+    let ret = [];
+    for (const all_ret of all_rets) {
+      const from_ast = this.get(all_ret.from_id, context);
+      if (from_ast === undefined) {
+        throw 'parent ID of include not in database, not sure how this can happen so throwing';
+      } else {
+        ret.push(from_ast);
+      }
+    }
+    return ret;
+  }
+
+  get_includes_entries(to_id) { throw new Error('unimplemented'); }
 }
 exports.IdProvider = IdProvider;
 
@@ -660,7 +769,18 @@ Macro.TR_MACRO_NAME = 'Tr';
 Macro.TITLE_ARGUMENT_NAME = 'title';
 Macro.TITLE2_ARGUMENT_NAME = 'title2';
 Macro.TOC_MACRO_NAME = 'Toc';
-Macro.TOC_PREFIX = 'toc-'
+// We set a fixed magic ID to the ToC because:
+// - when doing --split-headers, the easy approach is to add the ToC node
+//   after normal ID indexing has happened, which means that we can't link
+//   to the ToC as other normal links. And if we could, we would have to worry
+//   about how to avoid ID duplication
+// - only a single ToC ever renders per document. So we can just have a fixed
+//   magic one.
+Macro.TOC_ID = 'toc';
+Macro.RESERVED_IDS = new Set([
+  Macro.TOC_ID,
+]);
+Macro.TOC_PREFIX = Macro.TOC_ID + '-'
 Macro.TOPLEVEL_MACRO_NAME = 'Toplevel';
 
 /** Helper to create plaintext nodes, since so many of the fields are fixed in that case. */
@@ -839,10 +959,12 @@ class Tokenizer {
     } else {
       new_source_location = source_location.clone();
     }
+    if (new_source_location.path === undefined)
+      new_source_location.path = this.source_location.path;
     if (new_source_location.line === undefined)
-      new_source_location.line = this.source_location.line
+      new_source_location.line = this.source_location.line;
     if (new_source_location.column === undefined)
-      new_source_location.column = this.source_location.column
+      new_source_location.column = this.source_location.column;
     this.extra_returns.errors.push(
       new ErrorMessage(message, new_source_location));
   }
@@ -1302,10 +1424,10 @@ class Tokenizer {
   }
 }
 
-class TreeNode {
+class HeaderTreeNode {
   /**
    * @param {AstNode} value
-   * @param {TreeNode} parent_node
+   * @param {HeaderTreeNode} parent_node
    */
   constructor(value, parent_node) {
     this.value = value;
@@ -1325,6 +1447,18 @@ class TreeNode {
     }
   }
 
+  /** @return {Number} How deep this node is relative to
+   * the to of the root of the tree. */
+  get_level() {
+    let level = 0;
+    let cur_node = this.parent_node;
+    while (cur_node !== undefined) {
+      level++;
+      cur_node = cur_node.parent_node;
+    }
+    return level;
+  }
+
   /** E.g. get number 1.4.2.5 of a Section.
    *
    * @return {String}
@@ -1332,17 +1466,16 @@ class TreeNode {
   get_nested_number(header_graph_top_level) {
     let indexes = [];
     let cur_node = this;
-    while (cur_node !== undefined) {
+    while (
+      // Possible in skipped header levels.
+      cur_node !== undefined &&
+      cur_node.value !== undefined &&
+      cur_node.get_level() !== header_graph_top_level
+    ) {
       indexes.push(cur_node.index + 1);
       cur_node = cur_node.parent_node;
     }
-    let offset;
-    if (header_graph_top_level === 0) {
-      offset = 0;
-    } else {
-      offset = 1;
-    }
-    return indexes.reverse().slice(1 + offset).join('.');
+    return indexes.reverse().join('.');
   }
 
   toString() {
@@ -1356,8 +1489,8 @@ class TreeNode {
     }
     while (todo_visit.length > 0) {
       const cur_node = todo_visit.pop();
-      const value = cur_node.value;
-      ret.push(`${INSANE_HEADER_CHAR.repeat(value.level)} h${value.level} ${cur_node.get_nested_number(1)} ${value.id}`);
+      const level = cur_node.get_level();
+      ret.push(`${INSANE_HEADER_CHAR.repeat(level)} h${level} ${cur_node.get_nested_number(1)} ${cur_node.value.id}`);
       todo_visit.push(...cur_node.children.reverse());
     }
     return ret.join('\n');
@@ -1429,6 +1562,10 @@ function calculate_id(ast, context, non_indexed_ids, indexed_ids,
   macro_counts, macro_counts_visible, state, is_header, line_to_id_array
 ) {
   const macro_name = ast.macro_name;
+  if (macro_name === Macro.TOC_MACRO_NAME) {
+    ast.id = Macro.TOC_ID;
+    return;
+  }
   const macro = context.macros[macro_name];
 
   // Linear count of each macro type for macros that have IDs.
@@ -1497,10 +1634,18 @@ function calculate_id(ast, context, non_indexed_ids, indexed_ids,
     } else {
       ast.id = convert_arg_noescape(macro_id_arg, context);
     }
-    if (ast.id !== undefined && ast.header_graph_node) {
-      const parent_scope_id = get_parent_scope_id(ast.header_graph_node, context);
-      if (parent_scope_id !== undefined) {
-        ast.id = parent_scope_id + Macro.HEADER_SCOPE_SEPARATOR + ast.id
+    if (Macro.RESERVED_IDS.has(ast.id)) {
+      let message = `reserved ID "${ast.id}"`;
+      parse_error(state, message, ast.source_location);
+    }
+    if (
+      ast.id !== undefined &&
+      ast.header_graph_node &&
+      ast.header_graph_node.parent_node !== undefined &&
+      ast.header_graph_node.parent_node.value !== undefined
+    ) {
+      if (ast.scope !== undefined) {
+        ast.id = ast.scope + Macro.HEADER_SCOPE_SEPARATOR + ast.id
       }
     }
   }
@@ -1541,6 +1686,59 @@ function calculate_id(ast, context, non_indexed_ids, indexed_ids,
     binary_search_insert(line_to_id_array,
       [ast.source_location.line, ast.id], binary_search_line_to_id_array_fn);
   }
+}
+
+// Return the full scope of a given node. This includes the concatenation of both:
+// * any scopes of any parents
+// * the ID of the node if it has a scope set for itself
+// If none of those provide scopes, return undefined.
+function calculate_scope(ast, context) {
+  let parent_scope;
+  if (ast.scope !== undefined) {
+    parent_scope = ast.scope;
+  }
+
+  let self_scope;
+  if (
+      ast.validation_output.scope !== undefined &&
+      ast.validation_output.scope.boolean
+  ) {
+    self_scope = ast.id;
+    if (parent_scope !== undefined) {
+      self_scope = self_scope.substr(parent_scope.length + 1);
+    }
+  } else {
+    self_scope = '';
+  }
+
+  let ret = '';
+  if (parent_scope !== undefined) {
+    ret += parent_scope;
+  }
+  if (
+    parent_scope !== undefined &&
+    self_scope !== ''
+  ) {
+    ret += Macro.HEADER_SCOPE_SEPARATOR;
+  }
+  if (self_scope !== '') {
+    ret += self_scope;
+  }
+  if (ret === '') {
+    return undefined;
+  }
+  return ret;
+}
+
+/* Calculate the length of the scope of a child header given its parent ast. */
+function calculate_scope_length(parent_ast, context) {
+  if (parent_ast !== undefined) {
+    let scope = calculate_scope(parent_ast, context);
+    if (scope !== undefined) {
+      return scope.length + 1;
+    }
+  }
+  return 0;
 }
 
 function capitalize_first_letter(string) {
@@ -1598,15 +1796,19 @@ function closing_token(token) {
  *
  * The CLI interface basically just feeds this.
  *
- * @options {Object}
+ * @param {Object} options
  *          {IdProvider} external_ids
  *          {Function[String] -> [string,string]} read_include(id) -> [file_name, content]
- *          {Number} h_level_offset - add this offset to the levels of every header
+ *          {Number} h_include_level_offset - add this offset to the levels of every header
  *          {boolean} render - if false, parse the input, but don't render it,
  *              and return undefined.
  *              The initial use case for this is to allow a faster and error-less
  *              first pass when building an entire directory with internal cross file
  *              references to extract IDs of each file.
+ * @param {Object} extra_returns
+ *          {Object} rendered_outputs pairs of output_path -> rendered_output_string
+ *                   This is needed primarily because --html-spit-header
+ *                   generates multiple output files for a single input file.
  * @return {String}
  */
 function convert(
@@ -1614,91 +1816,21 @@ function convert(
   options,
   extra_returns={},
 ) {
-  extra_returns.debug_perf = {};
-  extra_returns.debug_perf.start = globals.performance.now();
-  if (options === undefined) {
-    options = {};
-  }
-  if (!('body_only' in options)) { options.body_only = false; }
-  if (!('cirodown_json' in options)) { options.cirodown_json = {}; }
-    const cirodown_json = options.cirodown_json;
-    {
-      if (!('media-providers' in cirodown_json)) { cirodown_json['media-providers'] = {}; }
-      {
-        const media_providers = cirodown_json['media-providers'];
+  let context = convert_init_context(options, extra_returns);
 
-        for (const media_provider_type of MEDIA_PROVIDER_TYPES) {
-          if (!(media_provider_type in media_providers)) {
-            media_providers[media_provider_type] = {};
-          }
-          const media_provider = media_providers[media_provider_type];
-          if (!('title-from-src' in media_provider)) {
-            media_provider['title-from-src'] = false;
-          }
-        }
-        if (!('path' in media_providers.local)) {
-          media_providers.local.path = '';
-        }
-        if (!('remote' in media_providers.github)) {
-          media_providers.github.remote = 'TODO determine from git remote origin if any';
-        }
-        for (const media_provider_name in media_providers) {
-          const media_provider = media_providers[media_provider_name];
-          if (!('title-from-src' in media_provider)) {
-            media_provider['title-from-src'] = false;
-          }
-        }
-      }
-    }
-  if (!('file_provider' in options)) { options.file_provider = undefined; }
-  if (!('from_include' in options)) { options.from_include = false; }
-  if (!('html_embed' in options)) { options.html_embed = false; }
-  if (!('html_single_page' in options)) { options.html_single_page = false; }
-  if (!('html_split_header' in options)) { options.html_split_header = false; }
-  if (!('html_x_extension' in options)) { options.html_x_extension = true; }
-  if (!('h_level_offset' in options)) { options.h_level_offset = 0; }
-  if (!('id_provider' in options)) { options.id_provider = undefined; }
-  if (!('include_path_set' in options)) { options.include_path_set = new Set(); }
-  if (!('input_path' in options)) { options.input_path = undefined; }
-  if (!('output_format' in options)) { options.output_format = OUTPUT_FORMAT_HTML; }
-  if (!('path_sep' in options)) { options.path_sep = undefined; }
-  if (!('render' in options)) { options.render = true; }
-  if (!('start_line' in options)) { options.start_line = 1; }
-  // A toplevel scope, to implement conversion of files in subdirectories.
-  if (!('scope' in options)) { options.scope = undefined; }
-  if (!('show_ast' in options)) { options.show_ast = false; }
-  if (!('show_parse' in options)) { options.show_parse = false; }
-  if (!('show_tokenize' in options)) { options.show_tokenize = false; }
-  if (!('show_tokens' in options)) { options.show_tokens = false; }
-  if (!('template' in options)) { options.template = undefined; }
-  if (!('template_vars' in options)) { options.template_vars = {}; }
-    if (!('head' in options.template_vars)) { options.template_vars.head = ''; }
-    if (!('post_body' in options.template_vars)) { options.template_vars.post_body = ''; }
-    if (!('style' in options.template_vars)) { options.template_vars.style = ''; }
-  // https://cirosantilli.com/cirodown#the-id-of-the-first-header-is-derived-from-the-filename
-  if (!('toplevel_id' in options)) { options.toplevel_id = undefined; }
-  if (options.xss_unsafe === undefined) {
-    const xss_unsafe = cirodown_json['xss-unsafe'];
-    if (xss_unsafe !== undefined) {
-      options.xss_unsafe = xss_unsafe;
-    } else {
-      options.xss_unsafe = false;
-    }
-  }
-  const macros = macro_list_to_macros();
-  extra_returns.errors = [];
+  // Tokenize.
   let sub_extra_returns;
   sub_extra_returns = {};
   extra_returns.debug_perf.tokenize_pre = globals.performance.now();
   let tokens = (new Tokenizer(
     input_string,
     sub_extra_returns,
-    options.show_tokenize,
-    options.start_line,
-    options.input_path,
+    context.options.log.tokenize,
+    context.options.start_line,
+    context.options.input_path,
   )).tokenize();
   extra_returns.debug_perf.tokenize_post = globals.performance.now();
-  if (options.show_tokens) {
+  if (context.options.log['tokens-inside']) {
     console.error('tokens:');
     for (let i = 0; i < tokens.length; i++) {
       console.error(`${i}: ${JSON.stringify(tokens[i], null, 2)}`);
@@ -1708,17 +1840,10 @@ function convert(
   extra_returns.tokens = tokens;
   extra_returns.errors.push(...sub_extra_returns.errors);
   sub_extra_returns = {};
-  let context = {
-    errors: [],
-    extra_returns: extra_returns,
-    include_path_set: new Set(options.include_path_set),
-    macros: macros,
-    options: options,
-  };
 
   // Setup context.media_provider_default based on `default-for`.
   {
-    const media_providers = cirodown_json['media-providers'];
+    const media_providers = context.options.cirodown_json['media-providers'];
     context.media_provider_default = {};
     for (const media_provider_name in media_providers) {
       const media_provider = media_providers[media_provider_name];
@@ -1756,8 +1881,8 @@ function convert(
     }
   }
 
-  let ast = parse(tokens, options, context, sub_extra_returns);
-  if (options.show_ast) {
+  let ast = parse(tokens, context.options, context, sub_extra_returns);
+  if (context.options.log['ast-inside']) {
     console.error('ast:');
     console.error(JSON.stringify(ast, null, 2));
     console.error();
@@ -1768,45 +1893,44 @@ function convert(
   Object.assign(extra_returns.debug_perf, sub_extra_returns.debug_perf);
   extra_returns.errors.push(...sub_extra_returns.errors);
   let output;
-  if (options.render) {
+  if (context.options.render) {
+    context.extra_returns.rendered_outputs = {};
     extra_returns.debug_perf.render_pre = globals.performance.now();
     // Split header conversion.
-    if (options.html_split_header) {
-      function convert_header(cur_arg_list, context) {
-        if (cur_arg_list.length > 0) {
-          const context_copy = Object.assign({}, context);
-          const header_graph_node = cur_arg_list[0].header_graph_node;
-          const header_graph_node_real_parent = header_graph_node.parent_node;
-          header_graph_node.parent_node = undefined;
-          const ast_toplevel = new AstNode(
-            AstType.MACRO,
-            Macro.TOPLEVEL_MACRO_NAME,
-            {'content': new AstArgument(cur_arg_list,
-              cur_arg_list[0].source_location)},
-            cur_arg_list[0].source_location,
-          );
-          context.extra_returns.html_split_header[cur_arg_list[0].id] =
-            ast_toplevel.convert(context);
-          header_graph_node.parent_node = header_graph_node_real_parent;
-        }
-      }
-      context.extra_returns.html_split_header = {};
+    if (context.options.split_headers) {
       const content = ast.args.content;
+      // Gather up each header (must be a direct child of toplevel)
+      // and all elements that belong to that header (up to the next header).
       let cur_arg_list = [];
+      let has_toc = false;
       for (const child_ast of content) {
         const macro_name = child_ast.macro_name;
-        if (macro_name === Macro.HEADER_MACRO_NAME) {
-          convert_header(cur_arg_list, context);
+        if (macro_name === Macro.TOC_MACRO_NAME) {
+          has_toc = true;
+        }
+        if (
+          macro_name === Macro.HEADER_MACRO_NAME
+          // Just ignore extra added include headers, these
+          // were overwritting index-split.html output.
+          && !child_ast.from_include
+        ) {
+          convert_header(cur_arg_list, context, has_toc);
           cur_arg_list = [];
+          has_toc = false;
         }
         cur_arg_list.push(child_ast);
       }
       convert_header(cur_arg_list, context);
       // Because the following conversion would redefine them.
-      context.katex_macros = {};
     }
-    // Non-split header toplevel conversion.
+    if (context.options.log['split-headers']) {
+      console.error('split-headers non-split: ' + context.options.input_path);
+    }
+    context.katex_macros = {};
     output = ast.convert(context);
+    if (context.toplevel_output_path !== undefined) {
+      context.extra_returns.rendered_outputs[context.toplevel_output_path] = output;
+    }
     extra_returns.debug_perf.render_post = globals.performance.now();
     extra_returns.errors.push(...context.errors);
   }
@@ -1868,15 +1992,85 @@ function convert_arg_noescape(arg, context={}) {
   return convert_arg(arg, clone_and_set(context, 'html_escape', false));
 }
 
+/* Convert one header (or content before the first header)
+ * in --split-headers mode. */
+function convert_header(cur_arg_list, context, has_toc) {
+  if (
+    // Can fail if:
+    // * the first thing in the document is a header
+    // * the document has no headers
+    cur_arg_list.length > 0
+  ) {
+    context = Object.assign({}, context);
+    const options = Object.assign({}, context.options);
+    context.options = options;
+    const first_ast = cur_arg_list[0];
+    if (!has_toc && first_ast.macro_name === Macro.HEADER_MACRO_NAME) {
+      cur_arg_list.push(new AstNode(
+        AstType.MACRO,
+        Macro.TOC_MACRO_NAME,
+        {},
+        first_ast.source_location,
+        {id: Macro.TOC_ID}
+      ));
+    }
+    const ast_toplevel = new AstNode(
+      AstType.MACRO,
+      Macro.TOPLEVEL_MACRO_NAME,
+      {
+        'content': new AstArgument(cur_arg_list, first_ast.source_location)
+      },
+      first_ast.source_location,
+    );
+    options.toplevel_id = first_ast.id;
+    context.in_split_headers = true;
+    // When not in simple header mode, we always have a value-less node, with
+    // children with values. Now things are a bit more complicated, because we
+    // want to keep the header tree intact, but at the same time also uniquely point
+    // to one of the headers. So let's fake a tree node that has only one child we care
+    // about. And the child does not have this fake parent to be able to see actual parents.
+    context.header_graph = new HeaderTreeNode();
+    context.header_graph.add_child(first_ast.header_graph_node);
+    context.header_graph_top_level = first_ast.header_graph_node.get_level();
+    const output_path = output_path_from_ast(first_ast, context);
+    if (options.log['split-headers']) {
+      console.error('split-headers: ' + output_path);
+    }
+    context.toplevel_output_path = output_path;
+    context.toplevel_ast = first_ast;
+
+    // root_relpath
+    const [output_path_dirname, output_path_basename] =
+      path_split(output_path, context.options.path_sep);
+    options.template_vars = Object.assign({}, options.template_vars);
+    options.template_vars.root_relpath = path.relative(
+      output_path_dirname, '.');
+    if (options.template_vars.root_relpath !== '') {
+        options.template_vars.root_relpath += context.options.path_sep;
+    }
+
+    // Do the conversion.
+    context.extra_returns.rendered_outputs[output_path] =
+      ast_toplevel.convert(context);
+  }
+}
+
 /**
  * @param {Object} options:
  *        - {Number} start_line
  *        - {Array} errors
  * @return {AstArgument}*/
-function convert_include(input_string, convert_options, cur_header_level, input_path, href, options={}) {
+function convert_include(
+  input_string,
+  convert_options,
+  cur_header_level,
+  input_path,
+  href,
+  options={}
+) {
   convert_options = Object.assign({}, convert_options);
   convert_options.from_include = true;
-  convert_options.h_level_offset = cur_header_level;
+  convert_options.h_parse_level_offset = cur_header_level;
   convert_options.input_path = input_path;
   convert_options.render = false;
   convert_options.toplevel_id = href;
@@ -1899,6 +2093,130 @@ function convert_include(input_string, convert_options, cur_header_level, input_
   }
   return convert_extra_returns.ast.args.content;
 }
+
+function convert_init_context(options={}, extra_returns={}) {
+  extra_returns.debug_perf = {};
+  extra_returns.debug_perf.start = globals.performance.now();
+  options = Object.assign({}, options);
+  if (!('body_only' in options)) { options.body_only = false; }
+  if (!('cirodown_json' in options)) { options.cirodown_json = {}; }
+    const cirodown_json = options.cirodown_json;
+    {
+      if (!('media-providers' in cirodown_json)) { cirodown_json['media-providers'] = {}; }
+      {
+        const media_providers = cirodown_json['media-providers'];
+
+        for (const media_provider_type of MEDIA_PROVIDER_TYPES) {
+          if (!(media_provider_type in media_providers)) {
+            media_providers[media_provider_type] = {};
+          }
+          const media_provider = media_providers[media_provider_type];
+          if (!('title-from-src' in media_provider)) {
+            media_provider['title-from-src'] = false;
+          }
+        }
+        if (!('path' in media_providers.local)) {
+          media_providers.local.path = '';
+        }
+        if (!('remote' in media_providers.github)) {
+          media_providers.github.remote = 'TODO determine from git remote origin if any';
+        }
+        for (const media_provider_name in media_providers) {
+          const media_provider = media_providers[media_provider_name];
+          if (!('title-from-src' in media_provider)) {
+            media_provider['title-from-src'] = false;
+          }
+        }
+      }
+    }
+  if (!('embed_includes' in options)) { options.embed_includes = false; }
+  if (!('file_provider' in options)) { options.file_provider = undefined; }
+  if (!('from_include' in options)) { options.from_include = false; }
+  if (!('html_embed' in options)) { options.html_embed = false; }
+  // Add HTML extension to x links. And therefore also output files
+  // with the .html extension.
+  if (!('html_x_extension' in options)) { options.html_x_extension = true; }
+  if (!('h_parse_level_offset' in options)) {
+    // When parsing, start the first header at this offset instead of h1.
+    // This is used when doing includes, since the included header is at.
+    // an offset relative to where it is included from.
+    options.h_parse_level_offset = 0;
+  }
+  if (!('id_provider' in options)) { options.id_provider = undefined; }
+  if (!('include_path_set' in options)) { options.include_path_set = new Set(); }
+  if (!('input_path' in options)) { options.input_path = undefined; }
+  if (!('log' in options)) { options.log = {}; }
+  // Override the default calculated output file for the main input.
+  if (!('outfile' in options)) { options.outfile = undefined; }
+  if (!('output_format' in options)) { options.output_format = OUTPUT_FORMAT_HTML; }
+  if (!('path_sep' in options)) { options.path_sep = undefined; }
+  if (!('render' in options)) { options.render = true; }
+  if (!('start_line' in options)) { options.start_line = 1; }
+  // A toplevel scope, to implement conversion of files in subdirectories.
+  if (!('split_headers' in options)) { options.split_headers = false; }
+  if (!('template' in options)) { options.template = undefined; }
+  if (!('template_vars' in options)) { options.template_vars = {}; }
+    if (!('head' in options.template_vars)) { options.template_vars.head = ''; }
+    if (!('root_relpath' in options.template_vars)) { options.template_vars.root_relpath = ''; }
+    if (!('post_body' in options.template_vars)) { options.template_vars.post_body = ''; }
+    if (!('style' in options.template_vars)) { options.template_vars.style = ''; }
+  // If given, force the toplevel header to have this ID.
+  // Otherwise, derive the ID from the title.
+  // https://cirosantilli.com/cirodown#the-id-of-the-first-header-is-derived-from-the-filename
+  if (!('toplevel_id' in options)) { options.toplevel_id = undefined; }
+  if (!('toplevel_has_scope' in options)) {
+    // Set for index files in subdirectories. Is equivalent to
+    // adding a {scope} to the toplevel header.
+    options.toplevel_has_scope = false;
+  }
+  if (!('toplevel_parent_scope' in options)) {
+    // Set for files in subdirectories. Means that the (faked non existent)
+    // parent toplevel header has {scope} set.
+    options.toplevel_parent_scope = undefined;
+  }
+  if (options.xss_unsafe === undefined) {
+    const xss_unsafe = cirodown_json['xss-unsafe'];
+    if (xss_unsafe !== undefined) {
+      options.xss_unsafe = xss_unsafe;
+    } else {
+      options.xss_unsafe = false;
+    }
+  }
+  extra_returns.errors = [];
+  let context = {
+    katex_macros: {},
+    in_split_headers: false,
+    errors: [],
+    extra_returns: extra_returns,
+    include_path_set: new Set(options.include_path_set),
+    macros: macro_list_to_macros(),
+    options: options,
+  };
+
+  // Non-split header toplevel conversion.
+  let outpath;
+  if (context.options.outfile !== undefined) {
+    outpath = context.options.outfile;
+  } else if (context.options.input_path !== undefined) {
+    outpath = output_path(context.options.input_path, context.options.toplevel_id, context)[0];
+  }
+  context.toplevel_output_path = outpath;
+  return context;
+}
+
+/* Like x_href, but called with options as convert,
+ * so that we don't have to fake a complex context. */
+function convert_x_href(target_id, options) {
+  const context = convert_init_context(options);
+  context.id_provider = options.id_provider;
+  const target_id_ast = context.id_provider.get(target_id, context);
+  if (target_id_ast === undefined) {
+    return undefined
+  } else {
+    return x_href(target_id_ast, context);
+  }
+}
+exports.convert_x_href = convert_x_href;
 
 function dirname(str, sep) {
   return path_split(str, sep)[0];
@@ -1927,30 +2245,6 @@ function get_descendant_count(tree_node) {
   } else {
     return '';
   }
-}
-
-/** @return {Union[String,undefined]}
- *          If the node has a parent header with a scope, return the ID of that header.
- *          Otherwise, return undefined.
- */
-function get_parent_scope_id(header_graph_node, context) {
-  let cur_header_graph_node = header_graph_node.parent_node;
-  while (
-    // Possible in case of malformed document e.g. with
-    // non-integer header level.
-    cur_header_graph_node !== undefined &&
-    cur_header_graph_node.value !== undefined
-  ) {
-    if (cur_header_graph_node.value.validation_output.scope.boolean) {
-      // The ID of the first scoped parent already contains all further scopes prepended to it.
-      return cur_header_graph_node.value.id;
-    }
-    cur_header_graph_node = cur_header_graph_node.parent_node;
-  }
-  return undefined;
-  // TODO attempt for https://github.com/cirosantilli/cirodown/issues/116
-  // but broke image related stuff.
-  //return context.options.scope;
 }
 
 /** Convert a key value already fully HTML escaped strings
@@ -2024,9 +2318,12 @@ function html_convert_attrs(
 function html_convert_attrs_id(
   ast, context, arg_names=[], custom_args={}
 ) {
-  if (ast.id !== undefined) {
+  let id = ast.id;
+  if (id !== undefined) {
     custom_args[Macro.ID_ARGUMENT_NAME] = [
-        new PlaintextAstNode(ast.source_location, remove_toplevel_scope(ast, context))];
+        new PlaintextAstNode(ast.source_location,
+          remove_toplevel_scope(id, context.toplevel_ast, context)),
+    ];
   }
   return html_convert_attrs(ast, context, arg_names, custom_args);
 }
@@ -2227,6 +2524,8 @@ function macro_list() {
 }
 exports.macro_list = macro_list;
 
+const CIRODOWN_EXT = '.ciro';
+exports.CIRODOWN_EXT = CIRODOWN_EXT;
 const MEDIA_PROVIDER_TYPES = new Set([
   'github',
   'local',
@@ -2312,20 +2611,125 @@ function object_subset(source_object, keys) {
   return new_object;
 }
 
-/** Get the output path from the input path, e.g. my/README.ciro to my/index.html */
-function output_path(input_path, outext, path_sep, html_x_extension=true) {
-  const [dirname, basename] = path_split(input_path, path_sep);
-  let ret = dirname;
-  if (dirname !== '') {
-    ret += path_sep;
-  }
-  ret += rename_basename(noext(basename));
-  if (html_x_extension) {
-    ret += '.' + outext;
-  }
-  return ret;
+/** Calculate the output path of an AST node,
+ * or of something faked to look like one.
+ *
+ * cirodown ->
+ *    split_headers -> index.html
+ *   !split_headers -> index.html
+ * quick-start ->
+ *    split_headers -> quick-start.html
+ *   !split_headers -> index.html
+ * not-readme -> not-readme.html
+ *    split_headers -> not-readme.html
+ *   !split_headers -> not-readme.html
+ * h2 in not the README -> not-readme.html
+ *    split_headers -> h2-in-not-the-readme.html
+ *   !split_headers -> not-readme.html
+ * not-readme-with-scope ->
+ *    split_headers -> not-readme-with-scope.html
+ *   !split_headers ->  not-readme-with-scope.html
+ * not-readme-with-scope/h2 ->
+ *    split_headers -> not-readme-with-scope/h2.html
+ *   !split_headers ->  not-readme-with-scope.html
+ * subdir ->
+ *    split_headers -> subdir/index.html
+ *   !html_x_extension -> subdir
+ *   !split_headers -> subdir/index.html
+ * subdir/subdir-h2
+ */
+function output_path(input_path, id, context={}) {
+  const [dirname, basename] = output_path_parts(input_path, id, context);
+  return [
+    path_join(dirname, basename + '.' + HTML_EXT, context.options.path_sep),
+    dirname,
+    basename
+  ];
 }
-exports.output_path = output_path;
+
+/** Helper for when we have an actual AstNode. */
+function output_path_from_ast(ast, context) {
+  return output_path(ast.source_location.path, ast.id, context)[0];
+}
+
+/* Return dirname and basename without extension of the
+ * path to where an AST gets rendered to. */
+function output_path_parts(input_path, id, context) {
+  let ret = '';
+  const [dirname, basename] = path_split(input_path, context.options.path_sep);
+  const renamed_basename_noext = rename_basename(noext(basename));
+  if (
+    // Get the path to the split header version
+    //
+    // to_split_headers is set explicitly when making
+    // links across split/non-split versions of the output.
+    //
+    // Otherwise, link to the same type of output as the current one
+    // as given in in_split_headers.
+    //
+    // This way, to_split_hedears in particular forces the link to be
+    // to the non-split mode, even if we are in split mode.
+    //
+    // Some desired sample outcomes:
+    //
+    // id='cirodown'             -> ['',       'index-split']
+    // id='quick-start'          -> ['',       'quick-start']
+    // id='not-readme'           -> ['',       'not-readme-split']
+    // id='h2-in-not-the-readme' -> ['',       'h2-in-not-the-readme']
+    // id='subdir'               -> ['subdir', 'index-split']
+    // id='subdir/subdir-h2'     -> ['subdir', 'subdir-h2']
+    // id='subdir/notindex'      -> ['subdir', 'notindex']
+    // id='subdir/notindex-h2'   -> ['subdir', 'notindex-h2']
+    (context.to_split_headers === undefined && context.in_split_headers) ||
+    (context.to_split_headers !== undefined && context.to_split_headers)
+  ) {
+    const ast = context.id_provider.get(id, context);
+    // We are the first header, or something that comes before it.
+    let first_header_or_before = false;
+    if (ast === undefined) {
+      first_header_or_before = true;
+    } else {
+      if (ast.macro_name === Macro.HEADER_MACRO_NAME) {
+        if (ast.is_first_header_in_input_file) {
+          first_header_or_before = true;
+        }
+      } else {
+        id = ast.get_header_parent_id();
+      }
+    }
+    let dirname_ret;
+    let basename_ret;
+    const [id_dirname, id_basename] = path_split(id, URL_SEP);
+    if (first_header_or_before) {
+      // For toplevel elements in split header mode, we have
+      // to take care of index and -split suffix.
+      if (renamed_basename_noext === INDEX_BASENAME_NOEXT) {
+        basename_ret = INDEX_BASENAME_NOEXT;
+        if (id_dirname === '') {
+          dirname_ret = dirname;
+        } else {
+          // Not a https://cirosantilli.com/cirodown#the-toplevel-index-file
+          dirname_ret = path_join(id_dirname, id_basename, context.options.path_sep);
+        }
+      } else {
+        dirname_ret = dirname;
+        basename_ret = renamed_basename_noext;
+      }
+      basename_ret += '-split';
+    } else {
+      // Non-toplevel elements in split header mode are simple,
+      // the ID just gives the output path directly.
+      dirname_ret = id_dirname;
+      basename_ret = id_basename;
+    }
+    return [dirname_ret, basename_ret];
+  } else {
+    // Non-split headers, so things are simple, the output path is
+    // easily determined from the input path.
+    return [dirname, renamed_basename_noext];
+  }
+}
+exports.output_path_parts = output_path_parts;
 
 /** Parse tokens into the AST tree.
  *
@@ -2385,7 +2789,7 @@ function parse(tokens, options, context, extra_returns={}) {
   // Another possibility would be to do it in the middle of the initial parse,
   // but let's not complicate that further either, shall we?
   context.headers_with_include = [];
-  context.header_graph = new TreeNode();
+  context.header_graph = new HeaderTreeNode();
   extra_returns.debug_perf.post_process_start = globals.performance.now();
   let prev_header;
   let cur_header_level;
@@ -2398,7 +2802,6 @@ function parse(tokens, options, context, extra_returns={}) {
   const line_to_id_array = [];
   const macro_counts = {};
   const macro_counts_visible = {};
-  let id_provider;
   let cur_header_graph_node;
   // Prepare convert options for the child. Copy options so that the
   // toplevel call won't change the input options, but children calls wlil.
@@ -2424,6 +2827,7 @@ function parse(tokens, options, context, extra_returns={}) {
     include_options.is_first_global_header = true;
   }
   let local_id_provider = new DictIdProvider(include_options.indexed_ids);
+  let id_provider;
   if (options.id_provider !== undefined) {
     // Remove all remote IDs from the current file, to prevent false duplicates
     // when we start setting those IDs again.
@@ -2470,7 +2874,7 @@ function parse(tokens, options, context, extra_returns={}) {
           parent_arg.push(new PlaintextAstNode(ast.source_location, message));
         } else {
           let new_child_nodes;
-          if (options.html_single_page) {
+          if (options.embed_includes) {
             new_child_nodes = convert_include(
               include_content,
               include_options,
@@ -2542,7 +2946,7 @@ function parse(tokens, options, context, extra_returns={}) {
             // and all includes and headers must be parsed concurrently since includes get
             // injected under the last header.
             validate_ast(header_ast, context);
-            header_ast.header_graph_node = new TreeNode(header_ast, cur_header_graph_node);
+            header_ast.header_graph_node = new HeaderTreeNode(header_ast, cur_header_graph_node);
             cur_header_graph_node.add_child(header_ast.header_graph_node);
             new_child_nodes = [
               header_ast,
@@ -2663,7 +3067,7 @@ function parse(tokens, options, context, extra_returns={}) {
         include_options.cur_header = ast;
         cur_header_level = parseInt(
           convert_arg_noescape(ast.args.level, context)
-        ) + options.h_level_offset;
+        ) + options.h_parse_level_offset;
         let parent_tree_node_error = false;
         let parent_id;
         if (ast.validation_output.parent.given) {
@@ -2681,7 +3085,7 @@ function parse(tokens, options, context, extra_returns={}) {
           ) {
             let parent_ast;
             if (parent_id[0] === Macro.HEADER_SCOPE_SEPARATOR) {
-              parent_ast = id_provider.get_noscope(parent_id.substr(1), context);
+              parent_ast = context.id_provider.get_noscope(parent_id.substr(1), context);
             } else {
               // We can't use context.id_provider.get here because we don't know who
               // the parent node is, because scope can affect that choice.
@@ -2703,20 +3107,35 @@ function parse(tokens, options, context, extra_returns={}) {
           if (parent_tree_node === undefined) {
             parent_tree_node_error = true;
           } else {
-            cur_header_level = parent_tree_node.value.level + 1;
+            cur_header_level = parent_tree_node.get_level() + 1;
           }
         }
-        ast.level = cur_header_level;
         if ('level' in ast.args) {
           // Hack the level argument of the final AST to match for consistency.
           ast.args.level = new AstArgument([
-            new PlaintextAstNode(ast.args.level.source_location, ast.level.toString())],
+            new PlaintextAstNode(ast.args.level.source_location, cur_header_level.toString())],
             ast.args.level.source_location);
         }
 
         // Create the header tree.
         if (is_first_header) {
           ast.id = options.toplevel_id;
+          if (options.toplevel_has_scope) {
+            // TODO why isn't the fake argument below enough?
+            ast.validation_output.scope.boolean = true;
+            // We also need to fake an argument here, because that will
+            // get serialiezd to the database, which his needed for
+            // toplevel scope removal from external links.
+            const scope_arg = new AstArgument([], ast.source_location);
+            ast.args.scope = scope_arg;
+            ast.setup_argument('scope', scope_arg);
+          }
+          if (options.toplevel_parent_scope !== undefined) {
+            ast.scope = options.toplevel_parent_scope;
+            // We skip calculation of scoped IDs, so gotta do it here.
+            ast.id = ast.scope + Macro.HEADER_SCOPE_SEPARATOR + ast.id;
+          }
+          ast.is_first_header_in_input_file = true;
           is_first_header = false;
         }
         if (include_options.is_first_global_header) {
@@ -2726,7 +3145,7 @@ function parse(tokens, options, context, extra_returns={}) {
           include_options.header_graph_stack.set(header_graph_last_level, context.header_graph);
           include_options.is_first_global_header = false;
         }
-        cur_header_graph_node = new TreeNode(ast, include_options.header_graph_stack.get(cur_header_level - 1));
+        cur_header_graph_node = new HeaderTreeNode(ast, include_options.header_graph_stack.get(cur_header_level - 1));
         let header_level_skip_error;
         if (cur_header_level - header_graph_last_level > 1) {
           header_level_skip_error = header_graph_last_level;
@@ -2741,6 +3160,10 @@ function parse(tokens, options, context, extra_returns={}) {
         const parent_tree_node = include_options.header_graph_stack.get(cur_header_level - 1);
         if (parent_tree_node !== undefined) {
           parent_tree_node.add_child(cur_header_graph_node);
+          const parent_ast = parent_tree_node.value;
+          if (parent_ast !== undefined) {
+            ast.scope = calculate_scope(parent_ast, context);
+          }
         }
         const old_graph_node = include_options.header_graph_stack.get(cur_header_level);
         include_options.header_graph_stack.set(cur_header_level, cur_header_graph_node);
@@ -2776,7 +3199,7 @@ function parse(tokens, options, context, extra_returns={}) {
           parse_error(state, message, ast.args.parent.source_location);
         }
         if (header_level_skip_error !== undefined) {
-          const message = `skipped a header level from ${header_level_skip_error} to ${ast.level}`;
+          const message = `skipped a header level from ${header_level_skip_error} to ${cur_header_level}`;
           ast.args[Macro.TITLE_ARGUMENT_NAME].push(
             new PlaintextAstNode(ast.source_location, ' ' + error_message_in_output(message)));
           parse_error(state, message, ast.args.level.source_location);
@@ -2813,6 +3236,11 @@ function parse(tokens, options, context, extra_returns={}) {
   // Normally only the toplevel includer will enter this code section.
   if (!options.from_include) {
     // Calculate header_graph_top_level.
+    //
+    // - if aa header of this level is present in the document,
+    //   there is only one of it. This implies for example that
+    //   it does not get numerical prefixes like "1.2.3 My Header".
+    //   when rendering, and it does not show up in the ToC.
     if (context.header_graph.children.length === 1) {
       context.header_graph_top_level = first_header_level;
       const toplevel_header_node = context.header_graph.children[0];
@@ -2820,16 +3248,10 @@ function parse(tokens, options, context, extra_returns={}) {
       if (toplevel_header_node.children.length > 0) {
         toplevel_header_node.children[0].value.toc_header = true;
       }
-      context.toplevel_id = toplevel_header_ast.id;
-      if (toplevel_header_ast.validation_output.scope.boolean) {
-        context.toplevel_scope_cut_length = toplevel_header_ast.id.length + 1;
-      } else {
-        context.toplevel_scope_cut_length = 0;
-      }
+      context.toplevel_ast = toplevel_header_ast;
     } else {
       context.header_graph_top_level = first_header_level - 1;
-      context.toplevel_scope_cut_length = 0;
-      context.toplevel_id = undefined;
+      context.toplevel_ast = undefined;
       if (context.header_graph.children.length > 0) {
         context.header_graph.children[0].value.toc_header = true;
       }
@@ -2852,7 +3274,10 @@ function parse(tokens, options, context, extra_returns={}) {
             continue;
           }
           context.has_toc = true;
-        } else if (macro_name === Macro.TOPLEVEL_MACRO_NAME && ast.parent_node !== undefined) {
+        } else if (
+          macro_name === Macro.TOPLEVEL_MACRO_NAME &&
+          ast.parent_node !== undefined
+        ) {
           // Prevent this from happening. When this was committed originally,
           // it actually worked and output an `html` inside another `html`.
           // Maybe we could do something with iframe, but who cares about that?
@@ -3117,7 +3542,10 @@ function parse(tokens, options, context, extra_returns={}) {
           // TODO start with the toplevel.
           cur_header_graph_node = ast.header_graph_node;
         } else {
-          ast.header_graph_node = new TreeNode(ast, cur_header_graph_node);
+          ast.header_graph_node = new HeaderTreeNode(ast, cur_header_graph_node);
+          if (cur_header_graph_node !== undefined) {
+            ast.scope = calculate_scope(cur_header_graph_node.value, context);
+          }
         }
 
         if (
@@ -3215,8 +3643,8 @@ function parse_consume(state) {
 }
 
 function parse_log_debug(state, msg='') {
-  if (state.options.show_parse) {
-    console.error('show_parse: ' + msg);
+  if (state.options.log.parse) {
+    console.error('parse: ' + msg);
   }
 }
 
@@ -3395,9 +3823,21 @@ function parse_error(state, message, source_location) {
     message, new_source_location));
 }
 
+function path_join(dirname, basename, sep) {
+  let ret = dirname;
+  if (ret !== '') {
+    ret += sep;
+  }
+  return ret + basename;
+}
+
 function path_split(str, sep) {
   const dir_sep_index = str.lastIndexOf(sep)
-  return [str.substring(0, dir_sep_index), str.substr(dir_sep_index + 1)];
+  if (dir_sep_index == -1) {
+    return ['', str];
+  } else {
+    return [str.substring(0, dir_sep_index), str.substr(dir_sep_index + 1)];
+  }
 }
 
 function protocol_is_known(src) {
@@ -3410,18 +3850,18 @@ function protocol_is_known(src) {
 }
 
 // https://cirosantilli.com/cirodown#scope
-function remove_toplevel_scope(ast, context) {
-  let id = ast.id;
+function remove_toplevel_scope(id, toplevel_ast, context) {
   if (
-    // Besdies being a minor optimization, this also prevents the case
-    // without any headers from blowing up.
-    context.toplevel_scope_cut_length > 0 &&
-    // Don't remove if we are the toplevel element, otherwise empty ID.
-    context.header_graph.children[0].value !== ast
+    toplevel_ast !== undefined &&
+    id === toplevel_ast.id
   ) {
-    id = id.substr(context.toplevel_scope_cut_length);
+    if (toplevel_ast.scope !== undefined) {
+      return id.substr(toplevel_ast.scope.length + 1);
+    }
+    return id;
+  } else {
+    return id.substr(calculate_scope_length(toplevel_ast, context));
   }
-  return id;
 }
 
 // https://cirosantilli.com/cirodown#index-files
@@ -3479,8 +3919,7 @@ exports.title_to_id = title_to_id;
  * For after everything broke down due to toplevel scope.
  */
 function toc_id(target_id_ast, context) {
-  const [href_path, fragment] = x_href_parts(target_id_ast, context);
-  return Macro.TOC_PREFIX + fragment;
+  return Macro.TOC_PREFIX + target_id_ast.id;
 }
 
 function unconvertible() {
@@ -3497,7 +3936,6 @@ function url_basename(str) {
 function validate_ast(ast, context) {
   const macro_name = ast.macro_name;
   const macro = context.macros[macro_name];
-
   const name_to_arg = macro.name_to_arg;
   // First pass sets defaults on missing arguments.
   for (const argname in name_to_arg) {
@@ -3573,6 +4011,12 @@ exports.validate_ast = validate_ast;
  */
 function x_get_href_content(ast, context) {
   const target_id = convert_arg_noescape(ast.args.href, context);
+  if (target_id[0] === AT_MENTION_CHAR) {
+    return [html_attr('href', WEBSITE_URL + target_id.substr(1)), target_id];
+  }
+  if (target_id[0] === HASHTAG_CHAR) {
+    return [html_attr('href', WEBSITE_URL + 'notuser/' + target_id.substr(1)), target_id];
+  }
   const target_id_ast = context.id_provider.get(target_id, context, ast.header_graph_node);
   let href;
   if (target_id_ast === undefined) {
@@ -3646,39 +4090,108 @@ function x_href(target_id_ast, context) {
     ret += '#' + fragment;
   return ret;
 }
-exports.x_href = x_href;
 
+/* This is the centerpiece of x href calculation! */
 function x_href_parts(target_id_ast, context) {
+  if (target_id_ast.macro_name === Macro.TOC_MACRO_NAME) {
+    // Otherwise, split header ToCs would link to the toplevel source ToC,
+    // since split header ToCs are not really properly registered.
+    return ['', Macro.TOC_ID];
+  }
+
+  // href_path
   let href_path;
   const target_input_path = target_id_ast.source_location.path;
-  let fragment;
   if (
-    // The header was included inline into the current file.
-    context.include_path_set.has(target_input_path) ||
-    // The header is in the current file.
-    (target_input_path == context.options.input_path)
+    target_id_ast.source_location.path === undefined ||
+    context.toplevel_output_path === undefined ||
+    (
+      !context.in_split_headers &&
+      context.to_split_headers === undefined &&
+      context.include_path_set.has(target_input_path)
+    )
   ) {
     href_path = '';
-    fragment = remove_toplevel_scope(target_id_ast, context);
   } else {
-    href_path = output_path(target_input_path, HTML_EXT, context.options.path_sep, context.options.html_x_extension);
-    const file_provider_ret = context.options.file_provider.get(target_input_path);
-    if (file_provider_ret === undefined) {
-      let message = `file not found on database: "${target_input_path}", needed for toplevel scope removal`;
-      render_error(context, message, target_id_ast.source_location);
-      return error_message_in_output(message, context);
+    const [toplevel_output_path_dirname, toplevel_output_path_basename] =
+      path_split(context.toplevel_output_path, context.options.path_sep);
+    let [full_output_path, target_output_path_dirname, target_output_path_basename] = output_path(
+      target_id_ast.source_location.path, target_id_ast.id, context);
+    if (full_output_path === context.toplevel_output_path) {
+      href_path = ''
     } else {
-      if (target_id_ast.first_toplevel_child) {
-        fragment = '';
+      const href_path_dirname_rel = path.relative(
+        toplevel_output_path_dirname, target_output_path_dirname);
+      if (
+        // Same output path.
+        href_path_dirname_rel === '' &&
+        target_output_path_basename === toplevel_output_path_basename
+      ) {
+        target_output_path_basename = '';
       } else {
-        if (file_provider_ret.toplevel_id === target_id_ast.id) {
-          fragment = target_id_ast.id;
-        } else {
-          fragment = target_id_ast.id.substr(file_provider_ret.toplevel_scope_cut_length);
+        if (context.options.html_x_extension) {
+          target_output_path_basename += '.' + HTML_EXT;
+        } else if (target_output_path_basename === INDEX_BASENAME_NOEXT) {
+          target_output_path_basename = '';
         }
       }
+      href_path = path_join(href_path_dirname_rel,
+        target_output_path_basename, context.options.path_sep);
     }
   }
+
+  // Fragment
+  const to_split_headers = (
+    (context.to_split_headers === undefined && context.in_split_headers) ||
+    (context.to_split_headers !== undefined && context.to_split_headers)
+  );
+  let fragment;
+  if (
+    // Linking to a toplevel ID.
+    target_id_ast.first_toplevel_child ||
+    // Linking towards a split header.
+    (
+      target_id_ast.macro_name === Macro.HEADER_MACRO_NAME &&
+      to_split_headers
+    ) ||
+    // Linking to the toplevel of the current output path.
+    (
+      target_id_ast.id === context.options.toplevel_id &&
+      // Linking from a split header to the corresponding nonsplit one.
+      !(
+        context.to_split_headers !== undefined &&
+        !context.to_split_headers
+      )
+    )
+  ) {
+    // An empty href means the beginning of the page.
+    fragment = '';
+  } else {
+    let toplevel_ast;
+    if (to_split_headers) {
+      // We know not a header target, as that would have been caught previously.
+      toplevel_ast = target_id_ast.get_header_parent(context);
+    } else if (
+      // The header was included inline into the current file.
+      context.include_path_set.has(target_input_path) // ||
+      // The header is in the current file.
+      //target_input_path == context.options.input_path
+    ) {
+      toplevel_ast = context.toplevel_ast;
+    } else {
+      const file_provider_ret = context.options.file_provider.get(target_input_path);
+      if (file_provider_ret === undefined) {
+        let message = `file not found on database: "${target_input_path}", needed for toplevel scope removal`;
+        render_error(context, message, target_id_ast.source_location);
+        return error_message_in_output(message, context);
+      } else {
+        toplevel_ast = context.id_provider.get(file_provider_ret.toplevel_id, context);
+      }
+    }
+    fragment = remove_toplevel_scope(target_id_ast.id, toplevel_ast, context);
+  }
+
+  // return
   return [html_escape_attr(href_path), html_escape_attr(fragment)];
 }
 
@@ -3840,6 +4353,11 @@ function x_text(ast, context, options={}) {
   return ret;
 }
 
+// Dynamic website stuff.
+const AT_MENTION_CHAR = '@';
+const HASHTAG_CHAR = '#';
+const WEBSITE_URL = 'https://hostname.com/';
+
 const END_NAMED_ARGUMENT_CHAR = '}';
 const END_POSITIONAL_ARGUMENT_CHAR = ']';
 const ESCAPE_CHAR = '\\';
@@ -3852,6 +4370,14 @@ const INSANE_TD_START = '| ';
 const INSANE_TH_START = '|| ';
 const INSANE_LIST_INDENT = '  ';
 const INSANE_HEADER_CHAR = '=';
+const LOG_OPTIONS = new Set([
+  'ast-inside',
+  'parse',
+  'split-headers',
+  'tokens-inside',
+  'tokenize',
+]);
+exports.LOG_OPTIONS = LOG_OPTIONS;
 const OUTPUT_FORMAT_CIRODOWN = 'cirodown';
 const OUTPUT_FORMAT_HTML = 'html';
 const OUTPUT_FORMAT_ID = 'id';
@@ -4062,6 +4588,7 @@ const MACRO_IMAGE_VIDEO_POSITIONAL_ARGUMENTS = [
 // https://cirosantilli.com/cirodown#known-url-protocols
 const KNOWN_URL_PROTOCOLS = new Set(['http://', 'https://']);
 const URL_SEP = '/';
+exports.URL_SEP = URL_SEP;
 const MACRO_WITH_MEDIA_PROVIDER = new Set(['image', 'video']);
 const DEFAULT_MACRO_LIST = [
   new Macro(
@@ -4198,19 +4725,20 @@ const DEFAULT_MACRO_LIST = [
       }),
     ],
     function(ast, context) {
-      let custom_args;
-      let level_int = ast.level;
+      let level_int = ast.header_graph_node.get_level();
       if (typeof level_int !== 'number') {
         throw new Error('header level is not an integer after validation');
       }
+      let custom_args;
+      const level_int_output = level_int - context.header_graph_top_level + 1;
       let level_int_capped;
-      if (level_int > 6) {
+      if (level_int_output > 6) {
         custom_args = {'data-level': new AstArgument([new PlaintextAstNode(
-          ast.source_location, level_int.toString())], ast.source_location)};
+          ast.source_location, level_int_output.toString())], ast.source_location)};
         level_int_capped = 6;
       } else {
         custom_args = {};
-        level_int_capped = level_int;
+        level_int_capped = level_int_output;
       }
       let attrs = html_convert_attrs_id(ast, context, [], custom_args);
       let ret = `<h${level_int_capped}${attrs}><a${html_self_link(ast, context)} title="link to this element">`;
@@ -4242,6 +4770,18 @@ const DEFAULT_MACRO_LIST = [
         let parent_href = x_href_attr(parent_ast, context);
         let parent_body = convert_arg(parent_ast.args[Macro.TITLE_ARGUMENT_NAME], context);
         ret += ` | <a${parent_href}>\u2191 parent "${parent_body}"</a>`;
+      }
+      if (context.options.split_headers) {
+        // Link to the other split/non-split version.
+        let content;
+        if (context.in_split_headers) {
+          content = 'nosplit';
+        } else {
+          content = 'split';
+        }
+        let other_context = clone_and_set(context, 'to_split_headers', !context.in_split_headers);
+        let other_href = x_href_attr(ast, other_context);
+        ret += ` | <a${other_href}>${content}</a>`;
       }
       ret += `</span>`;
       ret += `</h${level_int_capped}>\n`;
@@ -4647,15 +5187,19 @@ const DEFAULT_MACRO_LIST = [
     function(ast, context) {
       let attrs = html_convert_attrs_id(ast, context);
       let todo_visit = [];
-      let top_level = context.header_graph_top_level - 1;
+      let top_level = 0;
       let root_node = context.header_graph;
       let ret = `<div class="toc-container"${attrs}>\n<ul>\n<li${html_class_attr([TOC_HAS_CHILD_CLASS, 'toplevel'])}><div class="title-div">`;
-      ret += `${TOC_ARROW_HTML}<a class="title"${x_href_attr(ast, context)}>Table of contents</a> ${get_descendant_count(root_node)}</div>\n`;
-      if (context.header_graph_top_level > 0) {
+      if (root_node.children.length === 1) {
         root_node = root_node.children[0];
       }
+      ret += `${TOC_ARROW_HTML}<a class="title"${x_href_attr(ast, context)}>Table of contents</a> ${get_descendant_count(root_node)}</div>\n`;
       for (let i = root_node.children.length - 1; i >= 0; i--) {
         todo_visit.push([root_node.children[i], 1]);
+      }
+      if (todo_visit.length === 0) {
+        // Empty ToC. Don't render. Initial common case: leaf split header nodes.
+        return '';
       }
       while (todo_visit.length > 0) {
         const [tree_node, level] = todo_visit.pop();
@@ -4689,12 +5233,15 @@ const DEFAULT_MACRO_LIST = [
           parent_ast !== undefined
         ) {
           let parent_href_target;
-          if (parent_ast.level === context.header_graph_top_level) {
-            parent_href_target = x_href(parent_ast, context);
+          if (
+            parent_ast.header_graph_node !== undefined &&
+            parent_ast.header_graph_node.get_level() === context.header_graph_top_level
+          ) {
+            parent_href_target = Macro.TOC_ID;
           } else {
-            parent_href_target = '#' + toc_id(parent_ast, context);
+            parent_href_target = toc_id(parent_ast, context);
           }
-          let parent_href = html_attr('href', parent_href_target);
+          let parent_href = html_attr('href', '#' + parent_href_target);
           let parent_body = convert_arg(parent_ast.args[Macro.TITLE_ARGUMENT_NAME], context);
           ret += ` | <a${parent_href}>\u2191 parent "${parent_body}"</a>`;
         }
@@ -5093,9 +5640,315 @@ const TOPLEVEL_CHILD_MODIFIER = {
   },
 }
 
-},{"katex":3,"liquidjs":4,"lodash":5,"perf_hooks":2,"pluralize":6}],2:[function(require,module,exports){
+},{"katex":4,"liquidjs":5,"lodash":6,"path":3,"perf_hooks":2,"pluralize":7}],2:[function(require,module,exports){
 
 },{}],3:[function(require,module,exports){
+(function (process){
+// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
+// backported and transplited with Babel, with backwards-compat fixes
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  if (path.length === 0) return '.';
+  var code = path.charCodeAt(0);
+  var hasRoot = code === 47 /*/*/;
+  var end = -1;
+  var matchedSlash = true;
+  for (var i = path.length - 1; i >= 1; --i) {
+    code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        if (!matchedSlash) {
+          end = i;
+          break;
+        }
+      } else {
+      // We saw the first non-path separator
+      matchedSlash = false;
+    }
+  }
+
+  if (end === -1) return hasRoot ? '/' : '.';
+  if (hasRoot && end === 1) {
+    // return '//';
+    // Backwards-compat fix:
+    return '/';
+  }
+  return path.slice(0, end);
+};
+
+function basename(path) {
+  if (typeof path !== 'string') path = path + '';
+
+  var start = 0;
+  var end = -1;
+  var matchedSlash = true;
+  var i;
+
+  for (i = path.length - 1; i >= 0; --i) {
+    if (path.charCodeAt(i) === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          start = i + 1;
+          break;
+        }
+      } else if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // path component
+      matchedSlash = false;
+      end = i + 1;
+    }
+  }
+
+  if (end === -1) return '';
+  return path.slice(start, end);
+}
+
+// Uses a mixed approach for backwards-compatibility, as ext behavior changed
+// in new Node.js versions, so only basename() above is backported here
+exports.basename = function (path, ext) {
+  var f = basename(path);
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+exports.extname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  var startDot = -1;
+  var startPart = 0;
+  var end = -1;
+  var matchedSlash = true;
+  // Track the state of characters (if any) we see before our first dot and
+  // after any path separator we find
+  var preDotState = 0;
+  for (var i = path.length - 1; i >= 0; --i) {
+    var code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          startPart = i + 1;
+          break;
+        }
+        continue;
+      }
+    if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // extension
+      matchedSlash = false;
+      end = i + 1;
+    }
+    if (code === 46 /*.*/) {
+        // If this is our first dot, mark it as the start of our extension
+        if (startDot === -1)
+          startDot = i;
+        else if (preDotState !== 1)
+          preDotState = 1;
+    } else if (startDot !== -1) {
+      // We saw a non-dot and non-path separator before our dot, so we should
+      // have a good chance at having a non-empty extension
+      preDotState = -1;
+    }
+  }
+
+  if (startDot === -1 || end === -1 ||
+      // We saw a non-dot character immediately before the dot
+      preDotState === 0 ||
+      // The (right-most) trimmed path component is exactly '..'
+      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+    return '';
+  }
+  return path.slice(startDot, end);
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+}).call(this,require('_process'))
+},{"_process":8}],4:[function(require,module,exports){
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -22529,7 +23382,7 @@ var katex_renderToHTMLTree = function renderToHTMLTree(expression, options) {
 /***/ })
 /******/ ])["default"];
 });
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /*
  * liquidjs@9.11.6, https://github.com/harttle/liquidjs
  * (c) 2016-2020 harttle
@@ -26167,7 +27020,7 @@ var katex_renderToHTMLTree = function renderToHTMLTree(expression, options) {
 }));
 
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -43332,7 +44185,7 @@ var katex_renderToHTMLTree = function renderToHTMLTree(expression, options) {
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 /* global define */
 
 (function (root, pluralize) {
@@ -43836,6 +44689,192 @@ var katex_renderToHTMLTree = function renderToHTMLTree(expression, options) {
 
   return pluralize;
 });
+
+},{}],8:[function(require,module,exports){
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
 
 },{}]},{},[1])(1)
 });

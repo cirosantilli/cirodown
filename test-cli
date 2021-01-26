@@ -7,4 +7,4 @@ echo '\\reserved' | ./cirodown
 rm -rf out/db.sqlite3
 ./cirodown .
 rm -rf out/db.sqlite3
-./cirodown --html-single-page README.ciro
+./cirodown --embed_includes README.ciro
