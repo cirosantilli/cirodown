@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Headers</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="headers"><a  href="" title="link to this element">Headers (<code>\H</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#headers">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-239">🔗</a></span><div class="p" id="p-239"><a href="insane-macro-shortcuts">Insane</a> with <code>= </code> (equal sign space):
+<div class="code-caption-container" id="code-95">
+<pre><code>= My h1
+
+== My h2
+
+=== My h3
+</code></pre></div>
+Insane headers end at the first newline found. They cannot therefore contain raw newline tokens.</div></div><div><span class="hide-hover"><a href="index-split#p-240">🔗</a></span><div class="p" id="p-240">Equivalent sane:
+<div class="code-caption-container" id="code-96">
+<pre><code>\H[1][My h1]
+
+\H[2][My h2]
+
+\H[3][My h3]
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-241">🔗</a></span><div class="p" id="p-241">Custom ID for <a href="internal-cross-references">internal cross references</a> on insane headers:
+<div class="code-caption-container" id="code-97">
+<pre><code>= My h1
+{id=h1}
+
+== My h2
+{id=h2}
+
+=== My h3
+{id=h3}
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-242">🔗</a></span><div class="p" id="p-242">Sane equivalent:
+<div class="code-caption-container" id="code-98">
+<pre><code>\H[1][My h1]{id=h1}
+
+\H[2][My h2]{id=h2}
+
+\H[3][My h3]{id=h3}
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[33]</span></div>
+<ul>
+<li class="has-child"><div id="toc-id-based-header-levels"><div class="arrow"><div></div></div><a href="id-based-header-levels">1. ID-based header levels (<code>{parent=&lt;parent-id&gt;}</code>)</a> <span class="descendant-count" title="Number of descendants.">[1]</span><span class="hover-metadata"> | <a href="#toc-id-based-header-levels">🔗 link</a> | <a href="#toc">↑ parent "Headers"</a></span></div>
+<ul>
+<li><div id="toc-id-based-header-levels-and-scope-resolution"><div class="arrow"><div></div></div><a href="id-based-header-levels-and-scope-resolution">1.1. ID-based header levels and scope resolution</a><span class="hover-metadata"> | <a href="#toc-id-based-header-levels-and-scope-resolution">🔗 link</a> | <a href="#toc-id-based-header-levels">↑ parent "ID-based header levels"</a></span></div></li>
+</ul>
+<li class="has-child"><div id="toc-unlimited-header-levels"><div class="arrow"><div></div></div><a href="unlimited-header-levels">2. Unlimited header levels</a> <span class="descendant-count" title="Number of descendants.">[10]</span><span class="hover-metadata"> | <a href="#toc-unlimited-header-levels">🔗 link</a> | <a href="#toc">↑ parent "Headers"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-my-h4"><div class="arrow"><div></div></div><a href="my-h4">2.1. My h4</a> <span class="descendant-count" title="Number of descendants.">[9]</span><span class="hover-metadata"> | <a href="#toc-my-h4">🔗 link</a> | <a href="#toc-unlimited-header-levels">↑ parent "Unlimited header levels"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-my-h5"><div class="arrow"><div></div></div><a href="my-h5">2.1.1. My h5</a> <span class="descendant-count" title="Number of descendants.">[8]</span><span class="hover-metadata"> | <a href="#toc-my-h5">🔗 link</a> | <a href="#toc-my-h4">↑ parent "My h4"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-my-h6"><div class="arrow"><div></div></div><a href="my-h6">2.1.1.1. My h6</a> <span class="descendant-count" title="Number of descendants.">[7]</span><span class="hover-metadata"> | <a href="#toc-my-h6">🔗 link</a> | <a href="#toc-my-h5">↑ parent "My h5"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-my-h7"><div class="arrow"><div></div></div><a href="my-h7">2.1.1.1.1. My h7</a> <span class="descendant-count" title="Number of descendants.">[6]</span><span class="hover-metadata"> | <a href="#toc-my-h7">🔗 link</a> | <a href="#toc-my-h6">↑ parent "My h6"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-my-h8"><div class="arrow"><div></div></div><a href="my-h8">2.1.1.1.1.1. My h8</a> <span class="descendant-count" title="Number of descendants.">[5]</span><span class="hover-metadata"> | <a href="#toc-my-h8">🔗 link</a> | <a href="#toc-my-h7">↑ parent "My h7"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-my-h9"><div class="arrow"><div></div></div><a href="my-h9">2.1.1.1.1.1.1. My h9</a> <span class="descendant-count" title="Number of descendants.">[4]</span><span class="hover-metadata"> | <a href="#toc-my-h9">🔗 link</a> | <a href="#toc-my-h8">↑ parent "My h8"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-my-h10"><div class="arrow"><div></div></div><a href="my-h10">2.1.1.1.1.1.1.1. My h10</a> <span class="descendant-count" title="Number of descendants.">[3]</span><span class="hover-metadata"> | <a href="#toc-my-h10">🔗 link</a> | <a href="#toc-my-h9">↑ parent "My h9"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-my-h11"><div class="arrow"><div></div></div><a href="my-h11">2.1.1.1.1.1.1.1.1. My h11</a> <span class="descendant-count" title="Number of descendants.">[2]</span><span class="hover-metadata"> | <a href="#toc-my-h11">🔗 link</a> | <a href="#toc-my-h10">↑ parent "My h10"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-my-h12"><div class="arrow"><div></div></div><a href="my-h12">2.1.1.1.1.1.1.1.1.1. My h12</a> <span class="descendant-count" title="Number of descendants.">[1]</span><span class="hover-metadata"> | <a href="#toc-my-h12">🔗 link</a> | <a href="#toc-my-h11">↑ parent "My h11"</a></span></div>
+<ul>
+<li><div id="toc-my-h13"><div class="arrow"><div></div></div><a href="my-h13">2.1.1.1.1.1.1.1.1.1.1. My h13</a><span class="hover-metadata"> | <a href="#toc-my-h13">🔗 link</a> | <a href="#toc-my-h12">↑ parent "My h12"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<li class="has-child"><div id="toc-table-of-contents"><div class="arrow"><div></div></div><a href="table-of-contents">3. Table of contents (<code>\Toc</code>)</a> <span class="descendant-count" title="Number of descendants.">[1]</span><span class="hover-metadata"> | <a href="#toc-table-of-contents">🔗 link</a> | <a href="#toc">↑ parent "Headers"</a></span></div>
+<ul>
+<li><div id="toc-table-of-contents-javascript-open-close-interaction"><div class="arrow"><div></div></div><a href="table-of-contents-javascript-open-close-interaction">3.1. Table of contents JavaScript open close interaction</a><span class="hover-metadata"> | <a href="#toc-table-of-contents-javascript-open-close-interaction">🔗 link</a> | <a href="#toc-table-of-contents">↑ parent "Table of contents"</a></span></div></li>
+</ul>
+<li class="has-child"><div id="toc-scope"><div class="arrow"><div></div></div><a href="scope">4. Header <code>scope</code> argument</a> <span class="descendant-count" title="Number of descendants.">[2]</span><span class="hover-metadata"> | <a href="#toc-scope">🔗 link</a> | <a href="#toc">↑ parent "Headers"</a></span></div>
+<ul>
+<li><div id="toc-directory-based-scope"><div class="arrow"><div></div></div><a href="directory-based-scope">4.1. Directory-based <code>scope</code></a><span class="hover-metadata"> | <a href="#toc-directory-based-scope">🔗 link</a> | <a href="#toc-scope">↑ parent "Header <code>scope</code> argument"</a></span></div></li>
+<li><div id="toc-header-scope-argument-of-toplevel-headers"><div class="arrow"><div></div></div><a href="header-scope-argument-of-toplevel-headers">4.2. Header <code>scope</code> argument of toplevel headers</a><span class="hover-metadata"> | <a href="#toc-header-scope-argument-of-toplevel-headers">🔗 link</a> | <a href="#toc-scope">↑ parent "Header <code>scope</code> argument"</a></span></div></li>
+</ul>
+<li class="has-child"><div id="toc-header-wiki-argument"><div class="arrow"><div></div></div><a href="header-wiki-argument">5. Header <code>wiki</code> argument</a> <span class="descendant-count" title="Number of descendants.">[3]</span><span class="hover-metadata"> | <a href="#toc-header-wiki-argument">🔗 link</a> | <a href="#toc">↑ parent "Headers"</a></span></div>
+<ul>
+<li><div id="toc-wiki-explicit"><div class="arrow"><div></div></div><a href="wiki-explicit">5.1. Tiananmen Square</a><span class="hover-metadata"> | <a href="#toc-wiki-explicit">🔗 link</a> | <a href="#toc-header-wiki-argument">↑ parent "Header <code>wiki</code> argument"</a></span></div></li>
+<li><div id="toc-wiki-implicit"><div class="arrow"><div></div></div><a href="wiki-implicit">5.2. Tiananmen Square</a><span class="hover-metadata"> | <a href="#toc-wiki-implicit">🔗 link</a> | <a href="#toc-header-wiki-argument">↑ parent "Header <code>wiki</code> argument"</a></span></div></li>
+<li><div id="toc-wiki-explicit-subsection"><div class="arrow"><div></div></div><a href="wiki-explicit-subsection">5.3. History or Tiananmen Square</a><span class="hover-metadata"> | <a href="#toc-wiki-explicit-subsection">🔗 link</a> | <a href="#toc-header-wiki-argument">↑ parent "Header <code>wiki</code> argument"</a></span></div></li>
+</ul>
+<li><div id="toc-header-explicit-levels-vs-nesting-design-choice"><div class="arrow"><div></div></div><a href="header-explicit-levels-vs-nesting-design-choice">6. Header explicit levels vs nesting design choice</a><span class="hover-metadata"> | <a href="#toc-header-explicit-levels-vs-nesting-design-choice">🔗 link</a> | <a href="#toc">↑ parent "Headers"</a></span></div></li>
+<li class="has-child"><div id="toc-includes"><div class="arrow"><div></div></div><a href="includes">7. Includes (<code>\Include</code>)</a> <span class="descendant-count" title="Number of descendants.">[5]</span><span class="hover-metadata"> | <a href="#toc-includes">🔗 link</a> | <a href="#toc">↑ parent "Headers"</a></span></div>
+<ul>
+<li><div id="toc-not-readme"><div class="arrow"><div></div></div><a href="index-split">7.1. Not the README</a><span class="hover-metadata"> | <a href="#toc-not-readme">🔗 link</a> | <a href="#toc-includes">↑ parent "Includes"</a></span></div></li>
+<li><div id="toc-not-readme-2"><div class="arrow"><div></div></div><a href="index-split">7.2. Not the README 2</a><span class="hover-metadata"> | <a href="#toc-not-readme-2">🔗 link</a> | <a href="#toc-includes">↑ parent "Includes"</a></span></div></li>
+<li><div id="toc-not-readme-with-scope"><div class="arrow"><div></div></div><a href="index-split">7.3. Not the README with scope</a><span class="hover-metadata"> | <a href="#toc-not-readme-with-scope">🔗 link</a> | <a href="#toc-includes">↑ parent "Includes"</a></span></div></li>
+<li><div id="toc-subdir"><div class="arrow"><div></div></div><a href="index-split">7.4. subdir index</a><span class="hover-metadata"> | <a href="#toc-subdir">🔗 link</a> | <a href="#toc-includes">↑ parent "Includes"</a></span></div></li>
+<li><div id="toc-subdir/notindex"><div class="arrow"><div></div></div><a href="subdir/notindex/index-split">7.5. subdir/notindex</a><span class="hover-metadata"> | <a href="#toc-subdir/notindex">🔗 link</a> | <a href="#toc-includes">↑ parent "Includes"</a></span></div></li>
+</ul>
+<li><div id="toc-skipping-header-levels"><div class="arrow"><div></div></div><a href="skipping-header-levels">8. Skipping header levels</a><span class="hover-metadata"> | <a href="#toc-skipping-header-levels">🔗 link</a> | <a href="#toc">↑ parent "Headers"</a></span></div></li>
+<li class="has-child"><div id="toc-the-toplevel-header"><div class="arrow"><div></div></div><a href="the-toplevel-header">9. The toplevel header</a> <span class="descendant-count" title="Number of descendants.">[2]</span><span class="hover-metadata"> | <a href="#toc-the-toplevel-header">🔗 link</a> | <a href="#toc">↑ parent "Headers"</a></span></div>
+<ul>
+<li><div id="toc-the-toplevel-header-ids-don-t-show"><div class="arrow"><div></div></div><a href="the-toplevel-header-ids-don-t-show">9.1. The toplevel header IDs don't show</a><span class="hover-metadata"> | <a href="#toc-the-toplevel-header-ids-don-t-show">🔗 link</a> | <a href="#toc-the-toplevel-header">↑ parent "The toplevel header"</a></span></div></li>
+<li><div id="toc-the-id-of-the-first-header-is-derived-from-the-filename"><div class="arrow"><div></div></div><a href="the-id-of-the-first-header-is-derived-from-the-filename">9.2. The ID of the first header is derived from the filename</a><span class="hover-metadata"> | <a href="#toc-the-id-of-the-first-header-is-derived-from-the-filename">🔗 link</a> | <a href="#toc-the-toplevel-header">↑ parent "The toplevel header"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

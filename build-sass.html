@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>&lt;code&gt;build-sass&lt;/code&gt;</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="build-sass"><a  href="" title="link to this element"><code>build-sass</code></a><span>  | <a href="overview-of-files-in-this-repository">↑ parent "Overview of files in this repository"</a> | <a href="#build-sass">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-808">🔗</a></span><div class="p" id="p-808">The <a href="build-sass">build-sass</a> script takes as input the <a href="cirodown.scss">cirodown.scss</a> <a href="https://sass-lang.com">SASS</a> scss file, and generates various <code>.css</code> versions from it required to properly view generated Cirodown HTML:<div><ul id="ul-115">
+<li id="l-316"><code>cirodown.min.css</code>: contains the converted <code>cirodown.scss</code> plus external online <code>@import</code> requests for stuff like <a href="mathematics">KaTeX</a>. This is the main normally published version style.</li>
+<li id="l-317"><code>cirodown.embed.min.css</code>: like <code>cirodown.min.css</code> but embeds all external CSS in-place without any <code>@import</code>. Used to distribute standalone pages: <a href="embed-resources"><code>--embed-resources</code></a></li>
+<li id="l-318"><code>cirodown.local.min.css</code>: only includes style generated from <code>cirodown.scss</code>, not external styles. Used when the external styles are present locally, e.g. via <code>node_modules</code>. I think this was done because <a href="https://stackoverflow.com/questions/34139675/css-import-not-working-for-local-file-file-path-is-correct"><code>@import</code></a> was not working with local flies?</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

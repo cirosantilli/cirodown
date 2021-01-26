@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>&lt;code&gt;--watch&lt;/code&gt;</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="watch"><a  href="" title="link to this element"><code>--watch</code></a><span>  | <a href="cirodown-executable-options">↑ parent "<code>cirodown</code> executable options"</a> | <a href="#watch">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-747">🔗</a></span><div class="p" id="p-747">Don't quit <code>cirodown</code> immediately.</div></div><div><span class="hide-hover"><a href="index-split#p-748">🔗</a></span><div class="p" id="p-748">Instead, watch the selected file or directory for changes, and rebuild individual files when changes are detected.</div></div><div><span class="hide-hover"><a href="index-split#p-749">🔗</a></span><div class="p" id="p-749">Watch every <code>.ciro</code> file in an entire directory:
+<div class="code-caption-container" id="code-275">
+<pre><code>cirodown --watch .
+</code></pre></div>
+When a directory is given as the input path, this automatically first does an ID extraction pass on all files to support <a href="internal-cross-file-references">internal cross file references</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-750">🔗</a></span><div class="p" id="p-750">Now you can just edit any Cirodown file such has <code>README.ciro</code>, save the file in your editor, and refresh the webpage and your change should be visible, no need to run a <code>cirodown</code> command explicitly every time.</div></div><div><span class="hide-hover"><a href="index-split#p-751">🔗</a></span><div class="p" id="p-751">Exit by entering Ctrl + C on the terminal.</div></div><div><span class="hide-hover"><a href="index-split#p-752">🔗</a></span><div class="p" id="p-752">Watch a single file:
+<div class="code-caption-container" id="code-276">
+<pre><code>cirodown --watch README.ciro
+</code></pre></div>
+When a single file is watched, the reference database is not automatically updated. If it is not already up-to-date, you should first update it with:
+<div class="code-caption-container" id="code-277">
+<pre><code>cirodown .
+</code></pre></div>
+otherwise you will just get a bunch of undefined ID errors every time the input file is saved.</div></div><div><span class="hide-hover"><a href="index-split#p-753">🔗</a></span><div class="p" id="p-753">TODO: integrate Live Preview: <a href="https://asciidoctor.org/docs/editing-asciidoc-with-live-preview/">https://asciidoctor.org/docs/editing-asciidoc-with-live-preview/</a> to also dispense the browser refresh.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

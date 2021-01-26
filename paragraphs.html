@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Paragraphs</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="paragraphs"><a  href="" title="link to this element">Paragraphs (<code>\P</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#paragraphs">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-29">🔗</a></span><div class="p" id="p-29">OK, this is too common, so we opted for some <a href="insane-macro-shortcuts">insanity</a> here: double newline is a paragraph!
+<div class="code-caption-container" id="code-14">
+<pre><code>Paragraph 1.
+
+Paragraph 2.
+</code></pre></div><div class="p" id="p-30">which renders as:</div><blockquote id="q-1"><div class="p" id="p-31">Paragraph 1.</div><div class="p" id="p-32">Paragraph 2.</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-33">🔗</a></span><div class="p" id="p-33">Equivalently however, you can use an explicit <code>\P</code> macros as well, which is required for example to add properties to a paragraph, e.g.:
+<div class="code-caption-container" id="code-15">
+<pre><code>\P{id=paragraph-1}[Paragraph 1]
+\P{id=paragraph-2}[Paragraph 2]
+</code></pre></div><div class="p" id="p-34">which renders as:</div><blockquote id="q-2"><div class="p" id="p-35"><div class="p" id="paragraph-1">Paragraph 1</div>
+<div class="p" id="paragraph-2">Paragraph 2</div></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-38">🔗</a></span><div class="p" id="p-38">Paragraphs are created automatically inside <a href="macro-argument-syntax">macro argument</a> whenever a double newline appears.</div></div><div><span class="hide-hover"><a href="index-split#p-39">🔗</a></span><div class="p" id="p-39">Note that Cirodown paragraphs render in HTML as <code>div</code> with <code>class="p"</code> and not as <code>p</code>. This means that you can add basically anything inside them, e.g. a list:
+<div class="code-caption-container" id="code-16">
+<pre><code>My favorite list is:
+\Ul[
+\li[aa]
+\li[bb]
+]
+because it is simple.
+</code></pre></div>
+which renders as a single paragraph.</div></div><div><span class="hide-hover"><a href="index-split#p-40">🔗</a></span><div class="p" id="p-40">One major advantage of this, is that when writing documentation, you often want to keep lists or code blocks inside a given paragraph, so that it is easy to reference the entire paragraph with an ID. Think for example of paragraphs in the C++ standard.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

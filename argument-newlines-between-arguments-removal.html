@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Argument newlines between arguments removal</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="argument-newlines-between-arguments-removal"><a  href="" title="link to this element">Argument newlines between arguments removal</a><span>  | <a href="macro-argument-syntax">↑ parent "Macro argument syntax"</a> | <a href="#argument-newlines-between-arguments-removal">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-618">🔗</a></span><div class="p" id="p-618">The macro name and the first argument, and two consecutive arguments, can be optionally separated by exactly one newline character, e.g.:
+<div class="code-caption-container" id="code-237">
+<pre><code>\H[2]
+{scope}
+[Design goals]
+</code></pre></div>
+is equivalent to:
+<div class="code-caption-container" id="code-238">
+<pre><code>\H[2]{scope}[Design goals]
+</code></pre></div>
+and this non-recommended mixed style:
+<div class="code-caption-container" id="code-239">
+<pre><code>\H[2]{scope}
+[Design goals]
+</code></pre></div>
+This allows to greatly improve the readability of long argument lists by having them one per line.</div></div><div><span class="hide-hover"><a href="index-split#p-619">🔗</a></span><div class="p" id="p-619">There is one exception to this however: inside an <a href="headers">insane header</a>, any newline is interpreted as the end of the insane header. This is why the following works as expected:
+<div class="code-caption-container" id="code-240">
+<pre><code>== My header 2 `some code`
+{id=asdf}
+</code></pre></div>
+and the <code>id</code> gets assigned to the header rather than the trailing code element.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

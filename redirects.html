@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>&lt;code&gt;redirects&lt;/code&gt;</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="redirects"><a  href="" title="link to this element"><code>redirects</code></a><span>  | <a href="cirodown-json">↑ parent "<code>cirodown.json</code>"</a> | <a href="#redirects">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-785">🔗</a></span><div class="p" id="p-785">Create HTML redirects from <a href="the-toplevel-header">toplevel headers</a> to arbitrary IDs, for example:
+<div class="code-caption-container" id="code-286">
+<pre><code>"redirects": {
+  "a-toplevel-directory": "not-readme",
+  "quick-start-redirect-test": "quick-start"
+},
+</code></pre></div>
+The HTML files are generated whenever a directory compilation is required, e.g. as in <code>cirodown .</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-786">🔗</a></span><div class="p" id="p-786">The sources must be toplevel headers for now, because it is harder to implement redirections from <code>#someid</code> as that would require JavaScript: <a href="https://github.com/cirosantilli/cirodown/issues/48">https://github.com/cirosantilli/cirodown/issues/48</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-787">🔗</a></span><div class="p" id="p-787">This feature can be seen live on this document by visiting our tests:<div><ul id="ul-106">
+<li id="l-275"><a href="not-readme-redirect-test">not-readme-redirect-test</a>: redirects to <a href="not-readme-split">not the README</a></li>
+<li id="l-276"><a href="quick-start-redirect-test">quick-start-redirect-test</a>: redirects to <a href="quick-start">quick start</a></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-788">🔗</a></span><div class="p" id="p-788">To quickly test bugs in redirect generation, you may use the <code>--generate-redirects</code> flag as:
+<div class="code-caption-container" id="code-287">
+<pre><code>cirodown --generate-redirects .
+</code></pre></div>
+which generates the redirects while skipping everything else. A previous:
+<div class="code-caption-container" id="code-288">
+<pre><code>cirodown .
+</code></pre></div>
+is required to generate the ID database.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

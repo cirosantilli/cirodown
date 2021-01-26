@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Cirodown syntax</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cirodown-syntax"><a  href="" title="link to this element">Cirodown syntax</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#cirodown-syntax">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[21]</span></div>
+<ul>
+<li class="has-child"><div id="toc-insane-macro-shortcuts"><div class="arrow"><div></div></div><a href="insane-macro-shortcuts">1. Insane macro shortcuts</a> <span class="descendant-count" title="Number of descendants.">[3]</span><span class="hover-metadata"> | <a href="#toc-insane-macro-shortcuts">🔗 link</a> | <a href="#toc">↑ parent "Cirodown syntax"</a></span></div>
+<ul>
+<li><div id="toc-insane-code-and-math-shortcuts"><div class="arrow"><div></div></div><a href="insane-code-and-math-shortcuts">1.1. Insane code and math shortcuts</a><span class="hover-metadata"> | <a href="#toc-insane-code-and-math-shortcuts">🔗 link</a> | <a href="#toc-insane-macro-shortcuts">↑ parent "Insane macro shortcuts"</a></span></div></li>
+<li><div id="toc-insane-macro-shortcut-extra-arguments"><div class="arrow"><div></div></div><a href="insane-macro-shortcut-extra-arguments">1.2. Insane macro shortcut extra arguments</a><span class="hover-metadata"> | <a href="#toc-insane-macro-shortcut-extra-arguments">🔗 link</a> | <a href="#toc-insane-macro-shortcuts">↑ parent "Insane macro shortcuts"</a></span></div></li>
+<li><div id="toc-escapes-in-insane-macro-shortcuts"><div class="arrow"><div></div></div><a href="escapes-in-insane-macro-shortcuts">1.3. Escapes in insane macro shortcuts</a><span class="hover-metadata"> | <a href="#toc-escapes-in-insane-macro-shortcuts">🔗 link</a> | <a href="#toc-insane-macro-shortcuts">↑ parent "Insane macro shortcuts"</a></span></div></li>
+</ul>
+<li class="has-child"><div id="toc-macro-argument-syntax"><div class="arrow"><div></div></div><a href="macro-argument-syntax">2. Macro argument syntax</a> <span class="descendant-count" title="Number of descendants.">[11]</span><span class="hover-metadata"> | <a href="#toc-macro-argument-syntax">🔗 link</a> | <a href="#toc">↑ parent "Cirodown syntax"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-positional-vs-named-arguments"><div class="arrow"><div></div></div><a href="positional-vs-named-arguments">2.1. Positional vs named arguments (<code>[...]</code> vs <code>{key=...}</code>)</a> <span class="descendant-count" title="Number of descendants.">[3]</span><span class="hover-metadata"> | <a href="#toc-positional-vs-named-arguments">🔗 link</a> | <a href="#toc-macro-argument-syntax">↑ parent "Macro argument syntax"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-positional-argument-default-values"><div class="arrow"><div></div></div><a href="positional-argument-default-values">2.1.1. Positional argument default values</a> <span class="descendant-count" title="Number of descendants.">[1]</span><span class="hover-metadata"> | <a href="#toc-positional-argument-default-values">🔗 link</a> | <a href="#toc-positional-vs-named-arguments">↑ parent "Positional vs named arguments"</a></span></div>
+<ul>
+<li><div id="toc-mandatory-positional-arguments"><div class="arrow"><div></div></div><a href="mandatory-positional-arguments">2.1.1.1. mandatory positional arguments</a><span class="hover-metadata"> | <a href="#toc-mandatory-positional-arguments">🔗 link</a> | <a href="#toc-positional-argument-default-values">↑ parent "Positional argument default values"</a></span></div></li>
+</ul>
+<li><div id="toc-boolean-named-arguments"><div class="arrow"><div></div></div><a href="boolean-named-arguments">2.1.2. Boolean named arguments</a><span class="hover-metadata"> | <a href="#toc-boolean-named-arguments">🔗 link</a> | <a href="#toc-positional-vs-named-arguments">↑ parent "Positional vs named arguments"</a></span></div></li>
+</ul>
+<li><div id="toc-javascript-interface-for-arguments"><div class="arrow"><div></div></div><a href="javascript-interface-for-arguments">2.2. JavaScript interface for arguments</a><span class="hover-metadata"> | <a href="#toc-javascript-interface-for-arguments">🔗 link</a> | <a href="#toc-macro-argument-syntax">↑ parent "Macro argument syntax"</a></span></div></li>
+<li><div id="toc-literal-arguments"><div class="arrow"><div></div></div><a href="literal-arguments">2.3. Literal arguments (<code>[[...]]</code> and <code>{{key=...}}</code>)</a><span class="hover-metadata"> | <a href="#toc-literal-arguments">🔗 link</a> | <a href="#toc-macro-argument-syntax">↑ parent "Macro argument syntax"</a></span></div></li>
+<li><div id="toc-argument-leading-newline-removal"><div class="arrow"><div></div></div><a href="argument-leading-newline-removal">2.4. Argument leading newline removal</a><span class="hover-metadata"> | <a href="#toc-argument-leading-newline-removal">🔗 link</a> | <a href="#toc-macro-argument-syntax">↑ parent "Macro argument syntax"</a></span></div></li>
+<li><div id="toc-argument-newlines-between-arguments-removal"><div class="arrow"><div></div></div><a href="argument-newlines-between-arguments-removal">2.5. Argument newlines between arguments removal</a><span class="hover-metadata"> | <a href="#toc-argument-newlines-between-arguments-removal">🔗 link</a> | <a href="#toc-macro-argument-syntax">↑ parent "Macro argument syntax"</a></span></div></li>
+<li><div id="toc-escape-characters"><div class="arrow"><div></div></div><a href="escape-characters">2.6. Escape characters</a><span class="hover-metadata"> | <a href="#toc-escape-characters">🔗 link</a> | <a href="#toc-macro-argument-syntax">↑ parent "Macro argument syntax"</a></span></div></li>
+<li><div id="toc-auto-parent"><div class="arrow"><div></div></div><a href="auto-parent">2.7. <code>auto_parent</code> macro property</a><span class="hover-metadata"> | <a href="#toc-auto-parent">🔗 link</a> | <a href="#toc-macro-argument-syntax">↑ parent "Macro argument syntax"</a></span></div></li>
+<li><div id="toc-remove-whitespace-children"><div class="arrow"><div></div></div><a href="remove-whitespace-children">2.8. <code>remove_whitespace_children</code> macro argument property</a><span class="hover-metadata"> | <a href="#toc-remove-whitespace-children">🔗 link</a> | <a href="#toc-macro-argument-syntax">↑ parent "Macro argument syntax"</a></span></div></li>
+</ul>
+<li><div id="toc-block-vs-inline-macros"><div class="arrow"><div></div></div><a href="block-vs-inline-macros">3. Block vs inline macros</a><span class="hover-metadata"> | <a href="#toc-block-vs-inline-macros">🔗 link</a> | <a href="#toc">↑ parent "Cirodown syntax"</a></span></div></li>
+<li><div id="toc-known-url-protocols"><div class="arrow"><div></div></div><a href="known-url-protocols">4. Known URL protocols</a><span class="hover-metadata"> | <a href="#toc-known-url-protocols">🔗 link</a> | <a href="#toc">↑ parent "Cirodown syntax"</a></span></div></li>
+<li><div id="toc-javascript-case-conversion"><div class="arrow"><div></div></div><a href="javascript-case-conversion">5. JavaScript case conversion</a><span class="hover-metadata"> | <a href="#toc-javascript-case-conversion">🔗 link</a> | <a href="#toc">↑ parent "Cirodown syntax"</a></span></div></li>
+<li class="has-child"><div id="toc-security"><div class="arrow"><div></div></div><a href="security">6. Security</a> <span class="descendant-count" title="Number of descendants.">[1]</span><span class="hover-metadata"> | <a href="#toc-security">🔗 link</a> | <a href="#toc">↑ parent "Cirodown syntax"</a></span></div>
+<ul>
+<li><div id="toc-xss-unsafe"><div class="arrow"><div></div></div><a href="xss-unsafe">6.1. xss-unsafe (<code>--xss-unsafe</code>)</a><span class="hover-metadata"> | <a href="#toc-xss-unsafe">🔗 link</a> | <a href="#toc-security">↑ parent "Security"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Quick start</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="quick-start"><a  href="" title="link to this element">Quick start</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#quick-start">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-2">🔗</a></span><div class="p" id="p-2">Live in-browser demo: <a href="https://cirosantilli.com/cirodown/editor">https://cirosantilli.com/cirodown/editor</a></div></div><div><span class="hide-hover"><a href="index-split#p-3">🔗</a></span><div class="p" id="p-3">Install the NPM package globally and use it from the command line for a quick conversion:
+<div class="code-caption-container" id="code-1">
+<pre><code>npm install -g cirodown
+printf 'ab\ncd\n' | cirodown --body-only
+</code></pre></div>
+or <a href="https://stackoverflow.com/questions/9679932/how-to-use-package-installed-locally-in-node-modules">install in a single directory and run locally from it</a>:
+<div class="code-caption-container" id="code-2">
+<pre><code>printf '{}\n' &gt; package.json
+npm install --save cirodown
+printf 'ab\ncd\n' | npx cirodown --body-only
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-4">🔗</a></span><div class="p" id="p-4">To start a new project with a minimal sane template <a href="generate">use <code>--generate</code></a> and then <a href="publish-to-github-pages">publish it to GitHub with <code>--publish</code></a>:
+<div class="code-caption-container" id="code-3">
+<pre><code>mkdir -p cirodown-test
+cd cirodown-test
+git init
+git remote add origin git@github.com:USERNAME/cirodown-test.git
+cirodown --generate
+git add .
+git commit -m 'First commit'
+cirodown --publish
+</code></pre></div>
+Or to start with a more complex template suitable for multifile projects use <a href="generate-multifile">use <code>--generate-multifile</code></a> instead:
+<div class="code-caption-container" id="code-4">
+<pre><code>cirodown --generate-multifile
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-5">🔗</a></span><div class="p" id="p-5">Render all <code>.ciro</code> files from the master of this project to separate files:
+<div class="code-caption-container" id="code-5">
+<pre><code>git clone https://github.com/cirosantilli/cirodown
+cd cirodown
+npm link
+npm link cirodown
+./cirodown README.ciro
+xdg-open index.html
+xdg-open not-readme.html
+</code></pre></div>
+or render README.ciro and all <a href="includes">includes</a> into a single HTML page with <a href="embed-includes"><code>--embed-includes</code></a> and view it:
+<div class="code-caption-container" id="code-6">
+<pre><code>./cirodown --embed-includes .
+xdg-open index.html
+</code></pre></div>
+or render instead as one fully offline standalone HTML file that can be given directly to readers by adding <a href="embed-resources"><code>--embed-resources</code></a> as well:
+<div class="code-caption-container" id="code-7">
+<pre><code>./cirodown --embed-resources --embed-includes README.ciro
+</code></pre></div>
+and give <code>index.html</code> to the reader.</div></div><div><span class="hide-hover"><a href="index-split#p-6">🔗</a></span><div class="p" id="p-6">Try out the JavaScript API with <a href="api_hello.js">api_hello.js</a>:
+<div class="code-caption-container" id="code-8">
+<pre><code>npm install cirodown
+./api_hello.js
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-7">🔗</a></span><div class="p" id="p-7">The <code>npm link</code> commands allow you to make changes to the code without re-installing the package all the time for development! Try hacking <a href="cirodown">cirodown</a> to see it. Just remember that if you add a new dependency, you must redo the symlinking business:
+<div class="code-caption-container" id="code-9">
+<pre><code>npm install &lt;dependency&gt;
+npm link
+npm link cirodown
+</code></pre></div>
+Asked if there is a better way at: <a href="https://stackoverflow.com/questions/59389027/how-to-interactively-test-the-executable-of-an-npm-node-js-package-during-develo">https://stackoverflow.com/questions/59389027/how-to-interactively-test-the-executable-of-an-npm-node-js-package-during-develo</a>. The symlink business can be undone with:
+<div class="code-caption-container" id="code-10">
+<pre><code>npm unlink
+rm node_modules/cirodown
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

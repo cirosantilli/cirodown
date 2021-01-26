@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Table of contents</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="table-of-contents"><a  href="" title="link to this element">Table of contents (<code>\Toc</code>)</a><span>  | <a href="headers">↑ parent "Headers"</a> | <a href="#table-of-contents">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-258">🔗</a></span><div class="p" id="p-258">Cirodown automatically adds a ToC at the end of the first <a href="the-toplevel-header">non-toplevel header</a> of every document.</div></div><div><span class="hide-hover"><a href="index-split#p-259">🔗</a></span><div class="p" id="p-259">You may customize ToC placement with <code>\Toc</code> macro, but just don't do it, it will just go against common convention and confuse readers.</div></div><div><span class="hide-hover"><a href="index-split#p-260">🔗</a></span><div class="p" id="p-260">This is especially important when considering <a href="split-headers"><code>--split-headers</code></a>, where you almost always want an automatically generated ToC for every split header, otherwise you would need to add them all manually.</div></div><div><span class="hide-hover"><a href="index-split#p-261">🔗</a></span><div class="p" id="p-261">Only one ToC is rendered per document. Any ToC besides the first one is ignored. In particular, this means that <a href="includes">includes</a> with <a href="embed-includes"><code>--embed-includes</code></a> work seamlessly and render a single table of contents, even if multiple <code>\Toc</code> macros are present in the included pages.</div></div><div><span class="hide-hover"><a href="index-split#p-262">🔗</a></span><div class="p" id="p-262">The <a href="internal-cross-references">ID</a> of the ToC is always fixed to <code>#toc</code>. If you try to use that for another element, you will get the following error:
+<div class="code-caption-container" id="code-106">
+<pre><code>error: tmp.ciro:3:1: reserved ID "toc"
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-263">🔗</a></span><div class="p" id="p-263">The ToC ignores <a href="the-toplevel-header">the toplevel header</a> if you have one.</div></div><div><span class="hide-hover"><a href="index-split#p-264">🔗</a></span><div class="p" id="p-264">For when you want a quick outline of the header tree on the terminal, also consider the <a href="log-headers"><code>--log headers</code></a> option.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[1]</span></div>
+<ul>
+<li><div id="toc-table-of-contents-javascript-open-close-interaction"><div class="arrow"><div></div></div><a href="table-of-contents-javascript-open-close-interaction">1. Table of contents JavaScript open close interaction</a><span class="hover-metadata"> | <a href="#toc-table-of-contents-javascript-open-close-interaction">🔗 link</a> | <a href="#toc">↑ parent "Table of contents"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

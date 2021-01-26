@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Release procedure</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="release-procedure"><a  href="" title="link to this element">Release procedure</a><span>  | <a href="developing-cirodown">↑ parent "Developing Cirodown"</a> | <a href="#release-procedure">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-830">🔗</a></span><div class="p" id="p-830">Manually update the <a href="package.json">package.json</a> version:
+<div class="code-caption-container" id="code-315">
+<pre><code>vim package.json
+</code></pre></div>
+Create a tag to match, push and release the package:
+<div class="code-caption-container" id="code-316">
+<pre><code>git add -u
+t=0.3.1
+git commit -m "$t"
+git tag -m "$t" "$t"
+git push --follow-tags
+npm publish
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[1]</span></div>
+<ul>
+<li><div id="toc-website-release-procedure"><div class="arrow"><div></div></div><a href="website-release-procedure">1. Website release procedure</a><span class="hover-metadata"> | <a href="#toc-website-release-procedure">🔗 link</a> | <a href="#toc">↑ parent "Release procedure"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>x &lt;code&gt;child&lt;/code&gt; argument</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="x-child-argument"><a  href="" title="link to this element">x <code>child</code> argument</a><span>  | <a href="internal-cross-references">↑ parent "Internal cross references"</a> | <a href="#x-child-argument">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-83">🔗</a></span><div class="p" id="p-83">TODO implement.</div></div><div><span class="hide-hover"><a href="index-split#p-84">🔗</a></span><div class="p" id="p-84">Setting <code>child=1</code> on a cross reference to a header as in:
+<div class="code-caption-container" id="code-31">
+<pre><code>\xref[my-header]{child=1}
+</code></pre></div>
+has the following effects:<div><ul id="ul-15">
+<li id="l-48">add the current header to the list of extra parents of the child</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-85">🔗</a></span><div class="p" id="p-85">This allows a section to have multiple parents, e.g. to include it into multiple categories. For example:
+<div class="code-caption-container" id="code-32">
+<pre><code>= Animals
+
+== Mammals
+
+=== Dog
+
+=== Cat
+
+== Cute animals
+
+Cute animals:
+* \xref[dog]{child=1}
+* \xref[cat]
+</code></pre></div>
+would render something like:
+<div class="code-caption-container" id="code-33">
+<pre><code>h1 Animals
+
+h2 Mammals
+
+h3 Dog (parent section: Mammals)
+(other parent sections: Cute animals)
+
+h3 Cat (parent section: Mammals)
+
+== Cute animals
+
+* \xref[dog]
+* \xref[cat]
+</code></pre></div>
+so note how "Dog" has a list of extra parents including "Cute animals", but Cat does not, due to the <code>child=1</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-86">🔗</a></span><div class="p" id="p-86">This property does not affect how the <a href="table-of-contents"><code>\Toc</code></a> is rendered. We could insert elements sections there multiple times, but it has the downside that browser Ctrl + F searches would hit the same thing multiple times on the table of contents, which might make finding things harder.
+<div class="code-caption-container" id="code-34">
+<pre><code>== My title{id=my-id}
+
+Read this \x[my-id][amazing section].
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-87">🔗</a></span><div class="p" id="p-87">If the second argument, the <code>content</code>, is not present, it expand to the header title, e.g.:
+<div class="code-caption-container" id="code-35">
+<pre><code>== My title{id=my-id}
+
+Read this \x[my-id].
+</code></pre></div>
+is the same as:
+<div class="code-caption-container" id="code-36">
+<pre><code>== My title{id=my-id}
+
+Read this \x[my-id][My title].
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

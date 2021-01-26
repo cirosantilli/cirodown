@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Positional vs named arguments</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="positional-vs-named-arguments"><a  href="" title="link to this element">Positional vs named arguments (<code>[...]</code> vs <code>{key=...}</code>)</a><span>  | <a href="macro-argument-syntax">↑ parent "Macro argument syntax"</a> | <a href="#positional-vs-named-arguments">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-569">🔗</a></span><div class="p" id="p-569">Every argument in Cirodown is either positional or named.</div></div><div><span class="hide-hover"><a href="index-split#p-570">🔗</a></span><div class="p" id="p-570">For example, in a <a href="headers">header</a> definition with an ID:
+<div class="code-caption-container" id="code-216">
+<pre><code>= My asdf
+{id=asdf qwer}
+{scope}
+</code></pre></div>
+which is equivalent to the <a href="insane-macro-shortcuts">sane</a> version:
+<div class="code-caption-container" id="code-217">
+<pre><code>\H[1][My asdf]
+{id=asdf qwer}
+{scope}
+</code></pre></div>
+we have:<div><ul id="ul-66">
+<li id="l-185">two positional argument: <code>[1]</code> and <code>[My asdf]</code>. Those are surrounded by square brackets <code>[]</code> and have no name</li>
+<li id="l-186"><div class="p" id="p-571">two named arguments: <code>{id=asdf qwer}</code> and <code>{scope}</code>.</div><div class="p" id="p-572">The first one has name <code>id</code>, followed by the separator <code>=</code>, followed by the value <code>asdf qwer</code>.</div><div class="p" id="p-573">The separator <code>=</code> always is optional. If not given, it is equivalent to an empty value, e.g.:
+<div class="code-caption-container" id="code-218">
+<pre><code>{id=}
+</code></pre></div>
+is the same as:
+<div class="code-caption-container" id="code-219">
+<pre><code>{id}
+</code></pre></div></div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-574">🔗</a></span><div class="p" id="p-574">You can determine if a macro is positional or named by using <a href="help-macros"><code>--help-macros</code></a>. Its output contains something like:
+<div class="code-caption-container" id="code-220">
+<pre><code>  "h": {
+    "name": "h",
+    "positional_args": [
+      {
+        "name": "level"
+      },
+      {
+        "name": "content"
+      }
+    ],
+    "named_args": {
+      "id": {
+        "name": "id"
+      }
+      "scope": {
+        "name": "scope"
+      }
+    },
+</code></pre></div>
+and so we see that <code>level</code> and <code>content</code> are positional arguments, and <code>id</code> and <code>scope</code> are named arguments.</div></div><div><span class="hide-hover"><a href="index-split#p-575">🔗</a></span><div class="p" id="p-575">Generally, positional arguments are few (otherwise it would be hard to know which is which is which), and are almost always used for a given element so that they save us from typing the name too many times.</div></div><div><span class="hide-hover"><a href="index-split#p-576">🔗</a></span><div class="p" id="p-576">The order of positional arguments must of course be fixed, but named arguments can go anywhere. We can even mix positional and named arguments however we want, although this is not advised for clarity.</div></div><div><span class="hide-hover"><a href="index-split#p-577">🔗</a></span><div class="p" id="p-577">The following are therefore all equivalent:
+<div class="code-caption-container" id="code-221">
+<pre><code>\H[1][My asdf]{id=asdf qwer}{scope}
+\H[1][My asdf]{scope}{id=asdf qwer}
+\H{id=asdf qwer}{scope}[1][My asdf]
+\H{scope}[1]{id=asdf qwer}[My asdf]
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-578">🔗</a></span><div class="p" id="p-578">Just like named arguments, positional arguments are never mandatory.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[3]</span></div>
+<ul>
+<li class="has-child"><div id="toc-positional-argument-default-values"><div class="arrow"><div></div></div><a href="positional-argument-default-values">1. Positional argument default values</a> <span class="descendant-count" title="Number of descendants.">[1]</span><span class="hover-metadata"> | <a href="#toc-positional-argument-default-values">🔗 link</a> | <a href="#toc">↑ parent "Positional vs named arguments"</a></span></div>
+<ul>
+<li><div id="toc-mandatory-positional-arguments"><div class="arrow"><div></div></div><a href="mandatory-positional-arguments">1.1. mandatory positional arguments</a><span class="hover-metadata"> | <a href="#toc-mandatory-positional-arguments">🔗 link</a> | <a href="#toc-positional-argument-default-values">↑ parent "Positional argument default values"</a></span></div></li>
+</ul>
+<li><div id="toc-boolean-named-arguments"><div class="arrow"><div></div></div><a href="boolean-named-arguments">2. Boolean named arguments</a><span class="hover-metadata"> | <a href="#toc-boolean-named-arguments">🔗 link</a> | <a href="#toc">↑ parent "Positional vs named arguments"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

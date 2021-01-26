@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Argument leading newline removal</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="argument-leading-newline-removal"><a  href="" title="link to this element">Argument leading newline removal</a><span>  | <a href="macro-argument-syntax">↑ parent "Macro argument syntax"</a> | <a href="#argument-leading-newline-removal">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-614">🔗</a></span><div class="p" id="p-614">If the very first character of an argument is a newline, then that character is ignored if it would be part of a regular plaintext node.</div></div><div><span class="hide-hover"><a href="index-split#p-615">🔗</a></span><div class="p" id="p-615">For example:
+<div class="code-caption-container" id="code-233">
+<pre><code>\C[[
+a
+
+b
+]]
+</code></pre></div>
+generates something like:
+<div class="code-caption-container" id="code-234">
+<pre><code>&lt;pre&gt;&lt;code&gt;a
+
+b
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre></div>
+instead of:
+<div class="code-caption-container" id="code-235">
+<pre><code>&lt;pre&gt;&lt;code&gt;
+a
+
+b
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre></div>
+This is extremely convenient to improve the readability of code blocks and similar constructs.</div></div><div><span class="hide-hover"><a href="index-split#p-616">🔗</a></span><div class="p" id="p-616">The newline is however considered if it would be part of some <a href="insane-macro-shortcuts">insane macro shortcut</a>. For example, we can start an <a href="lists">insane list</a> inside a <a href="quotations">quotation</a> as in:
+<div class="code-caption-container" id="code-236">
+<pre><code>\Q[
+* a
+* b
+]
+</code></pre></div><div class="p" id="p-617">which renders as:</div><blockquote id="q-127"><blockquote id="q-128"><div><ul id="ul-71">
+<li id="l-196">a</li>
+<li id="l-197">b
+</li>
+</ul></div></blockquote></blockquote>
+where the insane list requires a leading newline <code>\n* </code> to work. That newline is not ignored, even though it comes immediately after the <code>\Q[</code> opening.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

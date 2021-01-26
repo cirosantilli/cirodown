@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>ID-based header levels</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="id-based-header-levels"><a  href="" title="link to this element">ID-based header levels (<code>{parent=&lt;parent-id&gt;}</code>)</a><span>  | <a href="headers">↑ parent "Headers"</a> | <a href="#id-based-header-levels">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-243">🔗</a></span><div class="p" id="p-243">In addition to the basic way of specifying header levels with an explicit level number, as mentioned at <a href="headers">Section 1.1. "Headers (<code>\H</code>)"</a>, Cirodown also supports a more indirect ID-based mechanism.</div></div><div><span class="hide-hover"><a href="index-split#p-244">🔗</a></span><div class="p" id="p-244">For example, the following fixed level syntax:
+<div class="code-caption-container" id="code-99">
+<pre><code>= My h1
+
+== My h2 1
+
+== My h2 2
+
+=== My h3 2 1
+</code></pre></div>
+is equivalent to the following ID-based version:
+<div class="code-caption-container" id="code-100">
+<pre><code>= My h1
+
+= My h2 1
+{parent=my-h1}
+
+= My h2 2
+{parent=my-h1}
+
+= My h3 2 1
+{parent=my-h2-h}
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-245">🔗</a></span><div class="p" id="p-245">The main advantages of this syntax are felt when you have a huge document with <a href="unlimited-header-levels">very large header depths</a>. In that case:<div><ul id="ul-24">
+<li id="l-70">it becomes easy to get levels wrong with so many large level numbers to deal with. It is much harder to get an ID wrong.</li>
+<li id="l-71"><div class="p" id="p-246">when you want to move headers around to improve organization, things are quite painful without a refactoring tool (which we intend to provide in the <a href="editor-with-preview">editor with preview</a>), as you need to fix up the levels of every single header.</div><div class="p" id="p-247">If you are using the ID-based syntax however, you only have to move the chunk of headers, and change the <code>parent</code> argument of a single top-level header being moved.</div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-248">🔗</a></span><div class="p" id="p-248">Note that when the <code>parent=</code> argument is given, the header level must be <code>1</code>, otherwise Cirodown assumes that something is weird and gives an error. E.g. the following gives an error:
+<div class="code-caption-container" id="code-101">
+<pre><code>= My h1
+
+== My h2
+{parent=my-h1}
+</code></pre></div>
+because the second header has level <code>2</code> instead of the required <code>= My h2</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-249">🔗</a></span><div class="p" id="p-249">When <a href="scope">scopes</a> are involved, the rules are the same as those of internal reference resolution, including the leading <code>/</code> to break out of the scope in case of conflicts.</div></div><div><span class="hide-hover"><a href="index-split#p-250">🔗</a></span><div class="p" id="p-250">See also: <a href="header-explicit-levels-vs-nesting-design-choice">Section . "Header explicit levels vs nesting design choice"</a> for further rationale.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[1]</span></div>
+<ul>
+<li><div id="toc-id-based-header-levels-and-scope-resolution"><div class="arrow"><div></div></div><a href="id-based-header-levels-and-scope-resolution">1. ID-based header levels and scope resolution</a><span class="hover-metadata"> | <a href="#toc-id-based-header-levels-and-scope-resolution">🔗 link</a> | <a href="#toc">↑ parent "ID-based header levels"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Header &lt;code&gt;scope&lt;/code&gt; argument</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="scope"><a  href="" title="link to this element">Header <code>scope</code> argument</a><span>  | <a href="headers">↑ parent "Headers"</a> | <a href="#scope">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-271">🔗</a></span><div class="p" id="p-271">In some use cases, the sections under a section describe inseparable parts of something.</div></div><div><span class="hide-hover"><a href="index-split#p-272">🔗</a></span><div class="p" id="p-272">For example, when documenting an experiment you executed, you will generally want an "Introduction", then a "Materials" section, and then a "Results" section for every experiment.</div></div><div><span class="hide-hover"><a href="index-split#p-273">🔗</a></span><div class="p" id="p-273">On their own, those sections don't make much sense: they are always referred to in the context of the given experiment.</div></div><div><span class="hide-hover"><a href="index-split#p-274">🔗</a></span><div class="p" id="p-274">The problem is then how to get unique IDs for those sections.</div></div><div><span class="hide-hover"><a href="index-split#p-275">🔗</a></span><div class="p" id="p-275">One solution, would be to manually add the experiment ID as prefix to every subsection, as in:
+<div class="code-caption-container" id="code-107">
+<pre><code>= Experiments
+
+See: \x[full-and-unique-experiment-name/materials]
+
+== Introduction
+
+== Full and unique experiment name
+
+=== Introduction
+{id=full-and-unique-experiment-name/introduction}
+
+See our awesome results: \x[full-and-unique-experiment-name/results]
+
+For a more general introduction to all experiments, see: \x[introduction].
+
+=== Materials
+{id=full-and-unique-experiment-name/materials}
+
+=== Results
+{id=full-and-unique-experiment-name/results}
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-276">🔗</a></span><div class="p" id="p-276">but this would be very tedious.</div></div><div><span class="hide-hover"><a href="index-split#p-277">🔗</a></span><div class="p" id="p-277">To keep those IDs shorter, Cirodown provides the <code>scope</code> <a href="boolean-named-arguments">boolean named argument</a> property of <a href="headers">headers</a>, which works analogously to C++ namespaces with the header IDs.</div></div><div><span class="hide-hover"><a href="index-split#p-278">🔗</a></span><div class="p" id="p-278">Using <code>scope</code>, the previous example could be written more succinctly as:
+<div class="code-caption-container" id="code-108">
+<pre><code>= Experiments
+
+See: \x[full-and-unique-experiment-name/materials]
+
+== Introduction
+
+== Full and unique experiment name
+{scope}
+
+=== Introduction
+
+See our awesome results: \x[results]
+
+For a more general introduction to all experiments, see: \x[/introduction].
+
+=== Materials
+
+=== Results
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-279">🔗</a></span><div class="p" id="p-279">Note how:<div><ul id="ul-29">
+<li id="l-82">full IDs are automatically prefixed by the parent scopes prefixed and joined with a slash <code>/</code></li>
+<li id="l-83">we can refer to other IDs withing the current scope without duplicating the scope. E.g. <code>\x[results]</code> in the example already refers to the ID <code>full-and-unique-experiment-name/materials</code></li>
+<li id="l-84"><div class="p" id="p-280">to refer to an ID outside of the scope and avoid name conflicts with IDs inside of the current scope, we start a reference with a slash <code>/</code></div><div class="p" id="p-281">So in the example above, <code>\x[/introduction]</code> refers to the ID <code>introduction</code>, and not <code>full-and-unique-experiment-name/introduction</code>.</div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-282">🔗</a></span><div class="p" id="p-282">When nested scopes are involved, <a href="internal-cross-references">internal cross references</a> resolution peels off the scopes one by one trying to find the closes match, e.g. the following works as expected:
+<div class="code-caption-container" id="code-109">
+<pre><code>= h1
+{scope}
+
+== h2
+{scope}
+
+=== h3
+{scope}
+
+\x[h2]
+</code></pre></div>
+Here Cirodown:<div><ul id="ul-30">
+<li id="l-85">first tries to loop for an <code>h1/h2/h3/h2</code>, since <code>h1/h2/h3</code> is the current scope, but that ID does not exist</li>
+<li id="l-86">so it removes the <code>h3</code> from the current scope, and looks for <code>h1/h2/h2</code>, which is still not found</li>
+<li id="l-87">then it removes the <code>h2</code>, leading to <code>h1/h2</code>, and that one is found, and therefore is taken</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[2]</span></div>
+<ul>
+<li><div id="toc-directory-based-scope"><div class="arrow"><div></div></div><a href="directory-based-scope">1. Directory-based <code>scope</code></a><span class="hover-metadata"> | <a href="#toc-directory-based-scope">🔗 link</a> | <a href="#toc">↑ parent "Header <code>scope</code> argument"</a></span></div></li>
+<li><div id="toc-header-scope-argument-of-toplevel-headers"><div class="arrow"><div></div></div><a href="header-scope-argument-of-toplevel-headers">2. Header <code>scope</code> argument of toplevel headers</a><span class="hover-metadata"> | <a href="#toc-header-scope-argument-of-toplevel-headers">🔗 link</a> | <a href="#toc">↑ parent "Header <code>scope</code> argument"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

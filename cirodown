@@ -728,6 +728,7 @@ if (commander.helpMacros) {
     }
   }
   let template_path;
+
   if (commander.template !== undefined) {
     template_path = commander.template;
   } else if ('template' in cirodown_json) {
@@ -738,6 +739,7 @@ if (commander.helpMacros) {
   } else {
     options.template = fs.readFileSync(template_path).toString();
   }
+
   let input_path_is_file;
   if (inputPath === undefined) {
     // Input from stdin.

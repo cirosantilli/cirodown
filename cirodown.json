@@ -10,6 +10,11 @@
     "not-readme-redirect-test": "not-readme",
     "quick-start-redirect-test": "quick-start"
   },
-  "template": "main.liquid.html",
+  "cli": {
+    "template": "main.liquid.html"
+  },
+  "cli-publish": {
+    "split-headers": true
+  },
   "xss-unsafe": true
 }

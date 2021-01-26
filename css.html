@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>CSS</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="css"><a  href="" title="link to this element">CSS</a><span>  | <a href="developing-cirodown">↑ parent "Developing Cirodown"</a> | <a href="#css">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-824">🔗</a></span><div class="p" id="p-824">Our CSS is located at <a href="main.scss">main.scss</a> and gets processed through <a href="https://sass-lang.com">Sass</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-825">🔗</a></span><div class="p" id="p-825">To generate the CSS during development after any changes to that file, you must run:
+<div class="code-caption-container" id="code-312">
+<pre><code>npm run sass
+</code></pre></div>
+which generates the final CSS file:
+<div class="code-caption-container" id="code-313">
+<pre><code>main.css
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-826">🔗</a></span><div class="p" id="p-826">You then need to explicitly include that <code>main.css</code> file in your <a href="template"><code>--template</code></a>. For example, our <a href="main.liquid.html">main.liquid.html</a> contains a line:
+<div class="code-caption-container" id="code-314">
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="{{ root_relpath }}main.css"&gt;
+</code></pre></div>
+where <code>root_relpath</code> is explained under <a href="template">Section 1.1. "<code>--template</code>"</a>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

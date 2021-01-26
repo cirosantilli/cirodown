@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Includes</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="includes"><a  href="" title="link to this element">Includes (<code>\Include</code>)</a><span>  | <a href="headers">↑ parent "Headers"</a> | <a href="#includes">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-301">🔗</a></span><div class="p" id="p-301">The <code>\Include</code> macro allows including an external Cirodown headers under the current header.</div></div><div><span class="hide-hover"><a href="index-split#p-302">🔗</a></span><div class="p" id="p-302">It exists to allow optional single page HTML output while still retaining the ability to:<div><ul id="ul-34">
+<li id="l-95">split up large input files into multiple files to make renders faster during document development</li>
+<li id="l-96">suggest an optional custom output split with one HTML output per Cirodown input, in order to avoid extremely large HTML pages which could be slow to load</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-303">🔗</a></span><div class="p" id="p-303"><code>\Include</code> takes one mandatory argument: the ID of the section to be included, much like <a href="internal-cross-references">internal cross references</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-304">🔗</a></span><div class="p" id="p-304">There is however one restriction: only <a href="the-toplevel-header">the toplevel headers</a> can be pointed to. This restriction allows us to easily find the included file in the filesystem, and dispenses the need to do a first <code>./cirodown</code> run to generate the <a href="internal-cross-file-references-internals">ID database</a>. This works because <a href="the-id-of-the-first-header-is-derived-from-the-filename">the ID of the first header is derived from the filename</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-305">🔗</a></span><div class="p" id="p-305">Headers of the included document are automatically shifted to match the level of the child of the level where they are being included.</div></div><div><span class="hide-hover"><a href="index-split#p-306">🔗</a></span><div class="p" id="p-306">If <a href="embed-includes"><code>--embed-includes</code></a> is given, the external document is rendered embedded into the current document directly, essentially as if the source had been copy pasted (except for small corrections such as the header offsets).</div></div><div><span class="hide-hover"><a href="index-split#p-307">🔗</a></span><div class="p" id="p-307">Otherwise, the following effects happen:<div><ul id="ul-35">
+<li id="l-97"><div class="p" id="p-308">The headers of the included tree appear in the <a href="table-of-contents">table of contents</a> of the document as links to the corresponding external files.</div><div class="p" id="p-309">This is implemented simply by reading a previously generated database file much like <a href="internal-cross-file-references-internals">internal cross file references internals</a>, which avoids the slowdown of parsing all included files every time.</div><div class="p" id="p-310">As a result, you have to do an initial parse of all files in the project to extract their headers however, just as you would need to do when linking to those headers.</div></li>
+<li id="l-98">the include itself renders as a link to the included document</li>
+<li id="l-99"><a href="embed-includes"><code>--embed-includes</code></a></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-311">🔗</a></span><div class="p" id="p-311">Here is an example of inclusion of the files <code>not-readme.ciro</code> and <code>not-readme-2.ciro</code>:
+<div class="code-caption-container" id="code-115">
+<pre><code>\Include[not-readme]
+\Include[not-readme-2]
+\Include[not-readme-with-scope]
+</code></pre></div>
+The above is the recommended and slightly <a href="insane-macro-shortcuts">insaner</a> version of:
+<div class="code-caption-container" id="code-116">
+<pre><code>\Include[not-readme]
+
+\Include[not-readme-2]
+
+\Include[not-readme-with-scope]
+</code></pre></div>
+The insaner version is a bit insaner because the <code>\Include</code> magically discards the following newline node that follows it if it just a plaintext node containing exactly a newline. With a double newline, the newline would already have been previously taken out on the lexing stage as part of a paragraph.</div></div><div><span class="hide-hover"><a href="index-split#p-312">🔗</a></span><div class="p" id="p-312">This is what they actually render as:</div></div><div><span class="hide-hover"><a href="index-split">🔗</a></span><h2 id="not-readme"><a  href="index-split" title="link to this element">1. Not the README</a><span>  | <a  href="#toc-not-readme" class="cirodown-h-to-toc">⇑ toc</a> | <a href="">↑ parent "Includes"</a> | <a href="#not-readme">nosplit</a></span></h2>
+</div><div><span class="hide-hover"><a href="index-split#p-313">🔗</a></span><div class="p" id="p-313"><a href="not-readme-split">This section is present in another page, follow this link to view it.</a></div></div><div><span class="hide-hover"><a href="index-split">🔗</a></span><h2 id="not-readme-2"><a  href="index-split" title="link to this element">2. Not the README 2</a><span>  | <a  href="#toc-not-readme-2" class="cirodown-h-to-toc">⇑ toc</a> | <a href="">↑ parent "Includes"</a> | <a href="#not-readme-2">nosplit</a></span></h2>
+</div><div><span class="hide-hover"><a href="index-split#p-314">🔗</a></span><div class="p" id="p-314"><a href="not-readme-2-split">This section is present in another page, follow this link to view it.</a></div></div><div><span class="hide-hover"><a href="index-split">🔗</a></span><h2 id="not-readme-with-scope"><a  href="index-split" title="link to this element">3. Not the README with scope</a><span>  | <a  href="#toc-not-readme-with-scope" class="cirodown-h-to-toc">⇑ toc</a> | <a href="">↑ parent "Includes"</a> | <a href="#not-readme-with-scope">nosplit</a></span></h2>
+</div><div><span class="hide-hover"><a href="index-split">🔗</a></span><div class="p" id="p-315"><a href="not-readme-with-scope-split">This section is present in another page, follow this link to view it.</a></div></div><div><span class="hide-hover"><a href="index-split">🔗</a></span><h2 id="subdir"><a  href="index-split" title="link to this element">4. subdir index</a><span>  | <a  href="#toc-subdir" class="cirodown-h-to-toc">⇑ toc</a> | <a href="">↑ parent "Includes"</a> | <a href="#subdir">nosplit</a></span></h2>
+</div><div><span class="hide-hover"><a href="index-split">🔗</a></span><div class="p" id="p-316"><a href="subdir/index-split">This section is present in another page, follow this link to view it.</a></div></div><div><span class="hide-hover"><a href="subdir/notindex/index-split">🔗</a></span><h2 id="subdir/notindex"><a  href="subdir/notindex/index-split" title="link to this element">5. subdir/notindex</a><span>  | <a  href="#toc-subdir/notindex" class="cirodown-h-to-toc">⇑ toc</a> | <a href="">↑ parent "Includes"</a> | <a href="#subdir/notindex">nosplit</a></span></h2>
+</div><div><span class="hide-hover"><a href="index-split">🔗</a></span><div class="p" id="p-317"><a href="subdir/notindex-split">This section is present in another page, follow this link to view it.</a></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[5]</span></div>
+<ul>
+<li><div id="toc-not-readme"><div class="arrow"><div></div></div><a href="index-split">1. Not the README</a><span class="hover-metadata"> | <a href="#toc-not-readme">🔗 link</a> | <a href="#toc">↑ parent "Includes"</a></span></div></li>
+<li><div id="toc-not-readme-2"><div class="arrow"><div></div></div><a href="index-split">2. Not the README 2</a><span class="hover-metadata"> | <a href="#toc-not-readme-2">🔗 link</a> | <a href="#toc">↑ parent "Includes"</a></span></div></li>
+<li><div id="toc-not-readme-with-scope"><div class="arrow"><div></div></div><a href="index-split">3. Not the README with scope</a><span class="hover-metadata"> | <a href="#toc-not-readme-with-scope">🔗 link</a> | <a href="#toc">↑ parent "Includes"</a></span></div></li>
+<li><div id="toc-subdir"><div class="arrow"><div></div></div><a href="index-split">4. subdir index</a><span class="hover-metadata"> | <a href="#toc-subdir">🔗 link</a> | <a href="#toc">↑ parent "Includes"</a></span></div></li>
+<li><div id="toc-subdir/notindex"><div class="arrow"><div></div></div><a href="subdir/notindex/index-split">5. subdir/notindex</a><span class="hover-metadata"> | <a href="#toc-subdir/notindex">🔗 link</a> | <a href="#toc">↑ parent "Includes"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Internal cross file references</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="internal-cross-file-references"><a  href="" title="link to this element">Internal cross file references</a><span>  | <a href="internal-cross-references">↑ parent "Internal cross references"</a> | <a href="#internal-cross-file-references">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-193">🔗</a></span><div class="p" id="p-193">Reference to the first header of another file:
+<div class="code-caption-container" id="code-74">
+<pre><code>\x[not-readme]
+</code></pre></div><div class="p" id="p-194">which renders as:</div><blockquote id="q-38"><div class="p" id="p-195"><a href="not-readme-split">not the README</a></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-196">🔗</a></span><div class="p" id="p-196">Reference to a non-first header of another file:
+<div class="code-caption-container" id="code-75">
+<pre><code>\x[h2-in-not-the-readme]
+</code></pre></div><div class="p" id="p-197">which renders as:</div><blockquote id="q-39"><div class="p" id="p-198"><a href="h2-in-not-the-readme">h2 in not the README</a></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-199">🔗</a></span><div class="p" id="p-199">To make toplevel links cleaner,if target header is the very first element of the other page, then the link does not get a fragment, e.g.: <code>\x[not-readme]</code> rendered as:
+<div class="code-caption-container" id="code-76">
+<pre><code>&lt;a href="not-readme"
+</code></pre></div>
+and not:
+<div class="code-caption-container" id="code-77">
+<pre><code>&lt;a href="not-readme#not-readme"
+</code></pre></div>
+while <code>\x[h2-in-not-the-readme]</code> is rendered with the fragment:
+<div class="code-caption-container" id="code-78">
+<pre><code>&lt;a href="not-readme#h2-in-not-the-readme"
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-200">🔗</a></span><div class="p" id="p-200">Reference to the first header of another file that is a second inclusion:
+<div class="code-caption-container" id="code-79">
+<pre><code>\x[included-by-not-readme]
+</code></pre></div><div class="p" id="p-201">which renders as:</div><blockquote id="q-40"><div class="p" id="p-202"><a href="included-by-not-readme-split">included by not the README</a></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-203">🔗</a></span><div class="p" id="p-203">Reference to another header of another file, with <a href="cross-reference-full-argument"><code>full</code></a>:
+<div class="code-caption-container" id="code-80">
+<pre><code>\x[h2-in-not-the-readme]{full}.
+</code></pre></div><div class="p" id="p-204">which renders as:</div><blockquote id="q-41"><div class="p" id="p-205"><a href="h2-in-not-the-readme">Section "h2 in not the README"</a>.</div></blockquote>
+Note that when <code>full</code> is used with references in another file in <a href="embed-includes">multi page mode</a>, the number is not rendered as explained at: <a href="cross-reference-full-argument-in-internal-cross-file-references">Section 1. "Cross reference <code>full</code> argument in internal cross file references"</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-206">🔗</a></span><div class="p" id="p-206">Reference to an image in another file:
+<div class="code-caption-container" id="code-81">
+<pre><code>\x[image-not-readme-xi]{full}.
+</code></pre></div><div class="p" id="p-207">which renders as:</div><blockquote id="q-42"><div class="p" id="p-208"><a href="h2-in-not-the-readme#image-not-readme-xi">Figure "Figure in not the README"</a>.</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-209">🔗</a></span><div class="p" id="p-209">Reference to an image in another file:
+<div class="code-caption-container" id="code-82">
+<pre><code>\x[image-figure-in-not-the-readme-without-explicit-id]{full}.
+</code></pre></div><div class="p" id="p-210">which renders as:</div><blockquote id="q-43"><div class="p" id="p-211"><a href="h2-in-not-the-readme#image-figure-in-not-the-readme-without-explicit-id">Figure "Figure in not the README without explicit id"</a>.</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-212">🔗</a></span><div class="p" id="p-212">Remember that the <a href="the-toplevel-header">ID of the toplevel header</a> is automatically derived from its file name, that's why we have to use:
+<div class="code-caption-container" id="code-83">
+<pre><code>\x[not-readme]
+</code></pre></div><div class="p" id="p-213">which renders as:</div><blockquote id="q-44"><div class="p" id="p-214"><a href="not-readme-split">not the README</a></div></blockquote>
+instead of:
+<div class="code-caption-container" id="code-84">
+<pre><code>\x[not-the-readme]
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-215">🔗</a></span><div class="p" id="p-215">Reference to a subdirectory:
+<div class="code-caption-container" id="code-85">
+<pre><code>\x[subdir]
+
+\x[subdir/h2]
+
+\x[subdir/notindex]
+
+\x[subdir/notindex-h2]
+</code></pre></div><div class="p" id="p-216">which renders as:</div><blockquote id="q-45"><div class="p" id="p-217"><a href="subdir/index-split">subdir index</a></div><div class="p" id="p-218"><a href="subdir/h2">h2</a></div><div class="p" id="p-219"><a href="subdir/notindex-split">subdir/notindex</a></div><div class="p" id="p-220"><a href="subdir/notindex-h2">notindex h2</a></div></blockquote>
+Implemented at: <a href="https://github.com/cirosantilli/cirodown/issues/116">https://github.com/cirosantilli/cirodown/issues/116</a></div></div><div><span class="hide-hover"><a href="index-split#p-221">🔗</a></span><div class="p" id="p-221">Reference to an internal header of another file: <a href="h2-in-not-the-readme">h2 in not the README</a>. By default, That header ID gets prefixed by the ID of the top header.</div></div><div><span class="hide-hover"><a href="index-split#p-222">🔗</a></span><div class="p" id="p-222">When using <a href="embed-includes"><code>--embed-includes</code></a> mode, the cross file references end up pointing to an ID inside the current HTML element, e.g.:
+<div class="code-caption-container" id="code-86">
+<pre><code>&lt;a href="#not-readme"&gt;
+</code></pre></div>
+rather than:
+<div class="code-caption-container" id="code-87">
+<pre><code>&lt;a href="not-readme.html/#not-readme"&gt;
+</code></pre></div>
+This is why IDs must be unique for elements across all pages.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[1]</span></div>
+<ul>
+<li><div id="toc-internal-cross-file-references-internals"><div class="arrow"><div></div></div><a href="internal-cross-file-references-internals">1. Internal cross file references internals</a><span class="hover-metadata"> | <a href="#toc-internal-cross-file-references-internals">🔗 link</a> | <a href="#toc">↑ parent "Internal cross file references"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

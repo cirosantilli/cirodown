@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>The &lt;code&gt;title2&lt;/code&gt; argument</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="the-title2-argument"><a  href="" title="link to this element">The <code>title2</code> argument</a><span>  | <a href="internal-cross-references">↑ parent "Internal cross references"</a> | <a href="#the-title2-argument">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-157">🔗</a></span><div class="p" id="p-157">The <code>title2</code> argument can be given to any element that has the <code>title</code> argument.</div></div><div><span class="hide-hover"><a href="index-split#p-158">🔗</a></span><div class="p" id="p-158">Its usage is a bit like the <code>description=</code> argument of <a href="images">images</a>, allowing you to add some extra content to the header without affecting its ID.</div></div><div><span class="hide-hover"><a href="index-split#p-159">🔗</a></span><div class="p" id="p-159">Therefore, its primary use cases are:<div><ul id="ul-19">
+<li id="l-56"><div class="p" id="p-160">give acronyms, or other short names names of fuller titles such as mathematical/programming notation</div><div class="p" id="p-161">One primary reason to not use the acronyms is to avoid possible ID ambiguities with other acronyms.</div></li>
+<li id="l-57">give the header in different languages</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-162">🔗</a></span><div class="p" id="p-162">When you do want to affect the ID to remove ambiguities, use <a href="the-disambiguate-argument">the <code>disambiguate</code> argument</a> instead of <code>title2</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-163">🔗</a></span><div class="p" id="p-163">Unlike <code>description=</code> however, <code>title2</code> shows up on all <a href="cross-reference-full-argument"><code>full</code></a> references, including appearances in the <a href="table-of-contents">table of contents</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-164">🔗</a></span><div class="p" id="p-164">For example, given the Cirodown input:
+<div class="code-caption-container" id="code-60">
+<pre><code>The toc:
+
+\Toc
+
+== Quotation
+{title2=`\Q`}
+
+== Orthogonal group
+{title2=$O(n)$}
+
+\x[quotation]{p}
+
+\x[orthogonal-group]
+
+\x[orthogonal-group]{full}
+</code></pre></div>
+the rendered output looks like:
+<div class="code-caption-container" id="code-61">
+<pre><code>The toc:
+
+* Quotation (\Q)
+* Orthogonal group (O(n))
+
+== Quotation (\Q)
+
+== Orthogonal group (O(n))
+
+quotations
+
+orthogonal group
+
+Section 2. "Orthogonal group (O(n))"
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-165">🔗</a></span><div class="p" id="p-165">Parenthesis are added automatically around all rendered <code>title2</code>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

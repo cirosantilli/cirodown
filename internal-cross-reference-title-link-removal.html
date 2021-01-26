@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Internal cross reference title link removal</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="internal-cross-reference-title-link-removal"><a  href="" title="link to this element">Internal cross reference title link removal</a><span>  | <a href="internal-cross-references">↑ parent "Internal cross references"</a> | <a href="#internal-cross-reference-title-link-removal">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-233">🔗</a></span><div class="p" id="p-233">If the target <code>title</code> argument contains a link from either another <a href="internal-cross-references">internal cross references</a> or a regular <a href="links">external hyperlink</a>, Cirodown automatically prevents that link from rendering as a link when no explicit body is given.</div></div><div><span class="hide-hover"><a href="index-split#p-234">🔗</a></span><div class="p" id="p-234">This is done because <a href="https://stackoverflow.com/questions/9882916/are-you-allowed-to-nest-a-link-inside-of-a-link">nested links are illegal in HTML</a>, and the result would be confusing.</div></div><div><span class="hide-hover"><a href="index-split#p-235">🔗</a></span><div class="p" id="p-235">This use case is most common when dealing with media such as <a href="images">images</a>. For example in:
+<div class="code-caption-container" id="code-91">
+<pre><code>= afds
+
+\x[image-aa-zxcv-lolol-bb]
+
+== qwer
+
+\Image[Tank_man_standing_in_front_of_some_tanks.jpg]
+{title=aa \x[zxcv][zxcv] \a[http://example.com][lolol] bb}
+
+== zxcv
+</code></pre></div>
+the <code>\x[image-aa-zxcv-lolol-bb]</code> renders something like:
+<div class="code-caption-container" id="code-92">
+<pre><code>&lt;a href="#image-aa-zxcv-lolol-bb"&gt;aa zxcv lolol bb&lt;/a&gt;
+</code></pre></div>
+and not:
+<div class="code-caption-container" id="code-93">
+<pre><code>&lt;a href="#image-aa-zxcv-lolol-bb"&gt;aa &lt;a href="zxcv"&gt;zxcv&lt;/a&gt; &lt;a href="http://example.com"&gt;lolol&lt;/a&gt; bb&lt;/a&gt;
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-236">🔗</a></span><div class="p" id="p-236">Live example:
+<div class="code-caption-container" id="code-94">
+<pre><code>This is a nice image: \x[image-aa-zxcv-lolol-bb].
+
+\Image[Tank_man_standing_in_front_of_some_tanks.jpg]
+{title=aa \x[internal-cross-reference-title-link-removal][zxcv] \a[http://example.com][lolol] bb}
+</code></pre></div><div class="p" id="p-237">which renders as:</div><blockquote id="q-46"><div class="p" id="p-238">This is a nice image: <a href="#image-aa-zxcv-lolol-bb">Figure 3. "aa zxcv lolol bb"</a>.</div><figure id="image-aa-zxcv-lolol-bb">
+<a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
+<figcaption><a  href="#image-aa-zxcv-lolol-bb"><span class="caption-prefix">Figure 3</span></a>. aa <a href="">zxcv</a> <a href="http://example.com">lolol</a> bb</figcaption>
+</figure>
+</blockquote></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

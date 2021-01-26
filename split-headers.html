@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>&lt;code&gt;--split-headers&lt;/code&gt;</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="split-headers"><a  href="" title="link to this element"><code>--split-headers</code></a><span>  | <a href="cirodown-executable-options">↑ parent "<code>cirodown</code> executable options"</a> | <a href="#split-headers">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-740">🔗</a></span><div class="p" id="p-740">Split each header into its own separate HTML output file.</div></div><div><span class="hide-hover"><a href="index-split#p-741">🔗</a></span><div class="p" id="p-741">This option allows you to keep all headers in a single file, which is much more convenient than working with a billion separate source files, and let them grow naturally as new information is added, but still be able to get a small output page on the rendered website that contains just the content of the given header. Such split pages load faster on the browser, and might get better Google PageRank.</div></div><div><span class="hide-hover"><a href="index-split#p-742">🔗</a></span><div class="p" id="p-742">For example given an input file called <code>hello.ciro</code> and containing:
+<div class="code-caption-container" id="code-273">
+<pre><code>= h1
+
+h1 content.
+
+A link to another section: \x[h1-1].
+
+== h1 1
+
+h1-1 content.
+
+== h1 1 1
+
+h1-1-1 content.
+
+== h1 1 2
+
+h1-1-2 content.
+</code></pre></div>
+a conversion command:
+<div class="code-caption-container" id="code-274">
+<pre><code>cirodown --split-headers hello.ciro
+</code></pre></div>
+would produce the following output files:<div><ul id="ul-92">
+<li id="l-243"><div class="p" id="p-743"><code>hello.html</code>: contains the entire rendered document as usual.</div><div class="p" id="p-744">Remember that this is called <code>hello.html</code> instead of <code>h1.html</code> because <a href="the-toplevel-header">the toplevel header ID is automatically derived from its filename</a>.</div><div class="p" id="p-745">Each header contains a on-hover link to the single-file split version of the header.</div></li>
+<li id="l-244"><code>hello-split.html</code>: contains only the contents directly under <code>= h1</code>, but not under any of the subheaders, e.g.:<div><ul id="ul-93">
+<li id="l-245"><code>h1 content.</code> appears in this rendered output</li>
+<li id="l-246"><code>h1-1-1</code> does not appear in this rendered output
+</li>
+</ul></div>The <code>-split</code> suffix is appended in order to differentiate the output path from <code>hello.html</code></li>
+<li id="l-247"><code>h1-1.html</code>, <code>h1-1-1.html</code>, <code>h1-1-2.html</code>: contain only the contents direcly under their headers, analogously to <code>hello-split.html</code>, but now we don't need to worry about the input filename and collisiont, and just directly use the ID of each header</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-746">🔗</a></span><div class="p" id="p-746"><a href="internal-cross-references">internal cross references</a> such as <code>\x[h1-1]</code> automatically point to the same type of split/non-split output as the current output file, for example:<div><ul id="ul-94">
+<li id="l-248">in <code>hello.html</code>, it points to the section in the current (non-split) file</li>
+<li id="l-249">in <code>hello-split.html</code>, it points to the section the separate split <code>h1-1.html</code> output file
+</li>
+</ul></div>The same applies to <a href="internal-cross-file-references">internal cross file references</a> when there are multiple input files.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

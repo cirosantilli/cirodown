@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Images</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="images"><a  href="" title="link to this element">Images (<code>\Image</code> and <code>\image</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#images">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-356">🔗</a></span><div class="p" id="p-356">A block image with <a href="block-vs-inline-macros">capital</a> 'i' <code>Image</code> showcasing most of the image properties <a href="#image-my-test-image">Figure 4. "The title of my image."</a>.
+<div class="code-caption-container" id="code-135">
+<pre><code>Have a look at this amazing image: \x[image-my-test-image].
+
+\Image[Tank_man_standing_in_front_of_some_tanks.jpg]
+{title=The title of my image.}
+{id=image-my-test-image}
+{width=600}
+{height=200}
+{source=https://en.wikipedia.org/wiki/File:Tianasquare.jpg}
+{description=The description of my image.}
+</code></pre></div><div class="p" id="p-357">which renders as:</div><blockquote id="q-57"><div class="p" id="p-358">Have a look at this amazing image: <a href="#image-my-test-image">Figure 4. "The title of my image."</a>.</div><figure id="image-my-test-image">
+<a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="200" width="600"></a>
+<figcaption><a  href="#image-my-test-image"><span class="caption-prefix">Figure 4</span></a>. The title of my image. <a  href="https://en.wikipedia.org/wiki/File:Tianasquare.jpg">Source</a>. The description of my image.</figcaption>
+</figure>
+</blockquote>
+This exemplifies the following parameters:<div><ul id="ul-50">
+<li id="l-146"><code>description</code>: similar to <code>title</code>, but allow for further explanations without them appearing in <a href="internal-cross-references">cross references</a> to the image</li>
+<li id="l-147"><code>source</code>: a standardized way to credit an image by linking to a URL that contains further image metadata
+</li>
+</ul></div>For further discussion on the effects of ID see: <a href="image-id">full</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-359">🔗</a></span><div class="p" id="p-359">And this is how you make an inline image inline one with lower case <code>i</code>:
+<div class="code-caption-container" id="code-136">
+<pre><code>My inline \image[Tank_man_standing_in_front_of_some_tanks.jpg][test image] is awesome.
+</code></pre></div><div class="p" id="p-360">which renders as:</div><blockquote id="q-58"><div class="p" id="p-361">My inline <img src="Tank_man_standing_in_front_of_some_tanks.jpg" height="315" alt="test image"> is awesome.</div></blockquote>
+Inline images can't have captions.</div></div><div><span class="hide-hover"><a href="index-split#p-362">🔗</a></span><div class="p" id="p-362">The <code>description</code> can have multiple paragraphs just like any other element, but we don't recommend this style because it makes it hard for readers to see what is part of the image caption and what is part of the next paragraph.
+<div class="code-caption-container" id="code-137">
+<pre><code>\Image[Tank_man_standing_in_front_of_some_tanks.jpg]
+{id=image-my-test-image-description-paragraphs}
+{title=The title of my image.}
+{source=https://en.wikipedia.org/wiki/File:Tianasquare.jpg}
+{description=Description paragraph 1.
+
+Description paragraph 2.
+}
+
+Paragraph after.
+</code></pre></div><div class="p" id="p-363">which renders as:</div><blockquote id="q-59"><figure id="image-my-test-image-description-paragraphs">
+<a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
+<figcaption><a  href="#image-my-test-image-description-paragraphs"><span class="caption-prefix">Figure 5</span></a>. The title of my image. <a  href="https://en.wikipedia.org/wiki/File:Tianasquare.jpg">Source</a>. <div class="p" id="p-364">Description paragraph 1.</div><div class="p" id="p-365">Description paragraph 2.
+</div></figcaption>
+</figure>
+<div class="p" id="p-366">Paragraph after.</div></blockquote>
+Maybe we could improve this with some CSS styling, but generally when you want multiple paragraphs inside the image, you might instead be better off making an <a href="internal-cross-file-references">internal cross reference</a> to the the image and adding your extended explanation outside.</div></div><div><span class="hide-hover"><a href="index-split#p-367">🔗</a></span><div class="p" id="p-367">And now an image outside of <a href="cirodownexample"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="#image-my-test-image-toplevel">🔗</a></span><figure id="image-my-test-image-toplevel">
+<a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
+<figcaption><a  href="#image-my-test-image-toplevel"><span class="caption-prefix">Figure 6</span></a></figcaption>
+</figure>
+</div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[9]</span></div>
+<ul>
+<li><div id="toc-image-height"><div class="arrow"><div></div></div><a href="image-height">1. Image height</a><span class="hover-metadata"> | <a href="#toc-image-height">🔗 link</a> | <a href="#toc">↑ parent "Images"</a></span></div></li>
+<li><div id="toc-image-id"><div class="arrow"><div></div></div><a href="image-id">2. Image IDs and captions</a><span class="hover-metadata"> | <a href="#toc-image-id">🔗 link</a> | <a href="#toc">↑ parent "Images"</a></span></div></li>
+<li class="has-child"><div id="toc-where-to-store-images"><div class="arrow"><div></div></div><a href="where-to-store-images">3. Where to store images</a> <span class="descendant-count" title="Number of descendants.">[3]</span><span class="hover-metadata"> | <a href="#toc-where-to-store-images">🔗 link</a> | <a href="#toc">↑ parent "Images"</a></span></div>
+<ul>
+<li><div id="toc-store-images-inside-the-repository-itself"><div class="arrow"><div></div></div><a href="store-images-inside-the-repository-itself">3.1. Store images inside the repository itself</a><span class="hover-metadata"> | <a href="#toc-store-images-inside-the-repository-itself">🔗 link</a> | <a href="#toc-where-to-store-images">↑ parent "Where to store images"</a></span></div></li>
+<li><div id="toc-store-images-in-a-separate-media-repository"><div class="arrow"><div></div></div><a href="store-images-in-a-separate-media-repository">3.2. Store images in a separate media repository</a><span class="hover-metadata"> | <a href="#toc-store-images-in-a-separate-media-repository">🔗 link</a> | <a href="#toc-where-to-store-images">↑ parent "Where to store images"</a></span></div></li>
+<li><div id="toc-store-images-in-wikimedia-commons"><div class="arrow"><div></div></div><a href="store-images-in-wikimedia-commons">3.3. Store images in Wikimedia Commons</a><span class="hover-metadata"> | <a href="#toc-store-images-in-wikimedia-commons">🔗 link</a> | <a href="#toc-where-to-store-images">↑ parent "Where to store images"</a></span></div></li>
+</ul>
+<li><div id="toc-image-lazy-loading"><div class="arrow"><div></div></div><a href="image-lazy-loading">4. Image lazy loading</a><span class="hover-metadata"> | <a href="#toc-image-lazy-loading">🔗 link</a> | <a href="#toc">↑ parent "Images"</a></span></div></li>
+<li><div id="toc-background-color-of-transparent-images"><div class="arrow"><div></div></div><a href="background-color-of-transparent-images">5. Background color of transparent images</a><span class="hover-metadata"> | <a href="#toc-background-color-of-transparent-images">🔗 link</a> | <a href="#toc">↑ parent "Images"</a></span></div></li>
+<li><div id="toc-image-generators"><div class="arrow"><div></div></div><a href="image-generators">6. Image generators</a><span class="hover-metadata"> | <a href="#toc-image-generators">🔗 link</a> | <a href="#toc">↑ parent "Images"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

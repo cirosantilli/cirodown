@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Speed comparison to other markup language implementations</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="speed-comparison-to-other-markup-language-implementations"><a  href="" title="link to this element">Speed comparison to other markup language implementations</a><span>  | <a href="performance">↑ parent "Performance"</a> | <a href="#speed-comparison-to-other-markup-language-implementations">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-814">🔗</a></span><div class="p" id="p-814">One quick and dirty option is to use <code>generate-paragraphs</code> which generates output compatible for most markup languages:
+<div class="code-caption-container" id="code-299">
+<pre><code>./generate-paragraphs 100000 &gt; tmp.ciro
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-815">🔗</a></span><div class="p" id="p-815">On Ubuntu 20.04 <a href="https://cirosantilli.com/linux-kernel-module-cheat/#p51">Lenovo ThinkPad P51</a> for example:<div><ul id="ul-117">
+<li id="l-320">Cirodown 54ba49736323264a5c66aa5d419f8232b4ecf8d0 + 1, Node.js v12.18.1
+<div class="code-caption-container" id="code-300">
+<pre><code>time ./cirodown tmp.ciro
+</code></pre></div>
+outputs:
+<div class="code-caption-container" id="code-301">
+<pre><code>real    0m5.104s
+user    0m6.323s
+sys     0m0.674s
+</code></pre></div></li>
+<li id="l-321">Asciidoctor 2.0.10, Ruby 2.6.0p0:
+<div class="code-caption-container" id="code-302">
+<pre><code>cp tmp.ciro tmp.adoc
+time asciidoctor tmp.adoc
+</code></pre></div>
+outputs:
+<div class="code-caption-container" id="code-303">
+<pre><code>real    0m1.911s
+user    0m1.850s
+sys     0m0.060s
+</code></pre></div></li>
+<li id="l-322"><a href="https://github.com/commonmark/cmark">cmark</a> 0.29.0:
+<div class="code-caption-container" id="code-304">
+<pre><code>cp tmp.ciro tmp.md
+time cmark tmp.md &gt; tmp.md.html
+</code></pre></div>
+outputs:
+<div class="code-caption-container" id="code-305">
+<pre><code>real    0m0.091s
+user    0m0.070s
+sys     0m0.021s
+</code></pre></div>
+Holy cow, it is 200x faster than Asciidoctor!</li>
+<li id="l-323"><a href="https://github.com/markdown-it/markdown-it">markdown-it</a> at 5789a3fe9693aa3ef6aa882b0f57e0ea61efafc0 to get an idea of a JavaScript markdown implementation:
+<div class="code-caption-container" id="code-306">
+<pre><code>time markdown-it tmp.md &gt; tmp.md.html
+</code></pre></div>
+outputs:
+<div class="code-caption-container" id="code-307">
+<pre><code>real    0m0.361s
+user    0m0.590s
+sys     0m0.060s
+</code></pre></div></li>
+<li id="l-324"><code>cat</code> just to find the absolute floor:
+<div class="code-caption-container" id="code-308">
+<pre><code>time cat tmp.ciro &gt; tmp.tmp
+</code></pre></div>
+outputs:
+<div class="code-caption-container" id="code-309">
+<pre><code>real    0m0.006s
+user    0m0.006s
+sys     0m0.000s
+</code></pre></div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

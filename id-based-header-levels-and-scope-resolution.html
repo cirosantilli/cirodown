@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>ID-based header levels and scope resolution</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="id-based-header-levels-and-scope-resolution"><a  href="" title="link to this element">ID-based header levels and scope resolution</a><span>  | <a href="id-based-header-levels">↑ parent "ID-based header levels"</a> | <a href="#id-based-header-levels-and-scope-resolution">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-251">🔗</a></span><div class="p" id="p-251">When mixing both <a href="id-based-header-levels">ID-based header levels</a> and <a href="scope">header <code>scope</code> argument</a>, things get a bit complicated, because when writing or parsing, we have to first determine the parent header before resolving scopes.</div></div><div><span class="hide-hover"><a href="index-split#p-252">🔗</a></span><div class="p" id="p-252">As a result, the follow simple rules are used:<div><ul id="ul-25">
+<li id="l-72">start from the last header of the highest level</li>
+<li id="l-73">check if the <code>{parent=XXX}</code> is a suffix of its ID</li>
+<li id="l-74">if not, proceed to the next smaller level, and so on, until a suffix is found</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-253">🔗</a></span><div class="p" id="p-253">Following those rules for example, a file <code>tmp.ciro</code>:
+<div class="code-caption-container" id="code-102">
+<pre><code>= h1
+{scope}
+
+= h1 1
+{parent=h1}
+{scope}
+
+= h1 1 1
+{parent=h1-1}
+
+= h1 1 2
+{parent=h1-1}
+
+= h1 1 3
+{parent=h1/h1-1}
+
+= h1 2
+{parent=h1}
+{scope}
+
+= h1 2 1
+{parent=h1-2}
+{scope}
+
+= h1 2 1 1
+{parent=h1-2/h1-2-1}
+</code></pre></div>
+will lead to the following header tree with <a href="log-headers"><code>--log headers</code></a>:
+<div class="code-caption-container" id="code-103">
+<pre><code>= h1  tmp
+== h2 1 tmp/h1-1
+=== h3 1.1 tmp/h1-1/h1-1-1
+=== h3 1.2 tmp/h1-1/h1-1-2
+=== h3 1.3 tmp/h1-1/h1-1-3
+== h2 2 tmp/h1-2
+=== h3 2.1 tmp/h1-2/h1-2-1
+==== h4 2.1.1 tmp/h1-2/h1-2-1/h1-2-1-1
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

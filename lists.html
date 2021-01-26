@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Lists</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="lists"><a  href="" title="link to this element">Lists (<code>* </code>, <code>\L</code>, <code>\Ul</code>, <code>\Ol</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#lists">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-330">🔗</a></span><div class="p" id="p-330"><a href="insane-macro-shortcuts">Insane</a> with <code>* </code> (asterisk space):
+<div class="code-caption-container" id="code-125">
+<pre><code>* a
+* b
+* c
+</code></pre></div><div class="p" id="p-331">which renders as:</div><blockquote id="q-47"><div><ul id="ul-37">
+<li id="l-102">a</li>
+<li id="l-103">b</li>
+<li id="l-104">c</li>
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-332">🔗</a></span><div class="p" id="p-332">Equivalent saner with <a href="auto-parent">implicit <code>ul</code> container</a>:
+<div class="code-caption-container" id="code-126">
+<pre><code>\L[a]
+\L[b]
+\L[c]
+</code></pre></div><div class="p" id="p-333">which renders as:</div><blockquote id="q-48"><div><ul id="ul-38">
+<li id="l-105">a</li>
+<li id="l-106">b</li>
+<li id="l-107">c</li>
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-334">🔗</a></span><div class="p" id="p-334">Equivalent fully sane with explicit container:
+<div class="code-caption-container" id="code-127">
+<pre><code>\Ul[
+\L[a]
+\L[b]
+\L[c]
+]
+</code></pre></div><div class="p" id="p-335">which renders as:</div><blockquote id="q-49"><div><ul id="ul-39">
+<li id="l-108">a</li>
+<li id="l-109">b</li>
+<li id="l-110">c</li>
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-336">🔗</a></span><div class="p" id="p-336">The explicit container is required if you want to pass extra arguments properties to the <code>ul</code> list macro, e.g. a title and an ID: <a href="#list-my-id">Ul 1</a>:
+<div class="code-caption-container" id="code-128">
+<pre><code>\Ul
+{id=list-my-id}
+[
+\L[a]
+\L[b]
+\L[c]
+]
+</code></pre></div><div class="p" id="p-337">which renders as:</div><blockquote id="q-50"><div><ul id="list-my-id">
+<li id="l-111">a</li>
+<li id="l-112">b</li>
+<li id="l-113">c</li>
+</ul></div></blockquote>
+This is the case because without the explicit container in an implicit <code>ul</code> list, the arguments would stick to the last list item instead of the list itself.</div></div><div><span class="hide-hover"><a href="index-split#p-338">🔗</a></span><div class="p" id="p-338">It is also required if you want ordered lists:
+<div class="code-caption-container" id="code-129">
+<pre><code>\Ol[
+\L[first]
+\L[second]
+\L[third]
+]
+</code></pre></div><div class="p" id="p-339">which renders as:</div><blockquote id="q-51"><ol id="ol-1">
+<li id="l-114">first</li>
+<li id="l-115">second</li>
+<li id="l-116">third</li>
+</ol></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-340">🔗</a></span><div class="p" id="p-340">Insane nested list with two space indentation:
+<div class="code-caption-container" id="code-130">
+<pre><code>* a
+  * a1
+  * a2
+  * a2
+* b
+* c
+</code></pre></div><div class="p" id="p-341">which renders as:</div><blockquote id="q-52"><div><ul id="ul-41">
+<li id="l-117">a<div><ul id="ul-42">
+<li id="l-118">a1</li>
+<li id="l-119">a2</li>
+<li id="l-120">a2</li>
+</ul></div></li>
+<li id="l-121">b</li>
+<li id="l-122">c</li>
+</ul></div></blockquote>
+The indentation must always be exactly equal to two spaces, anything else leads to errors or unintended output.</div></div><div><span class="hide-hover"><a href="index-split#p-342">🔗</a></span><div class="p" id="p-342">Equivalent saner nested lists with implicit containers:
+<div class="code-caption-container" id="code-131">
+<pre><code>\L[
+a
+\L[a1]
+\L[a2]
+\L[a2]
+]
+\L[b]
+\L[c]
+</code></pre></div><div class="p" id="p-343">which renders as:</div><blockquote id="q-53"><div><ul id="ul-43">
+<li id="l-123">a
+<div><ul id="ul-44">
+<li id="l-124">a1</li>
+<li id="l-125">a2</li>
+<li id="l-126">a2</li>
+</ul></div></li>
+<li id="l-127">b</li>
+<li id="l-128">c</li>
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-344">🔗</a></span><div class="p" id="p-344">Insane list item with a paragraph inside of it:
+<div class="code-caption-container" id="code-132">
+<pre><code>* a
+* I have
+
+  Multiple paragraphs.
+
+  * And
+  * also
+  * a
+  * list
+* c
+</code></pre></div><div class="p" id="p-345">which renders as:</div><blockquote id="q-54"><div><ul id="ul-45">
+<li id="l-129">a</li>
+<li id="l-130"><div class="p" id="p-346">I have</div><div class="p" id="p-347">Multiple paragraphs.</div><div><ul id="ul-46">
+<li id="l-131">And</li>
+<li id="l-132">also</li>
+<li id="l-133">a</li>
+<li id="l-134">list</li>
+</ul></div></li>
+<li id="l-135">c</li>
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-348">🔗</a></span><div class="p" id="p-348">Equivalent sane version:
+<div class="code-caption-container" id="code-133">
+<pre><code>\L[a]
+\L[
+I have
+
+Multiple paragraphs.
+
+\L[And]
+\L[also]
+\L[a]
+\L[list]
+]
+\L[c]
+</code></pre></div><div class="p" id="p-349">which renders as:</div><blockquote id="q-55"><div><ul id="ul-47">
+<li id="l-136">a</li>
+<li id="l-137"><div class="p" id="p-350">I have</div><div class="p" id="p-351">Multiple paragraphs.</div><div><ul id="ul-48">
+<li id="l-138">And</li>
+<li id="l-139">also</li>
+<li id="l-140">a</li>
+<li id="l-141">list</li>
+</ul></div></li>
+<li id="l-142">c</li>
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-352">🔗</a></span><div class="p" id="p-352">Insane lists may be escaped with a backslash as usual:
+<div class="code-caption-container" id="code-134">
+<pre><code>\* paragraph starting with an asterisk.
+</code></pre></div><div class="p" id="p-353">which renders as:</div><blockquote id="q-56"><div class="p" id="p-354">* paragraph starting with an asterisk.</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-355">🔗</a></span><div class="p" id="p-355">And now a list outside of <a href="cirodownexample"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="index-split#ul-49">🔗</a></span><div><ul id="ul-49">
+<li id="l-143">a</li>
+<li id="l-144">b</li>
+<li id="l-145">c</li>
+</ul></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>&lt;code&gt;\x&lt;/code&gt; within &lt;code&gt;title&lt;/code&gt; restrictions</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="x-within-title-restrictions"><a  href="" title="link to this element"><code>\x</code> within <code>title</code> restrictions</a><span>  | <a href="internal-cross-references">↑ parent "Internal cross references"</a> | <a href="#x-within-title-restrictions">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-182">🔗</a></span><div class="p" id="p-182">If you use <code>\x</code> within a <code>title</code>, which most commonly happens for <a href="images">image titles</a>, that can generate complex dependencies, which would either be harder to implement, or lead to infinite recursion.</div></div><div><span class="hide-hover"><a href="index-split#p-183">🔗</a></span><div class="p" id="p-183">To prevent such problems, Cirodown emits an error if you use an <code>\x</code> without content in the <code>title</code> of one of the following elements without an explicit ID:<div><ul id="ul-22">
+<li id="l-64"><div class="p" id="p-184"><a href="headers">header</a>. For example, the following gives an error:
+<div class="code-caption-container" id="code-64">
+<pre><code>= h1
+{id=myh1}
+
+== \x[myh1]
+</code></pre></div></div><div class="p" id="p-185">This could be solved by either adding a content to the reference:
+<div class="code-caption-container" id="code-65">
+<pre><code>= h1
+{id=myh1}
+
+== \x[myh1][mycontent]
+</code></pre></div>
+or by adding an explicit ID to the header:
+<div class="code-caption-container" id="code-66">
+<pre><code>= h1
+{id=myh1}
+
+== \x[myh1]
+{id=myh2}
+</code></pre></div></div></li>
+<li id="l-65"><div class="p" id="p-186">non-header (e.g. an <a href="images">image</a>) that links to the title of another non-header</div><div class="p" id="p-187">For non-headers, things are a bit more relaxed, and we can link to headers, e.g.:
+<div class="code-caption-container" id="code-67">
+<pre><code>= h1
+
+\Image[myimg.jpg]
+{title=my \x[h1].}
+</code></pre></div>
+This is allowed because Cirodown calculates IDs in two stages: first for all headers, and only later non non-headers.</div><div class="p" id="p-188">What you cannot do is link to another image e.g.:
+<div class="code-caption-container" id="code-68">
+<pre><code>\Image[myimg.jpg]
+{id=myimage1}
+{title=My image 1.}
+
+\Image[myimg.jpg]
+{title=my \x[h1].}
+</code></pre></div>
+and there the workaround are much the same as for headers: either explicitly set the cross reference content:
+<div class="code-caption-container" id="code-69">
+<pre><code>\Image[myimg.jpg]
+{id=myimage1}
+{title=My image 1.}
+
+\Image[myimg.jpg]
+{title=my \x[h1][My image 1].}
+</code></pre></div>
+or explicitly set an ID:
+<div class="code-caption-container" id="code-70">
+<pre><code>\Image[myimg.jpg]
+{id=myimage1}
+{title=My image 1.}
+
+\Image[myimg.jpg]
+{id=myimage2}
+{title=my \x[h1].}
+</code></pre></div></div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-189">🔗</a></span><div class="p" id="p-189">While it is technically possible implement the above limitations, it would require a bit of extra work which we don't want to put in right now: <a href="https://github.com/cirosantilli/cirodown/issues/95">https://github.com/cirosantilli/cirodown/issues/95</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-190">🔗</a></span><div class="p" id="p-190">Furthermore, the above rules do not exclude infinite rendering loops, but Cirodown detects such loops and gives a nice error message, this has been fixed at: <a href="https://github.com/cirosantilli/cirodown/issues/34">https://github.com/cirosantilli/cirodown/issues/34</a> </div></div><div><span class="hide-hover"><a href="index-split#p-191">🔗</a></span><div class="p" id="p-191">For example this would contain an infinite loop:
+<div class="code-caption-container" id="code-71">
+<pre><code>\Image[myimg.jpg]
+{id=myimage1}
+{title=\x[myimage2].}
+
+\Image[myimg.jpg]
+{id=myimage2}
+{title=\x[myimage1].}
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-192">🔗</a></span><div class="p" id="p-192">This infinite recursion is fundamentally not technically solved: the user has to manually break the loop by providing an <code>x</code> content explicitly, e.g. in either:
+<div class="code-caption-container" id="code-72">
+<pre><code>\Image[myimg.jpg]
+{id=myimage1}
+{title=\x[myimage2][my content 2].}
+
+\Image[myimg.jpg]
+{id=myimage2}
+{title=\x[myimage1].}
+</code></pre></div>
+or:
+<div class="code-caption-container" id="code-73">
+<pre><code>\Image[myimg.jpg]
+{id=myimage1}
+{title=\x[myimage2].}
+
+\Image[myimg.jpg]
+{id=myimage2}
+{title=\x[myimage1][my content 1].}
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

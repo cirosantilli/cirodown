@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Internal cross file references internals</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="internal-cross-file-references-internals"><a  href="" title="link to this element">Internal cross file references internals</a><span>  | <a href="internal-cross-file-references">↑ parent "Internal cross file references"</a> | <a href="#internal-cross-file-references-internals">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-223">🔗</a></span><div class="p" id="p-223">When running in Node.js, Cirodown dumps the IDs of all processed files to a <code>out/db.sqlite3</code> file, and then reads from that file when IDs are needed.</div></div><div><span class="hide-hover"><a href="index-split#p-224">🔗</a></span><div class="p" id="p-224">When converting a directory, <code>out/db.sqlite3</code> is placed inside the input directory. When converting individual files, <code>out/db.sqlite3</code> is placed in the current working directory. The file is not created or used when handling input from stdin.</div></div><div><span class="hide-hover"><a href="index-split#p-225">🔗</a></span><div class="p" id="p-225">When running in the browser, the same JavaScript API will send queries to the server instead of a local SQLite database.</div></div><div><span class="hide-hover"><a href="index-split#p-226">🔗</a></span><div class="p" id="p-226">To inspect the ID database to debug it, you can use:
+<div class="code-caption-container" id="code-88">
+<pre><code>sqlite3 out/db.sqlite3 .dump
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-227">🔗</a></span><div class="p" id="p-227">It is often useful to dump a single table, e.g. to dump the <code>ids</code> table:
+<div class="code-caption-container" id="code-89">
+<pre><code>sqlite3 out/db.sqlite3 '.dump ids'
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-228">🔗</a></span><div class="p" id="p-228">You can force <code>cirodown</code> to not use the ID database with <code>--no-db</code>:
+<div class="code-caption-container" id="code-90">
+<pre><code>./cirodown --no-db .
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

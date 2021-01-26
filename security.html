@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Security</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="security"><a  href="" title="link to this element">Security</a><span>  | <a href="cirodown-syntax">↑ parent "Cirodown syntax"</a> | <a href="#security">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-643">🔗</a></span><div class="p" id="p-643">Cirodown HTML output is designed to be XSS safe by default, any non-XSS safe constructs must be enabled with a non-default flag or setting, see: <a href="xss-unsafe">xss-unsafe</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-644">🔗</a></span><div class="p" id="p-644">Of course, we are walking on eggs, and this is hard to assert, so the best thing to do later on will be to parse the output e.g. with <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMParser"><code>DOMParser</code></a> to ensure that it is valid and does not contain any <code>script</code> tags, but it is not as simple as that: <a href="https://stackoverflow.com/questions/37435077/execute-javascript-for-xss-without-script-tags/61588322#61588322">https://stackoverflow.com/questions/37435077/execute-javascript-for-xss-without-script-tags/61588322#61588322</a></div></div><div><span class="hide-hover"><a href="index-split#p-645">🔗</a></span><div class="p" id="p-645">About server safety, we have to think about it. E.g. stuff like <a href="prepublish"><code>prepublish</code></a> already allows ACE.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[1]</span></div>
+<ul>
+<li><div id="toc-xss-unsafe"><div class="arrow"><div></div></div><a href="xss-unsafe">1. xss-unsafe (<code>--xss-unsafe</code>)</a><span class="hover-metadata"> | <a href="#toc-xss-unsafe">🔗 link</a> | <a href="#toc">↑ parent "Security"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

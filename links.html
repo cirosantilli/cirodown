@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Links</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="links"><a  href="" title="link to this element">Links (<code>\a</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#links">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-41">🔗</a></span><div class="p" id="p-41"><a href="insane-macro-shortcuts">Insane</a> autolink (link text is the same as the link):
+<div class="code-caption-container" id="code-17">
+<pre><code>The website http://example.com is cool. See also:
+
+\Q[http://example.com/2]
+</code></pre></div><div class="p" id="p-42">which renders as:</div><blockquote id="q-3"><div class="p" id="p-43">The website <a href="http://example.com">http://example.com</a> is cool. See also:</div><blockquote id="q-4"><a href="http://example.com/2">http://example.com/2</a></blockquote></blockquote>
+Exact parsing rules described at: <a href="insane-link-parsing-rules">Section 1. "Insane link parsing rules"</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-44">🔗</a></span><div class="p" id="p-44">Equivalent sane version:
+<div class="code-caption-container" id="code-18">
+<pre><code>The website \a[http://example.com] is cool.
+
+\Q[\a[http://example.com/2]]
+</code></pre></div><div class="p" id="p-45">which renders as:</div><blockquote id="q-5"><div class="p" id="p-46">The website <a href="http://example.com">http://example.com</a> is cool.</div><blockquote id="q-6"><a href="http://example.com/2">http://example.com/2</a></blockquote></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-47">🔗</a></span><div class="p" id="p-47">Insane link with custom text:
+<div class="code-caption-container" id="code-19">
+<pre><code>The website http://example.com[example.com] is cool.
+</code></pre></div><div class="p" id="p-48">which renders as:</div><blockquote id="q-7"><div class="p" id="p-49">The website <a href="http://example.com">example.com</a> is cool.</div></blockquote>
+Equivalent sane version:
+<div class="code-caption-container" id="code-20">
+<pre><code>The website \a[http://example.com][example.com] is cool.
+</code></pre></div><div class="p" id="p-50">which renders as:</div><blockquote id="q-8"><div class="p" id="p-51">The website <a href="http://example.com">example.com</a> is cool.</div></blockquote>
+If the custom text is empty, an autolink is generated. This is often useful if you want your link to be followed by punctuation:
+<div class="code-caption-container" id="code-21">
+<pre><code>The website is really cool: http://example.com[].
+</code></pre></div><div class="p" id="p-52">which renders as:</div><blockquote id="q-9"><div class="p" id="p-53">The website is really cool: <a href="http://example.com">http://example.com</a>.</div></blockquote>
+This could also be achieved with the sane syntax of course, but this pattern saves a tiny bit of typing.</div></div><div><span class="hide-hover"><a href="index-split#p-54">🔗</a></span><div class="p" id="p-54">Link with multiple paragraphs inside it:
+<div class="code-caption-container" id="code-22">
+<pre><code>\a[http://example.com][Multiple
+
+paragraphs]
+</code></pre></div><div class="p" id="p-55">which renders as:</div><blockquote id="q-10"><div class="p" id="p-56"><a href="http://example.com"><div class="p" id="p-57">Multiple</div><div class="p" id="p-58">paragraphs</div></a></div></blockquote></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[1]</span></div>
+<ul>
+<li><div id="toc-insane-link-parsing-rules"><div class="arrow"><div></div></div><a href="insane-link-parsing-rules">1. Insane link parsing rules</a><span class="hover-metadata"> | <a href="#toc-insane-link-parsing-rules">🔗 link</a> | <a href="#toc">↑ parent "Links"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

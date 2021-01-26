@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>&lt;code&gt;--log&lt;/code&gt;</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="log"><a  href="" title="link to this element"><code>--log</code></a><span>  | <a href="cirodown-executable-options">↑ parent "<code>cirodown</code> executable options"</a> | <a href="#log">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-690">🔗</a></span><div class="p" id="p-690">Give multiple times to enable a list of certain types of logs to stderr help debugging, e.g.:
+<div class="code-caption-container" id="code-257">
+<pre><code>./cirodown --log ast tokens -- README.ciro
+</code></pre></div>
+Note that this follows <a href="https://github.com/tj/commander.js/tree/e0e723810357e915210af38ccf5098ffe1fb8e65#variadic-option">commander.js' insane variadic arguments</a>, and thus the <code>--</code> is required above.</div></div><div><span class="hide-hover"><a href="index-split#p-691">🔗</a></span><div class="p" id="p-691">Values not documented in other sections:<div><ul id="ul-88">
+<li id="l-231"><code>ast</code>: the final parsed AST</li>
+<li id="l-232"><div class="p" id="p-692"><code>ast-inside</code>: print the AST from inside the <code>cirodown.convert</code> call before it returns.</div><div class="p" id="p-693">This is useful to debug the program if <code>cirodown.convert</code> blows up on the next stages before returning.</div></li>
+<li id="l-233"><code>parse</code>: parsing steps</li>
+<li id="l-234"><code>tokenize</code>: tokenization steps</li>
+<li id="l-235"><code>tokens</code>: final parsed token stream</li>
+<li id="l-236"><div class="p" id="p-694"><code>tokens-inside</code>: like <code>ast-inside</code> but for tokens.</div><div class="p" id="p-695">Also adds token index to the output, which makes debugging the parser way easier.</div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[1]</span></div>
+<ul>
+<li><div id="toc-log-headers"><div class="arrow"><div></div></div><a href="log-headers">1. <code>--log headers</code></a><span class="hover-metadata"> | <a href="#toc-log-headers">🔗 link</a> | <a href="#toc">↑ parent "<code>--log</code>"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

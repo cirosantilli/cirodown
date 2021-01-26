@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>&lt;code&gt;--embed-includes&lt;/code&gt;</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="embed-includes"><a  href="" title="link to this element"><code>--embed-includes</code></a><span>  | <a href="cirodown-executable-options">↑ parent "<code>cirodown</code> executable options"</a> | <a href="#embed-includes">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-665">🔗</a></span><div class="p" id="p-665">Makes <a href="includes">includes</a> render the included content in the same output file as the include is located, instead of the default behaviour of creating links.</div></div><div><span class="hide-hover"><a href="index-split#p-666">🔗</a></span><div class="p" id="p-666">In addition to this:<div><ul id="ul-83">
+<li id="l-223"><div class="p" id="p-667"><a href="internal-cross-file-references">internal cross file references</a> are disabled, and the cross file ID database does not get updated.</div><div class="p" id="p-668">It should be possible to work around this, but we are starting with the simplest implementation that forbids it.</div><div class="p" id="p-669">The problem those cause is that the IDs of included headers show as duplicate IDs of those in the ID database.</div><div class="p" id="p-670">This should be OK to start with because the more common use case with <code>--html-sinle-page</code> is that of including all headers in a single document.</div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-671">🔗</a></span><div class="p" id="p-671">Otherwise, <code>include</code> only adds the headers of the other file to the table of contents of the current one, but not the body of the other file. The ToC entries then point to the headers of the included external files.</div></div><div><span class="hide-hover"><a href="index-split#p-672">🔗</a></span><div class="p" id="p-672">You may want to use this option together with <a href="embed-resources"><code>--embed-resources</code></a> to produce fully self-contained individual HTML files for your project.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

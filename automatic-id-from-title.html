@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Automatic ID from title</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="automatic-id-from-title"><a  href="" title="link to this element">Automatic ID from title</a><span>  | <a href="internal-cross-references">↑ parent "Internal cross references"</a> | <a href="#automatic-id-from-title">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-229">🔗</a></span><div class="p" id="p-229">If a <a href="the-toplevel-header">non-toplevel</a> macro has the <code>title</code> property is present but no explicit <code>id</code>, an ID is created automatically from the <code>title</code>, by applying the following transformations:<div><ul id="ul-23">
+<li id="l-66">do a <a href="id-output-format"><code>id</code> output format</a> conversion on the title to remove for example any HTML tags that would be present in the conversion output</li>
+<li id="l-67">convert all characters to lowercase. This uses <a href="javascript-case-conversion">JavaScript case conversion</a>.</li>
+<li id="l-68">convert consecutive sequences of all non <code>a-z0-9</code> ASCII characters and hyphens <code>-</code> to a single hyphen <code>-</code>. Note that this leaves non-ASCII character untouched.</li>
+<li id="l-69">strip leading or trailing hyphens
+</li>
+</ul></div>Note how those rules leave non ASCII Unicode characters untouched, as capitalization and determining if something "is a letter or not" in those cases can be tricky.</div></div><div><span class="hide-hover"><a href="index-split#p-230">🔗</a></span><div class="p" id="p-230">For toplevel headers, see: <a href="the-id-of-the-first-header-is-derived-from-the-filename">the ID of the first header is derived from the filename</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-231">🔗</a></span><div class="p" id="p-231">So for example, the following automatic IDs would be generated: <a href="#table-examples-of-automatically-generated-ids">Table 1. "Examples of automatically generated IDs."</a>.</div></div><div><span class="hide-hover"><a href="#table-examples-of-automatically-generated-ids">🔗</a></span><div class="table-container" id="table-examples-of-automatically-generated-ids">
+<div class="table-caption-container">
+<span class="table-caption"><a href="#table-examples-of-automatically-generated-ids"><span class="caption-prefix">Table 1</span></a>. Examples of automatically generated IDs.</span></div>
+<table>
+<thead>
+<tr id="tr-1">
+<th id="th-1">title</th>
+<th id="th-2">id</th>
+<th id="th-3">comments</th>
+</tr>
+</thead>
+<tbody>
+<tr id="tr-2">
+<td id="td-1">My favorite title</td>
+<td id="td-2">my-favorite-title</td>
+<td id="td-3"></td>
+</tr>
+<tr id="tr-3">
+<td id="td-4">Ciro's markdown is awesome</td>
+<td id="td-5">ciro-s-markdown-is-awesome</td>
+<td id="td-6"></td>
+</tr>
+<tr id="tr-4">
+<td id="td-7">É你</td>
+<td id="td-8">é你</td>
+<td id="td-9">The Latin <a href="https://en.wikipedia.org/wiki/Acute_accent">acute accented</a> <code>e</code>, <code>É</code>, is converted to its lower case form <code>é</code> as per the <a href="javascript-case-conversion">JavaScript case conversion</a>. The Chines <code>你</code> is left untouched as Chinese characters have no case.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><div><span class="hide-hover"><a href="index-split#p-232">🔗</a></span><div class="p" id="p-232">For <a href="the-toplevel-header">the toplevel header</a>, its ID is derived from the basename of the Cirodown file without extension instead of from the <code>title</code> argument.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

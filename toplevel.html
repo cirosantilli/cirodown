@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>The &lt;code&gt;\Toplevel&lt;/code&gt; implicit macro</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="toplevel"><a  href="" title="link to this element">The <code>\Toplevel</code> implicit macro</a><span>  | <a href="developing-cirodown">↑ parent "Developing Cirodown"</a> | <a href="#toplevel">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-820">🔗</a></span><div class="p" id="p-820">Every Cirodown document is implicitly put inside a <code>\Toplevel</code> document and:<div><ul id="ul-118">
+<li id="l-325">any optionally given arguments at the very beginning of the document will be treated as arguments of the <code>\Toplevel</code> macro</li>
+<li id="l-326">anything else will be put inside the <code>content</code> argument of the <code>\Toplevel</code> macro</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-821">🔗</a></span><div class="p" id="p-821">E.g., a Cirodown document that contains:
+<div class="code-caption-container" id="code-310">
+<pre><code>{title=My favorite title.}
+
+And now, some content!
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-822">🔗</a></span><div class="p" id="p-822">is morally equivalent to:
+<div class="code-caption-container" id="code-311">
+<pre><code>\Toplevel{title=My favorite title.}
+[
+And now, some content!
+]
+</code></pre></div>
+In terms of HTML, the <code>\Toplevel</code> element corresponds to the <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;header&gt;</code> and <code>&lt;footer&gt;</code> elements of a document.</div></div><div><span class="hide-hover"><a href="index-split#p-823">🔗</a></span><div class="p" id="p-823">Trying to use the <code>\Toplevel</code> macro explicitly in a document leads to an error.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[1]</span></div>
+<ul>
+<li><div id="toc-html-document-title"><div class="arrow"><div></div></div><a href="html-document-title">1. HTML document title</a><span class="hover-metadata"> | <a href="#toc-html-document-title">🔗 link</a> | <a href="#toc">↑ parent "The <code>\Toplevel</code> implicit macro"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

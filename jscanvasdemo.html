@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>&lt;code&gt;JsCanvasDemo&lt;/code&gt;</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="jscanvasdemo"><a  href="" title="link to this element"><code>JsCanvasDemo</code></a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href="#jscanvasdemo">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-527">🔗</a></span><div class="p" id="p-527">The <code>JsCanvasDemo</code> macro allows you to create interactive HTML/JavaScript <a href="https://en.wikipedia.org/wiki/Canvas_element">canvas</a> demos easily.</div></div><div><span class="hide-hover"><a href="index-split#p-528">🔗</a></span><div class="p" id="p-528">These demos:<div><ul id="ul-63">
+<li id="l-176">only start running when the user scrolls over them for the first time</li>
+<li id="l-177">stop automatically when they leave the viewport
+</li>
+</ul></div>so you can stuff as many of them as you want on a page, and they won't cause the reader's CPU to fry an egg.</div></div><div><span class="hide-hover"><a href="index-split#p-529">🔗</a></span><div class="p" id="p-529"><div class="code-caption-container" id="code-201">
+<pre><code>\JsCanvasDemo[[
+new class extends CirodownCanvasDemo {
+  init() {
+    super.init('hello');
+    this.pixel_size_input = this.addInputAfterEnable(
+      'Pixel size',
+      {
+        'min': 1,
+        'type': 'number',
+        'value': 1,
+      }
+    );
+  }
+  draw() {
+    var pixel_size = parseInt(this.pixel_size_input.value);
+    for (var x = 0; x &lt; this.width; x += pixel_size) {
+      for (var y = 0; y &lt; this.height; y += pixel_size) {
+        var b = ((1.0 + Math.sin(this.time * Math.PI / 16)) / 2.0);
+        this.ctx.fillStyle =
+          'rgba(' +
+          (x / this.width) * 255 + ',' +
+          (y / this.height) * 255 + ',' +
+          b * 255 +
+          ',255)'
+        ;
+        this.ctx.fillRect(x, y, pixel_size, pixel_size);
+      }
+    }
+  }
+}
+]]
+</code></pre></div><div class="p" id="p-530">which renders as:</div><blockquote id="q-112"><pre class="cirodown-js-canvas-demo"><code>new class extends CirodownCanvasDemo {
+  init() {
+    super.init('hello');
+    this.pixel_size_input = this.addInputAfterEnable(
+      'Pixel size',
+      {
+        'min': 1,
+        'type': 'number',
+        'value': 1,
+      }
+    );
+  }
+  draw() {
+    var pixel_size = parseInt(this.pixel_size_input.value);
+    for (var x = 0; x &lt; this.width; x += pixel_size) {
+      for (var y = 0; y &lt; this.height; y += pixel_size) {
+        var b = ((1.0 + Math.sin(this.time * Math.PI / 16)) / 2.0);
+        this.ctx.fillStyle =
+          'rgba(' +
+          (x / this.width) * 255 + ',' +
+          (y / this.height) * 255 + ',' +
+          b * 255 +
+          ',255)'
+        ;
+        this.ctx.fillRect(x, y, pixel_size, pixel_size);
+      }
+    }
+  }
+}
+</code></pre></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-531">🔗</a></span><div class="p" id="p-531">And another one showing off some <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API">WebGL</a>:</div></div><div><span class="hide-hover"><a href="index-split#jscanvasdemo-2">🔗</a></span><pre class="cirodown-js-canvas-demo"><code>new class extends CirodownCanvasDemo {
+  init() {
+    super.init('webgl', {context_type: 'webgl'});
+    this.ctx.viewport(0, 0, this.ctx.drawingBufferWidth, this.ctx.drawingBufferHeight);
+    this.ctx.clearColor(0.0, 0.0, 0.0, 1.0);
+    this.vertexShaderSource = `
+#version 100
+precision highp float;
+attribute float position;
+void main() {
+  gl_Position = vec4(position, 0.0, 0.0, 1.0);
+  gl_PointSize = 64.0;
+}
+`;
+
+    this.fragmentShaderSource = `
+#version 100
+precision mediump float;
+void main() {
+  gl_FragColor = vec4(0.18, 0.0, 0.34, 1.0);
+}
+`;
+    this.vertexShader = this.ctx.createShader(this.ctx.VERTEX_SHADER);
+    this.ctx.shaderSource(this.vertexShader, this.vertexShaderSource);
+    this.ctx.compileShader(this.vertexShader);
+    this.fragmentShader = this.ctx.createShader(this.ctx.FRAGMENT_SHADER);
+    this.ctx.shaderSource(this.fragmentShader, this.fragmentShaderSource);
+    this.ctx.compileShader(this.fragmentShader);
+    this.program = this.ctx.createProgram();
+    this.ctx.attachShader(this.program, this.vertexShader);
+    this.ctx.attachShader(this.program, this.fragmentShader);
+    this.ctx.linkProgram(this.program);
+    this.ctx.detachShader(this.program, this.vertexShader);
+    this.ctx.detachShader(this.program, this.fragmentShader);
+    this.ctx.deleteShader(this.vertexShader);
+    this.ctx.deleteShader(this.fragmentShader);
+    if (!this.ctx.getProgramParameter(this.program, this.ctx.LINK_STATUS)) {
+      console.log('error ' + this.ctx.getProgramInfoLog(this.program));
+      return;
+    }
+    this.ctx.enableVertexAttribArray(0);
+    var buffer = this.ctx.createBuffer();
+    this.ctx.bindBuffer(this.ctx.ARRAY_BUFFER, buffer);
+    this.ctx.vertexAttribPointer(0, 1, this.ctx.FLOAT, false, 0, 0);
+    this.ctx.useProgram(this.program);
+  }
+  draw() {
+    this.ctx.clear(this.ctx.COLOR_BUFFER_BIT);
+    this.ctx.bufferData(this.ctx.ARRAY_BUFFER, new Float32Array([Math.sin(this.time / 60.0)]), this.ctx.STATIC_DRAW);
+    this.ctx.drawArrays(this.ctx.POINTS, 0, 1);
+  }
+}
+</code></pre></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>

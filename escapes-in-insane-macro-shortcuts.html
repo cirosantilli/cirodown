@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Escapes in insane macro shortcuts</title>
+<style>@import "cirodown.min.css";
+
+</style>
+
+</head>
+<body class="cirodown">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="escapes-in-insane-macro-shortcuts"><a  href="" title="link to this element">Escapes in insane macro shortcuts</a><span>  | <a href="insane-macro-shortcuts">↑ parent "Insane macro shortcuts"</a> | <a href="#escapes-in-insane-macro-shortcuts">nosplit</a></span></h1>
+</div><div><span class="hide-hover"><a href="index-split#p-557">🔗</a></span><div class="p" id="p-557">Literal backticks and dollar signs can be produced witha backslash escape as in:
+<div class="code-caption-container" id="code-212">
+<pre><code>a \` \$ b
+</code></pre></div><div class="p" id="p-558">which renders as:</div><blockquote id="q-118"><div class="p" id="p-559">a ` $ b</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-560">🔗</a></span><div class="p" id="p-560">It is not possible to escape backticks (<code>`</code>) inside an insane inline code, or dollar signs (<code>$</code>) in insane math.</div></div><div><span class="hide-hover"><a href="index-split#p-561">🔗</a></span><div class="p" id="p-561">The design reason for that is because multiple backticks produce block code.</div></div><div><span class="hide-hover"><a href="index-split#p-562">🔗</a></span><div class="p" id="p-562">The upside is that then you don't have to escape anything else, e.g. backslashes (<code></code>) are rendered literally.</div></div><div><span class="hide-hover"><a href="index-split#p-563">🔗</a></span><div class="p" id="p-563">The only way to do it is to use the sane syntax instead:
+<div class="code-caption-container" id="code-213">
+<pre><code>a \c[[b ` c]] d
+
+a \m[[\sqrt{\$4}]] d
+</code></pre></div><div class="p" id="p-564">which renders as:</div><blockquote id="q-119"><div class="p" id="p-565">a <code>b ` c</code> d</div><div class="p" id="p-566">a <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.10777999999999999em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.93222em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">$</span><span class="mord">4</span></span></span><span style="top:-2.89222em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.10777999999999999em;"><span></span></span></span></span></span></span></span></span> d</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-567">🔗</a></span><div class="p" id="p-567">Within block code and math, you can just add more separators:
+<div class="code-caption-container" id="code-214">
+<pre><code>```
+code with two backticks
+``
+nice
+```
+</code></pre></div><div class="p" id="p-568">which renders as:</div><blockquote id="q-120"><div class="code-caption-container" id="code-215">
+<pre><code>code with two backticks
+``
+nice
+</code></pre></div></blockquote></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+
+</body>
+</html>
