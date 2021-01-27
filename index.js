@@ -42,6 +42,9 @@ class AstNode {
     if (!('from_include' in options)) {
       options.from_include = false;
     }
+    if (!('from_cirodown_example' in options)) {
+      options.from_cirodown_example = false;
+    }
     if (!('force_no_index' in options)) {
       options.force_no_index = false;
     }
@@ -121,6 +124,8 @@ class AstNode {
 
     // This was added to the tree from an include.
     this.from_include = options.from_include;
+    // This was added to the tree from a cirodown_example.
+    this.from_cirodown_example = options.from_cirodown_example;
 
     // Includes under this header.
     this.includes = [];
@@ -151,6 +156,7 @@ class AstNode {
    *        - {bool} in_caption_number_visible
    *        - {Set[AstNode]} x_parents: set of all parent x elements.
    * @param {Object} context
+   * @return {String}
    */
   convert(context) {
     if (context === undefined) {
@@ -179,6 +185,13 @@ class AstNode {
     }
     if (!('x_parents' in context)) {
       context.x_parents = new Set();
+    }
+    if (
+      this.from_include &&
+      context.in_split_headers &&
+      !this.from_cirodown_example
+    ) {
+      return '';
     }
     const macro = context.macros[this.macro_name];
     let out;
@@ -2139,6 +2152,7 @@ function convert_init_context(options={}, extra_returns={}) {
   if (!('embed_includes' in options)) { options.embed_includes = false; }
   if (!('file_provider' in options)) { options.file_provider = undefined; }
   if (!('from_include' in options)) { options.from_include = false; }
+  if (!('from_cirodown_example' in options)) { options.from_cirodown_example = false; }
   if (!('html_embed' in options)) { options.html_embed = false; }
   // Add HTML extension to x links. And therefore also output files
   // with the .html extension.
@@ -2872,6 +2886,7 @@ function parse(tokens, options, context, extra_returns={}) {
     const [parent_arg, ast] = todo_visit.pop();
     const macro_name = ast.macro_name;
     ast.from_include = options.from_include;
+    ast.from_cirodown_example = options.from_cirodown_example;;
     ast.source_location.path = options.input_path;
     if (macro_name === Macro.INCLUDE_MACRO_NAME) {
       let peek_ast = todo_visit[todo_visit.length - 1][1];
@@ -3072,7 +3087,7 @@ function parse(tokens, options, context, extra_returns={}) {
           {
             'content': convert_include(
               convert_arg_noescape(ast.args.content, context),
-              options,
+              clone_and_set(options, 'from_cirodown_example', true),
               0,
               options.input_path,
               undefined,
@@ -5250,7 +5265,12 @@ const DEFAULT_MACRO_LIST = [
         } else {
           ret += `</li>\n`;
         }
-        let target_id_ast = tree_node.value;
+        let target_id_ast = context.id_provider.get(tree_node.value.id, context);
+        if (target_id_ast === undefined) {
+          // Can happen in error case 'cross reference from header title without ID to previous header is not allowed'
+          // Maybe there is a better solution, but can't be bothered right now, this prevents blowouts for now.
+          target_id_ast = tree_node.value;
+        }
         let content = x_text(target_id_ast, context, {style_full: true, show_caption_prefix: false});
         let href = x_href_attr(target_id_ast, context);
         const my_toc_id = toc_id(target_id_ast, context);
@@ -5267,7 +5287,7 @@ const DEFAULT_MACRO_LIST = [
         let toc_href = html_attr('href', '#' + my_toc_id);
         ret += ` | <a${toc_href}>${UNICODE_LINK} link</a>`;
 
-        let parent_ast = target_id_ast.header_graph_node.parent_node.value;
+        let parent_ast = target_id_ast.get_header_parent(context);
         if (
           // Possible on broken h1 level.
           parent_ast !== undefined

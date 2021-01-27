@@ -18,8 +18,8 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="argument-leading-newline-removal"><a href="" title="link to this element">Argument leading newline removal</a><span>  | <a href="macro-argument-syntax">↑ parent "Macro argument syntax"</a> | <a href=".#argument-leading-newline-removal">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-622">🔗</a></span><div class="p" id="p-622">If the very first character of an argument is a newline, then that character is ignored if it would be part of a regular plaintext node.</div></div><div><span class="hide-hover"><a href="index-split#p-623">🔗</a></span><div class="p" id="p-623">For example:
-<div class="code-caption-container" id="code-239">
+</div><div><span class="hide-hover"><a href="index-split#p-623">🔗</a></span><div class="p" id="p-623">If the very first character of an argument is a newline, then that character is ignored if it would be part of a regular plaintext node.</div></div><div><span class="hide-hover"><a href="index-split#p-624">🔗</a></span><div class="p" id="p-624">For example:
+<div class="code-caption-container" id="code-240">
 <pre><code>\C[[
 a
 
@@ -27,27 +27,27 @@ b
 ]]
 </code></pre></div>
 generates something like:
-<div class="code-caption-container" id="code-240">
+<div class="code-caption-container" id="code-241">
 <pre><code>&lt;pre&gt;&lt;code&gt;a
 
 b
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre></div>
 instead of:
-<div class="code-caption-container" id="code-241">
+<div class="code-caption-container" id="code-242">
 <pre><code>&lt;pre&gt;&lt;code&gt;
 a
 
 b
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre></div>
-This is extremely convenient to improve the readability of code blocks and similar constructs.</div></div><div><span class="hide-hover"><a href="index-split#p-624">🔗</a></span><div class="p" id="p-624">The newline is however considered if it would be part of some <a href="insane-macro-shortcuts">insane macro shortcut</a>. For example, we can start an <a href="lists">insane list</a> inside a <a href="quotations">quotation</a> as in:
-<div class="code-caption-container" id="code-242">
+This is extremely convenient to improve the readability of code blocks and similar constructs.</div></div><div><span class="hide-hover"><a href="index-split#p-625">🔗</a></span><div class="p" id="p-625">The newline is however considered if it would be part of some <a href="insane-macro-shortcuts">insane macro shortcut</a>. For example, we can start an <a href="lists">insane list</a> inside a <a href="quotations">quotation</a> as in:
+<div class="code-caption-container" id="code-243">
 <pre><code>\Q[
 * a
 * b
 ]
-</code></pre></div><div class="p" id="p-625">which renders as:</div><blockquote id="q-127"><blockquote id="q-128"><div><ul id="ul-72">
+</code></pre></div><div class="p" id="p-626">which renders as:</div><blockquote id="q-128"><blockquote id="q-129"><div><ul id="ul-72">
 <li id="l-198">a</li>
 <li id="l-199">b
 </li>
@@ -56,7 +56,7 @@ where the insane list requires a leading newline <code>\n* </code> to work. That
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/aa19bab74804eec32c7575d069dfe4c05cb43299">aa19bab74804eec32c7575d069dfe4c05cb43299</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

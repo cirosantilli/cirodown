@@ -18,31 +18,31 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="remove-whitespace-children"><a href="" title="link to this element"><code>remove_whitespace_children</code> macro argument property</a><span>  | <a href="macro-argument-syntax">↑ parent "Macro argument syntax"</a> | <a href=".#remove-whitespace-children">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-634">🔗</a></span><div class="p" id="p-634">In HTML, certain elements such as <code>&lt;ul&gt;</code> cannot have any <code>text</code> nodes in them, and any whitespace is ignored, see <a href="https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802">https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-635">🔗</a></span><div class="p" id="p-635">A similar concept applies to Cirodown, e.g.:
-<div class="code-caption-container" id="code-249">
+</div><div><span class="hide-hover"><a href="index-split#p-635">🔗</a></span><div class="p" id="p-635">In HTML, certain elements such as <code>&lt;ul&gt;</code> cannot have any <code>text</code> nodes in them, and any whitespace is ignored, see <a href="https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802">https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-636">🔗</a></span><div class="p" id="p-636">A similar concept applies to Cirodown, e.g.:
+<div class="code-caption-container" id="code-250">
 <pre><code>\Ul[
 \L[aa]
 \L[bb]
 ]
 </code></pre></div>
 does not parse as:
-<div class="code-caption-container" id="code-250">
+<div class="code-caption-container" id="code-251">
 <pre><code>\Ul[\L[aa]&lt;NEWLINE&gt;\L[bb]&lt;NEWLINE&gt;]
 </code></pre></div>
 but rather as:
-<div class="code-caption-container" id="code-251">
+<div class="code-caption-container" id="code-252">
 <pre><code>\Ul[\L[aa]\L[bb]]
 </code></pre></div>
-because the <code>content</code> argument of <code>ul</code> is marked with <code>remove_whitespace_children</code> and automatically removes any whitespace children (such as a newline) as a result.</div></div><div><span class="hide-hover"><a href="index-split#p-636">🔗</a></span><div class="p" id="p-636">This also applies to consecutive sequences of <a href="auto-parent"><code>auto_parent</code> macro property</a> macros, e.g.:
-<div class="code-caption-container" id="code-252">
+because the <code>content</code> argument of <code>ul</code> is marked with <code>remove_whitespace_children</code> and automatically removes any whitespace children (such as a newline) as a result.</div></div><div><span class="hide-hover"><a href="index-split#p-637">🔗</a></span><div class="p" id="p-637">This also applies to consecutive sequences of <a href="auto-parent"><code>auto_parent</code> macro property</a> macros, e.g.:
+<div class="code-caption-container" id="code-253">
 <pre><code>\L[aa]
 \L[bb]
 </code></pre></div>
-also does not include the newline between the list items.</div></div><div><span class="hide-hover"><a href="index-split#p-637">🔗</a></span><div class="p" id="p-637">The definition of whitespace is the same as the ASCII whitespace definition of HTML5: <code> \r\n\f\t</code>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
+also does not include the newline between the list items.</div></div><div><span class="hide-hover"><a href="index-split#p-638">🔗</a></span><div class="p" id="p-638">The definition of whitespace is the same as the ASCII whitespace definition of HTML5: <code> \r\n\f\t</code>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/aa19bab74804eec32c7575d069dfe4c05cb43299">aa19bab74804eec32c7575d069dfe4c05cb43299</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

@@ -18,8 +18,8 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cirodown-json"><a href="" title="link to this element"><code>cirodown.json</code></a><span>  | <a href="cirodown-executable">↑ parent "<code>cirodown</code> executable"</a> | <a href=".#cirodown-json">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-774">🔗</a></span><div class="p" id="p-774">Cirodown configuration file that affects the behaviour of cirodown for all files in the directory.</div></div><div><span class="hide-hover"><a href="index-split#p-775">🔗</a></span><div class="p" id="p-775"><code>cirodown.json</code> not used for input from stdin, since we are mostly doing quick tests in that case.</div></div><div><span class="hide-hover"><a href="index-split#p-776">🔗</a></span><div class="p" id="p-776">While <code>cirodown.json</code> is optional, it is used to determine the toplevel directory of a Cirodown project, which has some effects such as those mentioned at <a href="the-toplevel-index-file">the toplevel index file</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-777">🔗</a></span><div class="p" id="p-777">Therefore, it is recommended that you always have a <code>cirodown.json</code> in your project's toplevel directory, even if it is going to be an empty JSON <code>{}</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-778">🔗</a></span><div class="p" id="p-778">For example, if you convert a file in a subdirectory such as:
-<div class="code-caption-container" id="code-290">
+</div><div><span class="hide-hover"><a href="index-split#p-775">🔗</a></span><div class="p" id="p-775">Cirodown configuration file that affects the behaviour of cirodown for all files in the directory.</div></div><div><span class="hide-hover"><a href="index-split#p-776">🔗</a></span><div class="p" id="p-776"><code>cirodown.json</code> not used for input from stdin, since we are mostly doing quick tests in that case.</div></div><div><span class="hide-hover"><a href="index-split#p-777">🔗</a></span><div class="p" id="p-777">While <code>cirodown.json</code> is optional, it is used to determine the toplevel directory of a Cirodown project, which has some effects such as those mentioned at <a href="the-toplevel-index-file">the toplevel index file</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-778">🔗</a></span><div class="p" id="p-778">Therefore, it is recommended that you always have a <code>cirodown.json</code> in your project's toplevel directory, even if it is going to be an empty JSON <code>{}</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-779">🔗</a></span><div class="p" id="p-779">For example, if you convert a file in a subdirectory such as:
+<div class="code-caption-container" id="code-291">
 <pre><code>cirodown subdir/notindex.ciro
 </code></pre></div>
 then <code>cirodown</code> walks up the filesystem tree looking for <code>cirodown.json</code>, e.g.:<div><ul id="ul-97">
@@ -28,7 +28,7 @@ then <code>cirodown</code> walks up the filesystem tree looking for <code>cirodo
 <li id="l-259">otherwise, is there a <code>../cirodown.json</code>?</li>
 <li id="l-260">otherwise, is there a <code>../../cirodown.json</code>?
 </li>
-</ul></div>and so on.</div></div><div><span class="hide-hover"><a href="index-split#p-779">🔗</a></span><div class="p" id="p-779">Then, in that case:<div><ul id="ul-98">
+</ul></div>and so on.</div></div><div><span class="hide-hover"><a href="index-split#p-780">🔗</a></span><div class="p" id="p-780">Then, in that case:<div><ul id="ul-98">
 <li id="l-261">if no <code>cirodown.json</code> file is found, we don't know any better output toplevel than <code>subdir</code>/ itself, and so:<div><ul id="ul-99">
 <li id="l-262">the first header of subdir/notindex.ciro will have ID <code>notindex</code>, instead of <code>subdir/notindex</code> as per <a href="directory-based-scope">directory-based <code>scope</code></a></li>
 <li id="l-263"><a href="the-out-directory">the <code>out</code> directory</a> is located at <code>./subdir/out</code></li>
@@ -53,7 +53,7 @@ then <code>cirodown</code> walks up the filesystem tree looking for <code>cirodo
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/aa19bab74804eec32c7575d069dfe4c05cb43299">aa19bab74804eec32c7575d069dfe4c05cb43299</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

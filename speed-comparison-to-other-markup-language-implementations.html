@@ -18,59 +18,59 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="speed-comparison-to-other-markup-language-implementations"><a href="" title="link to this element">Speed comparison to other markup language implementations</a><span>  | <a href="performance">↑ parent "Performance"</a> | <a href=".#speed-comparison-to-other-markup-language-implementations">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-823">🔗</a></span><div class="p" id="p-823">One quick and dirty option is to use <code>generate-paragraphs</code> which generates output compatible for most markup languages:
-<div class="code-caption-container" id="code-305">
-<pre><code>./generate-paragraphs 100000 &gt; tmp.ciro
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-824">🔗</a></span><div class="p" id="p-824">On Ubuntu 20.04 <a href="https://cirosantilli.com/linux-kernel-module-cheat/#p51">Lenovo ThinkPad P51</a> for example:<div><ul id="ul-118">
-<li id="l-323">Cirodown 54ba49736323264a5c66aa5d419f8232b4ecf8d0 + 1, Node.js v12.18.1
+</div><div><span class="hide-hover"><a href="index-split#p-824">🔗</a></span><div class="p" id="p-824">One quick and dirty option is to use <code>generate-paragraphs</code> which generates output compatible for most markup languages:
 <div class="code-caption-container" id="code-306">
+<pre><code>./generate-paragraphs 100000 &gt; tmp.ciro
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-825">🔗</a></span><div class="p" id="p-825">On Ubuntu 20.04 <a href="https://cirosantilli.com/linux-kernel-module-cheat/#p51">Lenovo ThinkPad P51</a> for example:<div><ul id="ul-118">
+<li id="l-323">Cirodown 54ba49736323264a5c66aa5d419f8232b4ecf8d0 + 1, Node.js v12.18.1
+<div class="code-caption-container" id="code-307">
 <pre><code>time ./cirodown tmp.ciro
 </code></pre></div>
 outputs:
-<div class="code-caption-container" id="code-307">
+<div class="code-caption-container" id="code-308">
 <pre><code>real    0m5.104s
 user    0m6.323s
 sys     0m0.674s
 </code></pre></div></li>
 <li id="l-324">Asciidoctor 2.0.10, Ruby 2.6.0p0:
-<div class="code-caption-container" id="code-308">
+<div class="code-caption-container" id="code-309">
 <pre><code>cp tmp.ciro tmp.adoc
 time asciidoctor tmp.adoc
 </code></pre></div>
 outputs:
-<div class="code-caption-container" id="code-309">
+<div class="code-caption-container" id="code-310">
 <pre><code>real    0m1.911s
 user    0m1.850s
 sys     0m0.060s
 </code></pre></div></li>
 <li id="l-325"><a href="https://github.com/commonmark/cmark">cmark</a> 0.29.0:
-<div class="code-caption-container" id="code-310">
+<div class="code-caption-container" id="code-311">
 <pre><code>cp tmp.ciro tmp.md
 time cmark tmp.md &gt; tmp.md.html
 </code></pre></div>
 outputs:
-<div class="code-caption-container" id="code-311">
+<div class="code-caption-container" id="code-312">
 <pre><code>real    0m0.091s
 user    0m0.070s
 sys     0m0.021s
 </code></pre></div>
 Holy cow, it is 200x faster than Asciidoctor!</li>
 <li id="l-326"><a href="https://github.com/markdown-it/markdown-it">markdown-it</a> at 5789a3fe9693aa3ef6aa882b0f57e0ea61efafc0 to get an idea of a JavaScript markdown implementation:
-<div class="code-caption-container" id="code-312">
+<div class="code-caption-container" id="code-313">
 <pre><code>time markdown-it tmp.md &gt; tmp.md.html
 </code></pre></div>
 outputs:
-<div class="code-caption-container" id="code-313">
+<div class="code-caption-container" id="code-314">
 <pre><code>real    0m0.361s
 user    0m0.590s
 sys     0m0.060s
 </code></pre></div></li>
 <li id="l-327"><code>cat</code> just to find the absolute floor:
-<div class="code-caption-container" id="code-314">
+<div class="code-caption-container" id="code-315">
 <pre><code>time cat tmp.ciro &gt; tmp.tmp
 </code></pre></div>
 outputs:
-<div class="code-caption-container" id="code-315">
+<div class="code-caption-container" id="code-316">
 <pre><code>real    0m0.006s
 user    0m0.006s
 sys     0m0.000s
@@ -79,7 +79,7 @@ sys     0m0.000s
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/aa19bab74804eec32c7575d069dfe4c05cb43299">aa19bab74804eec32c7575d069dfe4c05cb43299</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

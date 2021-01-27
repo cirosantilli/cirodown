@@ -18,13 +18,13 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="tables"><a href="" title="link to this element">Tables (<code>|| </code>, <code>| </code>, <code>\Table</code>, <code>\Tr</code>, <code>\Th</code> and <code>\Td</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href=".#tables">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-489">🔗</a></span><div class="p" id="p-489">The <a href="insane-code-and-math-shortcuts">insane</a> syntax marks:<div><ul id="ul-62">
+</div><div><span class="hide-hover"><a href="index-split#p-490">🔗</a></span><div class="p" id="p-490">The <a href="insane-code-and-math-shortcuts">insane</a> syntax marks:<div><ul id="ul-62">
 <li id="l-173">headers with <code>|| </code> (pipe, pipe space) at the start of a line</li>
 <li id="l-174">regular cells with <code>| </code> (pipe, space) at the start of a line</li>
 <li id="l-175">separates rows with double newline
 </li>
 </ul></div>For example:
-<div class="code-caption-container" id="code-194">
+<div class="code-caption-container" id="code-195">
 <pre><code>|| Header 1
 || Header 2
 
@@ -33,7 +33,7 @@
 
 | 2 1
 | 2 2
-</code></pre></div><div class="p" id="p-490">which renders as:</div><blockquote id="q-98"><div class="table-container" id="table-2">
+</code></pre></div><div class="p" id="p-491">which renders as:</div><blockquote id="q-99"><div class="table-container" id="table-2">
 <table>
 <thead>
 <tr id="tr-5">
@@ -55,7 +55,7 @@
 </div>
 </blockquote>
 Empty cells are allowed without the trailing space however:
-<div class="code-caption-container" id="code-195">
+<div class="code-caption-container" id="code-196">
 <pre><code>| 1 1
 |
 | 1 3
@@ -63,7 +63,7 @@ Empty cells are allowed without the trailing space however:
 | 2 1
 |
 | 2 3
-</code></pre></div><div class="p" id="p-491">which renders as:</div><blockquote id="q-99"><div class="table-container" id="table-3">
+</code></pre></div><div class="p" id="p-492">which renders as:</div><blockquote id="q-100"><div class="table-container" id="table-3">
 <table>
 <tbody>
 <tr id="tr-8">
@@ -79,8 +79,8 @@ Empty cells are allowed without the trailing space however:
 </tbody>
 </table>
 </div>
-</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-492">🔗</a></span><div class="p" id="p-492">Equivalent fully explicit version:
-<div class="code-caption-container" id="code-196">
+</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-493">🔗</a></span><div class="p" id="p-493">Equivalent fully explicit version:
+<div class="code-caption-container" id="code-197">
 <pre><code>\Table[
 \Tr[
   \Th[Header 1]
@@ -95,7 +95,7 @@ Empty cells are allowed without the trailing space however:
   \Td[2 2]
 ]
 ]
-</code></pre></div><div class="p" id="p-493">which renders as:</div><blockquote id="q-100"><div class="table-container" id="table-4">
+</code></pre></div><div class="p" id="p-494">which renders as:</div><blockquote id="q-101"><div class="table-container" id="table-4">
 <table>
 <thead>
 <tr id="tr-10">
@@ -116,8 +116,8 @@ Empty cells are allowed without the trailing space however:
 </table>
 </div>
 </blockquote>
-Any white space indentation inside an explicit <code>\Tr</code> can make the code more readable, and is automatically removed from final output due to <a href="remove-whitespace-children"><code>remove_whitespace_children</code> macro argument property</a> which is set for <code>\Table</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-494">🔗</a></span><div class="p" id="p-494">To pass further arguments to an implicit table such as <code>title</code> or <code>id</code>, you need to use an explicit <code>table</code> macro as in: <a href="#table-my-table">Table 2. "My table title."</a>.
-<div class="code-caption-container" id="code-197">
+Any white space indentation inside an explicit <code>\Tr</code> can make the code more readable, and is automatically removed from final output due to <a href="remove-whitespace-children"><code>remove_whitespace_children</code> macro argument property</a> which is set for <code>\Table</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-495">🔗</a></span><div class="p" id="p-495">To pass further arguments to an implicit table such as <code>title</code> or <code>id</code>, you need to use an explicit <code>table</code> macro as in: <a href="#table-my-table">Table 2. "My table title."</a>.
+<div class="code-caption-container" id="code-198">
 <pre><code>\Table
 {title=My table title.}
 {id=table-my-table}
@@ -131,7 +131,7 @@ Any white space indentation inside an explicit <code>\Tr</code> can make the cod
 | 2 1
 | 2 2
 ]
-</code></pre></div><div class="p" id="p-495">which renders as:</div><blockquote id="q-101"><div class="table-container" id="table-my-table">
+</code></pre></div><div class="p" id="p-496">which renders as:</div><blockquote id="q-102"><div class="table-container" id="table-my-table">
 <div class="table-caption-container">
 <span class="table-caption"><a href="#table-my-table"><span class="caption-prefix">Table 2</span></a>. My table title.</span></div>
 <table>
@@ -155,8 +155,8 @@ Any white space indentation inside an explicit <code>\Tr</code> can make the cod
 </table>
 </div>
 </blockquote>
-The rules of when the caption shows up or not are the same as described for <a href="images">images</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-496">🔗</a></span><div class="p" id="p-496">Multiple source lines, including paragraphs, can be added to a single cell with insane syntax by indenting the cell with exactly two spaces just as for <a href="lists">lists</a>, e.g.:
-<div class="code-caption-container" id="code-198">
+The rules of when the caption shows up or not are the same as described for <a href="images">images</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-497">🔗</a></span><div class="p" id="p-497">Multiple source lines, including paragraphs, can be added to a single cell with insane syntax by indenting the cell with exactly two spaces just as for <a href="lists">lists</a>, e.g.:
+<div class="code-caption-container" id="code-199">
 <pre><code>|| h1
 || h2
 || h3
@@ -172,19 +172,19 @@ The rules of when the caption shows up or not are the same as described for <a h
 | 21
 | 22
 | 23
-</code></pre></div><div class="p" id="p-497">which renders as:</div><blockquote id="q-102"><div class="table-container" id="table-6">
+</code></pre></div><div class="p" id="p-498">which renders as:</div><blockquote id="q-103"><div class="table-container" id="table-6">
 <table>
 <thead>
 <tr id="tr-16">
 <th id="th-10">h1</th>
 <th id="th-11">h2</th>
-<th id="th-12"><div class="p" id="p-498">h3</div><div class="p" id="p-499">h3 2</div></th>
+<th id="th-12"><div class="p" id="p-499">h3</div><div class="p" id="p-500">h3 2</div></th>
 </tr>
 </thead>
 <tbody>
 <tr id="tr-17">
 <td id="td-28">11</td>
-<td id="td-29"><div class="p" id="p-500">12</div><div class="p" id="p-501">12 2</div></td>
+<td id="td-29"><div class="p" id="p-501">12</div><div class="p" id="p-502">12 2</div></td>
 <td id="td-30">13</td>
 </tr>
 <tr id="tr-18">
@@ -197,7 +197,7 @@ The rules of when the caption shows up or not are the same as described for <a h
 </div>
 </blockquote>
 Arbitrarily complex nested constructs may be used, e.g. a table inside a list inside table:
-<div class="code-caption-container" id="code-199">
+<div class="code-caption-container" id="code-200">
 <pre><code>| 00
 | 01
 
@@ -212,14 +212,14 @@ Arbitrarily complex nested constructs may be used, e.g. a table inside a list in
 
 | 10
 | 11
-</code></pre></div><div class="p" id="p-502">which renders as:</div><blockquote id="q-103"><div class="table-container" id="table-7">
+</code></pre></div><div class="p" id="p-503">which renders as:</div><blockquote id="q-104"><div class="table-container" id="table-7">
 <table>
 <tbody>
 <tr id="tr-19">
 <td id="td-34">00</td>
-<td id="td-35"><div class="p" id="p-503">01</div><div><ul id="ul-63">
+<td id="td-35"><div class="p" id="p-504">01</div><div><ul id="ul-63">
 <li id="l-176">l1</li>
-<li id="l-177"><div class="p" id="p-504">l2</div><div class="table-container" id="table-8">
+<li id="l-177"><div class="p" id="p-505">l2</div><div class="table-container" id="table-8">
 <table>
 <tbody>
 <tr id="tr-20">
@@ -243,7 +243,7 @@ Arbitrarily complex nested constructs may be used, e.g. a table inside a list in
 </tbody>
 </table>
 </div>
-</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-505">🔗</a></span><div class="p" id="p-505">And now a table outside of <a href="cirodownexample"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="#table-my-table-title">🔗</a></span><div class="table-container" id="table-my-table-title">
+</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-506">🔗</a></span><div class="p" id="p-506">And now a table outside of <a href="cirodownexample"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="#table-my-table-title">🔗</a></span><div class="table-container" id="table-my-table-title">
 <div class="table-caption-container">
 <span class="table-caption"><a href="#table-my-table-title"><span class="caption-prefix">Table 3</span></a>. My table title.</span></div>
 <table>
@@ -265,7 +265,7 @@ Arbitrarily complex nested constructs may be used, e.g. a table inside a list in
 </tbody>
 </table>
 </div>
-</div><div><span class="hide-hover"><a href="index-split#p-506">🔗</a></span><div class="p" id="p-506">And a fully insane one:</div></div><div><span class="hide-hover"><a href="index-split#table-10">🔗</a></span><div class="table-container" id="table-10">
+</div><div><span class="hide-hover"><a href="index-split#p-507">🔗</a></span><div class="p" id="p-507">And a fully insane one:</div></div><div><span class="hide-hover"><a href="index-split#table-10">🔗</a></span><div class="table-container" id="table-10">
 <table>
 <thead>
 <tr id="tr-26">
@@ -298,7 +298,7 @@ Arbitrarily complex nested constructs may be used, e.g. a table inside a list in
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/aa19bab74804eec32c7575d069dfe4c05cb43299">aa19bab74804eec32c7575d069dfe4c05cb43299</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
