@@ -2441,6 +2441,9 @@ assert_convert_ast('split headers have correct table of contents',
       // Inner entries point to their parent entries.
       "//*[@id='toc']//*[@id='toc-h1-2-1']//x:a[@href='#toc-h1-2' and text()='\u2191 parent \"h1 2\"']",
 
+      // The ToC numbers look OK.
+      "//*[@id='toc']//x:a[@href='#h1-2' and text()='2. h1 2']",
+
       // The headers have ToC links.
       "//x:h2//x:a[@href='#toc-h1-1' and text()='\u21d1 toc']",
       "//x:h2//x:a[@href='#toc-h1-2' and text()='\u21d1 toc']",

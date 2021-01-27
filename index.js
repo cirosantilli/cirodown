@@ -1774,6 +1774,11 @@ function clone_and_set(obj, key, value) {
 }
 exports.clone_and_set = clone_and_set;
 
+function clone_object(obj) {
+  // https://stackoverflow.com/questions/41474986/how-to-clone-a-javascript-es6-class-instance
+  return Object.assign(Object.create(Object.getPrototypeOf(obj)), obj);
+}
+
 function closing_char(c) {
   if (c === START_POSITIONAL_ARGUMENT_CHAR)
     return END_POSITIONAL_ARGUMENT_CHAR;
@@ -2003,7 +2008,7 @@ function convert_header(cur_arg_list, context, has_toc) {
     context = Object.assign({}, context);
     const options = Object.assign({}, context.options);
     context.options = options;
-    const first_ast = cur_arg_list[0];
+    const first_ast = clone_object(cur_arg_list[0]);
     if (!has_toc && first_ast.macro_name === Macro.HEADER_MACRO_NAME) {
       cur_arg_list.push(new AstNode(
         AstType.MACRO,
@@ -2029,6 +2034,9 @@ function convert_header(cur_arg_list, context, has_toc) {
     // to one of the headers. So let's fake a tree node that has only one child we care
     // about. And the child does not have this fake parent to be able to see actual parents.
     context.header_graph = new HeaderTreeNode();
+    // Clone this, because we are going to modify it, and it would affect
+    // non-split headers and final outputs afterwards.
+    first_ast.header_graph_node = clone_object(first_ast.header_graph_node);
     context.header_graph.add_child(first_ast.header_graph_node);
     context.header_graph_top_level = first_ast.header_graph_node.get_level();
     const output_path = output_path_from_ast(first_ast, context)[0];
