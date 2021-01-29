@@ -605,7 +605,7 @@ commander.option('-o, --outfile <outfile>', 'http://cirosantilli.com/cirodown#ou
 commander.option('-O, --output-format <output-format>', 'https://cirosantilli.com/cirodown#output-format', 'html');
 commander.option('-p --publish', 'http://cirosantilli.com/cirodown#publish', false);
 commander.option('-P, --publish-commit <commit-message>', 'http://cirosantilli.com/cirodown#publish-commit');
-commander.option('--split-headers', 'http://cirosantilli.com/cirodown#split-headers', false);
+commander.option('-S, --split-headers', 'http://cirosantilli.com/cirodown#split-headers', false);
 commander.option('--stdout', 'print output to stdout instead of saving to a file', false);
 commander.option('--template <template>', 'http://cirosantilli.com/cirodown#template');
 commander.option('-w, --watch', 'http://cirosantilli.com/cirodown#watch', false);

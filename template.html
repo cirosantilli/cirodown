@@ -17,7 +17,8 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="template"><a href="" title="link to this element"><code>--template</code></a><span>  | <a href="cirodown-executable-options">↑ parent "<code>cirodown</code> executable options"</a> | <a href=".#template">nosplit</a></span></h1>
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="template"><a href="" title="link to this element"><code>--template</code></a><span>  | <a title="view all headers in a single page" href=".#template">🗖 nosplit</a> | <a href="cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#template">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a></span></div>
 </div><div><span class="hide-hover"><a href="index-split#p-764">🔗</a></span><div class="p" id="p-764">Select a custom <a href="https://github.com/harttle/liquidjs">Liquid template</a> file for the output.</div></div><div><span class="hide-hover"><a href="index-split#p-765">🔗</a></span><div class="p" id="p-765">The recommended file name for this file is:
 <div class="code-caption-container" id="code-285">
 <pre><code>main.liquid.html
@@ -39,7 +40,7 @@ which is already ignored by default from the published output.</div></div><div><
 This will get out of sync sooner or later with the code, but this should still serve as a good base example for this documentation.</div></div><div><span class="hide-hover"><a href="index-split#p-768">🔗</a></span><div class="p" id="p-768">Defined variables:<div><ul id="ul-96">
 <li id="l-252"><code>body</code>: the rendered body</li>
 <li id="l-253"><code>git_sha</code>: SHA of the latest git commit of the source code if in a git repository</li>
-<li id="l-254"><div class="p" id="p-769"><code>root_replath</code>: relative path from the rendered output to the toplevel directory.</div><div class="p" id="p-770">This allows for toplevel resources like CSS to be found seamlessly form inside subdirectories, specially when rendering locally.</div><div class="p" id="p-771">For example, for the toplevel <a href="css">cSS</a> <code>main.css</code> which is generated from <a href="main.scss">main.scss</a>, we can use:
+<li id="l-254"><div class="p" id="p-769"><code>root_replath</code>: relative path from the rendered output to the toplevel directory.</div><div class="p" id="p-770">This allows for toplevel resources like CSS to be found seamlessly form inside subdirectories, specially when rendering locally.</div><div class="p" id="p-771">For example, for the toplevel <a href="css" title="internal link">cSS</a> <code>main.css</code> which is generated from <a href="main.scss">main.scss</a>, we can use:
 <div class="code-caption-container" id="code-287">
 <pre><code>&lt;link rel="stylesheet" type="text/css" href="{{ root_relpath }}main.css"&gt;
 </code></pre></div></div><div class="p" id="p-772">Then, when a file is locally, for example under a subdirectory <code>mysubdir/myfile.html</code>, Cirodown will set:
@@ -59,7 +60,7 @@ giving the desired:
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

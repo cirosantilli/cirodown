@@ -17,29 +17,30 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="image-id"><a href="" title="link to this element">Image IDs and captions</a><span>  | <a href="images">↑ parent "Images"</a> | <a href=".#image-id">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-377">🔗</a></span><div class="p" id="p-377">Here is an image without a description but with an ID so we can link to it: <a href="#image-my-test-image-2">Figure 7</a>.
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="image-id"><a href="" title="link to this element">Image IDs and captions</a><span>  | <a title="view all headers in a single page" href=".#image-id">🗖 nosplit</a> | <a href="images" title="parent header">↑ parent "Images"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#image-id">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="images" title="parent header">↑ parent "Images"</a></span></div>
+</div><div><span class="hide-hover"><a href="index-split#p-377">🔗</a></span><div class="p" id="p-377">Here is an image without a description but with an ID so we can link to it: <a href="#image-my-test-image-2" title="internal link">Figure 7</a>.
 <div class="code-caption-container" id="code-144">
 <pre><code>Have a look at this amazing image: \x[image-my-test-image-2].
 
 \Image[Tank_man_standing_in_front_of_some_tanks.jpg]
 {id=image-my-test-image-2}
-</code></pre></div><div class="p" id="p-378">which renders as:</div><blockquote id="q-60"><div class="p" id="p-379">Have a look at this amazing image: <a href="#image-my-test-image-2">Figure 7</a>.</div><figure id="image-my-test-image-2">
+</code></pre></div><div class="p" id="p-378">which renders as:</div><blockquote id="q-60"><div class="p" id="p-379">Have a look at this amazing image: <a href="#image-my-test-image-2" title="internal link">Figure 7</a>.</div><figure id="image-my-test-image-2">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-my-test-image-2"><span class="caption-prefix">Figure 7</span></a></figcaption>
 </figure>
 </blockquote>
-This works because <a href="cross-reference-full-argument"><code>full</code> is the default cross reference style for <code>Image</code></a>, otherwise the link text would be empty since there is no <code>title</code>, and cirodown would raise an error.</div></div><div><span class="hide-hover"><a href="index-split#p-380">🔗</a></span><div class="p" id="p-380">Cirodown can optionally deduce the title from the basename of the <code>src</code> argument if the <code>titleFromSrc</code> <a href="boolean-named-arguments">boolean named argument</a> is given, or if <code>title-from-src</code> is set as the default <a href="media-providers">media provider</a> for the media type: 
+This works because <a href="cross-reference-full-argument" title="internal link"><code>full</code> is the default cross reference style for <code>Image</code></a>, otherwise the link text would be empty since there is no <code>title</code>, and cirodown would raise an error.</div></div><div><span class="hide-hover"><a href="index-split#p-380">🔗</a></span><div class="p" id="p-380">Cirodown can optionally deduce the title from the basename of the <code>src</code> argument if the <code>titleFromSrc</code> <a href="boolean-named-arguments" title="internal link">boolean named argument</a> is given, or if <code>title-from-src</code> is set as the default <a href="media-providers" title="internal link">media provider</a> for the media type: 
 <div class="code-caption-container" id="code-145">
 <pre><code>Have a look at this amazing image: \x[image-tank-man-standing-in-front-of-some-tanks].
 
 \Image[Tank_man_standing_in_front_of_some_tanks.jpg]
 {titleFromSrc}
-</code></pre></div><div class="p" id="p-381">which renders as:</div><blockquote id="q-61"><div class="p" id="p-382">Have a look at this amazing image: <a href="#image-tank-man-standing-in-front-of-some-tanks">Figure 8. "Tank man standing in front of some tanks."</a>.</div><figure id="image-tank-man-standing-in-front-of-some-tanks">
+</code></pre></div><div class="p" id="p-381">which renders as:</div><blockquote id="q-61"><div class="p" id="p-382">Have a look at this amazing image: <a href="#image-tank-man-standing-in-front-of-some-tanks" title="internal link">Figure 8. "Tank man standing in front of some tanks."</a>.</div><figure id="image-tank-man-standing-in-front-of-some-tanks">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-tank-man-standing-in-front-of-some-tanks"><span class="caption-prefix">Figure 8</span></a>. Tank man standing in front of some tanks.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-383">🔗</a></span><div class="p" id="p-383">If the image has neither ID nor title, then it does not get a caption at all, and it is not possible to link to it with an <a href="internal-cross-references">internal cross reference</a>, e.g.:
+</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-383">🔗</a></span><div class="p" id="p-383">If the image has neither ID nor title, then it does not get a caption at all, and it is not possible to link to it with an <a href="internal-cross-references" title="internal link">internal cross reference</a>, e.g.:
 <div class="code-caption-container" id="code-146">
 <pre><code>\Image[Tank_man_standing_in_front_of_some_tanks.jpg]
 </code></pre></div><div class="p" id="p-384">which renders as:</div><blockquote id="q-62"><figure id="image-9">
@@ -85,7 +86,7 @@ This link is of course not stable across document revisions however, since if an
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

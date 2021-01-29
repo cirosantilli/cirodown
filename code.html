@@ -17,8 +17,9 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="code"><a href="" title="link to this element">Code (<code>`</code>, <code>``</code>, <code>\c</code> and <code>\C</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href=".#code">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-445">🔗</a></span><div class="p" id="p-445">Inline code (code that should appear in the middle of a paragraph rather than on its own line) is done with a single backtick (<code>`</code>) <a href="insane-macro-shortcuts">insane macro shortcut</a>:
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="code"><a href="" title="link to this element">Code (<code>`</code>, <code>``</code>, <code>\c</code> and <code>\C</code>)</a><span>  | <a title="view all headers in a single page" href=".#code">🗖 nosplit</a> | <a href="index-split" title="parent header">↑ parent "Cirodown"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#code">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="index-split" title="parent header">↑ parent "Cirodown"</a></span></div>
+</div><div><span class="hide-hover"><a href="index-split#p-445">🔗</a></span><div class="p" id="p-445">Inline code (code that should appear in the middle of a paragraph rather than on its own line) is done with a single backtick (<code>`</code>) <a href="insane-macro-shortcuts" title="internal link">insane macro shortcut</a>:
 <div class="code-caption-container" id="code-170">
 <pre><code>My inline `x = 'hello\n'` is awesome.
 </code></pre></div><div class="p" id="p-446">which renders as:</div><blockquote id="q-80"><div class="p" id="p-447">My inline <code>x = 'hello\n'</code> is awesome.</div></blockquote>
@@ -48,7 +49,7 @@ f() {
 <pre><code>f() {
   return 'hello\n';
 }
-</code></pre></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-453">🔗</a></span><div class="p" id="p-453">The capital vs lower case theme is also used in other elements, see: <a href="block-vs-inline-macros">block vs inline macros</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-454">🔗</a></span><div class="p" id="p-454">If the content of the sane code block has many characters that you would need to <a href="escape-characters">escape</a>, you will often want to use <a href="literal-arguments">literal arguments</a>, which work just like the do for any other argument. For example:
+</code></pre></div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-453">🔗</a></span><div class="p" id="p-453">The capital vs lower case theme is also used in other elements, see: <a href="block-vs-inline-macros" title="internal link">block vs inline macros</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-454">🔗</a></span><div class="p" id="p-454">If the content of the sane code block has many characters that you would need to <a href="escape-characters" title="internal link">escape</a>, you will often want to use <a href="literal-arguments" title="internal link">literal arguments</a>, which work just like the do for any other argument. For example:
 <div class="code-caption-container" id="code-176">
 <pre><code>\C[[[
 A paragraph.
@@ -72,11 +73,11 @@ of chars that you would need to escape:
 
 A paragraph.
 </code></pre></div></blockquote>
-Note that the initial newline is skipped automatically in code blocks, just as for any other element, due to: <a href="argument-leading-newline-removal">argument leading newline removal</a>, so you don't have to worry about it.</div></div><div><span class="hide-hover"><a href="index-split#p-456">🔗</a></span><div class="p" id="p-456">The distinction between inline <code>\c</code> and block <code>\C</code> code blocks is needed because in HTML, <a href="https://stackoverflow.com/questions/5371787/can-i-have-a-pre-tag-inside-a-p-tag-in-tumblr/58603596#58603596"><code>pre</code> cannot go inside <code>P</code></a>.</div></div><div><span class="hide-hover"><a href="index-split#p-457">🔗</a></span><div class="p" id="p-457">We could have chosen to do some magic to differentiate between them, e.g. checking if the block is the only element in a paragraph, but we decided not to do that to keep the language saner.</div></div><div><span class="hide-hover"><a href="index-split#p-458">🔗</a></span><div class="p" id="p-458">And now a code block outside of <a href="cirodownexample"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="index-split#code-178">🔗</a></span><div class="code-caption-container" id="code-178">
+Note that the initial newline is skipped automatically in code blocks, just as for any other element, due to: <a href="argument-leading-newline-removal" title="internal link">argument leading newline removal</a>, so you don't have to worry about it.</div></div><div><span class="hide-hover"><a href="index-split#p-456">🔗</a></span><div class="p" id="p-456">The distinction between inline <code>\c</code> and block <code>\C</code> code blocks is needed because in HTML, <a href="https://stackoverflow.com/questions/5371787/can-i-have-a-pre-tag-inside-a-p-tag-in-tumblr/58603596#58603596"><code>pre</code> cannot go inside <code>P</code></a>.</div></div><div><span class="hide-hover"><a href="index-split#p-457">🔗</a></span><div class="p" id="p-457">We could have chosen to do some magic to differentiate between them, e.g. checking if the block is the only element in a paragraph, but we decided not to do that to keep the language saner.</div></div><div><span class="hide-hover"><a href="index-split#p-458">🔗</a></span><div class="p" id="p-458">And now a code block outside of <a href="cirodownexample" title="internal link"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel" title="internal link">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="index-split#code-178">🔗</a></span><div class="code-caption-container" id="code-178">
 <pre><code>Hello
 Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello
 Hello
-</code></pre></div></div><div><span class="hide-hover"><a href="index-split#p-459">🔗</a></span><div class="p" id="p-459">Block code can have a title, e.g. see this one: <a href="#code-my-nice-code">Code 1. "My nice code block."</a>:
+</code></pre></div></div><div><span class="hide-hover"><a href="index-split#p-459">🔗</a></span><div class="p" id="p-459">Block code can have a title, e.g. see this one: <a href="#code-my-nice-code" title="internal link">Code 1. "My nice code block."</a>:
 <div class="code-caption-container" id="code-179">
 <pre><code>``
 ab
@@ -93,7 +94,7 @@ cd
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

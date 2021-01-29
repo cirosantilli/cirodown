@@ -17,7 +17,8 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="unlimited-header-levels"><a href="" title="link to this element">Unlimited header levels</a><span>  | <a href="headers">↑ parent "Headers"</a> | <a href=".#unlimited-header-levels">nosplit</a></span></h1>
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="unlimited-header-levels"><a href="" title="link to this element">Unlimited header levels</a><span>  | <a title="view all headers in a single page" href=".#unlimited-header-levels">🗖 nosplit</a> | <a href="headers" title="parent header">↑ parent "Headers"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#unlimited-header-levels">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="headers" title="parent header">↑ parent "Headers"</a></span></div>
 </div><div><span class="hide-hover"><a href="index-split#p-254">🔗</a></span><div class="p" id="p-254">There is no limit to how many levels we can have, for either sane or insane headers!</div></div><div><span class="hide-hover"><a href="index-split#p-255">🔗</a></span><div class="p" id="p-255">HTML is randomly limited to <code>h6</code>, so Cirodown just renders higher levels as an <code>h6</code> with a <code>data-level</code> attribute to indicate the actual level for possible CSS styling:
 <div class="code-caption-container" id="code-104">
 <pre><code>&lt;h6 data-level="7"&gt;My title&lt;/h6&gt;
@@ -29,27 +30,27 @@
 </code></pre></div>
 but it just didn't feel as good, and is a bit harder to type than just smashing <code>=</code> n times for lower levels, which is the most common use case. So we just copied markdown.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[10]</span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="number of descendant headers">[10]</span></div>
 <ul>
-<li class="has-child"><div id="toc-my-h4"><div class="arrow"><div></div></div><a href="my-h4">1. My h4</a> <span class="descendant-count" title="Number of descendants.">[9]</span><span class="hover-metadata"> | <a href="#toc-my-h4">🔗 link</a> | <a href="#toc">↑ parent "Unlimited header levels"</a></span></div>
+<li class="has-child"><div id="toc-my-h4"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h4">1. My h4</a> <span class="descendant-count" title="number of descendant headers">[9]</span><span class="hover-metadata"> | <a href="#toc-my-h4" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h4">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Unlimited header levels"</a></span></div>
 <ul>
-<li class="has-child"><div id="toc-my-h5"><div class="arrow"><div></div></div><a href="my-h5">1.1. My h5</a> <span class="descendant-count" title="Number of descendants.">[8]</span><span class="hover-metadata"> | <a href="#toc-my-h5">🔗 link</a> | <a href="#toc-my-h4">↑ parent "My h4"</a></span></div>
+<li class="has-child"><div id="toc-my-h5"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h5">1.1. My h5</a> <span class="descendant-count" title="number of descendant headers">[8]</span><span class="hover-metadata"> | <a href="#toc-my-h5" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h5">🗖 nosplit</a> | <a href="#toc-my-h4" title="parent ToC entry">↑ parent "My h4"</a></span></div>
 <ul>
-<li class="has-child"><div id="toc-my-h6"><div class="arrow"><div></div></div><a href="my-h6">1.1.1. My h6</a> <span class="descendant-count" title="Number of descendants.">[7]</span><span class="hover-metadata"> | <a href="#toc-my-h6">🔗 link</a> | <a href="#toc-my-h5">↑ parent "My h5"</a></span></div>
+<li class="has-child"><div id="toc-my-h6"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h6">1.1.1. My h6</a> <span class="descendant-count" title="number of descendant headers">[7]</span><span class="hover-metadata"> | <a href="#toc-my-h6" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h6">🗖 nosplit</a> | <a href="#toc-my-h5" title="parent ToC entry">↑ parent "My h5"</a></span></div>
 <ul>
-<li class="has-child"><div id="toc-my-h7"><div class="arrow"><div></div></div><a href="my-h7">1.1.1.1. My h7</a> <span class="descendant-count" title="Number of descendants.">[6]</span><span class="hover-metadata"> | <a href="#toc-my-h7">🔗 link</a> | <a href="#toc-my-h6">↑ parent "My h6"</a></span></div>
+<li class="has-child"><div id="toc-my-h7"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h7">1.1.1.1. My h7</a> <span class="descendant-count" title="number of descendant headers">[6]</span><span class="hover-metadata"> | <a href="#toc-my-h7" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h7">🗖 nosplit</a> | <a href="#toc-my-h6" title="parent ToC entry">↑ parent "My h6"</a></span></div>
 <ul>
-<li class="has-child"><div id="toc-my-h8"><div class="arrow"><div></div></div><a href="my-h8">1.1.1.1.1. My h8</a> <span class="descendant-count" title="Number of descendants.">[5]</span><span class="hover-metadata"> | <a href="#toc-my-h8">🔗 link</a> | <a href="#toc-my-h7">↑ parent "My h7"</a></span></div>
+<li class="has-child"><div id="toc-my-h8"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h8">1.1.1.1.1. My h8</a> <span class="descendant-count" title="number of descendant headers">[5]</span><span class="hover-metadata"> | <a href="#toc-my-h8" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h8">🗖 nosplit</a> | <a href="#toc-my-h7" title="parent ToC entry">↑ parent "My h7"</a></span></div>
 <ul>
-<li class="has-child"><div id="toc-my-h9"><div class="arrow"><div></div></div><a href="my-h9">1.1.1.1.1.1. My h9</a> <span class="descendant-count" title="Number of descendants.">[4]</span><span class="hover-metadata"> | <a href="#toc-my-h9">🔗 link</a> | <a href="#toc-my-h8">↑ parent "My h8"</a></span></div>
+<li class="has-child"><div id="toc-my-h9"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h9">1.1.1.1.1.1. My h9</a> <span class="descendant-count" title="number of descendant headers">[4]</span><span class="hover-metadata"> | <a href="#toc-my-h9" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h9">🗖 nosplit</a> | <a href="#toc-my-h8" title="parent ToC entry">↑ parent "My h8"</a></span></div>
 <ul>
-<li class="has-child"><div id="toc-my-h10"><div class="arrow"><div></div></div><a href="my-h10">1.1.1.1.1.1.1. My h10</a> <span class="descendant-count" title="Number of descendants.">[3]</span><span class="hover-metadata"> | <a href="#toc-my-h10">🔗 link</a> | <a href="#toc-my-h9">↑ parent "My h9"</a></span></div>
+<li class="has-child"><div id="toc-my-h10"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h10">1.1.1.1.1.1.1. My h10</a> <span class="descendant-count" title="number of descendant headers">[3]</span><span class="hover-metadata"> | <a href="#toc-my-h10" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h10">🗖 nosplit</a> | <a href="#toc-my-h9" title="parent ToC entry">↑ parent "My h9"</a></span></div>
 <ul>
-<li class="has-child"><div id="toc-my-h11"><div class="arrow"><div></div></div><a href="my-h11">1.1.1.1.1.1.1.1. My h11</a> <span class="descendant-count" title="Number of descendants.">[2]</span><span class="hover-metadata"> | <a href="#toc-my-h11">🔗 link</a> | <a href="#toc-my-h10">↑ parent "My h10"</a></span></div>
+<li class="has-child"><div id="toc-my-h11"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h11">1.1.1.1.1.1.1.1. My h11</a> <span class="descendant-count" title="number of descendant headers">[2]</span><span class="hover-metadata"> | <a href="#toc-my-h11" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h11">🗖 nosplit</a> | <a href="#toc-my-h10" title="parent ToC entry">↑ parent "My h10"</a></span></div>
 <ul>
-<li class="has-child"><div id="toc-my-h12"><div class="arrow"><div></div></div><a href="my-h12">1.1.1.1.1.1.1.1.1. My h12</a> <span class="descendant-count" title="Number of descendants.">[1]</span><span class="hover-metadata"> | <a href="#toc-my-h12">🔗 link</a> | <a href="#toc-my-h11">↑ parent "My h11"</a></span></div>
+<li class="has-child"><div id="toc-my-h12"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h12">1.1.1.1.1.1.1.1.1. My h12</a> <span class="descendant-count" title="number of descendant headers">[1]</span><span class="hover-metadata"> | <a href="#toc-my-h12" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h12">🗖 nosplit</a> | <a href="#toc-my-h11" title="parent ToC entry">↑ parent "My h11"</a></span></div>
 <ul>
-<li><div id="toc-my-h13"><div class="arrow"><div></div></div><a href="my-h13">1.1.1.1.1.1.1.1.1.1. My h13</a><span class="hover-metadata"> | <a href="#toc-my-h13">🔗 link</a> | <a href="#toc-my-h12">↑ parent "My h12"</a></span></div></li>
+<li><div id="toc-my-h13"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="my-h13">1.1.1.1.1.1.1.1.1.1. My h13</a><span class="hover-metadata"> | <a href="#toc-my-h13" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#my-h13">🗖 nosplit</a> | <a href="#toc-my-h12" title="parent ToC entry">↑ parent "My h12"</a></span></div></li>
 </ul>
 </li>
 </ul>
@@ -76,7 +77,7 @@ but it just didn't feel as good, and is a bit harder to type than just smashing 
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

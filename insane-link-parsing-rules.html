@@ -17,13 +17,14 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="insane-link-parsing-rules"><a href="" title="link to this element">Insane link parsing rules</a><span>  | <a href="links">↑ parent "Links"</a> | <a href=".#insane-link-parsing-rules">nosplit</a></span></h1>
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="insane-link-parsing-rules"><a href="" title="link to this element">Insane link parsing rules</a><span>  | <a title="view all headers in a single page" href=".#insane-link-parsing-rules">🗖 nosplit</a> | <a href="links" title="parent header">↑ parent "Links"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#insane-link-parsing-rules">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="links" title="parent header">↑ parent "Links"</a></span></div>
 </div><div><span class="hide-hover"><a href="index-split#p-59">🔗</a></span><div class="p" id="p-59">Insane links must be preceded by either:<div><ul id="ul-13">
 <li id="l-40">the start of the document</li>
-<li id="l-41">the start of a <a href="positional-vs-named-arguments">positional or named argument</a> (e.g. <code>\P[http://example.com]</code> or <code>Image[xi.png]{description=http://example.com}</code>) that not marked with <code>elide_link_only</code> (which is the case for example for <code>href</code> of <code>a</code>)</li>
+<li id="l-41">the start of a <a href="positional-vs-named-arguments" title="internal link">positional or named argument</a> (e.g. <code>\P[http://example.com]</code> or <code>Image[xi.png]{description=http://example.com}</code>) that not marked with <code>elide_link_only</code> (which is the case for example for <code>href</code> of <code>a</code>)</li>
 <li id="l-42">space <code> </code> char</li>
 <li id="l-43">newline <code>\n</code> char</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-60">🔗</a></span><div class="p" id="p-60">The recognized protocols are the ones shown at: <a href="known-url-protocols">Section . "Known URL protocols"</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-61">🔗</a></span><div class="p" id="p-61">Insane links end when either the end of the document or one of the following characters is found:<div><ul id="ul-14">
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-60">🔗</a></span><div class="p" id="p-60">The recognized protocols are the ones shown at: <a href="known-url-protocols" title="internal link">Section "Known URL protocols"</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-61">🔗</a></span><div class="p" id="p-61">Insane links end when either the end of the document or one of the following characters is found:<div><ul id="ul-14">
 <li id="l-44">space <code> </code></li>
 <li id="l-45">newline <code>\n</code></li>
 <li id="l-46">open or close square bracket <code>[</code> or <code>]</code></li>
@@ -44,7 +45,7 @@ You must instead use the sane syntax for that:
 
 \a[http://example.com]
 </code></pre></div><div class="p" id="p-71">which renders as:</div><blockquote id="q-14"><div class="p" id="p-72"><a href="http://example.com">http://example.com</a></div><div class="p" id="p-73"><a href="http://example.com">http://example.com</a></div></blockquote>
-This magic can be observed with <a href="help-macros"><code>--help-macros</code></a> by seeing that the <code>href</code> argument of the <code>a</code> macro has the property: 
+This magic can be observed with <a href="help-macros" title="internal link"><code>--help-macros</code></a> by seeing that the <code>href</code> argument of the <code>a</code> macro has the property: 
 <div class="code-caption-container" id="code-27">
 <pre><code>"elide_link_only": true,
 </code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-74">🔗</a></span><div class="p" id="p-74">TODO it is currently impossible to prevent autolinks from expanding, we can either go with an empty macro solution, or with a literal text solution:
@@ -57,7 +58,7 @@ Literal URL \text[[http://example.com]] but why?
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

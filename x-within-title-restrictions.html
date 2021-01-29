@@ -17,9 +17,10 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="x-within-title-restrictions"><a href="" title="link to this element"><code>\x</code> within <code>title</code> restrictions</a><span>  | <a href="internal-cross-references">↑ parent "Internal cross references"</a> | <a href=".#x-within-title-restrictions">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-182">🔗</a></span><div class="p" id="p-182">If you use <code>\x</code> within a <code>title</code>, which most commonly happens for <a href="images">image titles</a>, that can generate complex dependencies, which would either be harder to implement, or lead to infinite recursion.</div></div><div><span class="hide-hover"><a href="index-split#p-183">🔗</a></span><div class="p" id="p-183">To prevent such problems, Cirodown emits an error if you use an <code>\x</code> without content in the <code>title</code> of one of the following elements without an explicit ID:<div><ul id="ul-22">
-<li id="l-64"><div class="p" id="p-184"><a href="headers">header</a>. For example, the following gives an error:
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="x-within-title-restrictions"><a href="" title="link to this element"><code>\x</code> within <code>title</code> restrictions</a><span>  | <a title="view all headers in a single page" href=".#x-within-title-restrictions">🗖 nosplit</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#x-within-title-restrictions">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a></span></div>
+</div><div><span class="hide-hover"><a href="index-split#p-182">🔗</a></span><div class="p" id="p-182">If you use <code>\x</code> within a <code>title</code>, which most commonly happens for <a href="images" title="internal link">image titles</a>, that can generate complex dependencies, which would either be harder to implement, or lead to infinite recursion.</div></div><div><span class="hide-hover"><a href="index-split#p-183">🔗</a></span><div class="p" id="p-183">To prevent such problems, Cirodown emits an error if you use an <code>\x</code> without content in the <code>title</code> of one of the following elements without an explicit ID:<div><ul id="ul-22">
+<li id="l-64"><div class="p" id="p-184"><a href="headers" title="internal link">header</a>. For example, the following gives an error:
 <div class="code-caption-container" id="code-64">
 <pre><code>= h1
 {id=myh1}
@@ -40,7 +41,7 @@ or by adding an explicit ID to the header:
 == \x[myh1]
 {id=myh2}
 </code></pre></div></div></li>
-<li id="l-65"><div class="p" id="p-186">non-header (e.g. an <a href="images">image</a>) that links to the title of another non-header</div><div class="p" id="p-187">For non-headers, things are a bit more relaxed, and we can link to headers, e.g.:
+<li id="l-65"><div class="p" id="p-186">non-header (e.g. an <a href="images" title="internal link">image</a>) that links to the title of another non-header</div><div class="p" id="p-187">For non-headers, things are a bit more relaxed, and we can link to headers, e.g.:
 <div class="code-caption-container" id="code-67">
 <pre><code>= h1
 
@@ -107,7 +108,7 @@ or:
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

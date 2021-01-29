@@ -17,7 +17,8 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="remove-whitespace-children"><a href="" title="link to this element"><code>remove_whitespace_children</code> macro argument property</a><span>  | <a href="macro-argument-syntax">↑ parent "Macro argument syntax"</a> | <a href=".#remove-whitespace-children">nosplit</a></span></h1>
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="remove-whitespace-children"><a href="" title="link to this element"><code>remove_whitespace_children</code> macro argument property</a><span>  | <a title="view all headers in a single page" href=".#remove-whitespace-children">🗖 nosplit</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#remove-whitespace-children">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a></span></div>
 </div><div><span class="hide-hover"><a href="index-split#p-635">🔗</a></span><div class="p" id="p-635">In HTML, certain elements such as <code>&lt;ul&gt;</code> cannot have any <code>text</code> nodes in them, and any whitespace is ignored, see <a href="https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802">https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-636">🔗</a></span><div class="p" id="p-636">A similar concept applies to Cirodown, e.g.:
 <div class="code-caption-container" id="code-250">
 <pre><code>\Ul[
@@ -33,7 +34,7 @@ but rather as:
 <div class="code-caption-container" id="code-252">
 <pre><code>\Ul[\L[aa]\L[bb]]
 </code></pre></div>
-because the <code>content</code> argument of <code>ul</code> is marked with <code>remove_whitespace_children</code> and automatically removes any whitespace children (such as a newline) as a result.</div></div><div><span class="hide-hover"><a href="index-split#p-637">🔗</a></span><div class="p" id="p-637">This also applies to consecutive sequences of <a href="auto-parent"><code>auto_parent</code> macro property</a> macros, e.g.:
+because the <code>content</code> argument of <code>ul</code> is marked with <code>remove_whitespace_children</code> and automatically removes any whitespace children (such as a newline) as a result.</div></div><div><span class="hide-hover"><a href="index-split#p-637">🔗</a></span><div class="p" id="p-637">This also applies to consecutive sequences of <a href="auto-parent" title="internal link"><code>auto_parent</code> macro property</a> macros, e.g.:
 <div class="code-caption-container" id="code-253">
 <pre><code>\L[aa]
 \L[bb]
@@ -42,7 +43,7 @@ also does not include the newline between the list items.</div></div><div><span 
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

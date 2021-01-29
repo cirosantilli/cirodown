@@ -17,7 +17,12 @@ const path = require('path');
 const pluralize = require('pluralize');
 
 // consts used by classes.
+const HEADER_MENU_ITEM_SEP = ' | ';
 const UNICODE_LINK = String.fromCodePoint(0x1F517);
+const NOSPLIT_MARKER = '\u{1F5D6} nosplit';
+exports.NOSPLIT_MARKER = NOSPLIT_MARKER;
+const SPLIT_MARKER = '\u{1F5D7} split';
+exports.SPLIT_MARKER = SPLIT_MARKER;
 
 class AstNode {
   /**
@@ -254,6 +259,20 @@ class AstNode {
       return undefined;
     } else {
       return context.id_provider.get(header_parent_id, context);
+    }
+  }
+
+  is_header_descendant(other, context) {
+    let cur_ast = this;
+    const other_id = other.id;
+    while (true) {
+      cur_ast = cur_ast.get_header_parent(context);
+      if (cur_ast === undefined) {
+        return false;
+      }
+      if (cur_ast.id === other.id) {
+        return true;
+      }
     }
   }
 
@@ -2273,7 +2292,8 @@ function error_message_in_output(msg, context) {
 function get_descendant_count(tree_node) {
   let descendant_count;
   if (tree_node.descendant_count > 0) {
-    return ` <span class="descendant-count" title="Number of descendants.">[${tree_node.descendant_count}]</span>`;
+    // Page emoji: \u{1F5CF}. Felt too distracting.
+    return ` <span class="descendant-count" title="number of descendant headers">[${tree_node.descendant_count}]</span>`;
   } else {
     return '';
   }
@@ -2536,6 +2556,23 @@ function link_get_href_content(ast, context) {
   return [href, content];
 }
 
+// If in split header mode, link to the nosplit version.
+// If in the nosplit mode, link to the split version.
+function link_to_split_opposite(ast, context) {
+  let content;
+  let title;
+  if (context.in_split_headers) {
+    content = NOSPLIT_MARKER;
+    title = 'view all headers in a single page';
+  } else {
+    content = SPLIT_MARKER;
+    title = 'view one header per page';
+  }
+  let other_context = clone_and_set(context, 'to_split_headers', !context.in_split_headers);
+  let other_href = x_href_attr(ast, other_context);
+  return `<a${html_attr('title', title)}${other_href}>${content}</a>`;
+}
+
 /**
  * @return {Object} dict of macro name to macro
  */
@@ -2694,31 +2731,7 @@ function output_path_parts(input_path, id, context, split_suffix=undefined) {
   let ret = '';
   const [dirname, basename] = path_split(input_path, context.options.path_sep);
   const renamed_basename_noext = rename_basename(noext(basename));
-  if (
-    // Get the path to the split header version
-    //
-    // to_split_headers is set explicitly when making
-    // links across split/non-split versions of the output.
-    //
-    // Otherwise, link to the same type of output as the current one
-    // as given in in_split_headers.
-    //
-    // This way, to_split_hedears in particular forces the link to be
-    // to the non-split mode, even if we are in split mode.
-    //
-    // Some desired sample outcomes:
-    //
-    // id='cirodown'             -> ['',       'index-split']
-    // id='quick-start'          -> ['',       'quick-start']
-    // id='not-readme'           -> ['',       'not-readme-split']
-    // id='h2-in-not-the-readme' -> ['',       'h2-in-not-the-readme']
-    // id='subdir'               -> ['subdir', 'index-split']
-    // id='subdir/subdir-h2'     -> ['subdir', 'subdir-h2']
-    // id='subdir/notindex'      -> ['subdir', 'notindex']
-    // id='subdir/notindex-h2'   -> ['subdir', 'notindex-h2']
-    (context.to_split_headers === undefined && context.in_split_headers) ||
-    (context.to_split_headers !== undefined && context.to_split_headers)
-  ) {
+  if (is_to_split_headers(context)) {
     const ast = context.id_provider.get(id, context);
     // We are the first header, or something that comes before it.
     let first_header_or_before = false;
@@ -4134,6 +4147,32 @@ function x_href(target_id_ast, context) {
   return ret;
 }
 
+// Get the path to the split header version
+//
+// to_split_headers is set explicitly when making
+// links across split/non-split versions of the output.
+//
+// Otherwise, link to the same type of output as the current one
+// as given in in_split_headers.
+//
+// This way, to_split_hedears in particular forces the link to be
+// to the non-split mode, even if we are in split mode.
+//
+// Some desired sample outcomes:
+//
+// id='cirodown'             -> ['',       'index-split']
+// id='quick-start'          -> ['',       'quick-start']
+// id='not-readme'           -> ['',       'not-readme-split']
+// id='h2-in-not-the-readme' -> ['',       'h2-in-not-the-readme']
+// id='subdir'               -> ['subdir', 'index-split']
+// id='subdir/subdir-h2'     -> ['subdir', 'subdir-h2']
+// id='subdir/notindex'      -> ['subdir', 'notindex']
+// id='subdir/notindex-h2'   -> ['subdir', 'notindex-h2']
+function is_to_split_headers(context) {
+  return (context.to_split_headers === undefined && context.in_split_headers) ||
+         (context.to_split_headers !== undefined && context.to_split_headers);
+}
+
 /* This is the centerpiece of x href calculation! */
 function x_href_parts(target_id_ast, context) {
   if (target_id_ast.macro_name === Macro.TOC_MACRO_NAME) {
@@ -4194,10 +4233,7 @@ function x_href_parts(target_id_ast, context) {
   }
 
   // Fragment
-  const to_split_headers = (
-    (context.to_split_headers === undefined && context.in_split_headers) ||
-    (context.to_split_headers !== undefined && context.to_split_headers)
-  );
+  const to_split_headers = is_to_split_headers(context);
   let fragment;
   if (
     // Linking to a toplevel ID.
@@ -4315,7 +4351,17 @@ function x_text(ast, context, options={}) {
       }
       ret += `${macro.options.caption_prefix} `;
     }
-    if (options.show_number) {
+    if (
+      options.show_number &&
+      (
+        // When in split headers, numbers are only added to headers that
+        // are descendants of the toplevel header, thus matching the current ToC.
+        // The numbers don't make much sense for other headers.
+        !is_to_split_headers(context) ||
+        ast.macro_name !== Macro.HEADER_MACRO_NAME ||
+        ast.is_header_descendant(context.toplevel_ast, context)
+      )
+    ) {
       number = macro.options.get_number(ast, context);
       if (number !== undefined) {
         ret += number;
@@ -4434,7 +4480,7 @@ exports.LOG_OPTIONS = LOG_OPTIONS;
 const OUTPUT_FORMAT_CIRODOWN = 'cirodown';
 const OUTPUT_FORMAT_HTML = 'html';
 const OUTPUT_FORMAT_ID = 'id';
-const TOC_ARROW_HTML = '<div class="arrow"><div></div></div>';
+const TOC_ARROW_HTML = '<div class="arrow" title="close children -> close all -> open all"><div></div></div>';
 const TOC_HAS_CHILD_CLASS = 'has-child';
 const MAGIC_CHAR_ARGS = {
   '$': Macro.MATH_MACRO_NAME,
@@ -4803,11 +4849,15 @@ const DEFAULT_MACRO_LIST = [
       ret += x_text(ast, context, x_text_options);
       ret += `</a>`;
       ret += `<span> `;
-      if (level_int !== context.header_graph_top_level) {
-        if (context.has_toc) {
-          let toc_href = html_attr('href', '#' + toc_id(ast, context));
-          ret += ` | <a ${toc_href} class="cirodown-h-to-toc">\u21d1 toc</a>`;
-        }
+      let link_to_split;
+      if (context.options.split_headers) {
+        link_to_split = link_to_split_opposite(ast, context);
+        ret += `${HEADER_MENU_ITEM_SEP}${link_to_split}`;
+      }
+      let toc_href;
+      if (level_int !== context.header_graph_top_level && context.has_toc) {
+        toc_href = html_attr('href', '#' + toc_id(ast, context));
+        ret += `${HEADER_MENU_ITEM_SEP}<a${toc_href} class="cirodown-h-to-toc"${html_attr('title', 'ToC entry for this header')}>\u21d1 toc</a>`;
       }
       let parent_asts = [];
       let parent_tree_node = ast.header_graph_node.parent_node;
@@ -4819,25 +4869,16 @@ const DEFAULT_MACRO_LIST = [
         }
       }
       parent_asts.push(...context.id_provider.get_includes(ast.id, context));
+      let parent_links = '';
       for (const parent_ast of parent_asts) {
         let parent_href = x_href_attr(parent_ast, context);
         let parent_body = convert_arg(parent_ast.args[Macro.TITLE_ARGUMENT_NAME], context);
-        ret += ` | <a${parent_href}>\u2191 parent "${parent_body}"</a>`;
+        parent_links += `<a${parent_href}${html_attr('title', 'parent header')}>\u2191 parent "${parent_body}"</a>`;
       }
-      if (context.options.split_headers) {
-        // Link to the other split/non-split version.
-        let content;
-        if (context.in_split_headers) {
-          content = 'nosplit';
-        } else {
-          content = 'split';
-        }
-        let other_context = clone_and_set(context, 'to_split_headers', !context.in_split_headers);
-        let other_href = x_href_attr(ast, other_context);
-        ret += ` | <a${other_href}>${content}</a>`;
-      }
+      ret += `${HEADER_MENU_ITEM_SEP}${parent_links}`;
       ret += `</span>`;
       ret += `</h${level_int_capped}>\n`;
+      let wiki_link;
       if (ast.validation_output.wiki.given) {
         let wiki = convert_arg(ast.args.wiki, context);
         if (wiki === '') {
@@ -4846,7 +4887,27 @@ const DEFAULT_MACRO_LIST = [
             wiki += '_(' + convert_arg(ast.args[Macro.DISAMBIGUATE_ARGUMENT_NAME], context).replace(/ /g, '_')  + ')'
           }
         }
-        ret += `<div class="h-nav"><span class="nav"></span> <a href="https://en.wikipedia.org/wiki/${html_escape_attr(wiki)}">Wikipedia</a></div>\n`;
+        wiki_link = `<a href="https://en.wikipedia.org/wiki/${html_escape_attr(wiki)}">Wikipedia</a>`;
+      }
+      let header_meta = [];
+      if (link_to_split !== undefined) {
+        header_meta.push(link_to_split);
+      }
+      if (context.has_toc) {
+        header_meta.push(`<a${html_attr('href', '#' + Macro.TOC_ID)}>\u{21d3} toc</a>`);
+      }
+      if (parent_links !== '') {
+        header_meta.push(parent_links);
+      }
+      if (wiki_link !== undefined) {
+        header_meta.push(wiki_link);
+      }
+      if (
+        context.toplevel_ast !== undefined &&
+        ast.id === context.toplevel_ast.id &&
+        header_meta
+      ) {
+        ret += `<div class="h-nav"><span class="nav"> ${header_meta.join(HEADER_MENU_ITEM_SEP)}</span></div>\n`;
       }
       return ret;
     },
@@ -5286,8 +5347,10 @@ const DEFAULT_MACRO_LIST = [
         ret += `><div${id_to_toc}>${TOC_ARROW_HTML}<a${href}>${content}</a>${get_descendant_count(tree_node)}<span class="hover-metadata">`;
 
         let toc_href = html_attr('href', '#' + my_toc_id);
-        ret += ` | <a${toc_href}>${UNICODE_LINK} link</a>`;
-
+        ret += `${HEADER_MENU_ITEM_SEP}<a${toc_href}${html_attr('title', 'link to this ToC entry')}>${UNICODE_LINK} link</a>`;
+        if (context.options.split_headers) {
+          ret += `${HEADER_MENU_ITEM_SEP}${link_to_split_opposite(target_id_ast, context)}`;
+        }
         let parent_ast = target_id_ast.get_header_parent(context);
         if (
           // Possible on broken h1 level.
@@ -5304,9 +5367,8 @@ const DEFAULT_MACRO_LIST = [
           }
           let parent_href = html_attr('href', '#' + parent_href_target);
           let parent_body = convert_arg(parent_ast.args[Macro.TITLE_ARGUMENT_NAME], context);
-          ret += ` | <a${parent_href}>\u2191 parent "${parent_body}"</a>`;
+          ret += `${HEADER_MENU_ITEM_SEP}<a${parent_href}${html_attr('title', 'parent ToC entry')}>\u2191 parent "${parent_body}"</a>`;
         }
-
         ret += `</span></div>`;
         if (tree_node.children.length > 0) {
           for (let i = tree_node.children.length - 1; i >= 0; i--) {
@@ -5494,7 +5556,7 @@ const DEFAULT_MACRO_LIST = [
       const [href, content] = x_get_href_content(ast, context);
       if (context.x_parents.size == 0) {
         const attrs = html_convert_attrs_id(ast, context);
-        return `<a${href}${attrs}>${content}</a>`;
+        return `<a${href}${attrs}${html_attr('title', 'internal link')}>${content}</a>`;
       } else {
         return content;
       }

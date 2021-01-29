@@ -1634,8 +1634,8 @@ assert_convert_ast('cross reference to non-included header in another file',
       "//x:a[@href='#image-bb' and text()='image bb 1']",
 
       // Links to the split versions.
-      "//x:h1[@id='notindex']//x:a[@href='notindex-split.html' and text()='split']",
-      "//x:h2[@id='bb']//x:a[@href='bb.html' and text()='split']",
+      `//x:h1[@id='notindex']//x:a[@href='notindex-split.html' and text()='${cirodown.SPLIT_MARKER}']`,
+      `//x:h2[@id='bb']//x:a[@href='bb.html' and text()='${cirodown.SPLIT_MARKER}']`,
     ],
     assert_xpath_split_headers: {
       'notindex-split.html': [
@@ -1643,7 +1643,7 @@ assert_convert_ast('cross reference to non-included header in another file',
         "//x:a[@href='gg.html' and text()='gg']",
         "//x:a[@href='bb.html' and text()='bb']",
         // Link to the split version.
-        "//x:h1[@id='notindex']//x:a[@href='notindex.html' and text()='nosplit']",
+        `//x:h1[@id='notindex']//x:a[@href='notindex.html' and text()='${cirodown.NOSPLIT_MARKER}']`,
         // Internal cross reference inside split header.
         "//x:a[@href='bb.html#image-bb' and text()='image bb 1']",
       ],
@@ -1653,7 +1653,7 @@ assert_convert_ast('cross reference to non-included header in another file',
         "//x:a[@href='notindex-split.html' and text()='notindex2']",
         "//x:a[@href='' and text()='bb2']",
         // Link to the split version.
-        "//x:h1[@id='bb']//x:a[@href='notindex.html#bb' and text()='nosplit']",
+        `//x:h1[@id='bb']//x:a[@href='notindex.html#bb' and text()='${cirodown.NOSPLIT_MARKER}']`,
         // Internal cross reference inside split header.
         "//x:a[@href='#image-bb' and text()='image bb 2']",
       ],
@@ -2935,6 +2935,8 @@ const complex_filesystem = {
 
 \\x[notindex][link to notindex]
 
+\\x[h2]{full}
+
 \\x[notindex-h2][link to notindex h2]
 
 \\x[has-split-suffix][link to has split suffix]
@@ -2968,6 +2970,26 @@ $$
 $$
 \\mycmd
 $$
+
+== h2 2
+
+\\x[h2]{full}
+
+\\x[h4-3-2-1]{full}
+
+=== h3 2 1
+
+\\x[h4-3-2-1]{full}
+
+== h2 3
+
+\\x[h4-3-2-1]{full}
+
+=== h3 3 1
+
+=== h3 3 2
+
+==== h4 3 2 1
 
 == Index scope
 {scope}
@@ -3038,18 +3060,35 @@ assert_executable(
 
         "//x:h2[@id='included-by-index']",
         "//x:blockquote[text()='A Cirodown example!']",
-        "//x:h2[@id='index-scope']//x:a[@href='index-scope.html' and text()='split']",
-        "//x:h3[@id='index-scope/index-scope-2']//x:a[@href='index-scope/index-scope-2.html' and text()='split']",
+        `//x:h2[@id='index-scope']//x:a[@href='index-scope.html' and text()='${cirodown.SPLIT_MARKER}']`,
+        `//x:h3[@id='index-scope/index-scope-2']//x:a[@href='index-scope/index-scope-2.html' and text()='${cirodown.SPLIT_MARKER}']`,
       ],
       'index-split.html': [
+        // Full links between split header pages have correct numbering.
+        "//x:div[@class='p']//x:a[@href='h2.html' and text()='Section 2. \"h2\"']",
+
+        // CirodownExample renders in split header.
+        "//x:blockquote[text()='A Cirodown example!']",
+
         // ToC entries of includes point directly to the separate file.
         "//*[@id='toc']//x:a[@href='included-by-index-split.html' and text()='Included by index']",
         // TODO This is more correct with the `1. `. Maybe wait for https://github.com/cirosantilli/cirodown/issues/126
         // to make sure we don't have to rewrite everything.
         //"//*[@id='toc']//x:a[@href='included-by-index-split.html' and text()='1. Included by index']",
-
-        // CirodownExample renders in split header.
-        "//x:blockquote[text()='A Cirodown example!']",
+      ],
+      'h2-2.html': [
+        // These headers are not children of the current toplevel header.
+        // Therefore, they do not get a number like "Section 2.".
+        "//x:div[@class='p']//x:a[@href='h2.html' and text()='Section \"h2\"']",
+        "//x:div[@class='p']//x:a[@href='h4-3-2-1.html' and text()='Section \"h4 3 2 1\"']",
+      ],
+      'h3-2-1.html': [
+        // Not a child of the current toplevel either.
+        "//x:div[@class='p']//x:a[@href='h4-3-2-1.html' and text()='Section \"h4 3 2 1\"']",
+      ],
+      'h2-3.html': [
+        // This one is under the current tree, so it shows fully.
+        "//x:div[@class='p']//x:a[@href='h4-3-2-1.html' and text()='Section 2.1. \"h4 3 2 1\"']",
       ],
       'notindex.html': [
         "//x:h1[@id='notindex']",
@@ -3091,28 +3130,28 @@ assert_executable(
         "//x:h1[@id='notindex-h2']",
       ],
       'index-scope.html': [
-        "//x:h1[@id='index-scope']//x:a[@href='index.html#index-scope' and text()='nosplit']",
+        `//x:h1[@id='index-scope']//x:a[@href='index.html#index-scope' and text()='${cirodown.NOSPLIT_MARKER}']`,
       ],
       'index-scope/index-scope-2.html': [
         // TODO nested scopes not removing correctly, was giving ../index.html#index-scope-2
-        //"//x:h1[@id='index-scope-2']//x:a[@href='../index.html#index-scope/index-scope-2' and text()='nosplit']",
+        //`//x:h1[@id='index-scope-2']//x:a[@href='../index.html#index-scope/index-scope-2' and text()='${cirodown.NOSPLIT_MARKER}']`,
       ],
       'toplevel-scope.html': [
-        "//x:h2[@id='nested-scope']//x:a[@href='toplevel-scope/nested-scope.html' and text()='split']",
-        "//x:h3[@id='nested-scope/nested-scope-2']//x:a[@href='toplevel-scope/nested-scope/nested-scope-2.html' and text()='split']",
+        `//x:h2[@id='nested-scope']//x:a[@href='toplevel-scope/nested-scope.html' and text()='${cirodown.SPLIT_MARKER}']`,
+        `//x:h3[@id='nested-scope/nested-scope-2']//x:a[@href='toplevel-scope/nested-scope/nested-scope-2.html' and text()='${cirodown.SPLIT_MARKER}']`,
       ],
       'toplevel-scope-split.html': [
-        "//x:h1[@id='toplevel-scope']//x:a[@href='toplevel-scope.html' and text()='nosplit']",
+        `//x:h1[@id='toplevel-scope']//x:a[@href='toplevel-scope.html' and text()='${cirodown.NOSPLIT_MARKER}']`,
       ],
       'toplevel-scope/toplevel-scope-h2.html': [
-        "//x:h1[@id='toplevel-scope-h2']//x:a[@href='../toplevel-scope.html#toplevel-scope-h2' and text()='nosplit']",
+        `//x:h1[@id='toplevel-scope-h2']//x:a[@href='../toplevel-scope.html#toplevel-scope-h2' and text()='${cirodown.NOSPLIT_MARKER}']`,
       ],
       'toplevel-scope/nested-scope.html': [
-        "//x:h1[@id='nested-scope']//x:a[@href='../toplevel-scope.html#nested-scope' and text()='nosplit']",
+        `//x:h1[@id='nested-scope']//x:a[@href='../toplevel-scope.html#nested-scope' and text()='${cirodown.NOSPLIT_MARKER}']`,
       ],
       'toplevel-scope/nested-scope/nested-scope-2.html': [
         // TODO nested scopes not removing correctly, was giving ../../toplevel-scope.html#nested-scope-2
-        //"//x:h1[@id='nested-scope-2']//x:a[@href='../../toplevel-scope.html#nested-scope/nested-scope-2' and text()='nosplit']",
+        //`//x:h1[@id='nested-scope-2']//x:a[@href='../../toplevel-scope.html#nested-scope/nested-scope-2' and text()='${cirodown.NOSPLIT_MARKER}']`,
       ],
     },
     expect_filesystem_not_xpath: {

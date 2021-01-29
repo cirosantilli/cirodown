@@ -17,8 +17,9 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="tables"><a href="" title="link to this element">Tables (<code>|| </code>, <code>| </code>, <code>\Table</code>, <code>\Tr</code>, <code>\Th</code> and <code>\Td</code>)</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href=".#tables">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-490">🔗</a></span><div class="p" id="p-490">The <a href="insane-code-and-math-shortcuts">insane</a> syntax marks:<div><ul id="ul-62">
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="tables"><a href="" title="link to this element">Tables (<code>|| </code>, <code>| </code>, <code>\Table</code>, <code>\Tr</code>, <code>\Th</code> and <code>\Td</code>)</a><span>  | <a title="view all headers in a single page" href=".#tables">🗖 nosplit</a> | <a href="index-split" title="parent header">↑ parent "Cirodown"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#tables">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="index-split" title="parent header">↑ parent "Cirodown"</a></span></div>
+</div><div><span class="hide-hover"><a href="index-split#p-490">🔗</a></span><div class="p" id="p-490">The <a href="insane-code-and-math-shortcuts" title="internal link">insane</a> syntax marks:<div><ul id="ul-62">
 <li id="l-173">headers with <code>|| </code> (pipe, pipe space) at the start of a line</li>
 <li id="l-174">regular cells with <code>| </code> (pipe, space) at the start of a line</li>
 <li id="l-175">separates rows with double newline
@@ -116,7 +117,7 @@ Empty cells are allowed without the trailing space however:
 </table>
 </div>
 </blockquote>
-Any white space indentation inside an explicit <code>\Tr</code> can make the code more readable, and is automatically removed from final output due to <a href="remove-whitespace-children"><code>remove_whitespace_children</code> macro argument property</a> which is set for <code>\Table</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-495">🔗</a></span><div class="p" id="p-495">To pass further arguments to an implicit table such as <code>title</code> or <code>id</code>, you need to use an explicit <code>table</code> macro as in: <a href="#table-my-table">Table 2. "My table title."</a>.
+Any white space indentation inside an explicit <code>\Tr</code> can make the code more readable, and is automatically removed from final output due to <a href="remove-whitespace-children" title="internal link"><code>remove_whitespace_children</code> macro argument property</a> which is set for <code>\Table</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-495">🔗</a></span><div class="p" id="p-495">To pass further arguments to an implicit table such as <code>title</code> or <code>id</code>, you need to use an explicit <code>table</code> macro as in: <a href="#table-my-table" title="internal link">Table 2. "My table title."</a>.
 <div class="code-caption-container" id="code-198">
 <pre><code>\Table
 {title=My table title.}
@@ -155,7 +156,7 @@ Any white space indentation inside an explicit <code>\Tr</code> can make the cod
 </table>
 </div>
 </blockquote>
-The rules of when the caption shows up or not are the same as described for <a href="images">images</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-497">🔗</a></span><div class="p" id="p-497">Multiple source lines, including paragraphs, can be added to a single cell with insane syntax by indenting the cell with exactly two spaces just as for <a href="lists">lists</a>, e.g.:
+The rules of when the caption shows up or not are the same as described for <a href="images" title="internal link">images</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-497">🔗</a></span><div class="p" id="p-497">Multiple source lines, including paragraphs, can be added to a single cell with insane syntax by indenting the cell with exactly two spaces just as for <a href="lists" title="internal link">lists</a>, e.g.:
 <div class="code-caption-container" id="code-199">
 <pre><code>|| h1
 || h2
@@ -243,7 +244,7 @@ Arbitrarily complex nested constructs may be used, e.g. a table inside a list in
 </tbody>
 </table>
 </div>
-</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-506">🔗</a></span><div class="p" id="p-506">And now a table outside of <a href="cirodownexample"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="#table-my-table-title">🔗</a></span><div class="table-container" id="table-my-table-title">
+</blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-506">🔗</a></span><div class="p" id="p-506">And now a table outside of <a href="cirodownexample" title="internal link"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel" title="internal link">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="#table-my-table-title">🔗</a></span><div class="table-container" id="table-my-table-title">
 <div class="table-caption-container">
 <span class="table-caption"><a href="#table-my-table-title"><span class="caption-prefix">Table 3</span></a>. My table title.</span></div>
 <table>
@@ -287,9 +288,9 @@ Arbitrarily complex nested constructs may be used, e.g. a table inside a list in
 </div>
 </div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[1]</span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="number of descendant headers">[1]</span></div>
 <ul>
-<li><div id="toc-table-sorting"><div class="arrow"><div></div></div><a href="table-sorting">1. Table sorting</a><span class="hover-metadata"> | <a href="#toc-table-sorting">🔗 link</a> | <a href="#toc">↑ parent "Tables"</a></span></div></li>
+<li><div id="toc-table-sorting"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="table-sorting">1. Table sorting</a><span class="hover-metadata"> | <a href="#toc-table-sorting" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#table-sorting">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Tables"</a></span></div></li>
 </ul>
 </li>
 </ul>
@@ -298,7 +299,7 @@ Arbitrarily complex nested constructs may be used, e.g. a table inside a list in
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

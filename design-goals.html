@@ -17,36 +17,37 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="design-goals"><a href="" title="link to this element">Design goals</a><span>  | <a href="index-split">↑ parent "Cirodown"</a> | <a href=".#design-goals">nosplit</a></span></h1>
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="design-goals"><a href="" title="link to this element">Design goals</a><span>  | <a title="view all headers in a single page" href=".#design-goals">🗖 nosplit</a> | <a href="index-split" title="parent header">↑ parent "Cirodown"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#design-goals">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="index-split" title="parent header">↑ parent "Cirodown"</a></span></div>
 </div><div><span class="hide-hover"><a href="index-split#p-8">🔗</a></span><div class="p" id="p-8">Cirodown is designed entirely to allow writing complex professional HTML and PDF scientific books, blogs, articles and encyclopedias.</div></div><div><span class="hide-hover"><a href="index-split#p-9">🔗</a></span><div class="p" id="p-9">Cirodown aims to be the ultimate LaTeX "killer", allowing books to be finally published as either HTML or PDF painlessly (LaTeX being only a backend to PDF generation), supporting out of the box feature such as:<div><ul id="ul-2">
-<li id="l-8"><a href="internal-cross-references">references</a> to <a href="headers">headers</a>, <a href="images">images</a>, etc. with amazing error checking and reporting: never break internal links without knoing again, and quickly find out what broke when you do</li>
-<li id="l-9">KaTeX server side <a href="mathematics">mathematics</a></li>
+<li id="l-8"><a href="internal-cross-references" title="internal link">references</a> to <a href="headers" title="internal link">headers</a>, <a href="images" title="internal link">images</a>, etc. with amazing error checking and reporting: never break internal links without knoing again, and quickly find out what broke when you do</li>
+<li id="l-9">KaTeX server side <a href="mathematics" title="internal link">mathematics</a></li>
 <li id="l-10">multi file features out of the box so you don't need a separate wrapper like Jekyll to make a multi-page website:<div><ul id="ul-3">
-<li id="l-11"><a href="internal-cross-file-references">internal cross file references</a></li>
-<li id="l-12"><a href="table-of-contents">table of contents</a> that crosses input files</li>
+<li id="l-11"><a href="internal-cross-file-references" title="internal link">internal cross file references</a></li>
+<li id="l-12"><a href="table-of-contents" title="internal link">table of contents</a> that crosses input files</li>
 <li id="l-13"><code>inotifywait</code> watch rebuild server</li>
-<li id="l-14">single-source multi-format output based on <a href="includes">includes</a> and build options:<div><ul id="ul-4">
+<li id="l-14">single-source multi-format output based on <a href="includes" title="internal link">includes</a> and build options:<div><ul id="ul-4">
 <li id="l-15">one HTML per source with includes rendered as links between pages</li>
-<li id="l-16"><a href="embed-includes"><code>--embed-includes</code></a> single file output</li>
-<li id="l-17"><a href="split-headers"><code>--split-headers</code></a> option to output one spearate header per output flie</li>
-<li id="l-18">supports both local serverless rendering to HTML files and server oriented rendering, e.g. <a href="internal-cross-references">internal cross references</a> automatically get <code>.html</code> extension and or not</li>
+<li id="l-16"><a href="embed-includes" title="internal link"><code>--embed-includes</code></a> single file output</li>
+<li id="l-17"><a href="split-headers" title="internal link"><code>--split-headers</code></a> option to output one spearate header per output flie</li>
+<li id="l-18">supports both local serverless rendering to HTML files for local viewing, and server oriented rendering such as GItHub pages, e.g. <a href="internal-cross-references" title="internal link">internal cross references</a> automatically get <code>.html</code> extension and or not</li>
 </ul></div></li>
 <li id="l-19">cross file configuration files to factor out common page parts like headers and footers</li>
 </ul></div></li>
 <li id="l-20">advanced header/ID related features:<div><ul id="ul-5">
-<li id="l-21"><a href="scope">header <code>scope</code> argument</a></li>
+<li id="l-21"><a href="scope" title="internal link">header <code>scope</code> argument</a></li>
 </ul></div></li>
 <li id="l-22">is written in JavaScript and therefore runs natively on the browser to allow live previews</li>
 <li id="l-23">helps you with the publishing:<div><ul id="ul-6">
-<li id="l-24"><code>./cirodown --publish</code> helper for single command publishing to the configured target (default GitHub pages): <a href="publish"><code>-p, --publish</code></a></li>
-<li id="l-25">Cirodown tries to deal with media such as images and video intelligently for you, see e.g.: <a href="where-to-store-images">where to store images</a></li>
+<li id="l-24"><code>./cirodown --publish</code> helper for single command publishing to the configured target (default GitHub pages): <a href="publish" title="internal link"><code>-p, --publish</code></a></li>
+<li id="l-25">Cirodown tries to deal with media such as images and video intelligently for you, see e.g.: <a href="where-to-store-images" title="internal link">where to store images</a></li>
 </ul></div></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[2]</span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="number of descendant headers">[2]</span></div>
 <ul>
-<li><div id="toc-saner"><div class="arrow"><div></div></div><a href="saner">1. Saner</a><span class="hover-metadata"> | <a href="#toc-saner">🔗 link</a> | <a href="#toc">↑ parent "Design goals"</a></span></div></li>
-<li><div id="toc-more-powerful"><div class="arrow"><div></div></div><a href="more-powerful">2. More powerful</a><span class="hover-metadata"> | <a href="#toc-more-powerful">🔗 link</a> | <a href="#toc">↑ parent "Design goals"</a></span></div></li>
+<li><div id="toc-saner"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="saner">1. Saner</a><span class="hover-metadata"> | <a href="#toc-saner" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#saner">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Design goals"</a></span></div></li>
+<li><div id="toc-more-powerful"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="more-powerful">2. More powerful</a><span class="hover-metadata"> | <a href="#toc-more-powerful" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#more-powerful">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Design goals"</a></span></div></li>
 </ul>
 </li>
 </ul>
@@ -55,7 +56,7 @@
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

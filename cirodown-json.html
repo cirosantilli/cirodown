@@ -17,8 +17,9 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cirodown-json"><a href="" title="link to this element"><code>cirodown.json</code></a><span>  | <a href="cirodown-executable">↑ parent "<code>cirodown</code> executable"</a> | <a href=".#cirodown-json">nosplit</a></span></h1>
-</div><div><span class="hide-hover"><a href="index-split#p-775">🔗</a></span><div class="p" id="p-775">Cirodown configuration file that affects the behaviour of cirodown for all files in the directory.</div></div><div><span class="hide-hover"><a href="index-split#p-776">🔗</a></span><div class="p" id="p-776"><code>cirodown.json</code> not used for input from stdin, since we are mostly doing quick tests in that case.</div></div><div><span class="hide-hover"><a href="index-split#p-777">🔗</a></span><div class="p" id="p-777">While <code>cirodown.json</code> is optional, it is used to determine the toplevel directory of a Cirodown project, which has some effects such as those mentioned at <a href="the-toplevel-index-file">the toplevel index file</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-778">🔗</a></span><div class="p" id="p-778">Therefore, it is recommended that you always have a <code>cirodown.json</code> in your project's toplevel directory, even if it is going to be an empty JSON <code>{}</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-779">🔗</a></span><div class="p" id="p-779">For example, if you convert a file in a subdirectory such as:
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cirodown-json"><a href="" title="link to this element"><code>cirodown.json</code></a><span>  | <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href="cirodown-executable" title="parent header">↑ parent "<code>cirodown</code> executable"</a></span></h1>
+<div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="cirodown-executable" title="parent header">↑ parent "<code>cirodown</code> executable"</a></span></div>
+</div><div><span class="hide-hover"><a href="index-split#p-775">🔗</a></span><div class="p" id="p-775">Cirodown configuration file that affects the behaviour of cirodown for all files in the directory.</div></div><div><span class="hide-hover"><a href="index-split#p-776">🔗</a></span><div class="p" id="p-776"><code>cirodown.json</code> not used for input from stdin, since we are mostly doing quick tests in that case.</div></div><div><span class="hide-hover"><a href="index-split#p-777">🔗</a></span><div class="p" id="p-777">While <code>cirodown.json</code> is optional, it is used to determine the toplevel directory of a Cirodown project, which has some effects such as those mentioned at <a href="the-toplevel-index-file" title="internal link">the toplevel index file</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-778">🔗</a></span><div class="p" id="p-778">Therefore, it is recommended that you always have a <code>cirodown.json</code> in your project's toplevel directory, even if it is going to be an empty JSON <code>{}</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-779">🔗</a></span><div class="p" id="p-779">For example, if you convert a file in a subdirectory such as:
 <div class="code-caption-container" id="code-291">
 <pre><code>cirodown subdir/notindex.ciro
 </code></pre></div>
@@ -30,21 +31,21 @@ then <code>cirodown</code> walks up the filesystem tree looking for <code>cirodo
 </li>
 </ul></div>and so on.</div></div><div><span class="hide-hover"><a href="index-split#p-780">🔗</a></span><div class="p" id="p-780">Then, in that case:<div><ul id="ul-98">
 <li id="l-261">if no <code>cirodown.json</code> file is found, we don't know any better output toplevel than <code>subdir</code>/ itself, and so:<div><ul id="ul-99">
-<li id="l-262">the first header of subdir/notindex.ciro will have ID <code>notindex</code>, instead of <code>subdir/notindex</code> as per <a href="directory-based-scope">directory-based <code>scope</code></a></li>
-<li id="l-263"><a href="the-out-directory">the <code>out</code> directory</a> is located at <code>./subdir/out</code></li>
+<li id="l-262">the first header of subdir/notindex.ciro will have ID <code>notindex</code>, instead of <code>subdir/notindex</code> as per <a href="directory-based-scope" title="internal link">directory-based <code>scope</code></a></li>
+<li id="l-263"><a href="the-out-directory" title="internal link">the <code>out</code> directory</a> is located at <code>./subdir/out</code></li>
 </ul></div></li>
 <li id="l-264">otherwise, if <code>./cirodown.json</code> file is found:<div><ul id="ul-100">
 <li id="l-265">the first header of subdir/notindex.ciro will have ID <code>subdir/notindex</code>. Cirodown understands that <code>subdir</code> is relative to the toplevel at <code>.</code></li>
-<li id="l-266"><a href="the-out-directory">the <code>out</code> directory</a> is located at <code>./out</code>
+<li id="l-266"><a href="the-out-directory" title="internal link">the <code>out</code> directory</a> is located at <code>./out</code>
 </li>
 </ul></div></li>
-</ul></div>If given, the <a href="outdir"><code>--outdir &lt;outdir&gt;</code></a> option forces <a href="the-out-directory">the <code>out</code> directory</a> to be placed in <code>--outdir</code> however.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+</ul></div>If given, the <a href="outdir" title="internal link"><code>--outdir &lt;outdir&gt;</code></a> option forces <a href="the-out-directory" title="internal link">the <code>out</code> directory</a> to be placed in <code>--outdir</code> however.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="Number of descendants.">[3]</span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="number of descendant headers">[3]</span></div>
 <ul>
-<li><div id="toc-media-providers"><div class="arrow"><div></div></div><a href="media-providers">1. <code>media-providers</code></a><span class="hover-metadata"> | <a href="#toc-media-providers">🔗 link</a> | <a href="#toc">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
-<li><div id="toc-prepublish"><div class="arrow"><div></div></div><a href="prepublish">2. <code>prepublish</code></a><span class="hover-metadata"> | <a href="#toc-prepublish">🔗 link</a> | <a href="#toc">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
-<li><div id="toc-redirects"><div class="arrow"><div></div></div><a href="redirects">3. <code>redirects</code></a><span class="hover-metadata"> | <a href="#toc-redirects">🔗 link</a> | <a href="#toc">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
+<li><div id="toc-media-providers"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="media-providers">1. <code>media-providers</code></a><span class="hover-metadata"> | <a href="#toc-media-providers" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
+<li><div id="toc-prepublish"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="prepublish">2. <code>prepublish</code></a><span class="hover-metadata"> | <a href="#toc-prepublish" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#prepublish">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
+<li><div id="toc-redirects"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="redirects">3. <code>redirects</code></a><span class="hover-metadata"> | <a href="#toc-redirects" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#redirects">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
 </ul>
 </li>
 </ul>
@@ -53,7 +54,7 @@ then <code>cirodown</code> walks up the filesystem tree looking for <code>cirodo
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d">9dbaff356aa981f8c74f7b8df7d58d1a0ad8412d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/dfc39bc45ad0eb7dcec673259cbe4461e1f937b7">dfc39bc45ad0eb7dcec673259cbe4461e1f937b7</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
