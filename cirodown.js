@@ -23,6 +23,8 @@ const NOSPLIT_MARKER = '\u{1F5D6} nosplit';
 exports.NOSPLIT_MARKER = NOSPLIT_MARKER;
 const SPLIT_MARKER = '\u{1F5D7} split';
 exports.SPLIT_MARKER = SPLIT_MARKER;
+const PARENT_MARKER = '\u{2191} parent';
+exports.PARENT_MARKER = PARENT_MARKER;
 
 class AstNode {
   /**
@@ -3235,9 +3237,6 @@ function parse(tokens, options, context, extra_returns={}) {
           }
         }
         header_graph_last_level = cur_header_level;
-        if (ast.includes.length > 0) {
-          context.headers_with_include.push(ast);
-        }
         ast.header_graph_node = cur_header_graph_node;
 
         // Must come after the header tree step is mostly done, because scopes influence ID,
@@ -3341,7 +3340,10 @@ function parse(tokens, options, context, extra_returns={}) {
           ast = new PlaintextAstNode(ast.source_location, error_message_in_output(message));
           parse_error(state, message, ast.source_location);
         }
-
+        // Dump index of headers with includes.
+        if (ast.includes.length > 0) {
+          context.headers_with_include.push(ast);
+        }
         if (
           // These had been validated earlier during header processing.
           macro_name === Macro.HEADER_MACRO_NAME
@@ -4861,21 +4863,25 @@ const DEFAULT_MACRO_LIST = [
       }
       let parent_asts = [];
       let parent_tree_node = ast.header_graph_node.parent_node;
-      // Undefined on toplevel.
-      if (parent_tree_node !== undefined) {
+      if (
+        // Undefined on toplevel.
+        parent_tree_node !== undefined &&
         // May fail if there was a header skip error previously.
-        if (parent_tree_node.value !== undefined) {
-          parent_asts.push(parent_tree_node.value);
-        }
+        parent_tree_node.value !== undefined
+      ) {
+        parent_asts.push(parent_tree_node.value);
       }
       parent_asts.push(...context.id_provider.get_includes(ast.id, context));
-      let parent_links = '';
+      let parent_links = [];
       for (const parent_ast of parent_asts) {
         let parent_href = x_href_attr(parent_ast, context);
         let parent_body = convert_arg(parent_ast.args[Macro.TITLE_ARGUMENT_NAME], context);
-        parent_links += `<a${parent_href}${html_attr('title', 'parent header')}>\u2191 parent "${parent_body}"</a>`;
+        parent_links.push(`<a${parent_href}${html_attr('title', 'parent header')}>${PARENT_MARKER} "${parent_body}"</a>`);
       }
-      ret += `${HEADER_MENU_ITEM_SEP}${parent_links}`;
+      parent_links = parent_links.join(HEADER_MENU_ITEM_SEP);
+      if (parent_links) {
+        ret += `${HEADER_MENU_ITEM_SEP}${parent_links}`;
+      }
       ret += `</span>`;
       ret += `</h${level_int_capped}>\n`;
       let wiki_link;
@@ -4903,6 +4909,7 @@ const DEFAULT_MACRO_LIST = [
         header_meta.push(wiki_link);
       }
       if (
+        // May fail in some error scenarios.
         context.toplevel_ast !== undefined &&
         ast.id === context.toplevel_ast.id &&
         header_meta
@@ -5367,7 +5374,7 @@ const DEFAULT_MACRO_LIST = [
           }
           let parent_href = html_attr('href', '#' + parent_href_target);
           let parent_body = convert_arg(parent_ast.args[Macro.TITLE_ARGUMENT_NAME], context);
-          ret += `${HEADER_MENU_ITEM_SEP}<a${parent_href}${html_attr('title', 'parent ToC entry')}>\u2191 parent "${parent_body}"</a>`;
+          ret += `${HEADER_MENU_ITEM_SEP}<a${parent_href}${html_attr('title', 'parent ToC entry')}>${PARENT_MARKER} "${parent_body}"</a>`;
         }
         ret += `</span></div>`;
         if (tree_node.children.length > 0) {

@@ -1649,7 +1649,7 @@ assert_convert_ast('cross reference to non-included header in another file',
       ],
       'bb.html': [
         // Cross-page split-header parent link.
-        "//x:h1//x:a[@href='notindex-split.html' and text()='\u2191 parent \"aa\"']",
+        `//x:h1//x:a[@href='notindex-split.html' and text()='${cirodown.PARENT_MARKER} \"aa\"']`,
         "//x:a[@href='notindex-split.html' and text()='notindex2']",
         "//x:a[@href='' and text()='bb2']",
         // Link to the split version.
@@ -2448,10 +2448,10 @@ assert_convert_ast('split headers have correct table of contents',
 
       // ToC links have parent toc entry links.
       // Toplevel entries point to the ToC toplevel.
-      "//*[@id='toc']//*[@id='toc-h1-1']//x:a[@href='#toc' and text()='\u2191 parent \"h1\"']",
-      "//*[@id='toc']//*[@id='toc-h1-2']//x:a[@href='#toc' and text()='\u2191 parent \"h1\"']",
+      `//*[@id='toc']//*[@id='toc-h1-1']//x:a[@href='#toc' and text()='${cirodown.PARENT_MARKER} \"h1\"']`,
+      `//*[@id='toc']//*[@id='toc-h1-2']//x:a[@href='#toc' and text()='${cirodown.PARENT_MARKER} \"h1\"']`,
       // Inner entries point to their parent entries.
-      "//*[@id='toc']//*[@id='toc-h1-2-1']//x:a[@href='#toc-h1-2' and text()='\u2191 parent \"h1 2\"']",
+      `//*[@id='toc']//*[@id='toc-h1-2-1']//x:a[@href='#toc-h1-2' and text()='${cirodown.PARENT_MARKER} \"h1 2\"']`,
 
       // The ToC numbers look OK.
       "//*[@id='toc']//x:a[@href='#h1-2' and text()='2. h1 2']",
@@ -2483,8 +2483,8 @@ assert_convert_ast('split headers have correct table of contents',
         "//*[@id='toc']//x:a[@href='h1-2-1-1.html' and text()='1.1. h1 2 1 1']",
 
         // ToC links in split headers have parent toc entry links.
-        "//*[@id='toc']//*[@id='toc-h1-2-1']//x:a[@href='#toc' and text()='\u2191 parent \"h1 2\"']",
-        "//*[@id='toc']//*[@id='toc-h1-2-1-1']//x:a[@href='#toc-h1-2-1' and text()='\u2191 parent \"h1 2 1\"']",
+        `//*[@id='toc']//*[@id='toc-h1-2-1']//x:a[@href='#toc' and text()='${cirodown.PARENT_MARKER} \"h1 2\"']`,
+        `//*[@id='toc']//*[@id='toc-h1-2-1-1']//x:a[@href='#toc-h1-2-1' and text()='${cirodown.PARENT_MARKER} \"h1 2 1\"']`,
 
         // Descendant count.
         "//*[@id='toc']//*[@class='title-div']//*[@class='descendant-count' and text()='[2]']",
@@ -2971,6 +2971,8 @@ $$
 \\mycmd
 $$
 
+\\Include[included-by-h2-in-index]
+
 == h2 2
 
 \\x[h2]{full}
@@ -3023,6 +3025,10 @@ $$
 
 == Included by index h2
 `,
+  'included-by-h2-in-index.ciro': `= Included by h2 in index
+
+== Included by h2 in index h2
+`,
   'subdir/index.ciro': `= Subdir index
 
 \\x[index][link to toplevel]
@@ -3062,6 +3068,20 @@ assert_executable(
         "//x:blockquote[text()='A Cirodown example!']",
         `//x:h2[@id='index-scope']//x:a[@href='index-scope.html' and text()='${cirodown.SPLIT_MARKER}']`,
         `//x:h3[@id='index-scope/index-scope-2']//x:a[@href='index-scope/index-scope-2.html' and text()='${cirodown.SPLIT_MARKER}']`,
+      ],
+      'included-by-index.html': [
+        // Cross input file header.
+        `//x:h1//x:a[@href='index.html' and text()='${cirodown.PARENT_MARKER} \"Index\"']`,
+      ],
+      'included-by-index-split.html': [
+        // Cross input file header on split header.
+        `//x:h1//x:a[@href='index-split.html' and text()='${cirodown.PARENT_MARKER} \"Index\"']`,
+      ],
+      'included-by-h2-in-index.html': [
+        `//x:h1//x:a[@href='index.html#h2' and text()='${cirodown.PARENT_MARKER} \"h2\"']`,
+      ],
+      'included-by-h2-in-index-split.html': [
+        `//x:h1//x:a[@href='h2.html' and text()='${cirodown.PARENT_MARKER} \"h2\"']`,
       ],
       'index-split.html': [
         // Full links between split header pages have correct numbering.

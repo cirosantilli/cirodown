@@ -380,7 +380,9 @@ function convert_path(input_path, options, convert_input_options) {
       }
       for (const header_ast of context.headers_with_include) {
         for (const include of header_ast.includes) {
-          insert_include_stmt.run(header_ast.id, header_ast.source_location.path, include);
+          insert_include_stmt.run(
+            header_ast.id, header_ast.source_location.path, include
+          );
         }
       }
       let toplevel_id;
