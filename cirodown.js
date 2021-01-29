@@ -1965,7 +1965,7 @@ function convert(
     if (context.options.log['split-headers']) {
       console.error('split-headers non-split: ' + context.options.input_path);
     }
-    context.katex_macros = {};
+    context.katex_macros = Object.assign({}, context.options.katex_macros);
     output = ast.convert(context);
     if (context.toplevel_output_path !== undefined) {
       context.extra_returns.rendered_outputs[context.toplevel_output_path] = output;
@@ -2188,6 +2188,7 @@ function convert_init_context(options={}, extra_returns={}) {
   if (!('id_provider' in options)) { options.id_provider = undefined; }
   if (!('include_path_set' in options)) { options.include_path_set = new Set(); }
   if (!('input_path' in options)) { options.input_path = undefined; }
+  if (!('katex_macros' in options)) { options.katex_macros = {}; }
   if (!('log' in options)) { options.log = {}; }
   // Override the default calculated output file for the main input.
   if (!('outfile' in options)) { options.outfile = undefined; }
@@ -2237,7 +2238,7 @@ function convert_init_context(options={}, extra_returns={}) {
   }
   extra_returns.errors = [];
   let context = {
-    katex_macros: {},
+    katex_macros: Object.assign({}, options.katex_macros),
     in_split_headers: false,
     errors: [],
     extra_returns: extra_returns,

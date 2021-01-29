@@ -19,26 +19,26 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cirodown-executable"><a href="" title="link to this element"><code>cirodown</code> executable</a><span>  | <a title="view all headers in a single page" href=".#cirodown-executable">🗖 nosplit</a> | <a href="tooling" title="parent header">↑ parent "Tooling"</a></span></h1>
 <div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#cirodown-executable">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="tooling" title="parent header">↑ parent "Tooling"</a></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-657">🔗</a></span><div class="p" id="p-657">Convert a <code>.ciro</code> file to HTML and output the HTML to a file with the same basename without extension, e.g.:
-<div class="code-caption-container" id="code-256">
+</div><div><span class="hide-hover"><a href="index-split#p-659">🔗</a></span><div class="p" id="p-659">Convert a <code>.ciro</code> file to HTML and output the HTML to a file with the same basename without extension, e.g.:
+<div class="code-caption-container" id="code-258">
 <pre><code>cirodown hello.ciro
 firefox hello.html
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-658">🔗</a></span><div class="p" id="p-658">Files named <code>README.ciro</code> are automatically converted to <code>index.html</code> so that they will show on both GitHub READMEs and at the website's base address:
-<div class="code-caption-container" id="code-257">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-660">🔗</a></span><div class="p" id="p-660">Files named <code>README.ciro</code> are automatically converted to <code>index.html</code> so that they will show on both GitHub READMEs and at the website's base address:
+<div class="code-caption-container" id="code-259">
 <pre><code>cirodown README.ciro
 firefox hello.html
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-659">🔗</a></span><div class="p" id="p-659">Convert all <code>.ciro</code> files in a directory to HTML files next to each corresponding <code>.ciro</code> file, e.g. <code>somefile.ciro</code> to <code>somefile.html</code>:
-<div class="code-caption-container" id="code-258">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-661">🔗</a></span><div class="p" id="p-661">Convert all <code>.ciro</code> files in a directory to HTML files next to each corresponding <code>.ciro</code> file, e.g. <code>somefile.ciro</code> to <code>somefile.html</code>:
+<div class="code-caption-container" id="code-260">
 <pre><code>cirodown .
 </code></pre></div>
-The HTML output files are placed right next to each corresponding <code>.ciro</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-660">🔗</a></span><div class="p" id="p-660">The output file can be selected explicitly with: <a href="outfile" title="internal link"><code>--outfile &lt;outfie&gt;</code></a>.</div></div><div><span class="hide-hover"><a href="index-split#p-661">🔗</a></span><div class="p" id="p-661">Output to stdout instead of saving it to a file:
-<div class="code-caption-container" id="code-259">
+The HTML output files are placed right next to each corresponding <code>.ciro</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-662">🔗</a></span><div class="p" id="p-662">The output file can be selected explicitly with: <a href="outfile" title="internal link"><code>--outfile &lt;outfie&gt;</code></a>.</div></div><div><span class="hide-hover"><a href="index-split#p-663">🔗</a></span><div class="p" id="p-663">Output to stdout instead of saving it to a file:
+<div class="code-caption-container" id="code-261">
 <pre><code>cirodown --stdout README.ciro
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-662">🔗</a></span><div class="p" id="p-662">In order to resolve <a href="internal-cross-file-references" title="internal link">internal cross file references</a>, this actually does two passes:<div><ul id="ul-79">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-664">🔗</a></span><div class="p" id="p-664">In order to resolve <a href="internal-cross-file-references" title="internal link">internal cross file references</a>, this actually does two passes:<div><ul id="ul-79">
 <li id="l-216">first an ID extraction pass, which parses all inputs and dumps their IDs to the ID database</li>
 <li id="l-217">then a second render pass, which uses the IDs in the ID database</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-663">🔗</a></span><div class="p" id="p-663">Convert a <code>.ciro</code> file from stdin to HTML and output the contents of <code>&lt;body&gt;</code> to stdout:
-<div class="code-caption-container" id="code-260">
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-665">🔗</a></span><div class="p" id="p-665">Convert a <code>.ciro</code> file from stdin to HTML and output the contents of <code>&lt;body&gt;</code> to stdout:
+<div class="code-caption-container" id="code-262">
 <pre><code>printf 'ab\ncd\n' | cirodown --body-only
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
@@ -105,7 +105,7 @@ The HTML output files are placed right next to each corresponding <code>.ciro</c
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a81051d2e91cb9e4a8dc117dcb4e5192c300665a">a81051d2e91cb9e4a8dc117dcb4e5192c300665a</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b5e1be24d2989552bc721899a1ed7a01374a8798">b5e1be24d2989552bc721899a1ed7a01374a8798</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

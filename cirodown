@@ -12,12 +12,14 @@ const chokidar = require('chokidar');
 const commander = require('commander');
 const git_url_parse = require("git-url-parse");
 const is_installed_globally = require('is-installed-globally');
+const katex = require('katex');
 const sass = require('sass');
 
 const cirodown = require('cirodown');
 const cirodown_nodejs = require('cirodown/nodejs');
 
 const CIRODOWN_JSON_BASENAME = 'cirodown.json';
+const CIRODOWN_TEX_BASENAME = 'cirodown.tex';
 const LOG_OPTIONS = new Set([
   'ast',
   'headers',
@@ -881,6 +883,23 @@ A link to another file: \\x[and-now-an-include]
         publish_out_dir = path.join(publish_dir, TMP_DIRNAME);
       }
     }
+
+    // CIRODOWN_TEX_BASENAME
+    let tex_path = path.join(cirodown_json_dir, CIRODOWN_TEX_BASENAME);
+    const katex_macros = {};
+    if (fs.existsSync(tex_path)) {
+      katex.renderToString(
+        fs.readFileSync(tex_path, cirodown_nodejs.ENCODING),
+        {
+          globalGroup: true,
+          macros: katex_macros,
+          output: 'html',
+          strict: 'error',
+          throwOnError: true,
+        }
+      );
+    }
+    options.katex_macros = katex_macros;
 
     // Setup the ID database.
     if (commander.db) {

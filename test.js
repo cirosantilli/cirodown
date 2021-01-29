@@ -3312,3 +3312,13 @@ assert_executable(
     }
   }
 );
+assert_executable(
+  'executable: cirodown.tex does not blow up',
+  {
+    args: ['README.ciro'],
+    filesystem: {
+      'README.ciro': `$$\\mycmd$$`,
+      'cirodown.tex': `\\newcommand{\\mycmd}[0]{hello}`,
+    },
+  }
+);

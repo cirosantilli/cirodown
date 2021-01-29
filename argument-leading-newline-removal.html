@@ -19,8 +19,8 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="argument-leading-newline-removal"><a href="" title="link to this element">Argument leading newline removal</a><span>  | <a title="view all headers in a single page" href=".#argument-leading-newline-removal">🗖 nosplit</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a></span></h1>
 <div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#argument-leading-newline-removal">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-623">🔗</a></span><div class="p" id="p-623">If the very first character of an argument is a newline, then that character is ignored if it would be part of a regular plaintext node.</div></div><div><span class="hide-hover"><a href="index-split#p-624">🔗</a></span><div class="p" id="p-624">For example:
-<div class="code-caption-container" id="code-240">
+</div><div><span class="hide-hover"><a href="index-split#p-625">🔗</a></span><div class="p" id="p-625">If the very first character of an argument is a newline, then that character is ignored if it would be part of a regular plaintext node.</div></div><div><span class="hide-hover"><a href="index-split#p-626">🔗</a></span><div class="p" id="p-626">For example:
+<div class="code-caption-container" id="code-242">
 <pre><code>\C[[
 a
 
@@ -28,27 +28,27 @@ b
 ]]
 </code></pre></div>
 generates something like:
-<div class="code-caption-container" id="code-241">
+<div class="code-caption-container" id="code-243">
 <pre><code>&lt;pre&gt;&lt;code&gt;a
 
 b
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre></div>
 instead of:
-<div class="code-caption-container" id="code-242">
+<div class="code-caption-container" id="code-244">
 <pre><code>&lt;pre&gt;&lt;code&gt;
 a
 
 b
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre></div>
-This is extremely convenient to improve the readability of code blocks and similar constructs.</div></div><div><span class="hide-hover"><a href="index-split#p-625">🔗</a></span><div class="p" id="p-625">The newline is however considered if it would be part of some <a href="insane-macro-shortcuts" title="internal link">insane macro shortcut</a>. For example, we can start an <a href="lists" title="internal link">insane list</a> inside a <a href="quotations" title="internal link">quotation</a> as in:
-<div class="code-caption-container" id="code-243">
+This is extremely convenient to improve the readability of code blocks and similar constructs.</div></div><div><span class="hide-hover"><a href="index-split#p-627">🔗</a></span><div class="p" id="p-627">The newline is however considered if it would be part of some <a href="insane-macro-shortcuts" title="internal link">insane macro shortcut</a>. For example, we can start an <a href="lists" title="internal link">insane list</a> inside a <a href="quotations" title="internal link">quotation</a> as in:
+<div class="code-caption-container" id="code-245">
 <pre><code>\Q[
 * a
 * b
 ]
-</code></pre></div><div class="p" id="p-626">which renders as:</div><blockquote id="q-128"><blockquote id="q-129"><div><ul id="ul-72">
+</code></pre></div><div class="p" id="p-628">which renders as:</div><blockquote id="q-128"><blockquote id="q-129"><div><ul id="ul-72">
 <li id="l-198">a</li>
 <li id="l-199">b
 </li>
@@ -57,7 +57,7 @@ where the insane list requires a leading newline <code>\n* </code> to work. That
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a81051d2e91cb9e4a8dc117dcb4e5192c300665a">a81051d2e91cb9e4a8dc117dcb4e5192c300665a</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b5e1be24d2989552bc721899a1ed7a01374a8798">b5e1be24d2989552bc721899a1ed7a01374a8798</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

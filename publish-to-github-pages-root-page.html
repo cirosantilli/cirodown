@@ -19,25 +19,25 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="publish-to-github-pages-root-page"><a href="" title="link to this element">Publish to GitHub pages root page</a><span>  | <a title="view all headers in a single page" href=".#publish-to-github-pages-root-page">🗖 nosplit</a> | <a href="publish-to-github-pages" title="parent header">↑ parent "Publish to GitHub Pages"</a></span></h1>
 <div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#publish-to-github-pages-root-page">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="publish-to-github-pages" title="parent header">↑ parent "Publish to GitHub Pages"</a></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-739">🔗</a></span><div class="p" id="p-739">If you want to publish your root user page, which appears at <code>/</code> (e.g. <a href="https://github.com/cirosantilli/cirosantilli.github.io">https://github.com/cirosantilli/cirosantilli.github.io</a> for the user <code>cirosantilli</code>), GitHub annoyingly forces you to use the <code>master</code> branch for the HTML output:<div><ul id="ul-91">
+</div><div><span class="hide-hover"><a href="index-split#p-741">🔗</a></span><div class="p" id="p-741">If you want to publish your root user page, which appears at <code>/</code> (e.g. <a href="https://github.com/cirosantilli/cirosantilli.github.io">https://github.com/cirosantilli/cirosantilli.github.io</a> for the user <code>cirosantilli</code>), GitHub annoyingly forces you to use the <code>master</code> branch for the HTML output:<div><ul id="ul-91">
 <li id="l-241"><a href="https://github.com/isaacs/github/issues/212">https://github.com/isaacs/github/issues/212</a></li>
 <li id="l-242"><a href="https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages">https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages</a></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-740">🔗</a></span><div class="p" id="p-740">This means that you must place your <code>.ciro</code> input files in a branch other than <code>master</code> to clear up <code>master</code> for the generated HTML.</div></div><div><span class="hide-hover"><a href="index-split#p-741">🔗</a></span><div class="p" id="p-741"><code>cirodown</code> automatically detects if your repository ois a root repository or not by parsing <code>git remote</code> output, but you must setup the branches correctly yourself.</div></div><div><span class="hide-hover"><a href="index-split#p-742">🔗</a></span><div class="p" id="p-742">So on a new repository, you must <a href="https://stackoverflow.com/questions/42871542/how-to-create-a-git-repository-with-the-default-branch-name-other-than-master">first checkout to a different branch</a> as in:
-<div class="code-caption-container" id="code-276">
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-742">🔗</a></span><div class="p" id="p-742">This means that you must place your <code>.ciro</code> input files in a branch other than <code>master</code> to clear up <code>master</code> for the generated HTML.</div></div><div><span class="hide-hover"><a href="index-split#p-743">🔗</a></span><div class="p" id="p-743"><code>cirodown</code> automatically detects if your repository ois a root repository or not by parsing <code>git remote</code> output, but you must setup the branches correctly yourself.</div></div><div><span class="hide-hover"><a href="index-split#p-744">🔗</a></span><div class="p" id="p-744">So on a new repository, you must <a href="https://stackoverflow.com/questions/42871542/how-to-create-a-git-repository-with-the-default-branch-name-other-than-master">first checkout to a different branch</a> as in:
+<div class="code-caption-container" id="code-278">
 <pre><code>git init
 git checkout -b dev
 </code></pre></div>
 or to move an existing repository to a non-master branch:
-<div class="code-caption-container" id="code-277">
+<div class="code-caption-container" id="code-279">
 <pre><code>git checkout -b dev
 git push origin dev:dev
 git branch -D master
 git push --delete origin master
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-743">🔗</a></span><div class="p" id="p-743">You then will also want to set your default repository branch to <code>dev</code> in the settings for that repository: <a href="https://help.github.com/en/github/administering-a-repository/setting-the-default-branch">https://help.github.com/en/github/administering-a-repository/setting-the-default-branch</a></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-745">🔗</a></span><div class="p" id="p-745">You then will also want to set your default repository branch to <code>dev</code> in the settings for that repository: <a href="https://help.github.com/en/github/administering-a-repository/setting-the-default-branch">https://help.github.com/en/github/administering-a-repository/setting-the-default-branch</a></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a81051d2e91cb9e4a8dc117dcb4e5192c300665a">a81051d2e91cb9e4a8dc117dcb4e5192c300665a</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b5e1be24d2989552bc721899a1ed7a01374a8798">b5e1be24d2989552bc721899a1ed7a01374a8798</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
