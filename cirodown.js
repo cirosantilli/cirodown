@@ -2231,17 +2231,6 @@ function convert_init_context(options={}, extra_returns={}) {
   }
     if (!('head' in options.template_vars)) { options.template_vars.head = ''; }
     if (!('root_relpath' in options.template_vars)) { options.template_vars.root_relpath = ''; }
-    if (!('root_page' in options.template_vars)) {
-      if (options.html_x_extension) {
-        options.template_vars.root_page = options.template_vars.root_relpath + INDEX_BASENAME_NOEXT + '.' + HTML_EXT;
-      } else {
-        if (options.template_vars.root_relpath === '') {
-          options.template_vars.root_page = '.'
-        } else {
-          options.template_vars.root_page = options.template_vars.root_relpath;
-        }
-      }
-    }
     if (!('post_body' in options.template_vars)) { options.template_vars.post_body = ''; }
     if (!('style' in options.template_vars)) { options.template_vars.style = ''; }
   // If given, force the toplevel header to have this ID.
@@ -5533,8 +5522,22 @@ const DEFAULT_MACRO_LIST = [
         //);
         //body += incoming_ul_ast.convert(context);
 
+        let root_page;
+        if (context.options.html_x_extension) {
+          root_page = context.options.template_vars.root_relpath + INDEX_BASENAME_NOEXT + '.' + HTML_EXT;
+        } else {
+          if (context.options.template_vars.root_relpath === '') {
+            root_page = '.'
+          } else {
+            root_page = context.options.template_vars.root_relpath;
+          }
+        }
+        if (root_page === context.toplevel_output_path) {
+          root_page = '';
+        }
         const render_env = {
           body: body,
+          root_page: root_page,
           title: convert_arg(title, context),
         };
         Object.assign(render_env, context.options.template_vars);

@@ -3073,6 +3073,7 @@ assert_executable(
     filesystem: complex_filesystem,
     expect_filesystem_xpath: {
       'index.html': [
+        "//x:header//x:a[@href='']",
         "//x:h1[@id='index']",
         "//x:div[@class='p']//x:a[@href='notindex.html' and text()='link to notindex']",
         "//x:div[@class='p']//x:a[@href='notindex.html#notindex-h2' and text()='link to notindex h2']",
@@ -3094,9 +3095,11 @@ assert_executable(
       ],
       'included-by-index.html': [
         // Cross input file header.
+        "//x:header//x:a[@href='index.html']",
         `//x:h1//x:a[@href='index.html' and text()='${cirodown.PARENT_MARKER} \"Index\"']`,
       ],
       'included-by-index-split.html': [
+        "//x:header//x:a[@href='index.html']",
         // Cross input file header on split header.
         `//x:h1//x:a[@href='index-split.html' and text()='${cirodown.PARENT_MARKER} \"Index\"']`,
       ],
@@ -3142,18 +3145,21 @@ assert_executable(
         "//x:h1[@id='has-split-suffix']",
       ],
       'subdir/index.html': [
+        "//x:header//x:a[@href='../index.html']",
         "//x:h1[@id='subdir']",
         "//x:h2[@id='index-h2']",
         "//x:a[@href='../index.html' and text()='link to toplevel']",
         "//x:a[@href='../index.html#h2' and text()='link to toplevel subheader']",
       ],
       'subdir/index-split.html': [
+        "//x:header//x:a[@href='../index.html']",
         "//x:h1[@id='index']",
         // Check that split suffix works. Should be has-split-suffix-split.html,
         // not has-split-suffix.html.
         "//x:div[@class='p']//x:a[@href='has-split-suffix-split.html' and text()='link to has split suffix']",
       ],
       'subdir/notindex.html': [
+        "//x:header//x:a[@href='../index.html']",
         "//x:h1[@id='notindex']",
         "//x:h2[@id='notindex-h2']",
       ],
@@ -3173,6 +3179,7 @@ assert_executable(
         "//x:h1[@id='notindex-h2']",
       ],
       'index-scope.html': [
+        "//x:header//x:a[@href='index.html']",
         `//x:h1[@id='index-scope']//x:a[@href='index.html#index-scope' and text()='${cirodown.NOSPLIT_MARKER}']`,
       ],
       'index-scope/index-scope-2.html': [
@@ -3187,6 +3194,7 @@ assert_executable(
         `//x:h1[@id='toplevel-scope']//x:a[@href='toplevel-scope.html' and text()='${cirodown.NOSPLIT_MARKER}']`,
       ],
       'toplevel-scope/toplevel-scope-h2.html': [
+        "//x:header//x:a[@href='../index.html']",
         `//x:h1[@id='toplevel-scope-h2']//x:a[@href='../toplevel-scope.html#toplevel-scope-h2' and text()='${cirodown.NOSPLIT_MARKER}']`,
       ],
       'toplevel-scope/nested-scope.html': [
