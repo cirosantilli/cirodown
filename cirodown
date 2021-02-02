@@ -18,6 +18,12 @@ const sass = require('sass');
 const cirodown = require('cirodown');
 const cirodown_nodejs = require('cirodown/nodejs');
 
+// Enum stored in Sqlite DB to represent different types of links.
+const INCLUDES_TABLE_NAMES_TYPES = {
+  'INCLUDE': 0,
+  'X': 1,
+  'X_CHILD': 2,
+};
 const CIRODOWN_JSON_BASENAME = 'cirodown.json';
 const CIRODOWN_TEX_BASENAME = 'cirodown.tex';
 const LOG_OPTIONS = new Set([
@@ -55,7 +61,7 @@ class SqliteIdProvider extends cirodown.IdProvider {
     this.get_id_stmt = convert_input_options.db.prepare(
       `SELECT path,ast_json FROM ${convert_input_options.ids_table_name} WHERE id = ?`);
     this.get_includes_stmt = convert_input_options.db.prepare(
-      `SELECT from_id FROM ${convert_input_options.includes_table_name} WHERE to_id = ?`);
+      `SELECT from_id FROM ${convert_input_options.includes_table_name} WHERE to_id = ? AND type = ?`);
   }
 
   clear(input_path) {
@@ -68,7 +74,15 @@ class SqliteIdProvider extends cirodown.IdProvider {
   }
 
   get_includes_entries(to_id) {
-    return this.get_includes_stmt.all(to_id);
+    return this.get_includes_stmt.all(to_id, INCLUDES_TABLE_NAMES_TYPES['INCLUDE']);
+  }
+
+  get_from_header_ids_of_xrefs_to(to_id) {
+    const ret = new Set();
+    for (const entry of this.get_includes_stmt.all(to_id, INCLUDES_TABLE_NAMES_TYPES['X'])) {
+      ret.add(entry.from_id);
+    }
+    return ret;
   }
 }
 
@@ -364,7 +378,7 @@ function convert_path(input_path, options, convert_input_options) {
     );
     const insert_include_stmt = convert_input_options.db.prepare(
       `INSERT INTO '${convert_input_options.includes_table_name}'
-      (from_id, from_path, to_id) VALUES (?, ?, ?);`
+      (from_id, from_path, to_id, type) VALUES (?, ?, ?, ?);`
     );
     const insert_file_stmt = convert_input_options.db.prepare(
       `INSERT OR REPLACE INTO '${convert_input_options.files_table_name}' ` +
@@ -383,8 +397,38 @@ function convert_path(input_path, options, convert_input_options) {
       for (const header_ast of context.headers_with_include) {
         for (const include of header_ast.includes) {
           insert_include_stmt.run(
-            header_ast.id, header_ast.source_location.path, include
+            header_ast.id,
+            header_ast.source_location.path,
+            include,
+            INCLUDES_TABLE_NAMES_TYPES['INCLUDE']
           );
+        }
+      }
+      for (const to_id in context.xref_from_to_dict) {
+        for (const from_id of context.xref_from_to_dict[to_id]) {
+          if (
+            // TODO happens on CirodownExample, likely also include,
+            // need to fix and remove this if.
+            from_id !== undefined
+          ) {
+            const from_header = context.id_provider.get(from_id);
+            if (
+              // Can happen when the database is not yet populated,
+              // leading to ID not being present.
+              from_header !== undefined
+            ) {
+              if (context.id_provider.get(from_id)===undefined){
+                console.error(from_id);
+                asdf
+              }
+              insert_include_stmt.run(
+                from_id,
+                from_header.source_location.path,
+                to_id,
+                INCLUDES_TABLE_NAMES_TYPES['X']
+              );
+            }
+          }
         }
       }
       let toplevel_id;
@@ -503,8 +547,15 @@ function create_db(convert_input_options) {
       CREATE TABLE '${convert_input_options.includes_table_name}' (
         from_id TEXT,
         from_path TEXT,
-        to_id TEXT
+        to_id TEXT,
+        type TINYINT
       )`
+    ).run();
+    db.prepare(`CREATE INDEX ${convert_input_options.includes_table_name}_from_path
+      ON ${convert_input_options.includes_table_name}(from_path)`
+    ).run();
+    db.prepare(`CREATE INDEX ${convert_input_options.includes_table_name}_from_id_type
+      ON ${convert_input_options.includes_table_name}(from_id, type)`
     ).run();
   }
   if (
@@ -907,6 +958,7 @@ A link to another file: \\x[and-now-an-include]
       convert_input_options.ids_table_name = 'ids';
       convert_input_options.includes_table_name = 'includes';
       convert_input_options.files_table_name = 'files';
+      convert_input_options.refs_table_name = 'refs';
     }
     if (commander.generateRedirects) {
       generate_redirects(convert_input_options, cirodown_json, outdir);

@@ -190,6 +190,18 @@ class AstNode {
     if (!('macros' in context)) {
       throw new Error('context does not have a mandatory .macros property');
     }
+    if (!('source_location' in context)) {
+      // Set a source location to this element and the entire subtree.
+      // This allwos for less verbose manual construction of trees with
+      // a single dummy source_loctaion.
+      context.source_location = undefined;
+    }
+    if (!('validate_ast' in context)) {
+      // Do validate_ast to this element and the entire subtree.
+      // This allwos for less verbose manual construction of trees with
+      // a single dummy source_loctaion.
+      context.validate_ast = false;
+    }
     if (!('x_parents' in context)) {
       context.x_parents = new Set();
     }
@@ -199,6 +211,12 @@ class AstNode {
       !this.from_cirodown_example
     ) {
       return '';
+    }
+    if (context.source_loction) {
+      this.source_location = context.source_location;
+    }
+    if (context.validate_ast) {
+      validate_ast(this, context);
     }
     const macro = context.macros[this.macro_name];
     let out;
@@ -218,7 +236,12 @@ class AstNode {
         out = convert_function(this, context);
       }
     } else {
-      render_error(context, this.validation_error[0], this.validation_error[1], this.validation_error[2]);
+      render_error(
+        context,
+        this.validation_error[0],
+        this.validation_error[1],
+        this.validation_error[2]
+      );
       out = error_message_in_output(this.validation_error[0], context);
     }
 
@@ -353,6 +376,9 @@ class AstArgument extends Array {
    *  @ param {SourceLocation} source_location
    */
   constructor(nodes, source_location) {
+    if (nodes === undefined) {
+      nodes = []
+    }
     super(...nodes)
     this.source_location = source_location;
     // AstNode
@@ -532,6 +558,9 @@ class IdProvider {
   }
 
   get_includes_entries(to_id) { throw new Error('unimplemented'); }
+
+  /** Set of IDs. */
+  get_from_header_ids_of_xrefs_to(to_id) { throw new Error('unimplemented'); }
 }
 exports.IdProvider = IdProvider;
 
@@ -562,6 +591,12 @@ class ChainedIdProvider extends IdProvider {
     return this.id_provider_1.get_includes(id, context).concat(
       this.id_provider_2.get_includes(id, context));
   }
+  get_from_header_ids_of_xrefs_to(to_id, context) {
+    return new Set([
+      ...this.id_provider_1.get_from_header_ids_of_xrefs_to(to_id, context),
+      ...this.id_provider_2.get_from_header_ids_of_xrefs_to(to_id, context),
+    ]);
+  }
 }
 
 /** ID provider from a dict.
@@ -569,9 +604,10 @@ class ChainedIdProvider extends IdProvider {
  * them into ChainedIdProvider together with externally defined IDs.
  */
 class DictIdProvider extends IdProvider {
-  constructor(dict) {
+  constructor(dict, xref_from_to_dict) {
     super();
     this.dict = dict;
+    this.xref_from_to_dict = xref_from_to_dict;
   }
   get_noscope(id, context) {
     if (id in this.dict) {
@@ -581,6 +617,13 @@ class DictIdProvider extends IdProvider {
   }
   get_includes(id, context) {
     return [];
+  }
+  get_from_header_ids_of_xrefs_to(to_id, context) {
+    if (to_id in this.xref_from_to_dict) {
+      return this.xref_from_to_dict[to_id];
+    } else {
+      return new Set();
+    }
   }
 }
 
@@ -818,7 +861,7 @@ Macro.TOPLEVEL_MACRO_NAME = 'Toplevel';
 
 /** Helper to create plaintext nodes, since so many of the fields are fixed in that case. */
 class PlaintextAstNode extends AstNode {
-  constructor(source_location, text) {
+  constructor(text, source_location) {
     super(AstType.PLAINTEXT, Macro.PLAINTEXT_MACRO_NAME,
       {}, source_location, {text: text});
   }
@@ -1657,8 +1700,8 @@ function calculate_id(ast, context, non_indexed_ids, indexed_ids,
         if (message !== undefined) {
           title_arg.push(
             new PlaintextAstNode(
-              new_context.extra_returns.id_conversion_xref_error_source_location,
-              ' ' + error_message_in_output(message, new_context)
+              ' ' + error_message_in_output(message, new_context),
+              new_context.extra_returns.id_conversion_xref_error_source_location
             )
           );
           parse_error(state, message,
@@ -2394,8 +2437,10 @@ function html_convert_attrs_id(
   let id = ast.id;
   if (id !== undefined) {
     custom_args[Macro.ID_ARGUMENT_NAME] = [
-        new PlaintextAstNode(ast.source_location,
-          remove_toplevel_scope(id, context.toplevel_ast, context)),
+        new PlaintextAstNode(
+          remove_toplevel_scope(id, context.toplevel_ast, context),
+          ast.source_location,
+        ),
     ];
   }
   return html_convert_attrs(ast, context, arg_names, custom_args);
@@ -2902,7 +2947,11 @@ function parse(tokens, options, context, extra_returns={}) {
   if (include_options.is_first_global_header === undefined) {
     include_options.is_first_global_header = true;
   }
-  let local_id_provider = new DictIdProvider(include_options.indexed_ids);
+  context.xref_from_to_dict = {}
+  let local_id_provider = new DictIdProvider(
+    include_options.indexed_ids,
+    context.xref_from_to_dict
+  );
   let id_provider;
   if (options.id_provider !== undefined) {
     // Remove all remote IDs from the current file, to prevent false duplicates
@@ -2938,7 +2987,7 @@ function parse(tokens, options, context, extra_returns={}) {
           message,
           ast.source_location,
         );
-        parent_arg.push(new PlaintextAstNode(ast.source_location, message));
+        parent_arg.push(new PlaintextAstNode(message, ast.source_location));
       } else {
         const [include_path, include_content] = read_include_ret;
         if (context.include_path_set.has(include_path)) {
@@ -2948,7 +2997,7 @@ function parse(tokens, options, context, extra_returns={}) {
             message,
             ast.source_location,
           );
-          parent_arg.push(new PlaintextAstNode(ast.source_location, message));
+          parent_arg.push(new PlaintextAstNode(message, ast.source_location));
         } else {
           let new_child_nodes;
           if (options.embed_includes) {
@@ -2994,8 +3043,8 @@ function parse(tokens, options, context, extra_returns={}) {
                 'level': new AstArgument(
                   [
                     new PlaintextAstNode(
-                      ast.source_location,
                       (cur_header_level + 1).toString(),
+                      ast.source_location
                     )
                   ],
                   ast.source_location
@@ -3003,8 +3052,8 @@ function parse(tokens, options, context, extra_returns={}) {
                 [Macro.TITLE_ARGUMENT_NAME]: new AstArgument(
                   [
                     new PlaintextAstNode(
+                      header_node_title,
                       ast.source_location,
-                      header_node_title
                     )
                   ],
                   ast.source_location
@@ -3046,8 +3095,8 @@ function parse(tokens, options, context, extra_returns={}) {
                           'href': new AstArgument(
                             [
                               new PlaintextAstNode(
+                                href,
                                 ast.source_location,
-                                href
                               )
                             ],
                             ast.source_location
@@ -3055,8 +3104,8 @@ function parse(tokens, options, context, extra_returns={}) {
                           'content': new AstArgument(
                             [
                               new PlaintextAstNode(
+                                'This section is present in another page, follow this link to view it.',
                                 ast.source_location,
-                                'This section is present in another page, follow this link to view it.'
                               )
                             ],
                             ast.source_location
@@ -3107,8 +3156,8 @@ function parse(tokens, options, context, extra_returns={}) {
             'content': new AstArgument(
               [
                 new PlaintextAstNode(
-                  ast.source_location,
                   'which renders as:',
+                  ast.source_location,
                 )
               ],
               ast.source_location
@@ -3151,7 +3200,8 @@ function parse(tokens, options, context, extra_returns={}) {
           if (cur_header_level !== 1) {
             const message = `header with parent argument must have level equal 1`;
             ast.args[Macro.TITLE_ARGUMENT_NAME].push(
-              new PlaintextAstNode(ast.source_location, ' ' + error_message_in_output(message)));
+              new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location)
+            );
             parse_error(state, message, ast.args.level.source_location);
           }
           let parent_tree_node;
@@ -3190,7 +3240,7 @@ function parse(tokens, options, context, extra_returns={}) {
         if ('level' in ast.args) {
           // Hack the level argument of the final AST to match for consistency.
           ast.args.level = new AstArgument([
-            new PlaintextAstNode(ast.args.level.source_location, cur_header_level.toString())],
+            new PlaintextAstNode(cur_header_level.toString(), ast.args.level.source_location)],
             ast.args.level.source_location);
         }
 
@@ -3269,13 +3319,13 @@ function parse(tokens, options, context, extra_returns={}) {
         if (parent_tree_node_error) {
           const message = `header parent either is a previous ID of a level, a future ID, or an invalid ID: ${parent_id}`;
           ast.args[Macro.TITLE_ARGUMENT_NAME].push(
-            new PlaintextAstNode(ast.source_location, ' ' + error_message_in_output(message)));
+            new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location));
           parse_error(state, message, ast.args.parent.source_location);
         }
         if (header_level_skip_error !== undefined) {
           const message = `skipped a header level from ${header_level_skip_error} to ${cur_header_level}`;
           ast.args[Macro.TITLE_ARGUMENT_NAME].push(
-            new PlaintextAstNode(ast.source_location, ' ' + error_message_in_output(message)));
+            new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location));
           parse_error(state, message, ast.args.level.source_location);
         }
 
@@ -3356,7 +3406,7 @@ function parse(tokens, options, context, extra_returns={}) {
           // it actually worked and output an `html` inside another `html`.
           // Maybe we could do something with iframe, but who cares about that?
           const message = `the "${Macro.TOPLEVEL_MACRO_NAME}" cannot be used explicitly`;
-          ast = new PlaintextAstNode(ast.source_location, error_message_in_output(message));
+          ast = new PlaintextAstNode(error_message_in_output(message), ast.source_location);
           parse_error(state, message, ast.source_location);
         }
         // Dump index of headers with includes.
@@ -3845,8 +3895,8 @@ function parse_macro(state) {
   } else if (state.token.type === TokenType.PLAINTEXT) {
     // Non-recursive case.
     let node = new PlaintextAstNode(
-      state.token.source_location,
       state.token.value,
+      state.token.source_location,
     );
     // Consume the PLAINTEXT node out.
     parse_consume(state);
@@ -3874,8 +3924,8 @@ function parse_macro(state) {
     }
     parse_error(state, error_message);
     let node = new PlaintextAstNode(
-      state.token.source_location,
       error_message_in_output(error_message),
+      state.token.source_location,
     );
     // Consume past whatever happened to avoid an infinite loop.
     parse_consume(state);
@@ -4029,9 +4079,10 @@ function validate_ast(ast, context) {
         ];
       }
       if (macro_arg.default !== undefined) {
-        ast.args[argname] = new AstArgument([new PlaintextAstNode(ast.source_location, macro_arg.default)]);
+        ast.args[argname] = new AstArgument([
+          new PlaintextAstNode(macro_arg.default, ast.source_location)]);
       } else if (macro_arg.boolean) {
-        ast.args[argname] = new AstArgument([new PlaintextAstNode(ast.source_location, '0')]);
+        ast.args[argname] = new AstArgument([new PlaintextAstNode('0', ast.source_location)]);
       }
     }
   }
@@ -4088,6 +4139,23 @@ exports.validate_ast = validate_ast;
  */
 function x_get_href_content(ast, context) {
   const target_id = convert_arg_noescape(ast.args.href, context);
+
+  /* Update xref database. */
+  let from_ids;
+  if (!(target_id in context.xref_from_to_dict)) {
+    from_ids = new Set([]);
+    context.xref_from_to_dict[target_id] = from_ids;
+  } else {
+    from_ids = context.xref_from_to_dict[target_id];
+  }
+  const parent_id = ast.get_header_parent_id();
+  if (
+    // Happens on some special elements e.g. the ToC.
+    parent_id !== undefined
+  ) {
+    from_ids.add(parent_id);
+  }
+
   if (target_id[0] === AT_MENTION_CHAR) {
     return [html_attr('href', WEBSITE_URL + target_id.substr(1)), target_id];
   }
@@ -4424,7 +4492,7 @@ function x_text(ast, context, options={}) {
       ) {
         // https://stackoverflow.com/questions/41474986/how-to-clone-a-javascript-es6-class-instance
         title_arg = new AstArgument(title_arg, title_arg.source_location);
-        title_arg[0] = new PlaintextAstNode(first_ast.source_location, first_ast.text);
+        title_arg[0] = new PlaintextAstNode(first_ast.text, first_ast.source_location);
         let txt = title_arg[0].text;
         let first_c = txt[0];
         if (options.capitalize) {
@@ -4443,7 +4511,7 @@ function x_text(ast, context, options={}) {
         first_ast.node_type === AstType.PLAINTEXT
       ) {
         title_arg = new AstArgument(title_arg, title_arg.source_location);
-        title_arg[title_arg.length - 1] = new PlaintextAstNode(last_ast.source_location, last_ast.text);
+        title_arg[title_arg.length - 1] = new PlaintextAstNode(last_ast, last_ast.source_location.text);
         title_arg[title_arg.length - 1].text = pluralize(last_ast.text, options.pluralize ? 2 : 1);
       }
     }
@@ -4698,7 +4766,7 @@ const MACRO_IMAGE_VIDEO_OPTIONS = {
       }
       let title_str = basename_str.replace(/_/g, ' ').replace(/\.[^.]+$/, '') + '.';
       return new AstArgument([new PlaintextAstNode(
-        ast.source_location, title_str)], ast.source_location);
+        title_str, ast.source_location)], ast.source_location);
     }
 
     // We can't automatically generate one at all.
@@ -4869,7 +4937,7 @@ const DEFAULT_MACRO_LIST = [
       let level_int_capped;
       if (level_int_output > 6) {
         custom_args = {'data-level': new AstArgument([new PlaintextAstNode(
-          ast.source_location, level_int_output.toString())], ast.source_location)};
+          level_int_output.toString(), ast.source_location)], ast.source_location)};
         level_int_capped = 6;
       } else {
         custom_args = {};
@@ -5447,7 +5515,11 @@ const DEFAULT_MACRO_LIST = [
         } else {
           text_title = 'dummy title because title is mandatory in HTML';
         }
-        title = new AstArgument([new PlaintextAstNode(ast.source_location, text_title)], ast.source_location, text_title);
+        title = new AstArgument([
+          new PlaintextAstNode(text_title, ast.source_location)],
+          ast.source_location,
+          text_title
+        );
       }
       let ret;
       let body = convert_arg(ast.args.content, context);
@@ -5479,47 +5551,48 @@ const DEFAULT_MACRO_LIST = [
         const { Liquid } = require('liquidjs');
 
         // Incoming links.
-        // TODO factor this out more with real headers.
-        //body += `<div>${html_hide_hover_link('#incomding-links')}<h2 id="#incoming-links"><a href="incoming-links">Incoming links</a></h2></div>\n`;
-        //const incoming_ul_ast = new AstNode(
-        //  AstType.MACRO,
-        //  'Ul',
-        //  {
-        //    'content': new AstArgument(
-        //      [
-        //        new AstNode(
-        //          AstType.MACRO,
-        //          Macro.LIST_MACRO_NAME,
-        //          {
-        //            'content': new AstArgument(
-        //              [
-        //                new PlaintextAstNode(
-        //                  ast.source_location,
-        //                  'asdf'
-        //                ),
-        //              ],
-        //            ),
-        //          },
-        //        ),
-        //        new AstNode(
-        //          AstType.MACRO,
-        //          Macro.LIST_MACRO_NAME,
-        //          {
-        //            'content': new AstArgument(
-        //              [
-        //                new PlaintextAstNode(
-        //                  ast.source_location,
-        //                  'qwer'
-        //                ),
-        //              ],
-        //            ),
-        //          },
-        //        ),
-        //      ],
-        //    ),
-        //  },
-        //);
-        //body += incoming_ul_ast.convert(context);
+        if (context.toplevel_ast !== undefined) {
+          const target_ids = context.id_provider.get_from_header_ids_of_xrefs_to(context.toplevel_ast.id);
+          if (target_ids.size !== 0) {
+            // TODO factor this out more with real headers.
+            body += `<div>${html_hide_hover_link('#incomding-links')}<h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>\n`;
+            const target_id_asts = [];
+            for (const target_id of Array.from(target_ids).sort()) {
+              target_id_asts.push(new AstNode(
+                AstType.MACRO,
+                Macro.LIST_MACRO_NAME,
+                {
+                  'content': new AstArgument(
+                    [
+                      new AstNode(
+                        AstType.MACRO,
+                        'x',
+                        {
+                          'href': new AstArgument(
+                            [
+                              new PlaintextAstNode(target_id),
+                            ],
+                          ),
+                          'c': new AstArgument(),
+                        },
+                      ),
+                    ],
+                  ),
+                },
+              ));
+            }
+            const incoming_ul_ast = new AstNode(
+              AstType.MACRO,
+              'Ul',
+              {
+                'content': new AstArgument(target_id_asts)
+              },
+            );
+            const new_context = clone_and_set(context, 'validate_ast', true);
+            new_context['source_location'] = ast.source_location;
+            body += incoming_ul_ast.convert(new_context);
+          }
+        }
 
         let root_page;
         if (context.options.html_x_extension) {
