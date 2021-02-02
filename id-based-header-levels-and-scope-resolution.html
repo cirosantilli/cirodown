@@ -12,19 +12,19 @@
 <body>
 <header>
 <a href="/">Ciro Santilli???</a>
-<a href="/cirodown">Cirodown!!!</a>
+<a href=".">Cirodown!!!</a>
 <a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="id-based-header-levels-and-scope-resolution"><a href="" title="link to this element">ID-based header levels and scope resolution</a><span>  | <a title="view all headers in a single page" href=".#id-based-header-levels-and-scope-resolution">🗖 nosplit</a> | <a href="id-based-header-levels" title="parent header">↑ parent "ID-based header levels"</a></span></h1>
 <div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#id-based-header-levels-and-scope-resolution">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="id-based-header-levels" title="parent header">↑ parent "ID-based header levels"</a></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-251">🔗</a></span><div class="p" id="p-251">When mixing both <a href="id-based-header-levels" title="internal link">ID-based header levels</a> and <a href="scope" title="internal link">header <code>scope</code> argument</a>, things get a bit complicated, because when writing or parsing, we have to first determine the parent header before resolving scopes.</div></div><div><span class="hide-hover"><a href="index-split#p-252">🔗</a></span><div class="p" id="p-252">As a result, the follow simple rules are used:<div><ul id="ul-25">
-<li id="l-72">start from the last header of the highest level</li>
-<li id="l-73">check if the <code>{parent=XXX}</code> is a suffix of its ID</li>
-<li id="l-74">if not, proceed to the next smaller level, and so on, until a suffix is found</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-253">🔗</a></span><div class="p" id="p-253">Following those rules for example, a file <code>tmp.ciro</code>:
-<div class="code-caption-container" id="code-102">
+</div><div><span class="hide-hover"><a href="index-split#p-249">🔗</a></span><div class="p" id="p-249">When mixing both <a href="id-based-header-levels" title="internal link">ID-based header levels</a> and <a href="scope" title="internal link">header <code>scope</code> argument</a>, things get a bit complicated, because when writing or parsing, we have to first determine the parent header before resolving scopes.</div></div><div><span class="hide-hover"><a href="index-split#p-250">🔗</a></span><div class="p" id="p-250">As a result, the follow simple rules are used:<div><ul id="ul-25">
+<li id="l-70">start from the last header of the highest level</li>
+<li id="l-71">check if the <code>{parent=XXX}</code> is a suffix of its ID</li>
+<li id="l-72">if not, proceed to the next smaller level, and so on, until a suffix is found</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-251">🔗</a></span><div class="p" id="p-251">Following those rules for example, a file <code>tmp.ciro</code>:
+<div class="code-caption-container" id="code-106">
 <pre><code>= h1
 {scope}
 
@@ -53,7 +53,7 @@
 {parent=h1-2/h1-2-1}
 </code></pre></div>
 will lead to the following header tree with <a href="log-headers" title="internal link"><code>--log headers</code></a>:
-<div class="code-caption-container" id="code-103">
+<div class="code-caption-container" id="code-107">
 <pre><code>= h1  tmp
 == h2 1 tmp/h1-1
 === h3 1.1 tmp/h1-1/h1-1-1
@@ -66,7 +66,7 @@ will lead to the following header tree with <a href="log-headers" title="interna
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b5e1be24d2989552bc721899a1ed7a01374a8798">b5e1be24d2989552bc721899a1ed7a01374a8798</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/ce0e16de322108579c65d2183edb1052cc5b692c">ce0e16de322108579c65d2183edb1052cc5b692c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

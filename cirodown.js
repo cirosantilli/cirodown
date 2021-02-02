@@ -880,6 +880,7 @@ class Tokenizer {
     this.extra_returns.errors = [];
     this.i = 0;
     this.in_insane_header = false;
+    this.in_escape_insane_link = false;
     this.list_level = 0;
     this.tokens = [];
     this.show_tokenize = show_tokenize;
@@ -1084,13 +1085,22 @@ class Tokenizer {
         } else if (ESCAPABLE_CHARS.has(this.cur_c)) {
           this.consume_plaintext_char();
         } else {
-          let macro_name = this.tokenize_func(char_is_identifier);
-          this.consume_optional_newline();
-          this.push_token(
-            TokenType.MACRO_NAME,
-            macro_name,
-            start_source_location,
-          );
+          // Insane link.
+          for (const known_url_protocol of KNOWN_URL_PROTOCOLS) {
+            if (array_contains_array_at(this.chars, this.i, known_url_protocol)) {
+              this.in_escape_insane_link = true;
+              break;
+            }
+          }
+          if (!this.in_escape_insane_link) {
+            let macro_name = this.tokenize_func(char_is_identifier);
+            this.consume_optional_newline();
+            this.push_token(
+              TokenType.MACRO_NAME,
+              macro_name,
+              start_source_location,
+            );
+          }
         }
       } else if (this.cur_c === START_NAMED_ARGUMENT_CHAR) {
         let source_location = this.source_location.clone();
@@ -1191,33 +1201,30 @@ class Tokenizer {
         let done = false;
 
         // Insane link.
-        if (
-          this.i === 0 ||
-          this.chars[this.i - 1] === '\n' ||
-          this.chars[this.i - 1] === ' ' ||
-          this.tokens[this.tokens.length - 1].type === TokenType.POSITIONAL_ARGUMENT_START ||
-          this.tokens[this.tokens.length - 1].type === TokenType.NAMED_ARGUMENT_NAME
-        ) {
-          let protocol_is_known = false;
+        if (this.in_escape_insane_link) {
+          this.in_escape_insane_link = false;
+        } else {
+          let is_insane_link = false;
           for (const known_url_protocol of KNOWN_URL_PROTOCOLS) {
-            if (array_contains_array_at(this.chars, this.i, known_url_protocol)) {
-              protocol_is_known = true;
-              break;
+            if (
+              array_contains_array_at(this.chars, this.i, known_url_protocol)
+            ) {
+              const pos_char_after = this.i + known_url_protocol.length;
+              if (
+                pos_char_after < this.chars.length &&
+                !INSANE_LINK_END_CHARS.has(this.chars[pos_char_after])
+              ) {
+                is_insane_link = true;
+                break;
+              }
             }
           }
-          if (protocol_is_known) {
+          if (is_insane_link) {
             this.push_token(TokenType.MACRO_NAME, Macro.LINK_MACRO_NAME);
             this.push_token(TokenType.POSITIONAL_ARGUMENT_START);
             let link_text = '';
             while (this.consume_plaintext_char()) {
-              if (
-                this.cur_c == ' ' ||
-                this.cur_c == '\n' ||
-                this.cur_c == START_POSITIONAL_ARGUMENT_CHAR ||
-                this.cur_c == START_NAMED_ARGUMENT_CHAR ||
-                this.cur_c == END_POSITIONAL_ARGUMENT_CHAR ||
-                this.cur_c == END_NAMED_ARGUMENT_CHAR
-              ) {
+              if (INSANE_LINK_END_CHARS.has(this.cur_c)) {
                 break;
               }
               if (this.cur_c === ESCAPE_CHAR) {
@@ -1231,10 +1238,15 @@ class Tokenizer {
         }
 
         // Insane lists and tables.
-        if (!done && (
-          this.i === 0 ||
-          this.cur_c === '\n' ||
-          this.tokens[this.tokens.length - 1].type === TokenType.PARAGRAPH)
+        if (
+          !done && (
+            this.i === 0 ||
+            this.cur_c === '\n' ||
+            (
+              this.tokens.length > 0 &&
+              this.tokens[this.tokens.length - 1].type === TokenType.PARAGRAPH
+            )
+          )
         ) {
           let i = this.i;
           if (this.cur_c === '\n') {
@@ -2176,9 +2188,12 @@ function convert_init_context(options={}, extra_returns={}) {
   if (!('from_include' in options)) { options.from_include = false; }
   if (!('from_cirodown_example' in options)) { options.from_cirodown_example = false; }
   if (!('html_embed' in options)) { options.html_embed = false; }
-  // Add HTML extension to x links. And therefore also output files
-  // with the .html extension.
-  if (!('html_x_extension' in options)) { options.html_x_extension = true; }
+  if (!('html_x_extension' in options)) {
+    // Add HTML extension to x links. And therefore also:
+    // * output files with the `.html` extension
+    // * output `/index.html` vs just `/`
+    options.html_x_extension = true;
+  }
   if (!('h_parse_level_offset' in options)) {
     // When parsing, start the first header at this offset instead of h1.
     // This is used when doing includes, since the included header is at.
@@ -2209,9 +2224,24 @@ function convert_init_context(options={}, extra_returns={}) {
     // to `options.template_vars.style`.
     options.template_styles_relative = [];
   }
-  if (!('template_vars' in options)) { options.template_vars = {}; }
+  if ('template_vars' in options) {
+    options.template_vars = Object.assign({}, options.template_vars);
+  } else {
+    options.template_vars = {};
+  }
     if (!('head' in options.template_vars)) { options.template_vars.head = ''; }
     if (!('root_relpath' in options.template_vars)) { options.template_vars.root_relpath = ''; }
+    if (!('root_page' in options.template_vars)) {
+      if (options.html_x_extension) {
+        options.template_vars.root_page = options.template_vars.root_relpath + INDEX_BASENAME_NOEXT + '.' + HTML_EXT;
+      } else {
+        if (options.template_vars.root_relpath === '') {
+          options.template_vars.root_page = '.'
+        } else {
+          options.template_vars.root_page = options.template_vars.root_relpath;
+        }
+      }
+    }
     if (!('post_body' in options.template_vars)) { options.template_vars.post_body = ''; }
     if (!('style' in options.template_vars)) { options.template_vars.style = ''; }
   // If given, force the toplevel header to have this ID.
@@ -4455,6 +4485,8 @@ function x_text(ast, context, options={}) {
   return ret;
 }
 
+// consts
+
 // Dynamic website stuff.
 const AT_MENTION_CHAR = '@';
 const HASHTAG_CHAR = '#';
@@ -4500,6 +4532,14 @@ const ESCAPABLE_CHARS = new Set([
   END_NAMED_ARGUMENT_CHAR,
   INSANE_LIST_START[0],
   INSANE_TD_START[0],
+]);
+const INSANE_LINK_END_CHARS = new Set([
+  ' ',
+  '\n',
+  START_POSITIONAL_ARGUMENT_CHAR,
+  START_NAMED_ARGUMENT_CHAR,
+  END_POSITIONAL_ARGUMENT_CHAR,
+  END_NAMED_ARGUMENT_CHAR,
 ]);
 const INSANE_STARTS_TO_MACRO_NAME = {
   [INSANE_LIST_START]:  Macro.LIST_MACRO_NAME,
@@ -4688,7 +4728,12 @@ const MACRO_IMAGE_VIDEO_POSITIONAL_ARGUMENTS = [
   }),
 ];
 // https://cirosantilli.com/cirodown#known-url-protocols
-const KNOWN_URL_PROTOCOLS = new Set(['http://', 'https://']);
+const KNOWN_URL_PROTOCOL_NAMES = ['http', 'https'];
+
+const KNOWN_URL_PROTOCOLS = new Set()
+for (const name of KNOWN_URL_PROTOCOL_NAMES) {
+  KNOWN_URL_PROTOCOLS.add(name + '://');
+}
 const URL_SEP = '/';
 exports.URL_SEP = URL_SEP;
 const MACRO_WITH_MEDIA_PROVIDER = new Set(['image', 'video']);
@@ -4862,6 +4907,8 @@ const DEFAULT_MACRO_LIST = [
         toc_href = html_attr('href', '#' + toc_id(ast, context));
         ret += `${HEADER_MENU_ITEM_SEP}<a${toc_href} class="cirodown-h-to-toc"${html_attr('title', 'ToC entry for this header')}>\u21d1 toc</a>`;
       }
+
+      // Parent links.
       let parent_asts = [];
       let parent_tree_node = ast.header_graph_node.parent_node;
       if (
@@ -4883,6 +4930,7 @@ const DEFAULT_MACRO_LIST = [
       if (parent_links) {
         ret += `${HEADER_MENU_ITEM_SEP}${parent_links}`;
       }
+
       ret += `</span>`;
       ret += `</h${level_int_capped}>\n`;
       let wiki_link;
@@ -5414,7 +5462,7 @@ const DEFAULT_MACRO_LIST = [
         title = new AstArgument([new PlaintextAstNode(ast.source_location, text_title)], ast.source_location, text_title);
       }
       let ret;
-      const body = convert_arg(ast.args.content, context);
+      let body = convert_arg(ast.args.content, context);
       if (context.options.body_only) {
         ret = body;
       } else {
@@ -5431,6 +5479,9 @@ const DEFAULT_MACRO_LIST = [
 {{ head }}
 </head>
 <body class="cirodown">
+<header>
+<a href="{{ root_page }}">{{ title }}</a>
+</header>
 {{ body }}
 {{ post_body }}
 </body>
@@ -5438,6 +5489,50 @@ const DEFAULT_MACRO_LIST = [
 `;
         }
         const { Liquid } = require('liquidjs');
+
+        // Incoming links.
+        // TODO factor this out more with real headers.
+        //body += `<div>${html_hide_hover_link('#incomding-links')}<h2 id="#incoming-links"><a href="incoming-links">Incoming links</a></h2></div>\n`;
+        //const incoming_ul_ast = new AstNode(
+        //  AstType.MACRO,
+        //  'Ul',
+        //  {
+        //    'content': new AstArgument(
+        //      [
+        //        new AstNode(
+        //          AstType.MACRO,
+        //          Macro.LIST_MACRO_NAME,
+        //          {
+        //            'content': new AstArgument(
+        //              [
+        //                new PlaintextAstNode(
+        //                  ast.source_location,
+        //                  'asdf'
+        //                ),
+        //              ],
+        //            ),
+        //          },
+        //        ),
+        //        new AstNode(
+        //          AstType.MACRO,
+        //          Macro.LIST_MACRO_NAME,
+        //          {
+        //            'content': new AstArgument(
+        //              [
+        //                new PlaintextAstNode(
+        //                  ast.source_location,
+        //                  'qwer'
+        //                ),
+        //              ],
+        //            ),
+        //          },
+        //        ),
+        //      ],
+        //    ),
+        //  },
+        //);
+        //body += incoming_ul_ast.convert(context);
+
         const render_env = {
           body: body,
           title: convert_arg(title, context),

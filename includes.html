@@ -12,35 +12,35 @@
 <body>
 <header>
 <a href="/">Ciro Santilli???</a>
-<a href="/cirodown">Cirodown!!!</a>
+<a href=".">Cirodown!!!</a>
 <a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="includes"><a href="" title="link to this element">Includes (<code>\Include</code>)</a><span>  | <a title="view all headers in a single page" href=".#includes">🗖 nosplit</a> | <a href="headers" title="parent header">↑ parent "Headers"</a></span></h1>
 <div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#includes">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="headers" title="parent header">↑ parent "Headers"</a></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-309">🔗</a></span><div class="p" id="p-309">The <code>\Include</code> macro allows including an external Cirodown headers under the current header.</div></div><div><span class="hide-hover"><a href="index-split#p-310">🔗</a></span><div class="p" id="p-310">It exists to allow optional single page HTML output while still retaining the ability to:<div><ul id="ul-35">
-<li id="l-97">split up large input files into multiple files to make renders faster during document development</li>
-<li id="l-98">suggest an optional custom output split with one HTML output per Cirodown input, in order to avoid extremely large HTML pages which could be slow to load</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-311">🔗</a></span><div class="p" id="p-311"><code>\Include</code> takes one mandatory argument: the ID of the section to be included, much like <a href="internal-cross-references" title="internal link">internal cross references</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-312">🔗</a></span><div class="p" id="p-312">There is however one restriction: only <a href="the-toplevel-header" title="internal link">the toplevel headers</a> can be pointed to. This restriction allows us to easily find the included file in the filesystem, and dispenses the need to do a first <code>./cirodown</code> run to generate the <a href="internal-cross-file-references-internals" title="internal link">ID database</a>. This works because <a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link">the ID of the first header is derived from the filename</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-313">🔗</a></span><div class="p" id="p-313">Headers of the included document are automatically shifted to match the level of the child of the level where they are being included.</div></div><div><span class="hide-hover"><a href="index-split#p-314">🔗</a></span><div class="p" id="p-314">If <a href="embed-includes" title="internal link"><code>--embed-includes</code></a> is given, the external document is rendered embedded into the current document directly, essentially as if the source had been copy pasted (except for small corrections such as the header offsets).</div></div><div><span class="hide-hover"><a href="index-split#p-315">🔗</a></span><div class="p" id="p-315">Otherwise, the following effects happen:<div><ul id="ul-36">
-<li id="l-99"><div class="p" id="p-316">The headers of the included tree appear in the <a href="table-of-contents" title="internal link">table of contents</a> of the document as links to the corresponding external files.</div><div class="p" id="p-317">This is implemented simply by reading a previously generated database file much like <a href="internal-cross-file-references-internals" title="internal link">internal cross file references internals</a>, which avoids the slowdown of parsing all included files every time.</div><div class="p" id="p-318">As a result, you have to do an initial parse of all files in the project to extract their headers however, just as you would need to do when linking to those headers.</div></li>
-<li id="l-100">the include itself renders as a link to the included document</li>
-<li id="l-101"><a href="embed-includes" title="internal link"><code>--embed-includes</code></a></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-319">🔗</a></span><div class="p" id="p-319">Here is an example of inclusion of the files <code>not-readme.ciro</code> and <code>not-readme-2.ciro</code>:
-<div class="code-caption-container" id="code-121">
+</div><div><span class="hide-hover"><a href="index-split#p-307">🔗</a></span><div class="p" id="p-307">The <code>\Include</code> macro allows including an external Cirodown headers under the current header.</div></div><div><span class="hide-hover"><a href="index-split#p-308">🔗</a></span><div class="p" id="p-308">It exists to allow optional single page HTML output while still retaining the ability to:<div><ul id="ul-35">
+<li id="l-95">split up large input files into multiple files to make renders faster during document development</li>
+<li id="l-96">suggest an optional custom output split with one HTML output per Cirodown input, in order to avoid extremely large HTML pages which could be slow to load</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-309">🔗</a></span><div class="p" id="p-309"><code>\Include</code> takes one mandatory argument: the ID of the section to be included, much like <a href="internal-cross-references" title="internal link">internal cross references</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-310">🔗</a></span><div class="p" id="p-310">There is however one restriction: only <a href="the-toplevel-header" title="internal link">the toplevel headers</a> can be pointed to. This restriction allows us to easily find the included file in the filesystem, and dispenses the need to do a first <code>./cirodown</code> run to generate the <a href="internal-cross-file-references-internals" title="internal link">ID database</a>. This works because <a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link">the ID of the first header is derived from the filename</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-311">🔗</a></span><div class="p" id="p-311">Headers of the included document are automatically shifted to match the level of the child of the level where they are being included.</div></div><div><span class="hide-hover"><a href="index-split#p-312">🔗</a></span><div class="p" id="p-312">If <a href="embed-includes" title="internal link"><code>--embed-includes</code></a> is given, the external document is rendered embedded into the current document directly, essentially as if the source had been copy pasted (except for small corrections such as the header offsets).</div></div><div><span class="hide-hover"><a href="index-split#p-313">🔗</a></span><div class="p" id="p-313">Otherwise, the following effects happen:<div><ul id="ul-36">
+<li id="l-97"><div class="p" id="p-314">The headers of the included tree appear in the <a href="table-of-contents" title="internal link">table of contents</a> of the document as links to the corresponding external files.</div><div class="p" id="p-315">This is implemented simply by reading a previously generated database file much like <a href="internal-cross-file-references-internals" title="internal link">internal cross file references internals</a>, which avoids the slowdown of parsing all included files every time.</div><div class="p" id="p-316">As a result, you have to do an initial parse of all files in the project to extract their headers however, just as you would need to do when linking to those headers.</div></li>
+<li id="l-98">the include itself renders as a link to the included document</li>
+<li id="l-99"><a href="embed-includes" title="internal link"><code>--embed-includes</code></a></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-317">🔗</a></span><div class="p" id="p-317">Here is an example of inclusion of the files <code>not-readme.ciro</code> and <code>not-readme-2.ciro</code>:
+<div class="code-caption-container" id="code-125">
 <pre><code>\Include[not-readme]
 \Include[not-readme-2]
 \Include[not-readme-with-scope]
 </code></pre></div>
 The above is the recommended and slightly <a href="insane-macro-shortcuts" title="internal link">insaner</a> version of:
-<div class="code-caption-container" id="code-122">
+<div class="code-caption-container" id="code-126">
 <pre><code>\Include[not-readme]
 
 \Include[not-readme-2]
 
 \Include[not-readme-with-scope]
 </code></pre></div>
-The insaner version is a bit insaner because the <code>\Include</code> magically discards the following newline node that follows it if it just a plaintext node containing exactly a newline. With a double newline, the newline would already have been previously taken out on the lexing stage as part of a paragraph.</div></div><div><span class="hide-hover"><a href="index-split#p-320">🔗</a></span><div class="p" id="p-320">This is what they actually render as:</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+The insaner version is a bit insaner because the <code>\Include</code> magically discards the following newline node that follows it if it just a plaintext node containing exactly a newline. With a double newline, the newline would already have been previously taken out on the lexing stage as part of a paragraph.</div></div><div><span class="hide-hover"><a href="index-split#p-318">🔗</a></span><div class="p" id="p-318">This is what they actually render as:</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
 <li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="number of descendant headers">[5]</span></div>
 <ul>
@@ -57,7 +57,7 @@ The insaner version is a bit insaner because the <code>\Include</code> magically
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b5e1be24d2989552bc721899a1ed7a01374a8798">b5e1be24d2989552bc721899a1ed7a01374a8798</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/ce0e16de322108579c65d2183edb1052cc5b692c">ce0e16de322108579c65d2183edb1052cc5b692c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

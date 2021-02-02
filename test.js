@@ -1339,9 +1339,32 @@ assert_convert_ast('link auto insane start end square brackets',
   '\\P[http://example.com]\n',
   [a('P', [a('a', undefined, {'href': [t('http://example.com')]})])],
 );
-assert_convert_ast('link auto insane start end literal square brackets',
+assert_convert_ast('link auto insane with alpha character before it',
+  'ahttp://example.com',
+  [a('P', [
+    t('a'),
+    a('a', undefined, {'href': [t('http://example.com')]})
+  ])]
+);
+assert_convert_ast('link auto insane with literal square brackets around it',
   '\\[http://example.com\\]\n',
-  [a('P', [t('[http://example.com]')])],
+  [a('P', [
+    t('['),
+    a('a', undefined, {'href': [t('http://example.com]')]})
+  ])]
+);
+// TODO we want it to work like this.
+assert_convert_ast('link auto insane can be escaped with a backslash',
+  '\\http://example.com\n',
+  [a('P', [t('http://example.com')])],
+);
+assert_convert_ast('link auto insane is not a link if the domain is empty at eof',
+  'http://\n',
+  [a('P', [t('http://')])],
+);
+assert_convert_ast('link auto insane is not a link if the domain is empty at space',
+  'http:// a\n',
+  [a('P', [t('http:// a')])],
 );
 assert_convert_ast('link auto insane start end named argument',
   '\\Image[aaa.jpg]{description=http://example.com}\n',

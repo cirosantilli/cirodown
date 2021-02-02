@@ -12,15 +12,15 @@
 <body>
 <header>
 <a href="/">Ciro Santilli???</a>
-<a href="/cirodown">Cirodown!!!</a>
+<a href=".">Cirodown!!!</a>
 <a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cross-reference-title-inflection"><a href="" title="link to this element">Cross reference title inflection</a><span>  | <a title="view all headers in a single page" href=".#cross-reference-title-inflection">🗖 nosplit</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a></span></h1>
 <div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#cross-reference-title-inflection">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-97">🔗</a></span><div class="p" id="p-97">A common usage pattern is that we want to use <a href="headers" title="internal link">header</a> titles in <a href="cross-reference-full-argument" title="internal link">non-full</a> <a href="internal-cross-references" title="internal link">internal cross references</a> as the definition of a concept without repeating the title, for example:
-<div class="code-caption-container" id="code-42">
+</div><div><span class="hide-hover"><a href="index-split#p-95">🔗</a></span><div class="p" id="p-95">A common usage pattern is that we want to use <a href="headers" title="internal link">header</a> titles in <a href="cross-reference-full-argument" title="internal link">non-full</a> <a href="internal-cross-references" title="internal link">internal cross references</a> as the definition of a concept without repeating the title, for example:
+<div class="code-caption-container" id="code-46">
 <pre><code>== Dog
 
 Cute animal.
@@ -38,20 +38,20 @@ One example of a cat is \x[felix-the-cat].
 === Felix the Cat
 
 Felix is not really a \x[cats][cat], just a carton character.
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-98">🔗</a></span><div class="p" id="p-98">However, word <a href="https://en.wikipedia.org/wiki/Inflection">inflection</a> makes it much harder to avoid retyping the definition again.</div></div><div><span class="hide-hover"><a href="index-split#p-99">🔗</a></span><div class="p" id="p-99">For example, in the previous example, without any further intelligent behaviour we would be forced to re-type <code>\x[dog][dog]</code> instead of the desired <code>\x[dog]</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-100">🔗</a></span><div class="p" id="p-100">Cirodown can take care of some inflection cases for you.</div></div><div><span class="hide-hover"><a href="index-split#p-101">🔗</a></span><div class="p" id="p-101">For capitalization, both headers and cross reference macros have the <code>c</code> <a href="boolean-named-arguments" title="internal link">boolean named argument</a> which stands for "capitalized":<div><ul id="ul-16">
-<li id="l-49"><div class="p" id="p-102">for headers, <code>c</code> means that the header title has fixed capitalization as given in the title, i.e.<div><ul id="ul-17">
-<li id="l-50">if the title has a capital first character, it will always show as a capital, as is the case for most <a href="https://en.wikipedia.org/wiki/Proper_noun">proper noun</a></li>
-<li id="l-51">if it is lower case, it will also always remain lower case, as is the case for some rare proper nouns, notably <a href="https://en.wikipedia.org/wiki/Arm_Holdings">the name of certain companies</a></li>
-</ul></div></div><div class="p" id="p-103">This means that for such headers, <code>c</code> in the <code>x</code> has no effect. Maybe we should give an error in that case. But lazy now, send PR.</div></li>
-<li id="l-52"><div class="p" id="p-104">for cross reference macros, <code>c</code> means that the first letter of the title should be capitalized.</div><div class="p" id="p-105">Using this option is required when you are starting a sentence with a non-proper noun.
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-96">🔗</a></span><div class="p" id="p-96">However, word <a href="https://en.wikipedia.org/wiki/Inflection">inflection</a> makes it much harder to avoid retyping the definition again.</div></div><div><span class="hide-hover"><a href="index-split#p-97">🔗</a></span><div class="p" id="p-97">For example, in the previous example, without any further intelligent behaviour we would be forced to re-type <code>\x[dog][dog]</code> instead of the desired <code>\x[dog]</code>.</div></div><div><span class="hide-hover"><a href="index-split#p-98">🔗</a></span><div class="p" id="p-98">Cirodown can take care of some inflection cases for you.</div></div><div><span class="hide-hover"><a href="index-split#p-99">🔗</a></span><div class="p" id="p-99">For capitalization, both headers and cross reference macros have the <code>c</code> <a href="boolean-named-arguments" title="internal link">boolean named argument</a> which stands for "capitalized":<div><ul id="ul-16">
+<li id="l-47"><div class="p" id="p-100">for headers, <code>c</code> means that the header title has fixed capitalization as given in the title, i.e.<div><ul id="ul-17">
+<li id="l-48">if the title has a capital first character, it will always show as a capital, as is the case for most <a href="https://en.wikipedia.org/wiki/Proper_noun">proper noun</a></li>
+<li id="l-49">if it is lower case, it will also always remain lower case, as is the case for some rare proper nouns, notably <a href="https://en.wikipedia.org/wiki/Arm_Holdings">the name of certain companies</a></li>
+</ul></div></div><div class="p" id="p-101">This means that for such headers, <code>c</code> in the <code>x</code> has no effect. Maybe we should give an error in that case. But lazy now, send PR.</div></li>
+<li id="l-50"><div class="p" id="p-102">for cross reference macros, <code>c</code> means that the first letter of the title should be capitalized.</div><div class="p" id="p-103">Using this option is required when you are starting a sentence with a non-proper noun.
 </div></li>
-</ul></div>Capitalization is handled by a <a href="javascript-case-conversion" title="internal link">JavaScript case conversion</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-106">🔗</a></span><div class="p" id="p-106">For pluralization, cross reference macros have the <code>p</code> <a href="boolean-named-arguments" title="internal link">boolean named argument</a> which stands for "pluralize":<div><ul id="ul-18">
-<li id="l-53">if given and true, this automatically pluralizes the last word of the target title by using the <a href="https://github.com/blakeembrey/pluralize">https://github.com/blakeembrey/pluralize</a> library</li>
-<li id="l-54">if given and false, automatically singularize</li>
-<li id="l-55">if not given, don't change the number of elements
+</ul></div>Capitalization is handled by a <a href="javascript-case-conversion" title="internal link">JavaScript case conversion</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-104">🔗</a></span><div class="p" id="p-104">For pluralization, cross reference macros have the <code>p</code> <a href="boolean-named-arguments" title="internal link">boolean named argument</a> which stands for "pluralize":<div><ul id="ul-18">
+<li id="l-51">if given and true, this automatically pluralizes the last word of the target title by using the <a href="https://github.com/blakeembrey/pluralize">https://github.com/blakeembrey/pluralize</a> library</li>
+<li id="l-52">if given and false, automatically singularize</li>
+<li id="l-53">if not given, don't change the number of elements
 </li>
-</ul></div>If your desired pluralization is any more complex than modifying the last word of the title, you must do it manually however.</div></div><div><span class="hide-hover"><a href="index-split#p-107">🔗</a></span><div class="p" id="p-107">With those rules in mind, the previous Cirodown example can be written with less repetition as:
-<div class="code-caption-container" id="code-43">
+</ul></div>If your desired pluralization is any more complex than modifying the last word of the title, you must do it manually however.</div></div><div><span class="hide-hover"><a href="index-split#p-105">🔗</a></span><div class="p" id="p-105">With those rules in mind, the previous Cirodown example can be written with less repetition as:
+<div class="code-caption-container" id="code-47">
 <pre><code>== Dog
 
 Cute animal.
@@ -70,7 +70,7 @@ One example of a cat is \x[Felix the Cat].
 {c}
 
 Felix is not really a \x[cats][cat], just a carton character.
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-108">🔗</a></span><div class="p" id="p-108">Now for a live example for quick and dirty interactive testing.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-106">🔗</a></span><div class="p" id="p-106">Now for a live example for quick and dirty interactive testing.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
 <li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a>  <span class="descendant-count" title="number of descendant headers">[6]</span></div>
 <ul>
@@ -91,7 +91,7 @@ Felix is not really a \x[cats][cat], just a carton character.
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b5e1be24d2989552bc721899a1ed7a01374a8798">b5e1be24d2989552bc721899a1ed7a01374a8798</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/ce0e16de322108579c65d2183edb1052cc5b692c">ce0e16de322108579c65d2183edb1052cc5b692c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

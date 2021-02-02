@@ -12,22 +12,22 @@
 <body>
 <header>
 <a href="/">Ciro Santilli???</a>
-<a href="/cirodown">Cirodown!!!</a>
+<a href=".">Cirodown!!!</a>
 <a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="escapes-in-insane-macro-shortcuts"><a href="" title="link to this element">Escapes in insane macro shortcuts</a><span>  | <a title="view all headers in a single page" href=".#escapes-in-insane-macro-shortcuts">🗖 nosplit</a> | <a href="insane-macro-shortcuts" title="parent header">↑ parent "Insane macro shortcuts"</a></span></h1>
 <div class="h-nav"><span class="nav"> <a title="view all headers in a single page" href=".#escapes-in-insane-macro-shortcuts">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="insane-macro-shortcuts" title="parent header">↑ parent "Insane macro shortcuts"</a></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-568">🔗</a></span><div class="p" id="p-568">Literal backticks and dollar signs can be produced witha backslash escape as in:
-<div class="code-caption-container" id="code-221">
+</div><div><span class="hide-hover"><a href="index-split#p-566">🔗</a></span><div class="p" id="p-566">Literal backticks and dollar signs can be produced witha backslash escape as in:
+<div class="code-caption-container" id="code-225">
 <pre><code>a \` \$ b
-</code></pre></div><div class="p" id="p-569">which renders as:</div><blockquote id="q-119"><div class="p" id="p-570">a ` $ b</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-571">🔗</a></span><div class="p" id="p-571">It is not possible to escape backticks (<code>`</code>) inside an insane inline code, or dollar signs (<code>$</code>) in insane math.</div></div><div><span class="hide-hover"><a href="index-split#p-572">🔗</a></span><div class="p" id="p-572">The design reason for that is because multiple backticks produce block code.</div></div><div><span class="hide-hover"><a href="index-split#p-573">🔗</a></span><div class="p" id="p-573">The upside is that then you don't have to escape anything else, e.g. backslashes (<code></code>) are rendered literally.</div></div><div><span class="hide-hover"><a href="index-split#p-574">🔗</a></span><div class="p" id="p-574">The only way to do it is to use the sane syntax instead:
-<div class="code-caption-container" id="code-222">
+</code></pre></div><div class="p" id="p-567">which renders as:</div><blockquote id="q-119"><div class="p" id="p-568">a ` $ b</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-569">🔗</a></span><div class="p" id="p-569">It is not possible to escape backticks (<code>`</code>) inside an insane inline code, or dollar signs (<code>$</code>) in insane math.</div></div><div><span class="hide-hover"><a href="index-split#p-570">🔗</a></span><div class="p" id="p-570">The design reason for that is because multiple backticks produce block code.</div></div><div><span class="hide-hover"><a href="index-split#p-571">🔗</a></span><div class="p" id="p-571">The upside is that then you don't have to escape anything else, e.g. backslashes (<code></code>) are rendered literally.</div></div><div><span class="hide-hover"><a href="index-split#p-572">🔗</a></span><div class="p" id="p-572">The only way to do it is to use the sane syntax instead:
+<div class="code-caption-container" id="code-226">
 <pre><code>a \c[[b ` c]] d
 
 a \m[[\sqrt{\$4}]] d
-</code></pre></div><div class="p" id="p-575">which renders as:</div><blockquote id="q-120"><div class="p" id="p-576">a <code>b ` c</code> d</div><div class="p" id="p-577">a <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.10777999999999999em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.93222em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">$</span><span class="mord">4</span></span></span><span style="top:-2.89222em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+</code></pre></div><div class="p" id="p-573">which renders as:</div><blockquote id="q-120"><div class="p" id="p-574">a <code>b ` c</code> d</div><div class="p" id="p-575">a <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.10777999999999999em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.93222em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">$</span><span class="mord">4</span></span></span><span style="top:-2.89222em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
 c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
 c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
 c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
@@ -38,14 +38,14 @@ c5.3,-9.3,12,-14,20,-14
 H400000v40H845.2724
 s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
-M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.10777999999999999em;"><span></span></span></span></span></span></span></span></span> d</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-578">🔗</a></span><div class="p" id="p-578">Within block code and math, you can just add more separators:
-<div class="code-caption-container" id="code-223">
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.10777999999999999em;"><span></span></span></span></span></span></span></span></span> d</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-576">🔗</a></span><div class="p" id="p-576">Within block code and math, you can just add more separators:
+<div class="code-caption-container" id="code-227">
 <pre><code>```
 code with two backticks
 ``
 nice
 ```
-</code></pre></div><div class="p" id="p-579">which renders as:</div><blockquote id="q-121"><div class="code-caption-container" id="code-224">
+</code></pre></div><div class="p" id="p-577">which renders as:</div><blockquote id="q-121"><div class="code-caption-container" id="code-228">
 <pre><code>code with two backticks
 ``
 nice
@@ -53,7 +53,7 @@ nice
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b5e1be24d2989552bc721899a1ed7a01374a8798">b5e1be24d2989552bc721899a1ed7a01374a8798</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/ce0e16de322108579c65d2183edb1052cc5b692c">ce0e16de322108579c65d2183edb1052cc5b692c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
