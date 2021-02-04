@@ -128,6 +128,8 @@ class AstNode {
     this.force_no_index = options.force_no_index;
     // The ToC will go before this header.
     this.toc_header = false;
+    // This ast is a descendant of a header.
+    this.in_header = false;
 
     // This was added to the tree from an include.
     this.from_include = options.from_include;
@@ -137,6 +139,11 @@ class AstNode {
     // Includes under this header.
     this.includes = [];
 
+    if (this.node_type === AstType.PLAINTEXT) {
+      this.word_count = this.text.split(/\s+/).filter(i => i).length;
+    } else {
+      this.word_count = 0;
+    }
     for (const argname in args) {
       for (const arg of args[argname]) {
         this.setup_argument(argname, arg);
@@ -319,6 +326,7 @@ class AstNode {
         is_first_header_in_input_file: json.is_first_header_in_input_file,
         header_graph_node_parent_id: json.header_graph_node_parent_id,
         scope: json.scope,
+        word_count: json.word_count,
       }
     );
     let nodes = [toplevel_ast];
@@ -358,6 +366,7 @@ class AstNode {
       args:       this.args,
       first_toplevel_child: this.first_toplevel_child,
       is_first_header_in_input_file: this.is_first_header_in_input_file,
+      word_count: this.word_count,
     }
     if (
       this.header_graph_node !== undefined &&
@@ -386,7 +395,10 @@ class AstArgument extends Array {
     // String
     this.argument_name = undefined;
     let i = 0;
-    nodes.forEach(function(node) {
+    let astargument = this;
+    // TODO understand why there are empty elements in the array.
+    // for of leads to undefineds due to that.
+    nodes.forEach(node => {
       node.parent_argument = this;
       node.parent_argument_index = i;
       i++;
@@ -1514,6 +1526,21 @@ class Tokenizer {
 
 class HeaderTreeNode {
   /**
+   * Structure:
+   *
+   * toplevel -> value -> toplevel header ast
+   *   -> child[0] -> value -> h2 1 header ast
+   *               -> parent_node -> toplevel
+   *   -> child[1] -> value -> h2 2 header ast
+   *               -> parent_node -> toplevel
+   *
+   * P inside  h2 1:
+   *   -> parent_node -> child[0]
+   * a inside P inside  h2 1:
+   *   -> parent_node -> child[0]
+   *
+   * And every non-header element also gets a parent link to its header without child down:
+   *
    * @param {AstNode} value
    * @param {HeaderTreeNode} parent_node
    */
@@ -1523,6 +1550,19 @@ class HeaderTreeNode {
     this.children = [];
     this.index = undefined;
     this.descendant_count = 0;
+    this.descendant_word_count = 0;
+    this.word_count = 0;
+    if (value !== undefined && !value.in_header) {
+      this.word_count = value.word_count;
+      let cur_node = this.parent_node;
+      if (cur_node.parent_node !== undefined) {
+        cur_node = cur_node.parent_node;
+        while (cur_node !== undefined) {
+          cur_node.descendant_word_count += this.word_count;
+          cur_node = cur_node.parent_node;
+        }
+      }
+    }
   }
 
   add_child(child) {
@@ -2353,15 +2393,43 @@ function error_message_in_output(msg, context) {
   return `[CIRODOWN_ERROR: ${escaped_msg}]`
 }
 
-function get_descendant_count(tree_node) {
-  let descendant_count;
-  if (tree_node.descendant_count > 0) {
-    // Page emoji: \u{1F5CF}. Felt too distracting.
-    return ` <span class="descendant-count" title="number of descendant headers">[${tree_node.descendant_count}]</span>`;
-  } else {
-    return '';
+// https://stackoverflow.com/questions/9461621/format-a-number-as-2-5k-if-a-thousand-or-more-otherwise-900
+const FORMAT_NUMBER_APPROX_MAP = [
+  { value: 1, symbol: "" },
+  { value: 1E3, symbol: "k" },
+  { value: 1E6, symbol: "M" },
+  { value: 1E9, symbol: "G" },
+  { value: 1E12, symbol: "T" },
+  { value: 1E15, symbol: "P" },
+  { value: 1E18, symbol: "E" }
+];
+function format_number_approx(num, digits) {
+  if (digits === undefined) {
+    digits = 0;
   }
+  const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  let i;
+  for (i = FORMAT_NUMBER_APPROX_MAP.length - 1; i > 0; i--) {
+    if (num >= FORMAT_NUMBER_APPROX_MAP[i].value) {
+      break;
+    }
+  }
+  return (num / FORMAT_NUMBER_APPROX_MAP[i].value).toFixed(digits).replace(rx, "$1") + FORMAT_NUMBER_APPROX_MAP[i].symbol;
 }
+
+function get_descendant_count_html(tree_node) {
+  const descendant_nodes = tree_node.descendant_count;
+  let ret = `<span class="descendant-count">` +
+    `<span class="word-count" title="word count for this node">${format_number_approx(tree_node.word_count)}</span>`;
+  if (descendant_nodes > 0) {
+    ret += `, <span class="descendant" title="number of descendant nodes">${format_number_approx(descendant_nodes)}</span>` +
+           `, <span class="word-count-descendant" title="word count for this node + descendants">${format_number_approx(tree_node.word_count + tree_node.descendant_word_count)}</span>`;
+  }
+  ret += `</span>`
+  return ret;
+}
+
+format_number_approx
 
 /** Convert a key value already fully HTML escaped strings
  * to an HTML attribute. The callers MUST escape any untrusted chars.
@@ -3185,6 +3253,7 @@ function parse(tokens, options, context, extra_returns={}) {
         ),
       ]);
     } else {
+      // Not CirodownExample.
       if (macro_name === Macro.HEADER_MACRO_NAME) {
         // Required by calculate_id.
         validate_ast(ast, context);
@@ -3661,15 +3730,23 @@ function parse(tokens, options, context, extra_returns={}) {
     {
       const todo_visit = [ast_toplevel];
       while (todo_visit.length > 0) {
-        let ast = todo_visit.pop();
+        const ast = todo_visit.pop();
         const macro_name = ast.macro_name;
         const macro = context.macros[macro_name];
 
+        let children_in_header;
         if (macro_name === Macro.HEADER_MACRO_NAME) {
           // TODO start with the toplevel.
           cur_header_graph_node = ast.header_graph_node;
+          children_in_header = true;
         } else {
           ast.header_graph_node = new HeaderTreeNode(ast, cur_header_graph_node);
+          if (ast.in_header) {
+            children_in_header = true;
+          } else {
+            cur_header_graph_node.word_count += ast.word_count;
+            children_in_header = false;
+          }
           if (cur_header_graph_node !== undefined) {
             ast.scope = calculate_scope(cur_header_graph_node.value, context);
           }
@@ -3688,7 +3765,9 @@ function parse(tokens, options, context, extra_returns={}) {
         for (const arg_name in ast.args) {
           const arg = ast.args[arg_name];
           for (let i = arg.length - 1; i >= 0; i--) {
-            todo_visit.push(arg[i]);
+            const ast = arg[i];
+            ast.in_header = children_in_header;
+            todo_visit.push(ast);
           }
         }
       }
@@ -4511,7 +4590,7 @@ function x_text(ast, context, options={}) {
         first_ast.node_type === AstType.PLAINTEXT
       ) {
         title_arg = new AstArgument(title_arg, title_arg.source_location);
-        title_arg[title_arg.length - 1] = new PlaintextAstNode(last_ast, last_ast.source_location.text);
+        title_arg[title_arg.length - 1] = new PlaintextAstNode(last_ast.text, last_ast.source_location);
         title_arg[title_arg.length - 1].text = pluralize(last_ast.text, options.pluralize ? 2 : 1);
       }
     }
@@ -5001,25 +5080,30 @@ const DEFAULT_MACRO_LIST = [
         wiki_link = `<a href="https://en.wikipedia.org/wiki/${html_escape_attr(wiki)}">Wikipedia</a>`;
       }
       let header_meta = [];
-      if (link_to_split !== undefined) {
-        header_meta.push(link_to_split);
-      }
-      if (context.has_toc) {
-        header_meta.push(`<a${html_attr('href', '#' + Macro.TOC_ID)}>\u{21d3} toc</a>`);
-      }
-      if (parent_links !== '') {
-        header_meta.push(parent_links);
+      let first_header = (
+        // May fail in some error scenarios.
+        context.toplevel_ast !== undefined &&
+        ast.id === context.toplevel_ast.id
+      )
+      if (first_header) {
+        if (link_to_split !== undefined) {
+          header_meta.push(link_to_split);
+        }
+        if (context.has_toc) {
+          header_meta.push(`<a${html_attr('href', '#' + Macro.TOC_ID)}>\u{21d3} toc</a>`);
+        }
+        if (parent_links !== '') {
+          header_meta.push(parent_links);
+        }
       }
       if (wiki_link !== undefined) {
         header_meta.push(wiki_link);
       }
-      if (
-        // May fail in some error scenarios.
-        context.toplevel_ast !== undefined &&
-        ast.id === context.toplevel_ast.id &&
-        header_meta
-      ) {
-        ret += `<div class="h-nav"><span class="nav"> ${header_meta.join(HEADER_MENU_ITEM_SEP)}</span></div>\n`;
+      if (first_header) {
+        header_meta.push(get_descendant_count_html(ast.header_graph_node));
+      }
+      if (header_meta.length > 0) {
+        ret += `<div class="h-nav h-nav-toplevel"><span class="nav"> ${header_meta.join(HEADER_MENU_ITEM_SEP)}</span></div>\n`;
       }
       return ret;
     },
@@ -5422,7 +5506,7 @@ const DEFAULT_MACRO_LIST = [
       if (root_node.children.length === 1) {
         root_node = root_node.children[0];
       }
-      ret += `${TOC_ARROW_HTML}<a class="title"${x_href_attr(ast, context)}>Table of contents</a> ${get_descendant_count(root_node)}</div>\n`;
+      ret += `${TOC_ARROW_HTML}<a class="title"${x_href_attr(ast, context)}>Table of contents</a>${HEADER_MENU_ITEM_SEP}${get_descendant_count_html(root_node)}</div>\n`;
       for (let i = root_node.children.length - 1; i >= 0; i--) {
         todo_visit.push([root_node.children[i], 1]);
       }
@@ -5456,7 +5540,7 @@ const DEFAULT_MACRO_LIST = [
         // The inner <div></div> inside arrow is so that:
         // - outter div: takes up space to make clicking easy
         // - inner div: minimal size to make the CSS arrow work, but too small for confortable clicking
-        ret += `><div${id_to_toc}>${TOC_ARROW_HTML}<a${href}>${content}</a>${get_descendant_count(tree_node)}<span class="hover-metadata">`;
+        ret += `><div${id_to_toc}>${TOC_ARROW_HTML}<a${href}>${content}</a>${HEADER_MENU_ITEM_SEP}${get_descendant_count_html(tree_node)}<span class="hover-metadata">`;
 
         let toc_href = html_attr('href', '#' + my_toc_id);
         ret += `${HEADER_MENU_ITEM_SEP}<a${toc_href}${html_attr('title', 'link to this ToC entry')}>${UNICODE_LINK} link</a>`;
