@@ -147,15 +147,18 @@ function cmd_get_stdout(cmd, args=[], options={}) {
 /**
  * @param {String} path to a directory to convert files in
  */
-function convert_files_in_directory(input_path, options, convert_input_options) {
+function convert_directory(input_path, options, convert_input_options) {
   for (const one_path of walk_files_recursively(input_path, DEFAULT_IGNORE_BASENAMES_SET)) {
     convert_path_to_file(input_path, path.relative(input_path, one_path), options, convert_input_options);
+    if (convert_input_options.had_error) {
+      break;
+    }
   }
 }
 
 /** Extract IDs from all input files into the ID database, without fully converting. */
-function convert_files_in_directory_extract_ids(input_path, options, convert_input_options) {
-  convert_files_in_directory(
+function convert_directory_extract_ids(input_path, options, convert_input_options) {
+  convert_directory(
     input_path,
     cirodown.clone_and_set(options, 'render', false),
     convert_input_options
@@ -970,7 +973,7 @@ A link to another file: \\x[and-now-an-include]
       }
       create_db(convert_input_options);
       if (!input_path_is_file) {
-        convert_files_in_directory_extract_ids(inputPath, options, convert_input_options);
+        convert_directory_extract_ids(inputPath, options, convert_input_options);
         generate_redirects(convert_input_options, cirodown_json, outdir);
       }
       let watcher = chokidar.watch(inputPath, {ignored: DEFAULT_IGNORE_BASENAMES});
@@ -1050,8 +1053,8 @@ A link to another file: \\x[and-now-an-include]
 
         // Do the actual conversion.
         create_db(convert_input_options);
-        convert_files_in_directory_extract_ids(actual_input_dir, options, convert_input_options);
-        convert_files_in_directory(actual_input_dir, options, convert_input_options);
+        convert_directory_extract_ids(actual_input_dir, options, convert_input_options);
+        convert_directory(actual_input_dir, options, convert_input_options);
         generate_redirects(convert_input_options, cirodown_json, publish_outdir);
 
         // Publish the converted output if build succeeded.

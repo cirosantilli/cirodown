@@ -18,31 +18,31 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="positional-vs-named-arguments"><a href="" title="link to this element">Positional vs named arguments (<code>[...]</code> vs <code>{key=...}</code>)</a><span>  | <a title="view all headers in a single page" href=".#positional-vs-named-arguments">🗖 nosplit</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#positional-vs-named-arguments">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">288</span>, <span class="descendant" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">608</span></span></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-578">🔗</a></span><div class="p" id="p-578">Every argument in Cirodown is either positional or named.</div></div><div><span class="hide-hover"><a href="index-split#p-579">🔗</a></span><div class="p" id="p-579">For example, in a <a href="headers" title="internal link">header</a> definition with an ID:
-<div class="code-caption-container" id="code-229">
+<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#positional-vs-named-arguments">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">288</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">608</span></span></span></div>
+</div><div><span class="hide-hover"><a href="split#p-580">🔗</a></span><div class="p" id="p-580">Every argument in Cirodown is either positional or named.</div></div><div><span class="hide-hover"><a href="split#p-581">🔗</a></span><div class="p" id="p-581">For example, in a <a href="headers" title="internal link">header</a> definition with an ID:
+<div class="code-caption-container" id="code-233">
 <pre><code>= My asdf
 {id=asdf qwer}
 {scope}
 </code></pre></div>
 which is equivalent to the <a href="insane-macro-shortcuts" title="internal link">sane</a> version:
-<div class="code-caption-container" id="code-230">
+<div class="code-caption-container" id="code-234">
 <pre><code>\H[1][My asdf]
 {id=asdf qwer}
 {scope}
 </code></pre></div>
 we have:<div><ul id="ul-67">
 <li id="l-185">two positional argument: <code>[1]</code> and <code>[My asdf]</code>. Those are surrounded by square brackets <code>[]</code> and have no name</li>
-<li id="l-186"><div class="p" id="p-580">two named arguments: <code>{id=asdf qwer}</code> and <code>{scope}</code>.</div><div class="p" id="p-581">The first one has name <code>id</code>, followed by the separator <code>=</code>, followed by the value <code>asdf qwer</code>.</div><div class="p" id="p-582">The separator <code>=</code> always is optional. If not given, it is equivalent to an empty value, e.g.:
-<div class="code-caption-container" id="code-231">
+<li id="l-186"><div class="p" id="p-582">two named arguments: <code>{id=asdf qwer}</code> and <code>{scope}</code>.</div><div class="p" id="p-583">The first one has name <code>id</code>, followed by the separator <code>=</code>, followed by the value <code>asdf qwer</code>.</div><div class="p" id="p-584">The separator <code>=</code> always is optional. If not given, it is equivalent to an empty value, e.g.:
+<div class="code-caption-container" id="code-235">
 <pre><code>{id=}
 </code></pre></div>
 is the same as:
-<div class="code-caption-container" id="code-232">
+<div class="code-caption-container" id="code-236">
 <pre><code>{id}
 </code></pre></div></div></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-583">🔗</a></span><div class="p" id="p-583">You can determine if a macro is positional or named by using <a href="help-macros" title="internal link"><code>--help-macros</code></a>. Its output contains something like:
-<div class="code-caption-container" id="code-233">
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-585">🔗</a></span><div class="p" id="p-585">You can determine if a macro is positional or named by using <a href="help-macros" title="internal link"><code>--help-macros</code></a>. Its output contains something like:
+<div class="code-caption-container" id="code-237">
 <pre><code>  "h": {
     "name": "h",
     "positional_args": [
@@ -62,21 +62,21 @@ is the same as:
       }
     },
 </code></pre></div>
-and so we see that <code>level</code> and <code>content</code> are positional arguments, and <code>id</code> and <code>scope</code> are named arguments.</div></div><div><span class="hide-hover"><a href="index-split#p-584">🔗</a></span><div class="p" id="p-584">Generally, positional arguments are few (otherwise it would be hard to know which is which is which), and are almost always used for a given element so that they save us from typing the name too many times.</div></div><div><span class="hide-hover"><a href="index-split#p-585">🔗</a></span><div class="p" id="p-585">The order of positional arguments must of course be fixed, but named arguments can go anywhere. We can even mix positional and named arguments however we want, although this is not advised for clarity.</div></div><div><span class="hide-hover"><a href="index-split#p-586">🔗</a></span><div class="p" id="p-586">The following are therefore all equivalent:
-<div class="code-caption-container" id="code-234">
+and so we see that <code>level</code> and <code>content</code> are positional arguments, and <code>id</code> and <code>scope</code> are named arguments.</div></div><div><span class="hide-hover"><a href="split#p-586">🔗</a></span><div class="p" id="p-586">Generally, positional arguments are few (otherwise it would be hard to know which is which is which), and are almost always used for a given element so that they save us from typing the name too many times.</div></div><div><span class="hide-hover"><a href="split#p-587">🔗</a></span><div class="p" id="p-587">The order of positional arguments must of course be fixed, but named arguments can go anywhere. We can even mix positional and named arguments however we want, although this is not advised for clarity.</div></div><div><span class="hide-hover"><a href="split#p-588">🔗</a></span><div class="p" id="p-588">The following are therefore all equivalent:
+<div class="code-caption-container" id="code-238">
 <pre><code>\H[1][My asdf]{id=asdf qwer}{scope}
 \H[1][My asdf]{scope}{id=asdf qwer}
 \H{id=asdf qwer}{scope}[1][My asdf]
 \H{scope}[1]{id=asdf qwer}[My asdf]
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-587">🔗</a></span><div class="p" id="p-587">Just like named arguments, positional arguments are never mandatory.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-589">🔗</a></span><div class="p" id="p-589">Just like named arguments, positional arguments are never mandatory.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">288</span>, <span class="descendant" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">608</span></span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">288</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">608</span></span></div>
 <ul>
-<li class="has-child"><div id="toc-positional-argument-default-values"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="positional-argument-default-values">1. Positional argument default values</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">95</span>, <span class="descendant" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">144</span></span><span class="hover-metadata"> | <a href="#toc-positional-argument-default-values" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#positional-argument-default-values">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Positional vs named arguments"</a></span></div>
+<li class="has-child"><div id="toc-positional-argument-default-values"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="positional-argument-default-values">1. Positional argument default values</a> | <span class="metrics"><span class="word-count" title="word count for this node">95</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">144</span></span><span class="hover-metadata"> | <a href="#toc-positional-argument-default-values" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#positional-argument-default-values">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Positional vs named arguments"</a></span></div>
 <ul>
-<li><div id="toc-mandatory-positional-arguments"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="mandatory-positional-arguments">1.1. mandatory positional arguments</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">49</span></span><span class="hover-metadata"> | <a href="#toc-mandatory-positional-arguments" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#mandatory-positional-arguments">🗖 nosplit</a> | <a href="#toc-positional-argument-default-values" title="parent ToC entry">↑ parent "Positional argument default values"</a></span></div></li>
+<li><div id="toc-mandatory-positional-arguments"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="mandatory-positional-arguments">1.1. mandatory positional arguments</a> | <span class="metrics"><span class="word-count" title="word count for this node">49</span></span><span class="hover-metadata"> | <a href="#toc-mandatory-positional-arguments" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#mandatory-positional-arguments">🗖 nosplit</a> | <a href="#toc-positional-argument-default-values" title="parent ToC entry">↑ parent "Positional argument default values"</a></span></div></li>
 </ul>
-<li><div id="toc-boolean-named-arguments"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="boolean-named-arguments">2. Boolean named arguments</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">176</span></span><span class="hover-metadata"> | <a href="#toc-boolean-named-arguments" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#boolean-named-arguments">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Positional vs named arguments"</a></span></div></li>
+<li><div id="toc-boolean-named-arguments"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="boolean-named-arguments">2. Boolean named arguments</a> | <span class="metrics"><span class="word-count" title="word count for this node">176</span></span><span class="hover-metadata"> | <a href="#toc-boolean-named-arguments" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#boolean-named-arguments">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Positional vs named arguments"</a></span></div></li>
 </ul>
 </li>
 </ul>
@@ -89,7 +89,7 @@ and so we see that <code>level</code> and <code>content</code> are positional ar
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d">a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c2f973b84942f09ffff476863bdfa7bd41ea65ef">c2f973b84942f09ffff476863bdfa7bd41ea65ef</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

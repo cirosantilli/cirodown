@@ -18,8 +18,8 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="insane-link-parsing-rules"><a href="" title="link to this element">Insane link parsing rules</a><span>  | <a title="view all headers in a single page" href=".#insane-link-parsing-rules">🗖 nosplit</a> | <a href="links" title="parent header">↑ parent "Links"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#insane-link-parsing-rules">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="links" title="parent header">↑ parent "Links"</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">265</span></span></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-59">🔗</a></span><div class="p" id="p-59">Insane start at any of the recognized protocols are the ones shown at: <a href="known-url-protocols" title="internal link">Section "Known URL protocols"</a>.<div><ul id="ul-13">
+<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#insane-link-parsing-rules">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="links" title="parent header">↑ parent "Links"</a> | <span class="metrics"><span class="word-count" title="word count for this node">265</span></span></span></div>
+</div><div><span class="hide-hover"><a href="split#p-59">🔗</a></span><div class="p" id="p-59">Insane start at any of the recognized protocols are the ones shown at: <a href="known-url-protocols" title="internal link">Section "Known URL protocols"</a>.<div><ul id="ul-13">
 <li id="l-40"><code>http://</code></li>
 <li id="l-41"><code>https://</code>
 </li>
@@ -42,22 +42,22 @@ Empty domains like:
 don't becomes links however. But this one does:
 <div class="code-caption-container" id="code-27">
 <pre><code>http://a
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-60">🔗</a></span><div class="p" id="p-60">Insane links end when either the end of the document or one of the following characters is found:<div><ul id="ul-14">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-60">🔗</a></span><div class="p" id="p-60">Insane links end when either the end of the document or one of the following characters is found:<div><ul id="ul-14">
 <li id="l-42">space <code> </code></li>
 <li id="l-43">newline <code>\n</code></li>
 <li id="l-44">open or close square bracket <code>[</code> or <code>]</code></li>
 <li id="l-45">open or close curly braces <code>{</code> or <code>}</code></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-61">🔗</a></span><div class="p" id="p-61">As a consequence, to have an insane link followed immediately by a punctuation like a period you should use an empty argument as in:
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-61">🔗</a></span><div class="p" id="p-61">As a consequence, to have an insane link followed immediately by a punctuation like a period you should use an empty argument as in:
 <div class="code-caption-container" id="code-28">
 <pre><code>Check out this website: http://example.com[].
 </code></pre></div><div class="p" id="p-62">which renders as:</div><blockquote id="q-11"><div class="p" id="p-63">Check out this website: <a href="http://example.com">http://example.com</a>.</div></blockquote>
 otherwise the punctuation will go in it. Another common use case is:
 <div class="code-caption-container" id="code-29">
 <pre><code>As mentioned on the tutorial (http://example.com[see this link]).
-</code></pre></div><div class="p" id="p-64">which renders as:</div><blockquote id="q-12"><div class="p" id="p-65">As mentioned on the tutorial (<a href="http://example.com">see this link</a>).</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-66">🔗</a></span><div class="p" id="p-66">If you want your link to include one of the terminating characters, e.g. <code>]</code>, all characters can be escaped with a backslash, e.g.:
+</code></pre></div><div class="p" id="p-64">which renders as:</div><blockquote id="q-12"><div class="p" id="p-65">As mentioned on the tutorial (<a href="http://example.com">see this link</a>).</div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-66">🔗</a></span><div class="p" id="p-66">If you want your link to include one of the terminating characters, e.g. <code>]</code>, all characters can be escaped with a backslash, e.g.:
 <div class="code-caption-container" id="code-30">
 <pre><code>Hello http://example.com/\]a\}b\\c\ d world.
-</code></pre></div><div class="p" id="p-67">which renders as:</div><blockquote id="q-13"><div class="p" id="p-68">Hello <a href="http://example.com/]a}b\c d">http://example.com/]a}b\c d</a> world.</div></blockquote></div></div><div><span class="hide-hover"><a href="index-split#p-69">🔗</a></span><div class="p" id="p-69">Note that the <code>http://example.com</code> inside <code>\a[http://example.com]</code> only works because we do some post-processing magic that prevents its expansion, otherwise the link would expand twice:
+</code></pre></div><div class="p" id="p-67">which renders as:</div><blockquote id="q-13"><div class="p" id="p-68">Hello <a href="http://example.com/]a}b\c d">http://example.com/]a}b\c d</a> world.</div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-69">🔗</a></span><div class="p" id="p-69">Note that the <code>http://example.com</code> inside <code>\a[http://example.com]</code> only works because we do some post-processing magic that prevents its expansion, otherwise the link would expand twice:
 <div class="code-caption-container" id="code-31">
 <pre><code>\P[http://example.com]
 
@@ -73,7 +73,7 @@ This magic can be observed with <a href="help-macros" title="internal link"><cod
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d">a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c2f973b84942f09ffff476863bdfa7bd41ea65ef">c2f973b84942f09ffff476863bdfa7bd41ea65ef</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

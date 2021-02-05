@@ -17,9 +17,9 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="quick-start"><a href="" title="link to this element">Quick start</a><span>  | <a title="view all headers in a single page" href=".#quick-start">🗖 nosplit</a> | <a href="index-split" title="parent header">↑ parent "Cirodown"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#quick-start">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="index-split" title="parent header">↑ parent "Cirodown"</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">317</span></span></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-2">🔗</a></span><div class="p" id="p-2">Live in-browser demo: <a href="https://cirosantilli.com/cirodown/editor">https://cirosantilli.com/cirodown/editor</a></div></div><div><span class="hide-hover"><a href="index-split#p-3">🔗</a></span><div class="p" id="p-3">Install the NPM package globally and use it from the command line for a quick conversion:
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="quick-start"><a href="" title="link to this element">Quick start</a><span>  | <a title="view all headers in a single page" href=".#quick-start">🗖 nosplit</a> | <a href="split" title="parent header">↑ parent "Cirodown"</a></span></h1>
+<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#quick-start">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="split" title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">317</span></span></span></div>
+</div><div><span class="hide-hover"><a href="split#p-2">🔗</a></span><div class="p" id="p-2">Live in-browser demo: <a href="https://cirosantilli.com/cirodown/editor">https://cirosantilli.com/cirodown/editor</a></div></div><div><span class="hide-hover"><a href="split#p-3">🔗</a></span><div class="p" id="p-3">Install the NPM package globally and use it from the command line for a quick conversion:
 <div class="code-caption-container" id="code-1">
 <pre><code>npm install -g cirodown
 printf 'ab\ncd\n' | cirodown --body-only
@@ -29,7 +29,7 @@ or <a href="https://stackoverflow.com/questions/9679932/how-to-use-package-insta
 <pre><code>printf '{}\n' &gt; package.json
 npm install --save cirodown
 printf 'ab\ncd\n' | npx cirodown --body-only
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-4">🔗</a></span><div class="p" id="p-4">To start a new project with a minimal sane template <a href="generate" title="internal link">use <code>--generate</code></a> and then <a href="publish-to-github-pages" title="internal link">publish it to GitHub with <code>--publish</code></a>:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-4">🔗</a></span><div class="p" id="p-4">To start a new project with a minimal sane template <a href="generate" title="internal link">use <code>--generate</code></a> and then <a href="publish-to-github-pages" title="internal link">publish it to GitHub with <code>--publish</code></a>:
 <div class="code-caption-container" id="code-3">
 <pre><code>mkdir -p cirodown-test
 cd cirodown-test
@@ -43,7 +43,7 @@ cirodown --publish
 Or to start with a more complex template suitable for multifile projects use <a href="generate-multifile" title="internal link">use <code>--generate-multifile</code></a> instead:
 <div class="code-caption-container" id="code-4">
 <pre><code>cirodown --generate-multifile
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-5">🔗</a></span><div class="p" id="p-5">Render all <code>.ciro</code> files from the master of this project to separate files:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-5">🔗</a></span><div class="p" id="p-5">Render all <code>.ciro</code> files from the master of this project to separate files:
 <div class="code-caption-container" id="code-5">
 <pre><code>git clone https://github.com/cirosantilli/cirodown
 cd cirodown
@@ -62,11 +62,11 @@ or render instead as one fully offline standalone HTML file that can be given di
 <div class="code-caption-container" id="code-7">
 <pre><code>./cirodown --embed-resources --embed-includes README.ciro
 </code></pre></div>
-and give <code>index.html</code> to the reader.</div></div><div><span class="hide-hover"><a href="index-split#p-6">🔗</a></span><div class="p" id="p-6">Try out the JavaScript API with <a href="api_hello.js">api_hello.js</a>:
+and give <code>index.html</code> to the reader.</div></div><div><span class="hide-hover"><a href="split#p-6">🔗</a></span><div class="p" id="p-6">Try out the JavaScript API with <a href="api_hello.js">api_hello.js</a>:
 <div class="code-caption-container" id="code-8">
 <pre><code>npm install cirodown
 ./api_hello.js
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-7">🔗</a></span><div class="p" id="p-7">The <code>npm link</code> commands allow you to make changes to the code without re-installing the package all the time for development! Try hacking <a href="cirodown">cirodown</a> to see it. Just remember that if you add a new dependency, you must redo the symlinking business:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-7">🔗</a></span><div class="p" id="p-7">The <code>npm link</code> commands allow you to make changes to the code without re-installing the package all the time for development! Try hacking <a href="cirodown">cirodown</a> to see it. Just remember that if you add a new dependency, you must redo the symlinking business:
 <div class="code-caption-container" id="code-9">
 <pre><code>npm install &lt;dependency&gt;
 npm link
@@ -80,7 +80,7 @@ rm node_modules/cirodown
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d">a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c2f973b84942f09ffff476863bdfa7bd41ea65ef">c2f973b84942f09ffff476863bdfa7bd41ea65ef</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

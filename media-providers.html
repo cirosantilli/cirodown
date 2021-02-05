@@ -18,9 +18,9 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="media-providers"><a href="" title="link to this element"><code>media-providers</code></a><span>  | <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="cirodown-json" title="parent header">↑ parent "<code>cirodown.json</code>"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="cirodown-json" title="parent header">↑ parent "<code>cirodown.json</code>"</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">269</span></span></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-781">🔗</a></span><div class="p" id="p-781">The <code>media-providers</code> entry of <code>cirodown.json</code> specifies properties of how media such as <a href="images" title="internal link">images</a> and <a href="videos" title="internal link">videos</a> are retrieved and rendered.</div></div><div><span class="hide-hover"><a href="index-split#p-782">🔗</a></span><div class="p" id="p-782">The general format of <code>media-providers</code> looks like:
-<div class="code-caption-container" id="code-298">
+<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="cirodown-json" title="parent header">↑ parent "<code>cirodown.json</code>"</a> | <span class="metrics"><span class="word-count" title="word count for this node">269</span></span></span></div>
+</div><div><span class="hide-hover"><a href="split#p-783">🔗</a></span><div class="p" id="p-783">The <code>media-providers</code> entry of <code>cirodown.json</code> specifies properties of how media such as <a href="images" title="internal link">images</a> and <a href="videos" title="internal link">videos</a> are retrieved and rendered.</div></div><div><span class="hide-hover"><a href="split#p-784">🔗</a></span><div class="p" id="p-784">The general format of <code>media-providers</code> looks like:
+<div class="code-caption-container" id="code-302">
 <pre><code>"media-providers": {
   "github": {
     "default-for": ["image"], // "all" to default for both image, video and anything else
@@ -33,13 +33,13 @@
   },
   "youtube": {}
 }
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-783">🔗</a></span><div class="p" id="p-783">Properties that are valid for every provider:<div><ul id="ul-101">
-<li id="l-266"><div class="p" id="p-784"><code>default-for</code>: use this provider as the default for the given types of listed macros.</div><div class="p" id="p-785">The first character of the macros are case insensitive and must be given as lower case. Therefore e.g.:<div><ul id="ul-102">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-785">🔗</a></span><div class="p" id="p-785">Properties that are valid for every provider:<div><ul id="ul-101">
+<li id="l-266"><div class="p" id="p-786"><code>default-for</code>: use this provider as the default for the given types of listed macros.</div><div class="p" id="p-787">The first character of the macros are case insensitive and must be given as lower case. Therefore e.g.:<div><ul id="ul-102">
 <li id="l-267"><code>image</code> applies to both <code>image</code> and <code>Image</code></li>
 <li id="l-268">giving <code>Image</code> is an error because that starts with an upper case character</li>
 </ul></div></div></li>
 <li id="l-269"><code>title-from-src</code> (<code>bool</code>): extract the <code>title</code> argument from the <code>src</code> by default for media such as <a href="images" title="internal link">images</a> and <a href="videos" title="internal link">videos</a> as if the <code>titleFromSrc</code> macro argument had been given, see also: <a href="image-id" title="internal link">image IDs and captions</a></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-786">🔗</a></span><div class="p" id="p-786">Direct children of media-providers and subproperties that are valid only for them specifically:<div><ul id="ul-103">
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-788">🔗</a></span><div class="p" id="p-788">Direct children of media-providers and subproperties that are valid only for them specifically:<div><ul id="ul-103">
 <li id="l-270"><code>local</code>: tracked in the current Git repository as mentioned at <a href="store-images-inside-the-repository-itself" title="internal link">Section "Store images inside the repository itself"</a><div><ul id="ul-104">
 <li id="l-271"><code>path</code>: location of the cloned local repository relative to the root the main repository</li>
 </ul></div></li>
@@ -48,7 +48,7 @@
 <li id="l-274"><code>remote</code>: <code>&lt;github-username&gt;/&lt;repo-name&gt;</code></li>
 </ul></div></li>
 <li id="l-275"><code>youtube</code>: YouTube <a href="videos" title="internal link">videos</a></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-787">🔗</a></span><div class="p" id="p-787">See also: <a href="https://github.com/cirosantilli/cirodown/issues/40">https://github.com/cirosantilli/cirodown/issues/40</a></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-789">🔗</a></span><div class="p" id="p-789">See also: <a href="https://github.com/cirosantilli/cirodown/issues/40">https://github.com/cirosantilli/cirodown/issues/40</a></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href="embed-resources" title="internal link"><code>--embed-resources</code></a></li>
 <li><a href="image-id" title="internal link">Image IDs and captions</a></li>
@@ -59,7 +59,7 @@
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d">a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c2f973b84942f09ffff476863bdfa7bd41ea65ef">c2f973b84942f09ffff476863bdfa7bd41ea65ef</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

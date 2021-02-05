@@ -2485,8 +2485,8 @@ assert_convert_ast('split headers have correct table of contents',
       "//x:h3//x:a[@href='#toc-h1-2-1' and text()='\u21d1 toc']",
 
       // Descendant count.
-      "//*[@id='toc']//*[@class='title-div']//*[@class='descendant-count' and text()='[4]']",
-      "//*[@id='toc']//*[@id='toc-h1-2']//*[@class='descendant-count' and text()='[2]']",
+      "//*[@id='toc']//*[@class='title-div']//*[@class='descendant-count' and text()='4']",
+      "//*[@id='toc']//*[@id='toc-h1-2']//*[@class='descendant-count' and text()='2']",
     ],
     assert_xpath_split_headers: {
       'notindex-split.html': [
@@ -2510,8 +2510,8 @@ assert_convert_ast('split headers have correct table of contents',
         `//*[@id='toc']//*[@id='toc-h1-2-1-1']//x:a[@href='#toc-h1-2-1' and text()='${cirodown.PARENT_MARKER} \"h1 2 1\"']`,
 
         // Descendant count.
-        "//*[@id='toc']//*[@class='title-div']//*[@class='descendant-count' and text()='[2]']",
-        "//*[@id='toc']//*[@id='toc-h1-2-1']//*[@class='descendant-count' and text()='[1]']",
+        "//*[@id='toc']//*[@class='title-div']//*[@class='descendant-count' and text()='2']",
+        "//*[@id='toc']//*[@id='toc-h1-2-1']//*[@class='descendant-count' and text()='1']",
       ],
     },
     assert_not_xpath_split_headers: {
@@ -2903,7 +2903,7 @@ assert_split_header_output_keys(
     input_path: cirodown.INDEX_BASENAME_NOEXT + cirodown.CIRODOWN_EXT
   },
   [
-    cirodown.INDEX_BASENAME_NOEXT + '-split.html',
+    'split.html',
     'h1-1.html',
     'h1-1-1.html',
     'h1-1-2.html',
@@ -3052,6 +3052,9 @@ $$
 
 == Included by h2 in index h2
 `,
+  'notindex-splitsuffix.ciro': `= Notindex splitsuffix
+{splitSuffix=asdf}
+`,
   'subdir/index.ciro': `= Subdir index
 
 \\x[index][link to toplevel]
@@ -3101,7 +3104,7 @@ assert_executable(
       'included-by-index-split.html': [
         "//x:header//x:a[@href='index.html']",
         // Cross input file header on split header.
-        `//x:h1//x:a[@href='index-split.html' and text()='${cirodown.PARENT_MARKER} \"Index\"']`,
+        `//x:h1//x:a[@href='split.html' and text()='${cirodown.PARENT_MARKER} \"Index\"']`,
       ],
       'included-by-h2-in-index.html': [
         `//x:h1//x:a[@href='index.html#h2' and text()='${cirodown.PARENT_MARKER} \"h2\"']`,
@@ -3109,7 +3112,7 @@ assert_executable(
       'included-by-h2-in-index-split.html': [
         `//x:h1//x:a[@href='h2.html' and text()='${cirodown.PARENT_MARKER} \"h2\"']`,
       ],
-      'index-split.html': [
+      'split.html': [
         // Full links between split header pages have correct numbering.
         "//x:div[@class='p']//x:a[@href='h2.html' and text()='Section 2. \"h2\"']",
 
@@ -3144,6 +3147,9 @@ assert_executable(
       'has-split-suffix-split.html': [
         "//x:h1[@id='has-split-suffix']",
       ],
+      // Custom splitSuffix `-asdf` instead of the default `-split`.
+      'notindex-splitsuffix-asdf.html': [
+      ],
       'subdir/index.html': [
         "//x:header//x:a[@href='../index.html']",
         "//x:h1[@id='subdir']",
@@ -3151,7 +3157,7 @@ assert_executable(
         "//x:a[@href='../index.html' and text()='link to toplevel']",
         "//x:a[@href='../index.html#h2' and text()='link to toplevel subheader']",
       ],
-      'subdir/index-split.html': [
+      'subdir/split.html': [
         "//x:header//x:a[@href='../index.html']",
         "//x:h1[@id='index']",
         // Check that split suffix works. Should be has-split-suffix-split.html,
@@ -3163,7 +3169,7 @@ assert_executable(
         "//x:h1[@id='notindex']",
         "//x:h2[@id='notindex-h2']",
       ],
-      'subdir/index-split.html': [
+      'subdir/split.html': [
         "//x:h1[@id='subdir']",
       ],
       'subdir/index-h2.html': [
@@ -3206,7 +3212,7 @@ assert_executable(
       ],
     },
     expect_filesystem_not_xpath: {
-      'index-split.html': [
+      'split.html': [
         // Included header placeholders are removed from split headers.
         "//x:h1[@id='included-by-index']",
         "//x:h2[@id='included-by-index']",

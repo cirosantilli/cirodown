@@ -18,21 +18,21 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="internal-cross-file-references-internals"><a href="" title="link to this element">Internal cross file references internals</a><span>  | <a title="view all headers in a single page" href=".#internal-cross-file-references-internals">🗖 nosplit</a> | <a href="internal-cross-file-references" title="parent header">↑ parent "Internal cross file references"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#internal-cross-file-references-internals">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-file-references" title="parent header">↑ parent "Internal cross file references"</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">131</span></span></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-221">🔗</a></span><div class="p" id="p-221">When running in Node.js, Cirodown dumps the IDs of all processed files to a <code>out/db.sqlite3</code> file, and then reads from that file when IDs are needed.</div></div><div><span class="hide-hover"><a href="index-split#p-222">🔗</a></span><div class="p" id="p-222">When converting a directory, <code>out/db.sqlite3</code> is placed inside the input directory. When converting individual files, <code>out/db.sqlite3</code> is placed in the current working directory. The file is not created or used when handling input from stdin.</div></div><div><span class="hide-hover"><a href="index-split#p-223">🔗</a></span><div class="p" id="p-223">When running in the browser, the same JavaScript API will send queries to the server instead of a local SQLite database.</div></div><div><span class="hide-hover"><a href="index-split#p-224">🔗</a></span><div class="p" id="p-224">To inspect the ID database to debug it, you can use:
+<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#internal-cross-file-references-internals">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-file-references" title="parent header">↑ parent "Internal cross file references"</a> | <span class="metrics"><span class="word-count" title="word count for this node">131</span></span></span></div>
+</div><div><span class="hide-hover"><a href="split#p-221">🔗</a></span><div class="p" id="p-221">When running in Node.js, Cirodown dumps the IDs of all processed files to a <code>out/db.sqlite3</code> file, and then reads from that file when IDs are needed.</div></div><div><span class="hide-hover"><a href="split#p-222">🔗</a></span><div class="p" id="p-222">When converting a directory, <code>out/db.sqlite3</code> is placed inside the input directory. When converting individual files, <code>out/db.sqlite3</code> is placed in the current working directory. The file is not created or used when handling input from stdin.</div></div><div><span class="hide-hover"><a href="split#p-223">🔗</a></span><div class="p" id="p-223">When running in the browser, the same JavaScript API will send queries to the server instead of a local SQLite database.</div></div><div><span class="hide-hover"><a href="split#p-224">🔗</a></span><div class="p" id="p-224">To inspect the ID database to debug it, you can use:
 <div class="code-caption-container" id="code-92">
 <pre><code>sqlite3 out/db.sqlite3 .dump
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-225">🔗</a></span><div class="p" id="p-225">It is often useful to dump a single table, e.g. to dump the <code>ids</code> table:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-225">🔗</a></span><div class="p" id="p-225">It is often useful to dump a single table, e.g. to dump the <code>ids</code> table:
 <div class="code-caption-container" id="code-93">
 <pre><code>sqlite3 out/db.sqlite3 '.dump ids'
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-226">🔗</a></span><div class="p" id="p-226">You can force <code>cirodown</code> to not use the ID database with <code>--no-db</code>:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-226">🔗</a></span><div class="p" id="p-226">You can force <code>cirodown</code> to not use the ID database with <code>--no-db</code>:
 <div class="code-caption-container" id="code-94">
 <pre><code>./cirodown --no-db .
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d">a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c2f973b84942f09ffff476863bdfa7bd41ea65ef">c2f973b84942f09ffff476863bdfa7bd41ea65ef</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

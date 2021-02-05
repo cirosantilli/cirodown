@@ -18,8 +18,8 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="x-within-title-restrictions"><a href="" title="link to this element"><code>\x</code> within <code>title</code> restrictions</a><span>  | <a title="view all headers in a single page" href=".#x-within-title-restrictions">🗖 nosplit</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#x-within-title-restrictions">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a> | <span class="descendant-count"><span class="word-count" title="word count for this node">348</span></span></span></div>
-</div><div><span class="hide-hover"><a href="index-split#p-180">🔗</a></span><div class="p" id="p-180">If you use <code>\x</code> within a <code>title</code>, which most commonly happens for <a href="images" title="internal link">image titles</a>, that can generate complex dependencies, which would either be harder to implement, or lead to infinite recursion.</div></div><div><span class="hide-hover"><a href="index-split#p-181">🔗</a></span><div class="p" id="p-181">To prevent such problems, Cirodown emits an error if you use an <code>\x</code> without content in the <code>title</code> of one of the following elements without an explicit ID:<div><ul id="ul-22">
+<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#x-within-title-restrictions">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a> | <span class="metrics"><span class="word-count" title="word count for this node">348</span></span></span></div>
+</div><div><span class="hide-hover"><a href="split#p-180">🔗</a></span><div class="p" id="p-180">If you use <code>\x</code> within a <code>title</code>, which most commonly happens for <a href="images" title="internal link">image titles</a>, that can generate complex dependencies, which would either be harder to implement, or lead to infinite recursion.</div></div><div><span class="hide-hover"><a href="split#p-181">🔗</a></span><div class="p" id="p-181">To prevent such problems, Cirodown emits an error if you use an <code>\x</code> without content in the <code>title</code> of one of the following elements without an explicit ID:<div><ul id="ul-22">
 <li id="l-62"><div class="p" id="p-182"><a href="headers" title="internal link">header</a>. For example, the following gives an error:
 <div class="code-caption-container" id="code-68">
 <pre><code>= h1
@@ -76,7 +76,7 @@ or explicitly set an ID:
 {id=myimage2}
 {title=my \x[h1].}
 </code></pre></div></div></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="index-split#p-187">🔗</a></span><div class="p" id="p-187">While it is technically possible implement the above limitations, it would require a bit of extra work which we don't want to put in right now: <a href="https://github.com/cirosantilli/cirodown/issues/95">https://github.com/cirosantilli/cirodown/issues/95</a>.</div></div><div><span class="hide-hover"><a href="index-split#p-188">🔗</a></span><div class="p" id="p-188">Furthermore, the above rules do not exclude infinite rendering loops, but Cirodown detects such loops and gives a nice error message, this has been fixed at: <a href="https://github.com/cirosantilli/cirodown/issues/34">https://github.com/cirosantilli/cirodown/issues/34</a> </div></div><div><span class="hide-hover"><a href="index-split#p-189">🔗</a></span><div class="p" id="p-189">For example this would contain an infinite loop:
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-187">🔗</a></span><div class="p" id="p-187">While it is technically possible implement the above limitations, it would require a bit of extra work which we don't want to put in right now: <a href="https://github.com/cirosantilli/cirodown/issues/95">https://github.com/cirosantilli/cirodown/issues/95</a>.</div></div><div><span class="hide-hover"><a href="split#p-188">🔗</a></span><div class="p" id="p-188">Furthermore, the above rules do not exclude infinite rendering loops, but Cirodown detects such loops and gives a nice error message, this has been fixed at: <a href="https://github.com/cirosantilli/cirodown/issues/34">https://github.com/cirosantilli/cirodown/issues/34</a> </div></div><div><span class="hide-hover"><a href="split#p-189">🔗</a></span><div class="p" id="p-189">For example this would contain an infinite loop:
 <div class="code-caption-container" id="code-75">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
@@ -85,7 +85,7 @@ or explicitly set an ID:
 \Image[myimg.jpg]
 {id=myimage2}
 {title=\x[myimage1].}
-</code></pre></div></div></div><div><span class="hide-hover"><a href="index-split#p-190">🔗</a></span><div class="p" id="p-190">This infinite recursion is fundamentally not technically solved: the user has to manually break the loop by providing an <code>x</code> content explicitly, e.g. in either:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-190">🔗</a></span><div class="p" id="p-190">This infinite recursion is fundamentally not technically solved: the user has to manually break the loop by providing an <code>x</code> content explicitly, e.g. in either:
 <div class="code-caption-container" id="code-76">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
@@ -108,7 +108,7 @@ or:
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d">a87df7febb8c0aa4d9cd5eebf33559faf49d2c5d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c2f973b84942f09ffff476863bdfa7bd41ea65ef">c2f973b84942f09ffff476863bdfa7bd41ea65ef</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
