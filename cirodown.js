@@ -2420,13 +2420,20 @@ function format_number_approx(num, digits) {
 
 function get_descendant_count_html(tree_node) {
   const descendant_nodes = tree_node.descendant_count;
-  let ret = `<span class="metrics">` +
-    `<span class="word-count" title="word count for this node">${format_number_approx(tree_node.word_count)}</span>`;
-  if (descendant_nodes > 0) {
-    ret += `, <span class="descendant-count" title="number of descendant nodes">${format_number_approx(descendant_nodes)}</span>` +
-           `, <span class="word-count-descendant" title="word count for this node + descendants">${format_number_approx(tree_node.word_count + tree_node.descendant_word_count)}</span>`;
+  let ret;
+  if (tree_node.word_count > 0 || descendant_nodes > 0) {
+    ret = `<span class="metrics">`;
+    if (tree_node.word_count > 0 || descendant_nodes > 0) {
+      ret += `<span class="word-count" title="word count for this node">${format_number_approx(tree_node.word_count)}</span>`;
+    }
+    if (descendant_nodes > 0) {
+      ret += `, <span class="descendant-count" title="number of descendant nodes">${format_number_approx(descendant_nodes)}</span>` +
+            `, <span class="word-count-descendant" title="word count for this node + descendants">${format_number_approx(tree_node.word_count + tree_node.descendant_word_count)}</span>`;
+    }
+    ret += `</span>`
+  } else {
+    ret = '';
   }
-  ret += `</span>`
   return ret;
 }
 
@@ -5106,7 +5113,10 @@ const DEFAULT_MACRO_LIST = [
         header_meta.push(wiki_link);
       }
       if (first_header) {
-        header_meta.push(get_descendant_count_html(ast.header_graph_node));
+        let descendant_count_html = get_descendant_count_html(ast.header_graph_node);
+        if (descendant_count_html !== '') {
+          header_meta.push(descendant_count_html);
+        }
       }
       if (header_meta.length > 0) {
         ret += `<div class="h-nav h-nav-toplevel"><span class="nav"> ${header_meta.join(HEADER_MENU_ITEM_SEP)}</span></div>\n`;
@@ -5512,7 +5522,11 @@ const DEFAULT_MACRO_LIST = [
       if (root_node.children.length === 1) {
         root_node = root_node.children[0];
       }
-      ret += `${TOC_ARROW_HTML}<a class="title"${x_href_attr(ast, context)}>Table of contents</a>${HEADER_MENU_ITEM_SEP}${get_descendant_count_html(root_node)}</div>\n`;
+      let descendant_count_html = get_descendant_count_html(root_node);
+      if (descendant_count_html !== '') {
+        descendant_count_html = HEADER_MENU_ITEM_SEP + descendant_count_html;
+      }
+      ret += `${TOC_ARROW_HTML}<a class="title"${x_href_attr(ast, context)}>Table of contents</a>${descendant_count_html}</div>\n`;
       for (let i = root_node.children.length - 1; i >= 0; i--) {
         todo_visit.push([root_node.children[i], 1]);
       }
@@ -5546,7 +5560,11 @@ const DEFAULT_MACRO_LIST = [
         // The inner <div></div> inside arrow is so that:
         // - outter div: takes up space to make clicking easy
         // - inner div: minimal size to make the CSS arrow work, but too small for confortable clicking
-        ret += `><div${id_to_toc}>${TOC_ARROW_HTML}<a${href}>${content}</a>${HEADER_MENU_ITEM_SEP}${get_descendant_count_html(tree_node)}<span class="hover-metadata">`;
+        let descendant_count_html = get_descendant_count_html(tree_node);
+        if (descendant_count_html !== '') {
+          descendant_count_html = HEADER_MENU_ITEM_SEP + descendant_count_html;
+        }
+        ret += `><div${id_to_toc}>${TOC_ARROW_HTML}<a${href}>${content}</a>${descendant_count_html}<span class="hover-metadata">`;
 
         let toc_href = html_attr('href', '#' + my_toc_id);
         ret += `${HEADER_MENU_ITEM_SEP}<a${toc_href}${html_attr('title', 'link to this ToC entry')}>${UNICODE_LINK} link</a>`;
