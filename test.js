@@ -52,6 +52,12 @@ class MockIdProvider extends cirodown.IdProvider {
     }
   }
 
+  get_from_header_ids_of_xrefs_to(type, to_id) {
+    // TODO implement. For now all functionality that dependes on it,
+    // e.g. tags will not work when mocking.
+    return new Set();
+  }
+
   get_noscope_entry(id) {
     return this.ids_table[id];
   }
@@ -2870,6 +2876,7 @@ assert_split_header_output_keys(
     input_path: 'notindex' + cirodown.CIRODOWN_EXT
   },
   [
+    'notindex.html',
     'notindex-split.html',
     'h1-1.html',
     'h1-1-1.html',
@@ -2877,7 +2884,6 @@ assert_split_header_output_keys(
     'h1-2.html',
     'h1-2-1.html',
     'h1-2-2.html',
-    'notindex.html'
   ]
 )
 assert_split_header_output_keys(
@@ -2887,6 +2893,7 @@ assert_split_header_output_keys(
     toplevel_id: 'notindex'
   },
   [
+    'notindex.html',
     'notindex-split.html',
     'h1-1.html',
     'h1-1-1.html',
@@ -2894,7 +2901,6 @@ assert_split_header_output_keys(
     'h1-2.html',
     'h1-2-1.html',
     'h1-2-2.html',
-    'notindex.html'
   ]
 )
 assert_split_header_output_keys(
@@ -2903,6 +2909,7 @@ assert_split_header_output_keys(
     input_path: cirodown.INDEX_BASENAME_NOEXT + cirodown.CIRODOWN_EXT
   },
   [
+    cirodown.INDEX_BASENAME_NOEXT + '.html',
     'split.html',
     'h1-1.html',
     'h1-1-1.html',
@@ -2910,7 +2917,6 @@ assert_split_header_output_keys(
     'h1-2.html',
     'h1-2-1.html',
     'h1-2-2.html',
-    cirodown.INDEX_BASENAME_NOEXT + '.html'
   ]
 )
 

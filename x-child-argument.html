@@ -18,51 +18,54 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="x-child-argument"><a href="" title="link to this element">x <code>child</code> argument</a><span>  | <a title="view all headers in a single page" href=".#x-child-argument">🗖 nosplit</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#x-child-argument">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a> | <span class="metrics"><span class="word-count" title="word count for this node">211</span></span></span></div>
-</div><div><span class="hide-hover"><a href="split#p-81">🔗</a></span><div class="p" id="p-81">TODO implement.</div></div><div><span class="hide-hover"><a href="split#p-82">🔗</a></span><div class="p" id="p-82">Setting <code>child=1</code> on a cross reference to a header as in:
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#x-child-argument">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a> | <span class="metrics"><span class="word-count" title="word count for this node">248</span>, <span class="descendant-count" title="number of descendant nodes">7</span>, <span class="word-count-descendant" title="word count for this node + descendants">284</span></span></div></div>
+</div><div><span class="hide-hover"><a href="split#p-81">🔗</a></span><div class="p" id="p-81">Setting the <code>child</code> <a href="boolean-named-argument" title="internal link">boolean named argument</a> on a cross reference to a header as in:
 <div class="code-caption-container" id="code-35">
-<pre><code>\xref[my-header]{child=1}
+<pre><code>\x[my-header]{child}
 </code></pre></div>
-has the following effects:<div><ul id="ul-15">
-<li id="l-46">add the current header to the list of extra parents of the child</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-83">🔗</a></span><div class="p" id="p-83">This allows a section to have multiple parents, e.g. to include it into multiple categories. For example:
+makes that header show up on the list of extra parents of the child.</div></div><div><span class="hide-hover"><a href="split#p-82">🔗</a></span><div class="p" id="p-82">This allows a section to have multiple parents, e.g. to include it into multiple categories. For example:
 <div class="code-caption-container" id="code-36">
-<pre><code>= Animals
+<pre><code>= Animal
 
-== Mammals
+== Mammal
 
 === Dog
 
 === Cat
 
-== Cute animals
+== Cute animal
 
-Cute animals:
-* \xref[dog]{child=1}
-* \xref[cat]
+These animals are cute:
+* \x[dog]{child} because they play with you
+
+These animals aren't cute however:
+* \x[cat]
 </code></pre></div>
 would render something like:
 <div class="code-caption-container" id="code-37">
-<pre><code>h1 Animals
+<pre><code>h1 Animal
 
-h2 Mammals
+h2 Mammal
 
-h3 Dog (parent section: Mammals)
-(other parent sections: Cute animals)
+h3 Dog (parent section: Mammal)
+(other parent sections: Cute animal)
 
-h3 Cat (parent section: Mammals)
+h3 Cat (parent section: Mammal)
 
-== Cute animals
+== Cute animal
 
-* \xref[dog]
-* \xref[cat]
+These animals are cute:
+* \x[dog]
+
+These animals aren't cute however:
+* \x[cat]
 </code></pre></div>
-so note how "Dog" has a list of extra parents including "Cute animals", but Cat does not, due to the <code>child=1</code>.</div></div><div><span class="hide-hover"><a href="split#p-84">🔗</a></span><div class="p" id="p-84">This property does not affect how the <a href="table-of-contents" title="internal link"><code>\Toc</code></a> is rendered. We could insert elements sections there multiple times, but it has the downside that browser Ctrl + F searches would hit the same thing multiple times on the table of contents, which might make finding things harder.
+so note how "Dog" has a list of extra parents including "Cute animal", but Cat does not, due to the <code>child</code>.</div></div><div><span class="hide-hover"><a href="split#p-83">🔗</a></span><div class="p" id="p-83">This property does not affect how the <a href="table-of-contents" title="internal link"><code>\Toc</code></a> is rendered. We could insert elements sections there multiple times, but it has the downside that browser Ctrl + F searches would hit the same thing multiple times on the table of contents, which might make finding things harder.
 <div class="code-caption-container" id="code-38">
 <pre><code>== My title{id=my-id}
 
 Read this \x[my-id][amazing section].
-</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-85">🔗</a></span><div class="p" id="p-85">If the second argument, the <code>content</code>, is not present, it expand to the header title, e.g.:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-84">🔗</a></span><div class="p" id="p-84">If the second argument, the <code>content</code>, is not present, it expand to the header title, e.g.:
 <div class="code-caption-container" id="code-39">
 <pre><code>== My title{id=my-id}
 
@@ -73,11 +76,36 @@ is the same as:
 <pre><code>== My title{id=my-id}
 
 Read this \x[my-id][My title].
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-85">🔗</a></span><div class="p" id="p-85">A live demo can be seen at: <a href="x-child-argument-demo" title="internal link">x <code>child</code> argument demo</a>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">248</span>, <span class="descendant-count" title="number of descendant nodes">7</span>, <span class="word-count-descendant" title="word count for this node + descendants">284</span></span></div>
+<ul>
+<li class="has-child"><div id="toc-x-child-argument-demo"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="x-child-argument-demo">1. x <code>child</code> argument demo</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="descendant-count" title="number of descendant nodes">5</span>, <span class="word-count-descendant" title="word count for this node + descendants">13</span></span><span class="hover-metadata"> | <a href="#toc-x-child-argument-demo" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#x-child-argument-demo">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "x <code>child</code> argument"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-x-child-argument-demo/animal"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="x-child-argument-demo/animal">1.1. Animal</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="descendant-count" title="number of descendant nodes">4</span>, <span class="word-count-descendant" title="word count for this node + descendants">13</span></span><span class="hover-metadata"> | <a href="#toc-x-child-argument-demo/animal" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#x-child-argument-demo/animal">🗖 nosplit</a> | <a href="#toc-x-child-argument-demo" title="parent ToC entry">↑ parent "x <code>child</code> argument demo"</a></span></div>
+<ul>
+<li class="has-child"><div id="toc-x-child-argument-demo/mammal"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="x-child-argument-demo/mammal">1.1.1. Mammal</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="descendant-count" title="number of descendant nodes">2</span>, <span class="word-count-descendant" title="word count for this node + descendants">0</span></span><span class="hover-metadata"> | <a href="#toc-x-child-argument-demo/mammal" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#x-child-argument-demo/mammal">🗖 nosplit</a> | <a href="#toc-x-child-argument-demo/animal" title="parent ToC entry">↑ parent "Animal"</a></span></div>
+<ul>
+<li><div id="toc-x-child-argument-demo/dog"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="x-child-argument-demo/dog">1.1.1.1. Dog</a><span class="hover-metadata"> | <a href="#toc-x-child-argument-demo/dog" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#x-child-argument-demo/dog">🗖 nosplit</a> | <a href="#toc-x-child-argument-demo/mammal" title="parent ToC entry">↑ parent "Mammal"</a></span></div></li>
+<li><div id="toc-x-child-argument-demo/cat"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="x-child-argument-demo/cat">1.1.1.2. Cat</a><span class="hover-metadata"> | <a href="#toc-x-child-argument-demo/cat" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#x-child-argument-demo/cat">🗖 nosplit</a> | <a href="#toc-x-child-argument-demo/mammal" title="parent ToC entry">↑ parent "Mammal"</a></span></div></li>
+</ul>
+<li><div id="toc-x-child-argument-demo/cute-animal"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="x-child-argument-demo/cute-animal">1.1.2. Cute animal</a> | <span class="metrics"><span class="word-count" title="word count for this node">13</span></span><span class="hover-metadata"> | <a href="#toc-x-child-argument-demo/cute-animal" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#x-child-argument-demo/cute-animal">🗖 nosplit</a> | <a href="#toc-x-child-argument-demo/animal" title="parent ToC entry">↑ parent "Animal"</a></span></div></li>
+</ul>
+</li>
+</ul>
+<li><div id="toc-x-parent-argument"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="x-parent-argument">2. x <code>parent</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">23</span></span><span class="hover-metadata"> | <a href="#toc-x-parent-argument" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#x-parent-argument">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "x <code>child</code> argument"</a></span></div></li>
+</ul>
+</li>
+</ul>
+</div>
+</div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+<div><ul>
+<li><a href="x-parent-argument" title="internal link">X <code>parent</code> argument</a></li>
+</ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/4cd8b5aee022f2537e8104a97fb8059d991e2e35">4cd8b5aee022f2537e8104a97fb8059d991e2e35</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/2f4eab240ab29e604e6afdcf94de4574f78701a5">2f4eab240ab29e604e6afdcf94de4574f78701a5</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

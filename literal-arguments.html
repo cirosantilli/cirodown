@@ -18,8 +18,8 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="literal-arguments"><a href="" title="link to this element">Literal arguments (<code>[[...]]</code> and <code>{{key=...}}</code>)</a><span>  | <a title="view all headers in a single page" href=".#literal-arguments">🗖 nosplit</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#literal-arguments">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">283</span></span></span></div>
-</div><div><span class="hide-hover"><a href="split#p-612">🔗</a></span><div class="p" id="p-612">Arguments that are opened with more than one square brackets <code>[</code> or curly braces <code>{</code> are literal arguments.</div></div><div><span class="hide-hover"><a href="split#p-613">🔗</a></span><div class="p" id="p-613">In literal arguments, Cirodown is not parsed, and the entire argument is considered as text until a corresponding close with the same number of characters.</div></div><div><span class="hide-hover"><a href="split#p-614">🔗</a></span><div class="p" id="p-614">Therefore, you cannot have nested content, but it makes it extremely convenient to write <a href="code" title="internal link">code</a> or <a href="mathematics" title="internal link">mathematics</a>.</div></div><div><span class="hide-hover"><a href="split#p-615">🔗</a></span><div class="p" id="p-615">For example, a multiline code block with double open and double close square brackets inside can be enclosed in triple square brackets:
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#literal-arguments">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">283</span></span></div></div>
+</div><div><span class="hide-hover"><a href="split#p-614">🔗</a></span><div class="p" id="p-614">Arguments that are opened with more than one square brackets <code>[</code> or curly braces <code>{</code> are literal arguments.</div></div><div><span class="hide-hover"><a href="split#p-615">🔗</a></span><div class="p" id="p-615">In literal arguments, Cirodown is not parsed, and the entire argument is considered as text until a corresponding close with the same number of characters.</div></div><div><span class="hide-hover"><a href="split#p-616">🔗</a></span><div class="p" id="p-616">Therefore, you cannot have nested content, but it makes it extremely convenient to write <a href="code" title="internal link">code</a> or <a href="mathematics" title="internal link">mathematics</a>.</div></div><div><span class="hide-hover"><a href="split#p-617">🔗</a></span><div class="p" id="p-617">For example, a multiline code block with double open and double close square brackets inside can be enclosed in triple square brackets:
 <div class="code-caption-container" id="code-245">
 <pre><code>A literal argument looks like this in Cirodown:
 
@@ -32,22 +32,22 @@ code block.
 ]]
 
 And another paragraph.
-</code></pre></div><div class="p" id="p-616">which renders as:</div><blockquote id="q-126"><div class="p" id="p-617">A literal argument looks like this in Cirodown:</div><div class="code-caption-container" id="code-246">
+</code></pre></div><div class="p" id="p-618">which renders as:</div><blockquote id="q-126"><div class="p" id="p-619">A literal argument looks like this in Cirodown:</div><div class="code-caption-container" id="code-246">
 <pre><code>\C[
 A multiline
 
 code block.
 ]
-</code></pre></div><div class="p" id="p-618">And another paragraph.</div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-619">🔗</a></span><div class="p" id="p-619">The same works for inline code:
+</code></pre></div><div class="p" id="p-620">And another paragraph.</div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-621">🔗</a></span><div class="p" id="p-621">The same works for inline code:
 <div class="code-caption-container" id="code-247">
 <pre><code>The program \c[[puts("]");]] is very complex.
-</code></pre></div><div class="p" id="p-620">which renders as:</div><blockquote id="q-127"><div class="p" id="p-621">The program <code>puts("]");</code> is very complex.</div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-622">🔗</a></span><div class="p" id="p-622">Within literal blocks, only one thing can be escaped with backslashes are:<div><ul id="ul-70">
-<li id="l-192">leading open square bracket <code>[</code></li>
-<li id="l-193">trailing close square bracket <code>]</code></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-623">🔗</a></span><div class="p" id="p-623">The rule is that:<div><ul id="ul-71">
-<li id="l-194">if the first character of a literal argument is a sequence of backslashes (<code></code>), and it is followed by another argument open character (e.g. <code>[</code>, remove the first <code></code> and treat the other characters as regular text</li>
-<li id="l-195">if the last character of a literal argument is a <code></code>, ignore it and treat the following closing character (e.g. <code>]</code>) as regular text</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-624">🔗</a></span><div class="p" id="p-624">See the following open input/output pairs:
+</code></pre></div><div class="p" id="p-622">which renders as:</div><blockquote id="q-127"><div class="p" id="p-623">The program <code>puts("]");</code> is very complex.</div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-624">🔗</a></span><div class="p" id="p-624">Within literal blocks, only one thing can be escaped with backslashes are:<div><ul id="ul-70">
+<li id="l-193">leading open square bracket <code>[</code></li>
+<li id="l-194">trailing close square bracket <code>]</code></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-625">🔗</a></span><div class="p" id="p-625">The rule is that:<div><ul id="ul-71">
+<li id="l-195">if the first character of a literal argument is a sequence of backslashes (<code></code>), and it is followed by another argument open character (e.g. <code>[</code>, remove the first <code></code> and treat the other characters as regular text</li>
+<li id="l-196">if the last character of a literal argument is a <code></code>, ignore it and treat the following closing character (e.g. <code>]</code>) as regular text</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-626">🔗</a></span><div class="p" id="p-626">See the following open input/output pairs:
 <div class="code-caption-container" id="code-248">
 <pre><code>\c[[\ b]]
 &lt;code&gt;\ b&lt;/code&gt;
@@ -78,12 +78,13 @@ and close examples:
 <div><ul>
 <li><a href="code" title="internal link">Code</a></li>
 <li><a href="comments" title="internal link">Comments</a></li>
+<li><a href="escape-characters" title="internal link">Escape characters</a></li>
 <li><a href="insane-macro-shortcut-extra-arguments" title="internal link">Insane macro shortcut extra arguments</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/4cd8b5aee022f2537e8104a97fb8059d991e2e35">4cd8b5aee022f2537e8104a97fb8059d991e2e35</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/2f4eab240ab29e604e6afdcf94de4574f78701a5">2f4eab240ab29e604e6afdcf94de4574f78701a5</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

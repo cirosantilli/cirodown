@@ -18,22 +18,22 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="table-of-contents-javascript-open-close-interaction"><a href="" title="link to this element">Table of contents JavaScript open close interaction</a><span>  | <a title="view all headers in a single page" href=".#table-of-contents-javascript-open-close-interaction">🗖 nosplit</a> | <a href="table-of-contents" title="parent header">↑ parent "Table of contents"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#table-of-contents-javascript-open-close-interaction">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="table-of-contents" title="parent header">↑ parent "Table of contents"</a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span></span></span></div>
-</div><div><span class="hide-hover"><a href="split#p-263">🔗</a></span><div class="p" id="p-263">To the left of table of content entries you can click on an open/close icon to toggle the visibility of different levels of the table of contents.</div></div><div><span class="hide-hover"><a href="split#p-264">🔗</a></span><div class="p" id="p-264">The expansion algorithm is optimized so that when you first click on the arrow of a node it will give you an overview of that node, showing only its direct children.</div></div><div><span class="hide-hover"><a href="split#p-265">🔗</a></span><div class="p" id="p-265">At the start, all nodes are showing, to facilitate Ctrl + F queries, and so when you first click on a node, it collapses the children of children, so you can see only the direct children the node of interest, without getting a gazillion of sub descendants shown first.</div></div><div><span class="hide-hover"><a href="split#p-266">🔗</a></span><div class="p" id="p-266">The exact behaviour is:<div><ul id="ul-26">
-<li id="l-73">if a node is open:<div><ul id="ul-27">
-<li id="l-74">if all children are closed, close the element, This can improve the view of its siblings. The toplevel "Table of Contents" node never closes however, since we never want to close that one.</li>
-<li id="l-75">otherwise, close all children. This Gives a good overview of the children, without any children of children getting in the way.</li>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#table-of-contents-javascript-open-close-interaction">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="table-of-contents" title="parent header">↑ parent "Table of contents"</a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span></span></div></div>
+</div><div><span class="hide-hover"><a href="split#p-265">🔗</a></span><div class="p" id="p-265">To the left of table of content entries you can click on an open/close icon to toggle the visibility of different levels of the table of contents.</div></div><div><span class="hide-hover"><a href="split#p-266">🔗</a></span><div class="p" id="p-266">The expansion algorithm is optimized so that when you first click on the arrow of a node it will give you an overview of that node, showing only its direct children.</div></div><div><span class="hide-hover"><a href="split#p-267">🔗</a></span><div class="p" id="p-267">At the start, all nodes are showing, to facilitate Ctrl + F queries, and so when you first click on a node, it collapses the children of children, so you can see only the direct children the node of interest, without getting a gazillion of sub descendants shown first.</div></div><div><span class="hide-hover"><a href="split#p-268">🔗</a></span><div class="p" id="p-268">The exact behaviour is:<div><ul id="ul-26">
+<li id="l-74">if a node is open:<div><ul id="ul-27">
+<li id="l-75">if all children are closed, close the element, This can improve the view of its siblings. The toplevel "Table of Contents" node never closes however, since we never want to close that one.</li>
+<li id="l-76">otherwise, close all children. This Gives a good overview of the children, without any children of children getting in the way.</li>
 </ul></div></li>
-<li id="l-76">if a node is closed (not showing children), open it and show all children and their descendants.</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-267">🔗</a></span><div class="p" id="p-267">As a result of the above rules, clicking on a node three times goes through a loop of basically all useful states:<div><ul id="ul-28">
-<li id="l-77">node open and children open (initial state</li>
-<li id="l-78">node open and children closed</li>
-<li id="l-79">node closed</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-268">🔗</a></span><div class="p" id="p-268">Clicking on the link from a <a href="headers" title="internal link">header</a> up to the table of contents also automatically opens up the node for you in case it had been previously closed manually.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
+<li id="l-77">if a node is closed (not showing children), open it and show all children and their descendants.</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-269">🔗</a></span><div class="p" id="p-269">As a result of the above rules, clicking on a node three times goes through a loop of basically all useful states:<div><ul id="ul-28">
+<li id="l-78">node open and children open (initial state</li>
+<li id="l-79">node open and children closed</li>
+<li id="l-80">node closed</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-270">🔗</a></span><div class="p" id="p-270">Clicking on the link from a <a href="headers" title="internal link">header</a> up to the table of contents also automatically opens up the node for you in case it had been previously closed manually.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/4cd8b5aee022f2537e8104a97fb8059d991e2e35">4cd8b5aee022f2537e8104a97fb8059d991e2e35</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/2f4eab240ab29e604e6afdcf94de4574f78701a5">2f4eab240ab29e604e6afdcf94de4574f78701a5</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

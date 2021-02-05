@@ -21,8 +21,8 @@ const cirodown_nodejs = require('cirodown/nodejs');
 // Enum stored in Sqlite DB to represent different types of links.
 const INCLUDES_TABLE_NAMES_TYPES = {
   'INCLUDE': 0,
-  'X': 1,
-  'X_CHILD': 2,
+  [cirodown.INCLUDES_TABLE_NAME_X]: 1,
+  [cirodown.INCLUDES_TABLE_NAME_X_CHILD]: 2,
 };
 const CIRODOWN_JSON_BASENAME = 'cirodown.json';
 const CIRODOWN_TEX_BASENAME = 'cirodown.tex';
@@ -58,6 +58,10 @@ class SqliteIdProvider extends cirodown.IdProvider {
       `DELETE FROM '${convert_input_options.ids_table_name}' WHERE path = ?`);
     this.delete_includes_stmt = convert_input_options.db.prepare(
       `DELETE FROM '${convert_input_options.includes_table_name}' WHERE from_path = ?`);
+    this.delete_prefix_ids_stmt = convert_input_options.db.prepare(
+      `DELETE FROM '${convert_input_options.ids_table_name}' WHERE path LIKE ?`);
+    this.delete_prefix_includes_stmt = convert_input_options.db.prepare(
+      `DELETE FROM '${convert_input_options.includes_table_name}' WHERE from_path LIKE ?`);
     this.get_id_stmt = convert_input_options.db.prepare(
       `SELECT path,ast_json FROM ${convert_input_options.ids_table_name} WHERE id = ?`);
     this.get_includes_stmt = convert_input_options.db.prepare(
@@ -69,6 +73,12 @@ class SqliteIdProvider extends cirodown.IdProvider {
     this.delete_includes_stmt.run(input_path);
   }
 
+  clear_prefix(prefix) {
+    const prefix_literal = prefix + '/%';
+    this.delete_prefix_ids_stmt.run(prefix_literal);
+    this.delete_prefix_includes_stmt.run(prefix_literal);
+  }
+
   get_noscope_entry(id) {
     return this.get_id_stmt.get(id);
   }
@@ -77,9 +87,9 @@ class SqliteIdProvider extends cirodown.IdProvider {
     return this.get_includes_stmt.all(to_id, INCLUDES_TABLE_NAMES_TYPES['INCLUDE']);
   }
 
-  get_from_header_ids_of_xrefs_to(to_id) {
+  get_from_header_ids_of_xrefs_to(type, to_id) {
     const ret = new Set();
-    for (const entry of this.get_includes_stmt.all(to_id, INCLUDES_TABLE_NAMES_TYPES['X'])) {
+    for (const entry of this.get_includes_stmt.all(to_id, INCLUDES_TABLE_NAMES_TYPES[type])) {
       ret.add(entry.from_id);
     }
     return ret;
@@ -296,15 +306,17 @@ function convert_input(input, options, convert_input_options={}) {
     console.error();
   }
   if (convert_input_options.commander.debugPerf) {
-    console.error(`perf start: ${new_options.extra_returns.debug_perf.start}`);
-    console.error(`perf tokenize_pre: ${new_options.extra_returns.debug_perf.tokenize_pre}`);
-    console.error(`perf tokenize_post: ${new_options.extra_returns.debug_perf.tokenize_post}`);
-    console.error(`perf parse_start: ${new_options.extra_returns.debug_perf.parse_start}`);
-    console.error(`perf post_process_start: ${new_options.extra_returns.debug_perf.post_process_start}`);
-    console.error(`perf post_process_end: ${new_options.extra_returns.debug_perf.post_process_end}`);
-    console.error(`perf render_pre: ${new_options.extra_returns.debug_perf.render_pre}`);
-    console.error(`perf render_post: ${new_options.extra_returns.debug_perf.render_post}`);
-    console.error(`perf end: ${new_options.extra_returns.debug_perf.end}`);
+    console.error(`perf start ${new_options.extra_returns.debug_perf.start}`);
+    console.error(`perf tokenize_pre ${new_options.extra_returns.debug_perf.tokenize_pre}`);
+    console.error(`perf tokenize_post ${new_options.extra_returns.debug_perf.tokenize_post}`);
+    console.error(`perf parse_start ${new_options.extra_returns.debug_perf.parse_start}`);
+    console.error(`perf post_process_start ${new_options.extra_returns.debug_perf.post_process_start}`);
+    console.error(`perf post_process_end ${new_options.extra_returns.debug_perf.post_process_end}`);
+    console.error(`perf split_render_pre ${new_options.extra_returns.debug_perf.split_render_pre}`);
+    console.error(`perf render_pre ${new_options.extra_returns.debug_perf.render_pre}`);
+    console.error(`perf render_2_pre ${new_options.extra_returns.debug_perf.render_2_pre}`);
+    console.error(`perf render_post ${new_options.extra_returns.debug_perf.render_post}`);
+    console.error(`perf end ${new_options.extra_returns.debug_perf.end}`);
   }
   for (const error of new_options.extra_returns.errors) {
     console.error(error.toString());
@@ -408,28 +420,32 @@ function convert_path(input_path, options, convert_input_options) {
         }
       }
       for (const to_id in context.xref_from_to_dict) {
-        for (const from_id of context.xref_from_to_dict[to_id]) {
-          if (
-            // TODO happens on CirodownExample, likely also include,
-            // need to fix and remove this if.
-            from_id !== undefined
-          ) {
-            const from_header = context.id_provider.get(from_id);
+        const types = context.xref_from_to_dict[to_id];
+        for (const type in types) {
+          const from_ids = types[type];
+          for (const from_id of from_ids) {
             if (
-              // Can happen when the database is not yet populated,
-              // leading to ID not being present.
-              from_header !== undefined
+              // TODO happens on CirodownExample, likely also include,
+              // need to fix and remove this if.
+              from_id !== undefined
             ) {
-              if (context.id_provider.get(from_id)===undefined){
-                console.error(from_id);
-                asdf
+              const from_header = context.id_provider.get(from_id);
+              if (
+                // Can happen when the database is not yet populated,
+                // leading to ID not being present.
+                from_header !== undefined
+              ) {
+                if (context.id_provider.get(from_id)===undefined){
+                  console.error(from_id);
+                  asdf
+                }
+                insert_include_stmt.run(
+                  from_id,
+                  from_header.source_location.path,
+                  to_id,
+                  INCLUDES_TABLE_NAMES_TYPES[type]
+                );
               }
-              insert_include_stmt.run(
-                from_id,
-                from_header.source_location.path,
-                to_id,
-                INCLUDES_TABLE_NAMES_TYPES['X']
-              );
             }
           }
         }
@@ -1050,9 +1066,14 @@ A link to another file: \\x[and-now-an-include]
           publish_outdir = outdir;
         }
         convert_input_options.outdir = publish_outdir;
+        create_db(convert_input_options);
+
+        // Remove IDs and other metadata from files that might have been removed from disk.
+        // https://github.com/cirosantilli/cirodown/issues/125
+        const dir_relpath = path.relative(convert_input_options.cirodown_json_dir, inputPath);
+        convert_input_options.id_provider.clear_prefix(dir_relpath);
 
         // Do the actual conversion.
-        create_db(convert_input_options);
         convert_directory_extract_ids(actual_input_dir, options, convert_input_options);
         convert_directory(actual_input_dir, options, convert_input_options);
         generate_redirects(convert_input_options, cirodown_json, publish_outdir);

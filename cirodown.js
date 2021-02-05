@@ -573,7 +573,7 @@ class IdProvider {
   get_includes_entries(to_id) { throw new Error('unimplemented'); }
 
   /** Set of IDs. */
-  get_from_header_ids_of_xrefs_to(to_id) { throw new Error('unimplemented'); }
+  get_from_header_ids_of_xrefs_to(type, to_id) { throw new Error('unimplemented'); }
 }
 exports.IdProvider = IdProvider;
 
@@ -604,10 +604,10 @@ class ChainedIdProvider extends IdProvider {
     return this.id_provider_1.get_includes(id, context).concat(
       this.id_provider_2.get_includes(id, context));
   }
-  get_from_header_ids_of_xrefs_to(to_id, context) {
+  get_from_header_ids_of_xrefs_to(type, to_id) {
     return new Set([
-      ...this.id_provider_1.get_from_header_ids_of_xrefs_to(to_id, context),
-      ...this.id_provider_2.get_from_header_ids_of_xrefs_to(to_id, context),
+      ...this.id_provider_1.get_from_header_ids_of_xrefs_to(type, to_id),
+      ...this.id_provider_2.get_from_header_ids_of_xrefs_to(type, to_id),
     ]);
   }
 }
@@ -631,12 +631,15 @@ class DictIdProvider extends IdProvider {
   get_includes(id, context) {
     return [];
   }
-  get_from_header_ids_of_xrefs_to(to_id, context) {
-    if (to_id in this.xref_from_to_dict) {
-      return this.xref_from_to_dict[to_id];
-    } else {
-      return new Set();
+  get_from_header_ids_of_xrefs_to(type, to_id) {
+    const from_ids_type = this.xref_from_to_dict[to_id];
+    if (from_ids_type !== undefined) {
+      const from_ids = from_ids_type[type];
+      if (from_ids !== undefined) {
+        return from_ids;
+      }
     }
+    return new Set();
   }
 }
 
@@ -2028,8 +2031,29 @@ function convert(
   extra_returns.errors.push(...sub_extra_returns.errors);
   let output;
   if (context.options.render) {
+    if (context.options.log['split-headers']) {
+      console.error('split-headers non-split: ' + context.options.input_path);
+    }
     context.extra_returns.rendered_outputs = {};
     extra_returns.debug_perf.render_pre = globals.performance.now();
+    output = ast.convert(context);
+    context.katex_macros = Object.assign({}, context.options.katex_macros);
+
+    // We render a second time because indexing operations such as \x[...]{child}
+    // are only indexed at render time. But headers before that \x might need that
+    // parent list. This does add a bit of time. One option would be to have a fast
+    // render mode that disables this. That could be the default render mode, and
+    // publish would override it. But does not seem to be worth implementation cost
+    // right now. Maybe later.
+    extra_returns.debug_perf.render_2_pre = globals.performance.now();
+    context.katex_macros = Object.assign({}, context.options.katex_macros);
+    output = ast.convert(context);
+    context.katex_macros = Object.assign({}, context.options.katex_macros);
+    if (context.toplevel_output_path !== undefined) {
+      context.extra_returns.rendered_outputs[context.toplevel_output_path] = output;
+    }
+
+    extra_returns.debug_perf.split_render_pre = globals.performance.now();
     // Split header conversion.
     if (context.options.split_headers) {
       const content = ast.args.content;
@@ -2056,14 +2080,6 @@ function convert(
       }
       convert_header(cur_arg_list, context);
       // Because the following conversion would redefine them.
-    }
-    if (context.options.log['split-headers']) {
-      console.error('split-headers non-split: ' + context.options.input_path);
-    }
-    context.katex_macros = Object.assign({}, context.options.katex_macros);
-    output = ast.convert(context);
-    if (context.toplevel_output_path !== undefined) {
-      context.extra_returns.rendered_outputs[context.toplevel_output_path] = output;
     }
     extra_returns.debug_perf.render_post = globals.performance.now();
     extra_returns.errors.push(...context.errors);
@@ -2437,7 +2453,19 @@ function get_descendant_count_html(tree_node) {
   return ret;
 }
 
-format_number_approx
+function get_from_ids(target_id, context) {
+  let from_ids;
+  if (target_id in context.xref_from_to_dict) {
+    from_ids = context.xref_from_to_dict[target_id];
+  } else {
+    from_ids = {};
+    for (const name of INCLUDES_TABLE_NAMES) {
+      from_ids[name] = new Set([]);
+    }
+    context.xref_from_to_dict[target_id] = from_ids;
+  }
+  return from_ids;
+}
 
 /** Convert a key value already fully HTML escaped strings
  * to an HTML attribute. The callers MUST escape any untrusted chars.
@@ -3026,7 +3054,7 @@ function parse(tokens, options, context, extra_returns={}) {
   if (include_options.is_first_global_header === undefined) {
     include_options.is_first_global_header = true;
   }
-  context.xref_from_to_dict = {}
+  context.xref_from_to_dict = {};
   let local_id_provider = new DictIdProvider(
     include_options.indexed_ids,
     context.xref_from_to_dict
@@ -3808,6 +3836,7 @@ function parse(tokens, options, context, extra_returns={}) {
     return line_to_id_array[index][1];
   };
 
+  extra_returns.debug_perf.post_process_end = globals.performance.now();
   return ast_toplevel;
 }
 
@@ -4232,20 +4261,30 @@ exports.validate_ast = validate_ast;
 function x_get_href_content(ast, context) {
   const target_id = convert_arg_noescape(ast.args.href, context);
 
-  /* Update xref database. */
-  let from_ids;
-  if (!(target_id in context.xref_from_to_dict)) {
-    from_ids = new Set([]);
-    context.xref_from_to_dict[target_id] = from_ids;
-  } else {
-    from_ids = context.xref_from_to_dict[target_id];
-  }
   const parent_id = ast.get_header_parent_id();
   if (
     // Happens on some special elements e.g. the ToC.
     parent_id !== undefined
   ) {
-    from_ids.add(parent_id);
+    // Update xref database for incoming links.
+    const from_ids = get_from_ids(target_id, context);
+    from_ids[INCLUDES_TABLE_NAME_X].add(parent_id);
+
+    // Update xref database for child/parent relationships.
+    {
+      let toid, fromid;
+      if (ast.validation_output.child.boolean) {
+        fromid = parent_id;
+        toid = target_id;
+      } else if (ast.validation_output.parent.boolean) {
+        toid = parent_id;
+        fromid = target_id;
+      }
+      if (toid !== undefined) {
+        const from_ids = get_from_ids(toid, context);
+        from_ids[INCLUDES_TABLE_NAME_X_CHILD].add(fromid);
+      }
+    }
   }
 
   if (target_id[0] === AT_MENTION_CHAR) {
@@ -4639,7 +4678,14 @@ function x_text(ast, context, options={}) {
 const AT_MENTION_CHAR = '@';
 const HASHTAG_CHAR = '#';
 const WEBSITE_URL = 'https://hostname.com/';
-
+const INCLUDES_TABLE_NAME_X = 'X';
+exports.INCLUDES_TABLE_NAME_X = INCLUDES_TABLE_NAME_X;
+const INCLUDES_TABLE_NAME_X_CHILD = 'X_CHILD';
+exports.INCLUDES_TABLE_NAME_X_CHILD = INCLUDES_TABLE_NAME_X_CHILD;
+const INCLUDES_TABLE_NAMES = [
+  INCLUDES_TABLE_NAME_X,
+  INCLUDES_TABLE_NAME_X_CHILD,
+];
 const END_NAMED_ARGUMENT_CHAR = '}';
 const END_POSITIONAL_ARGUMENT_CHAR = ']';
 const ESCAPE_CHAR = '\\';
@@ -5118,8 +5164,44 @@ const DEFAULT_MACRO_LIST = [
           header_meta.push(descendant_count_html);
         }
       }
+      const tag_ids = context.id_provider.get_from_header_ids_of_xrefs_to(
+        INCLUDES_TABLE_NAME_X_CHILD, ast.id);
+      const new_context = clone_and_set(context, 'validate_ast', true);
+      new_context['source_location'] = ast.source_location;
+      const tag_ids_html_array = [];
+      for (const target_id of Array.from(tag_ids).sort()) {
+        const x_ast = new AstNode(
+          AstType.MACRO,
+          'x',
+          {
+            'href': new AstArgument(
+              [
+                new PlaintextAstNode(target_id),
+              ],
+            ),
+            'c': new AstArgument(),
+          },
+        );
+        tag_ids_html_array.push(x_ast.convert(new_context));
+      }
+      const tag_ids_html = 'Tags: ' + tag_ids_html_array.join(', ');
+      if (!first_header && tag_ids_html_array.length > 0) {
+        header_meta.push(tag_ids_html);
+      }
+      const header_has_meta = tag_ids_html.length > 0 || header_meta.length > 0;
+      if (header_has_meta) {
+        ret += `<div class="h-nav h-nav-toplevel">`;
+      }
       if (header_meta.length > 0) {
-        ret += `<div class="h-nav h-nav-toplevel"><span class="nav"> ${header_meta.join(HEADER_MENU_ITEM_SEP)}</span></div>\n`;
+        ret += `<div class="nav"> ${header_meta.join(HEADER_MENU_ITEM_SEP)}</div>`;
+      }
+      if (first_header && tag_ids_html_array.length > 0) {
+        ret += `<div class="nav"> `;
+        ret += tag_ids_html;
+        ret += `</div>`;
+      }
+      if (header_has_meta) {
+        ret += `</div>\n`;
       }
       return ret;
     },
@@ -5660,7 +5742,7 @@ const DEFAULT_MACRO_LIST = [
 
         // Incoming links.
         if (context.toplevel_ast !== undefined) {
-          const target_ids = context.id_provider.get_from_header_ids_of_xrefs_to(context.toplevel_ast.id);
+          const target_ids = context.id_provider.get_from_header_ids_of_xrefs_to(INCLUDES_TABLE_NAME_X, context.toplevel_ast.id);
           if (target_ids.size !== 0) {
             // TODO factor this out more with real headers.
             body += `<div>${html_hide_hover_link('#incomding-links')}<h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>\n`;

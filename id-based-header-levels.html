@@ -18,8 +18,8 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="id-based-header-levels"><a href="" title="link to this element">ID-based header levels (<code>{parent=&lt;parent-id&gt;}</code>)</a><span>  | <a title="view all headers in a single page" href=".#id-based-header-levels">🗖 nosplit</a> | <a href="headers" title="parent header">↑ parent "Headers"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><span class="nav"> <a title="view all headers in a single page" href=".#id-based-header-levels">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="headers" title="parent header">↑ parent "Headers"</a> | <span class="metrics"><span class="word-count" title="word count for this node">307</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">484</span></span></span></div>
-</div><div><span class="hide-hover"><a href="split#p-241">🔗</a></span><div class="p" id="p-241">In addition to the basic way of specifying header levels with an explicit level number, as mentioned at <a href="headers" title="internal link">Section "Headers (<code>\H</code>)"</a>, Cirodown also supports a more indirect ID-based mechanism.</div></div><div><span class="hide-hover"><a href="split#p-242">🔗</a></span><div class="p" id="p-242">For example, the following fixed level syntax:
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#id-based-header-levels">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="headers" title="parent header">↑ parent "Headers"</a> | <span class="metrics"><span class="word-count" title="word count for this node">307</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">484</span></span></div></div>
+</div><div><span class="hide-hover"><a href="split#p-243">🔗</a></span><div class="p" id="p-243">In addition to the basic way of specifying header levels with an explicit level number, as mentioned at <a href="headers" title="internal link">Section "Headers (<code>\H</code>)"</a>, Cirodown also supports a more indirect ID-based mechanism.</div></div><div><span class="hide-hover"><a href="split#p-244">🔗</a></span><div class="p" id="p-244">For example, the following fixed level syntax:
 <div class="code-caption-container" id="code-103">
 <pre><code>= My h1
 
@@ -41,17 +41,17 @@ is equivalent to the following ID-based version:
 
 = My h3 2 1
 {parent=my-h2-h}
-</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-243">🔗</a></span><div class="p" id="p-243">The main advantages of this syntax are felt when you have a huge document with <a href="unlimited-header-levels" title="internal link">very large header depths</a>. In that case:<div><ul id="ul-24">
-<li id="l-68">it becomes easy to get levels wrong with so many large level numbers to deal with. It is much harder to get an ID wrong.</li>
-<li id="l-69"><div class="p" id="p-244">when you want to move headers around to improve organization, things are quite painful without a refactoring tool (which we intend to provide in the <a href="editor-with-preview" title="internal link">editor with preview</a>), as you need to fix up the levels of every single header.</div><div class="p" id="p-245">If you are using the ID-based syntax however, you only have to move the chunk of headers, and change the <code>parent</code> argument of a single top-level header being moved.</div></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-246">🔗</a></span><div class="p" id="p-246">Note that when the <code>parent=</code> argument is given, the header level must be <code>1</code>, otherwise Cirodown assumes that something is weird and gives an error. E.g. the following gives an error:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-245">🔗</a></span><div class="p" id="p-245">The main advantages of this syntax are felt when you have a huge document with <a href="unlimited-header-levels" title="internal link">very large header depths</a>. In that case:<div><ul id="ul-24">
+<li id="l-69">it becomes easy to get levels wrong with so many large level numbers to deal with. It is much harder to get an ID wrong.</li>
+<li id="l-70"><div class="p" id="p-246">when you want to move headers around to improve organization, things are quite painful without a refactoring tool (which we intend to provide in the <a href="editor-with-preview" title="internal link">editor with preview</a>), as you need to fix up the levels of every single header.</div><div class="p" id="p-247">If you are using the ID-based syntax however, you only have to move the chunk of headers, and change the <code>parent</code> argument of a single top-level header being moved.</div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-248">🔗</a></span><div class="p" id="p-248">Note that when the <code>parent=</code> argument is given, the header level must be <code>1</code>, otherwise Cirodown assumes that something is weird and gives an error. E.g. the following gives an error:
 <div class="code-caption-container" id="code-105">
 <pre><code>= My h1
 
 == My h2
 {parent=my-h1}
 </code></pre></div>
-because the second header has level <code>2</code> instead of the required <code>= My h2</code>.</div></div><div><span class="hide-hover"><a href="split#p-247">🔗</a></span><div class="p" id="p-247">When <a href="scope" title="internal link">scopes</a> are involved, the rules are the same as those of internal reference resolution, including the leading <code>/</code> to break out of the scope in case of conflicts.</div></div><div><span class="hide-hover"><a href="split#p-248">🔗</a></span><div class="p" id="p-248">See also: <a href="header-explicit-levels-vs-nesting-design-choice" title="internal link">Section "Header explicit levels vs nesting design choice"</a> for further rationale.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+because the second header has level <code>2</code> instead of the required <code>= My h2</code>.</div></div><div><span class="hide-hover"><a href="split#p-249">🔗</a></span><div class="p" id="p-249">When <a href="scope" title="internal link">scopes</a> are involved, the rules are the same as those of internal reference resolution, including the leading <code>/</code> to break out of the scope in case of conflicts.</div></div><div><span class="hide-hover"><a href="split#p-250">🔗</a></span><div class="p" id="p-250">See also: <a href="header-explicit-levels-vs-nesting-design-choice" title="internal link">Section "Header explicit levels vs nesting design choice"</a> for further rationale.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
 <li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">307</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">484</span></span></div>
 <ul>
@@ -60,11 +60,15 @@ because the second header has level <code>2</code> instead of the required <code
 </li>
 </ul>
 </div>
-</div></main>
+</div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+<div><ul>
+<li><a href="header-explicit-levels-vs-nesting-design-choice" title="internal link">Header explicit levels vs nesting design choice</a></li>
+<li><a href="id-based-header-levels-and-scope-resolution" title="internal link">ID-based header levels and scope resolution</a></li>
+</ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/4cd8b5aee022f2537e8104a97fb8059d991e2e35">4cd8b5aee022f2537e8104a97fb8059d991e2e35</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/2f4eab240ab29e604e6afdcf94de4574f78701a5">2f4eab240ab29e604e6afdcf94de4574f78701a5</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
