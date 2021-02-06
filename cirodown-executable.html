@@ -19,26 +19,26 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cirodown-executable"><a href="" title="link to this element"><code>cirodown</code> executable</a><span>  | <a title="view all headers in a single page" href=".#cirodown-executable">🗖 nosplit</a> | <a href="tooling" title="parent header">↑ parent "Tooling"</a></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#cirodown-executable">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="tooling" title="parent header">↑ parent "Tooling"</a> | <span class="metrics"><span class="word-count" title="word count for this node">182</span>, <span class="descendant-count" title="number of descendant nodes">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-661">🔗</a></span><div class="p" id="p-661">Convert a <code>.ciro</code> file to HTML and output the HTML to a file with the same basename without extension, e.g.:
-<div class="code-caption-container" id="code-266">
+</div><div><span class="hide-hover"><a href="split#p-664">🔗</a></span><div class="p" id="p-664">Convert a <code>.ciro</code> file to HTML and output the HTML to a file with the same basename without extension, e.g.:
+<div class="code-caption-container" id="code-268">
 <pre><code>cirodown hello.ciro
 firefox hello.html
-</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-662">🔗</a></span><div class="p" id="p-662">Files named <code>README.ciro</code> are automatically converted to <code>index.html</code> so that they will show on both GitHub READMEs and at the website's base address:
-<div class="code-caption-container" id="code-267">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-665">🔗</a></span><div class="p" id="p-665">Files named <code>README.ciro</code> are automatically converted to <code>index.html</code> so that they will show on both GitHub READMEs and at the website's base address:
+<div class="code-caption-container" id="code-269">
 <pre><code>cirodown README.ciro
 firefox hello.html
-</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-663">🔗</a></span><div class="p" id="p-663">Convert all <code>.ciro</code> files in a directory to HTML files next to each corresponding <code>.ciro</code> file, e.g. <code>somefile.ciro</code> to <code>somefile.html</code>:
-<div class="code-caption-container" id="code-268">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-666">🔗</a></span><div class="p" id="p-666">Convert all <code>.ciro</code> files in a directory to HTML files next to each corresponding <code>.ciro</code> file, e.g. <code>somefile.ciro</code> to <code>somefile.html</code>:
+<div class="code-caption-container" id="code-270">
 <pre><code>cirodown .
 </code></pre></div>
-The HTML output files are placed right next to each corresponding <code>.ciro</code>.</div></div><div><span class="hide-hover"><a href="split#p-664">🔗</a></span><div class="p" id="p-664">The output file can be selected explicitly with: <a href="outfile" title="internal link"><code>--outfile &lt;outfie&gt;</code></a>.</div></div><div><span class="hide-hover"><a href="split#p-665">🔗</a></span><div class="p" id="p-665">Output to stdout instead of saving it to a file:
-<div class="code-caption-container" id="code-269">
+The HTML output files are placed right next to each corresponding <code>.ciro</code>.</div></div><div><span class="hide-hover"><a href="split#p-667">🔗</a></span><div class="p" id="p-667">The output file can be selected explicitly with: <a href="outfile" title="internal link"><code>--outfile &lt;outfie&gt;</code></a>.</div></div><div><span class="hide-hover"><a href="split#p-668">🔗</a></span><div class="p" id="p-668">Output to stdout instead of saving it to a file:
+<div class="code-caption-container" id="code-271">
 <pre><code>cirodown --stdout README.ciro
-</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-666">🔗</a></span><div class="p" id="p-666">In order to resolve <a href="internal-cross-file-references" title="internal link">internal cross file references</a>, this actually does two passes:<div><ul id="ul-79">
-<li id="l-215">first an ID extraction pass, which parses all inputs and dumps their IDs to the ID database</li>
-<li id="l-216">then a second render pass, which uses the IDs in the ID database</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-667">🔗</a></span><div class="p" id="p-667">Convert a <code>.ciro</code> file from stdin to HTML and output the contents of <code>&lt;body&gt;</code> to stdout:
-<div class="code-caption-container" id="code-270">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-669">🔗</a></span><div class="p" id="p-669">In order to resolve <a href="internal-cross-file-references" title="internal link">internal cross file references</a>, this actually does two passes:<div><ul id="ul-80">
+<li id="l-219">first an ID extraction pass, which parses all inputs and dumps their IDs to the ID database</li>
+<li id="l-220">then a second render pass, which uses the IDs in the ID database</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-670">🔗</a></span><div class="p" id="p-670">Convert a <code>.ciro</code> file from stdin to HTML and output the contents of <code>&lt;body&gt;</code> to stdout:
+<div class="code-caption-container" id="code-272">
 <pre><code>printf 'ab\ncd\n' | cirodown --body-only
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
@@ -108,7 +108,7 @@ The HTML output files are placed right next to each corresponding <code>.ciro</c
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/2f4eab240ab29e604e6afdcf94de4574f78701a5">2f4eab240ab29e604e6afdcf94de4574f78701a5</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/390da271359cdf165da660c413eebe69d1b8fee1">390da271359cdf165da660c413eebe69d1b8fee1</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

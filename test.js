@@ -3365,3 +3365,44 @@ assert_executable(
     },
   }
 );
+// https://github.com/cirosantilli/cirodown/issues/114
+assert_executable(
+  'executable: synonym',
+  {
+    args: ['--split-headers', '.'],
+    filesystem: {
+      'README.ciro': `= Index
+
+== h2
+
+= My h2 synonym
+{c}
+{synonym}
+
+\\x[h2]
+
+\\x[my-h2-synonym]
+
+\\x[my-notindex-h2-synonym]
+
+= h3 parent
+{parent=h2}
+`,
+      'notindex.ciro': `= Notindex
+
+== Notindex h2
+
+= My notindex h2 synonym
+{synonym}
+`,
+    },
+    expect_filesystem_xpath: {
+      'index.html': [
+        "//x:div[@class='p']//x:a[@href='#h2' and text()='h2']",
+        "//x:div[@class='p']//x:a[@href='#h2' and text()='My h2 synonym']",
+        // Across files to test sqlite db.
+        "//x:div[@class='p']//x:a[@href='notindex.html#notindex-h2' and text()='my notindex h2 synonym']",
+      ]
+    },
+  }
+);

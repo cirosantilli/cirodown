@@ -2,7 +2,7 @@
 <html lang=en>
 <head>
 <meta charset=utf-8>
-<title>Skipping header levels</title>
+<title>Header &lt;code&gt;synonym&lt;/code&gt; argument</title>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
 <style>@import "cirodown.min.css";
 
@@ -17,18 +17,30 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="skipping-header-levels"><a href="" title="link to this element">Skipping header levels</a><span>  | <a title="view all headers in a single page" href=".#skipping-header-levels">🗖 nosplit</a> | <a href="headers" title="parent header">↑ parent "Headers"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#skipping-header-levels">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="headers" title="parent header">↑ parent "Headers"</a> | <span class="metrics"><span class="word-count" title="word count for this node">96</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-331">🔗</a></span><div class="p" id="p-331">The very first header of a document can be of any level, although we highly recommend your document to start with a <code>\H[1]</code>, and to contain exactly just one <code>\H[1]</code>, as this has implications such as:<div><ul id="ul-38">
-<li id="l-105"><code>\H[1]</code> is used for the document title: <a href="html-document-title" title="internal link">HTML document title</a></li>
-<li id="l-106"><code>\H[1]</code> does not show on the <a href="table-of-contents" title="internal link">table of contents</a></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-332">🔗</a></span><div class="p" id="p-332">After the initial header however, you must not skip a header level, e.g. the following would give an error because it skips level 3:
-<div class="code-caption-container" id="code-133">
-<pre><code>= my 1
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="synonym"><a href="" title="link to this element">Header <code>synonym</code> argument</a><span>  | <a title="view all headers in a single page" href=".#synonym">🗖 nosplit</a> | <a href="headers" title="parent header">↑ parent "Headers"</a></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#synonym">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="headers" title="parent header">↑ parent "Headers"</a> | <span class="metrics"><span class="word-count" title="word count for this node">111</span></span></div></div>
+</div><div><span class="hide-hover"><a href="split#p-300">🔗</a></span><div class="p" id="p-300">TODO implement: <a href="https://github.com/cirosantilli/cirodown/issues/114">https://github.com/cirosantilli/cirodown/issues/114</a></div></div><div><span class="hide-hover"><a href="split#p-301">🔗</a></span><div class="p" id="p-301">This option is similar to <a href="the-title2-argument" title="internal link">the <code>title2</code> argument</a> but it additionally:<div><ul id="ul-35">
+<li id="l-97">creates a new ID that you can refer to, and renders it with the alternate chosen title</li>
+<li id="l-98">the rendered ID on <a href="internal-cross-references" title="internal link">internal cross references</a> is the same as what it is a synonym for</li>
+<li id="l-99">the synonym header is not rendered at all, including in the <a href="table-of-contents" title="internal link">table of contents</a></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-302">🔗</a></span><div class="p" id="p-302">Example:
+<div class="code-caption-container" id="code-125">
+<pre><code>= Parent
 
-== my 1
+== GNU Debugger
+{c}
 
-==== my 4
+= GDB
+{c}
+{synonym}
+
+I like to say \x[gdb] because it is shorter than \x[gnu-debugger].
+</code></pre></div>
+renders something like:
+<div class="code-caption-container" id="code-126">
+<pre><code>= GNU Debugger
+
+I like to say \a[#gnu-debugger][GDB] because it is shorter than \x[#gnu-debugger][GNU Debugger].
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>

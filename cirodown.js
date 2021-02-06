@@ -74,6 +74,9 @@ class AstNode {
       // The header tree is currently not even connected via arguments.
       options.parent_node = undefined;
     }
+    if (!('synonym' in options)) {
+      options.synonym = undefined;
+    }
     if (!('text' in options)) {
       options.text = undefined;
     }
@@ -129,8 +132,12 @@ class AstNode {
     this.force_no_index = options.force_no_index;
     // The ToC will go before this header.
     this.toc_header = false;
-    // This ast is a descendant of a header.
+    // This ast is a descendant of a header. Applications:
+    // - header descendants don't count for word counts
     this.in_header = false;
+    // {String} the id of the target of this synonym header.
+    //          undefined if not a synonym.
+    this.synonym = options.synonym;
 
     // This was added to the tree from an include.
     this.from_include = options.from_include;
@@ -327,6 +334,7 @@ class AstNode {
         is_first_header_in_input_file: json.is_first_header_in_input_file,
         header_graph_node_parent_id: json.header_graph_node_parent_id,
         scope: json.scope,
+        synonym: json.synonym,
         word_count: json.word_count,
       }
     );
@@ -367,6 +375,7 @@ class AstNode {
       args:       this.args,
       first_toplevel_child: this.first_toplevel_child,
       is_first_header_in_input_file: this.is_first_header_in_input_file,
+      synonym:    this.synonym,
       word_count: this.word_count,
     }
     if (
@@ -842,6 +851,7 @@ Macro.CODE_MACRO_NAME = 'c';
 // Add arguments common to all macros.
 Macro.DISAMBIGUATE_ARGUMENT_NAME = 'disambiguate';
 Macro.ID_ARGUMENT_NAME = 'id';
+Macro.SYNONYM_ARGUMENT_NAME = 'synonym';
 Macro.COMMON_ARGNAMES = new Set([
   Macro.DISAMBIGUATE_ARGUMENT_NAME,
   Macro.ID_ARGUMENT_NAME,
@@ -3297,14 +3307,32 @@ function parse(tokens, options, context, extra_returns={}) {
         // Required by calculate_id.
         validate_ast(ast, context);
 
-        prev_header = include_options.cur_header;
-        include_options.cur_header = ast;
-        cur_header_level = parseInt(
+        const is_synonym = ast.validation_output.synonym.boolean;
+        const header_level = parseInt(
           convert_arg_noescape(ast.args.level, context)
-        ) + options.h_parse_level_offset;
+        )
+        if (is_synonym) {
+          if (include_options.cur_header === undefined) {
+            const message = `the first header of an input file cannot be a synonym`;
+            parse_error(state, message, ast.args.level.source_location);
+          }
+          if (header_level !== 1) {
+            const message = `synonym headers must be h1, got: ${header_level}`;
+            parse_error(state, message, ast.args.level.source_location);
+          }
+          ast.synonym = include_options.cur_header.id;
+        } else {
+          prev_header = include_options.cur_header;
+          include_options.cur_header = ast;
+          cur_header_level = header_level + options.h_parse_level_offset;;
+        }
         let parent_tree_node_error = false;
         let parent_id;
         if (ast.validation_output.parent.given) {
+          if (is_synonym) {
+            const message = `synonym and parent are incompatible`;
+            parse_error(state, message, ast.args.level.source_location);
+          }
           if (cur_header_level !== 1) {
             const message = `header with parent argument must have level equal 1`;
             ast.args[Macro.TITLE_ARGUMENT_NAME].push(
@@ -3380,46 +3408,50 @@ function parse(tokens, options, context, extra_returns={}) {
           include_options.header_graph_stack.set(header_graph_last_level, context.header_graph);
           include_options.is_first_global_header = false;
         }
-        cur_header_graph_node = new HeaderTreeNode(ast, include_options.header_graph_stack.get(cur_header_level - 1));
         let header_level_skip_error;
-        if (cur_header_level - header_graph_last_level > 1) {
-          header_level_skip_error = header_graph_last_level;
-        }
-        if (cur_header_level < first_header_level) {
-          parse_error(
-            state,
-            `header level ${cur_header_level} is smaller than the level of the first header of the document ${first_header_level}`,
-            ast.args.level.source_location,
-          );
-        }
-        const parent_tree_node = include_options.header_graph_stack.get(cur_header_level - 1);
-        if (parent_tree_node !== undefined) {
-          parent_tree_node.add_child(cur_header_graph_node);
-          const parent_ast = parent_tree_node.value;
-          if (parent_ast !== undefined) {
-            ast.scope = calculate_scope(parent_ast, context);
+        if (is_synonym) {
+          ast.scope = include_options.cur_header.scope;
+        } else {
+          cur_header_graph_node = new HeaderTreeNode(ast, include_options.header_graph_stack.get(cur_header_level - 1));
+          if (cur_header_level - header_graph_last_level > 1) {
+            header_level_skip_error = header_graph_last_level;
           }
-        }
-        const old_graph_node = include_options.header_graph_stack.get(cur_header_level);
-        include_options.header_graph_stack.set(cur_header_level, cur_header_graph_node);
-        if (
-          // Possible on the first insert of a level.
-          old_graph_node !== undefined
-        ) {
+          if (cur_header_level < first_header_level) {
+            parse_error(
+              state,
+              `header level ${cur_header_level} is smaller than the level of the first header of the document ${first_header_level}`,
+              ast.args.level.source_location,
+            );
+          }
+          const parent_tree_node = include_options.header_graph_stack.get(cur_header_level - 1);
+          if (parent_tree_node !== undefined) {
+            parent_tree_node.add_child(cur_header_graph_node);
+            const parent_ast = parent_tree_node.value;
+            if (parent_ast !== undefined) {
+              ast.scope = calculate_scope(parent_ast, context);
+            }
+          }
+          const old_graph_node = include_options.header_graph_stack.get(cur_header_level);
+          include_options.header_graph_stack.set(cur_header_level, cur_header_graph_node);
           if (
-            // Possible if the level is not an integer.
-            old_graph_node.value !== undefined
+            // Possible on the first insert of a level.
+            old_graph_node !== undefined
           ) {
-            include_options.header_graph_id_stack.delete(old_graph_node.value.id);
+            if (
+              // Possible if the level is not an integer.
+              old_graph_node.value !== undefined
+            ) {
+              include_options.header_graph_id_stack.delete(old_graph_node.value.id);
+            }
           }
+          header_graph_last_level = cur_header_level;
         }
-        header_graph_last_level = cur_header_level;
         ast.header_graph_node = cur_header_graph_node;
 
         // Must come after the header tree step is mostly done, because scopes influence ID,
         // and they also depend on the parent node.
-        calculate_id(ast, context, include_options.non_indexed_ids, include_options.indexed_ids, macro_counts,
-          macro_counts_visible, state, true, line_to_id_array);
+        calculate_id(ast, context, include_options.non_indexed_ids, include_options.indexed_ids,
+          macro_counts, macro_counts_visible, state, true, line_to_id_array);
 
         // Now stuff that must come after calculate_id.
 
@@ -3430,14 +3462,15 @@ function parse(tokens, options, context, extra_returns={}) {
             new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location));
           parse_error(state, message, ast.args.parent.source_location);
         }
-        if (header_level_skip_error !== undefined) {
-          const message = `skipped a header level from ${header_level_skip_error} to ${cur_header_level}`;
-          ast.args[Macro.TITLE_ARGUMENT_NAME].push(
-            new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location));
-          parse_error(state, message, ast.args.level.source_location);
+        if (!is_synonym) {
+          if (header_level_skip_error !== undefined) {
+            const message = `skipped a header level from ${header_level_skip_error} to ${cur_header_level}`;
+            ast.args[Macro.TITLE_ARGUMENT_NAME].push(
+              new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location));
+            parse_error(state, message, ast.args.level.source_location);
+          }
+          include_options.header_graph_id_stack.set(cur_header_graph_node.value.id, cur_header_graph_node);
         }
-
-        include_options.header_graph_id_stack.set(cur_header_graph_node.value.id, cur_header_graph_node);
       }
       // Push this node into the parent argument list.
       // This allows us to skip nodes, or push multiple nodes if needed.
@@ -4294,6 +4327,8 @@ function x_get_href_content(ast, context) {
     return [html_attr('href', WEBSITE_URL + 'notuser/' + target_id.substr(1)), target_id];
   }
   const target_id_ast = context.id_provider.get(target_id, context, ast.header_graph_node);
+
+  // href
   let href;
   if (target_id_ast === undefined) {
     let message = `cross reference to unknown id: "${target_id}"`;
@@ -4302,6 +4337,8 @@ function x_get_href_content(ast, context) {
   } else {
     href = x_href_attr(target_id_ast, context);
   }
+
+  // content
   const content_arg = ast.args.content;
   let content;
   if (content_arg === undefined) {
@@ -4393,12 +4430,18 @@ function is_to_split_headers(context) {
          (context.to_split_headers !== undefined && context.to_split_headers);
 }
 
-/* This is the centerpiece of x href calculation! */
+/** This is the centerpiece of x href calculation!
+ *
+ * @param {AstNode} target_id_ast
+ */
 function x_href_parts(target_id_ast, context) {
   if (target_id_ast.macro_name === Macro.TOC_MACRO_NAME) {
     // Otherwise, split header ToCs would link to the toplevel source ToC,
     // since split header ToCs are not really properly registered.
     return ['', Macro.TOC_ID];
+  }
+  if (target_id_ast.synonym !== undefined) {
+    target_id_ast = context.id_provider.get(target_id_ast.synonym, context);
   }
 
   // href_path
@@ -5066,6 +5109,9 @@ const DEFAULT_MACRO_LIST = [
       }),
     ],
     function(ast, context) {
+      if (ast.validation_output.synonym.boolean) {
+        return '';
+      }
       let level_int = ast.header_graph_node.get_level();
       if (typeof level_int !== 'number') {
         throw new Error('header level is not an integer after validation');
@@ -5232,6 +5278,10 @@ const DEFAULT_MACRO_LIST = [
         }),
         new MacroArgument({
           name: 'splitSuffix',
+        }),
+        new MacroArgument({
+          name: Macro.SYNONYM_ARGUMENT_NAME,
+          boolean: true,
         }),
         new MacroArgument({
           name: Macro.TITLE2_ARGUMENT_NAME,
