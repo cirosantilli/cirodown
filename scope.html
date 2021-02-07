@@ -17,7 +17,7 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="scope"><a href="" title="link to this element">Header <code>scope</code> argument</a><span>  | <a title="view all headers in a single page" href=".#scope">🗖 nosplit</a> | <a href="header" title="parent header">↑ parent "Header"</a></span></h1>
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="scope"><a href="" title="link to this element">Header <code>scope</code> argument</a><span>  | <a title="view all headers in a single page" href=".#scope">🗖 nosplit</a> | <a href="header" title="parent header">↑ parent "Header"</a> | <span class="metrics"><span class="word-count" title="word count for this node">399</span>, <span class="descendant-count" title="number of descendant nodes">5</span>, <span class="word-count-descendant" title="word count for this node + descendants">551</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#scope">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="header" title="parent header">↑ parent "Header"</a> | <span class="metrics"><span class="word-count" title="word count for this node">399</span>, <span class="descendant-count" title="number of descendant nodes">5</span>, <span class="word-count-descendant" title="word count for this node + descendants">551</span></span></div></div>
 </div><div><span class="hide-hover"><a href="split#p-273">🔗</a></span><div class="p" id="p-273">In some use cases, the sections under a section describe inseparable parts of something.</div></div><div><span class="hide-hover"><a href="split#p-274">🔗</a></span><div class="p" id="p-274">For example, when documenting an experiment you executed, you will generally want an "Introduction", then a "Materials" section, and then a "Results" section for every experiment.</div></div><div><span class="hide-hover"><a href="split#p-275">🔗</a></span><div class="p" id="p-275">On their own, those sections don't make much sense: they are always referred to in the context of the given experiment.</div></div><div><span class="hide-hover"><a href="split#p-276">🔗</a></span><div class="p" id="p-276">The problem is then how to get unique IDs for those sections.</div></div><div><span class="hide-hover"><a href="split#p-277">🔗</a></span><div class="p" id="p-277">One solution, would be to manually add the experiment ID as prefix to every subsection, as in:
 <div class="code-caption-container" id="code-111">
@@ -41,7 +41,13 @@ For a more general introduction to all experiments, see: \x[introduction].
 
 === Results
 {id=full-and-unique-experiment-name/results}
-</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-278">🔗</a></span><div class="p" id="p-278">but this would be very tedious.</div></div><div><span class="hide-hover"><a href="split#p-279">🔗</a></span><div class="p" id="p-279">To keep those IDs shorter, Cirodown provides the <code>scope</code> <a href="boolean-named-argument" title="internal link">boolean named argument</a> property of <a href="header" title="internal link">headers</a>, which works analogously to C++ namespaces with the header IDs.</div></div><div><span class="hide-hover"><a href="split#p-280">🔗</a></span><div class="p" id="p-280">Using <code>scope</code>, the previous example could be written more succinctly as:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-278">🔗</a></span><div class="p" id="p-278">but this would be very tedious.</div></div><div><span class="hide-hover"><a href="split#p-279">🔗</a></span><div class="p" id="p-279">To keep those IDs shorter, Cirodown provides the <code>scope</code> <a href="boolean-named-argument" title="internal link
+word count: 0
+descendant count: 174
+descendant word count: 174">boolean named argument</a> property of <a href="header" title="internal link
+word count: 39
+descendant count: 76
+descendant word count: 3k">headers</a>, which works analogously to C++ namespaces with the header IDs.</div></div><div><span class="hide-hover"><a href="split#p-280">🔗</a></span><div class="p" id="p-280">Using <code>scope</code>, the previous example could be written more succinctly as:
 <div class="code-caption-container" id="code-112">
 <pre><code>= Experiments
 
@@ -65,7 +71,10 @@ For a more general introduction to all experiments, see: \x[/introduction].
 <li id="l-82">full IDs are automatically prefixed by the parent scopes prefixed and joined with a slash <code>/</code></li>
 <li id="l-83">we can refer to other IDs withing the current scope without duplicating the scope. E.g. <code>\x[results]</code> in the example already refers to the ID <code>full-and-unique-experiment-name/materials</code></li>
 <li id="l-84"><div class="p" id="p-282">to refer to an ID outside of the scope and avoid name conflicts with IDs inside of the current scope, we start a reference with a slash <code>/</code></div><div class="p" id="p-283">So in the example above, <code>\x[/introduction]</code> refers to the ID <code>introduction</code>, and not <code>full-and-unique-experiment-name/introduction</code>.</div></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-284">🔗</a></span><div class="p" id="p-284">When nested scopes are involved, <a href="internal-cross-references" title="internal link">internal cross references</a> resolution peels off the scopes one by one trying to find the closes match, e.g. the following works as expected:
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-284">🔗</a></span><div class="p" id="p-284">When nested scopes are involved, <a href="internal-cross-references" title="internal link
+word count: 26
+descendant count: 122
+descendant word count: 3k">internal cross references</a> resolution peels off the scopes one by one trying to find the closes match, e.g. the following works as expected:
 <div class="code-caption-container" id="code-113">
 <pre><code>= h1
 {scope}
@@ -102,16 +111,31 @@ Here Cirodown:<div><ul id="ul-30">
 </div>
 </div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href="design-goals" title="internal link">Design goals</a></li>
-<li><a href="directory-based-scope" title="internal link">Directory-based <code>scope</code></a></li>
-<li><a href="id-based-header-levels" title="internal link">ID-based header levels</a></li>
-<li><a href="id-based-header-levels-and-scope-resolution" title="internal link">ID-based header levels and scope resolution</a></li>
-<li><a href="the-toplevel-index-file" title="internal link">The toplevel index file</a></li>
+<li><a href="design-goals" title="internal link
+word count: 2
+descendant count: 344
+descendant word count: 996">Design goals</a></li>
+<li><a href="directory-based-scope" title="internal link
+word count: 0
+descendant count: 53
+descendant word count: 53">Directory-based <code>scope</code></a></li>
+<li><a href="id-based-header-levels" title="internal link
+word count: 1
+descendant count: 307
+descendant word count: 484">ID-based header levels</a></li>
+<li><a href="id-based-header-levels-and-scope-resolution" title="internal link
+word count: 0
+descendant count: 177
+descendant word count: 177">ID-based header levels and scope resolution</a></li>
+<li><a href="the-toplevel-index-file" title="internal link
+word count: 0
+descendant count: 142
+descendant word count: 142">The toplevel index file</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a77cc0efdca27af1c2e8dd69e5f45cf0033db21d">a77cc0efdca27af1c2e8dd69e5f45cf0033db21d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e49ddf9cac01ce5ab905888a1122fdd7ada4ef80">e49ddf9cac01ce5ab905888a1122fdd7ada4ef80</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

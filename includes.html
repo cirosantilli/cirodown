@@ -17,22 +17,49 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="includes"><a href="" title="link to this element">Includes (<code>\Include</code>)</a><span>  | <a title="view all headers in a single page" href=".#includes">🗖 nosplit</a> | <a href="header" title="parent header">↑ parent "Header"</a></span></h1>
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="includes"><a href="" title="link to this element">Includes (<code>\Include</code>)</a><span>  | <a title="view all headers in a single page" href=".#includes">🗖 nosplit</a> | <a href="header" title="parent header">↑ parent "Header"</a> | <span class="metrics"><span class="word-count" title="word count for this node">417</span>, <span class="descendant-count" title="number of descendant nodes">5</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#includes">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="header" title="parent header">↑ parent "Header"</a> | <span class="metrics"><span class="word-count" title="word count for this node">417</span>, <span class="descendant-count" title="number of descendant nodes">5</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span></span></div></div>
 </div><div><span class="hide-hover"><a href="split#p-317">🔗</a></span><div class="p" id="p-317">The <code>\Include</code> macro allows including an external Cirodown headers under the current header.</div></div><div><span class="hide-hover"><a href="split#p-318">🔗</a></span><div class="p" id="p-318">It exists to allow optional single page HTML output while still retaining the ability to:<div><ul id="ul-36">
 <li id="l-100">split up large input files into multiple files to make renders faster during document development</li>
 <li id="l-101">suggest an optional custom output split with one HTML output per Cirodown input, in order to avoid extremely large HTML pages which could be slow to load</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-319">🔗</a></span><div class="p" id="p-319"><code>\Include</code> takes one mandatory argument: the ID of the section to be included, much like <a href="internal-cross-references" title="internal link">internal cross references</a>.</div></div><div><span class="hide-hover"><a href="split#p-320">🔗</a></span><div class="p" id="p-320">There is however one restriction: only <a href="the-toplevel-header" title="internal link">the toplevel headers</a> can be pointed to. This restriction allows us to easily find the included file in the filesystem, and dispenses the need to do a first <code>./cirodown</code> run to generate the <a href="internal-cross-file-references-internals" title="internal link">ID database</a>. This works because <a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link">the ID of the first header is derived from the filename</a>.</div></div><div><span class="hide-hover"><a href="split#p-321">🔗</a></span><div class="p" id="p-321">Headers of the included document are automatically shifted to match the level of the child of the level where they are being included.</div></div><div><span class="hide-hover"><a href="split#p-322">🔗</a></span><div class="p" id="p-322">If <a href="embed-includes" title="internal link"><code>--embed-includes</code></a> is given, the external document is rendered embedded into the current document directly, essentially as if the source had been copy pasted (except for small corrections such as the header offsets).</div></div><div><span class="hide-hover"><a href="split#p-323">🔗</a></span><div class="p" id="p-323">Otherwise, the following effects happen:<div><ul id="ul-37">
-<li id="l-102"><div class="p" id="p-324">The headers of the included tree appear in the <a href="table-of-contents" title="internal link">table of contents</a> of the document as links to the corresponding external files.</div><div class="p" id="p-325">This is implemented simply by reading a previously generated database file much like <a href="internal-cross-file-references-internals" title="internal link">internal cross file references internals</a>, which avoids the slowdown of parsing all included files every time.</div><div class="p" id="p-326">As a result, you have to do an initial parse of all files in the project to extract their headers however, just as you would need to do when linking to those headers.</div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-319">🔗</a></span><div class="p" id="p-319"><code>\Include</code> takes one mandatory argument: the ID of the section to be included, much like <a href="internal-cross-references" title="internal link
+word count: 26
+descendant count: 122
+descendant word count: 3k">internal cross references</a>.</div></div><div><span class="hide-hover"><a href="split#p-320">🔗</a></span><div class="p" id="p-320">There is however one restriction: only <a href="the-toplevel-header" title="internal link
+word count: 2
+descendant count: 39
+descendant word count: 355">the toplevel headers</a> can be pointed to. This restriction allows us to easily find the included file in the filesystem, and dispenses the need to do a first <code>./cirodown</code> run to generate the <a href="internal-cross-file-references-internals" title="internal link
+word count: 0
+descendant count: 131
+descendant word count: 131">ID database</a>. This works because <a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
+word count: 0
+descendant count: 264
+descendant word count: 264">the ID of the first header is derived from the filename</a>.</div></div><div><span class="hide-hover"><a href="split#p-321">🔗</a></span><div class="p" id="p-321">Headers of the included document are automatically shifted to match the level of the child of the level where they are being included.</div></div><div><span class="hide-hover"><a href="split#p-322">🔗</a></span><div class="p" id="p-322">If <a href="embed-includes" title="internal link
+word count: 0
+descendant count: 181
+descendant word count: 181"><code>--embed-includes</code></a> is given, the external document is rendered embedded into the current document directly, essentially as if the source had been copy pasted (except for small corrections such as the header offsets).</div></div><div><span class="hide-hover"><a href="split#p-323">🔗</a></span><div class="p" id="p-323">Otherwise, the following effects happen:<div><ul id="ul-37">
+<li id="l-102"><div class="p" id="p-324">The headers of the included tree appear in the <a href="table-of-contents" title="internal link
+word count: 1
+descendant count: 207
+descendant word count: 464">table of contents</a> of the document as links to the corresponding external files.</div><div class="p" id="p-325">This is implemented simply by reading a previously generated database file much like <a href="internal-cross-file-references-internals" title="internal link
+word count: 0
+descendant count: 131
+descendant word count: 131">internal cross file references internals</a>, which avoids the slowdown of parsing all included files every time.</div><div class="p" id="p-326">As a result, you have to do an initial parse of all files in the project to extract their headers however, just as you would need to do when linking to those headers.</div></li>
 <li id="l-103">the include itself renders as a link to the included document</li>
-<li id="l-104"><a href="embed-includes" title="internal link"><code>--embed-includes</code></a></li>
+<li id="l-104"><a href="embed-includes" title="internal link
+word count: 0
+descendant count: 181
+descendant word count: 181"><code>--embed-includes</code></a></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="split#p-327">🔗</a></span><div class="p" id="p-327">Here is an example of inclusion of the files <code>not-readme.ciro</code> and <code>not-readme-2.ciro</code>:
 <div class="code-caption-container" id="code-133">
 <pre><code>\Include[not-readme]
 \Include[not-readme-2]
 \Include[not-readme-with-scope]
 </code></pre></div>
-The above is the recommended and slightly <a href="insane-macro-shortcuts" title="internal link">insaner</a> version of:
+The above is the recommended and slightly <a href="insane-macro-shortcuts" title="internal link
+word count: 3
+descendant count: 146
+descendant word count: 482">insaner</a> version of:
 <div class="code-caption-container" id="code-134">
 <pre><code>\Include[not-readme]
 
@@ -55,16 +82,31 @@ The insaner version is a bit insaner because the <code>\Include</code> magically
 </div>
 </div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href="design-goals" title="internal link">Design goals</a></li>
-<li><a href="embed-includes" title="internal link"><code>--embed-includes</code></a></li>
-<li><a href="quick-start" title="internal link">Quick start</a></li>
-<li><a href="table-of-contents" title="internal link">Table of contents</a></li>
-<li><a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link">The ID of the first header is derived from the filename</a></li>
+<li><a href="design-goals" title="internal link
+word count: 2
+descendant count: 344
+descendant word count: 996">Design goals</a></li>
+<li><a href="embed-includes" title="internal link
+word count: 0
+descendant count: 181
+descendant word count: 181"><code>--embed-includes</code></a></li>
+<li><a href="quick-start" title="internal link
+word count: 0
+descendant count: 317
+descendant word count: 317">Quick start</a></li>
+<li><a href="table-of-contents" title="internal link
+word count: 1
+descendant count: 207
+descendant word count: 464">Table of contents</a></li>
+<li><a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
+word count: 0
+descendant count: 264
+descendant word count: 264">The ID of the first header is derived from the filename</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a77cc0efdca27af1c2e8dd69e5f45cf0033db21d">a77cc0efdca27af1c2e8dd69e5f45cf0033db21d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e49ddf9cac01ce5ab905888a1122fdd7ada4ef80">e49ddf9cac01ce5ab905888a1122fdd7ada4ef80</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

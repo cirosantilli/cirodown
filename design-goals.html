@@ -17,31 +17,73 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="design-goals"><a href="" title="link to this element">Design goals</a><span>  | <a title="view all headers in a single page" href=".#design-goals">🗖 nosplit</a> | <a href="split" title="parent header">↑ parent "Cirodown"</a></span></h1>
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="design-goals"><a href="" title="link to this element">Design goals</a><span>  | <a title="view all headers in a single page" href=".#design-goals">🗖 nosplit</a> | <a href="split" title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">344</span>, <span class="descendant-count" title="number of descendant nodes">2</span>, <span class="word-count-descendant" title="word count for this node + descendants">996</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#design-goals">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="split" title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">344</span>, <span class="descendant-count" title="number of descendant nodes">2</span>, <span class="word-count-descendant" title="word count for this node + descendants">996</span></span></div></div>
 </div><div><span class="hide-hover"><a href="split#p-8">🔗</a></span><div class="p" id="p-8">Cirodown is designed entirely to allow writing complex professional HTML and PDF scientific books, blogs, articles and encyclopedias.</div></div><div><span class="hide-hover"><a href="split#p-9">🔗</a></span><div class="p" id="p-9">Cirodown aims to be the ultimate LaTeX "killer", allowing books to be finally published as either HTML or PDF painlessly (LaTeX being only a backend to PDF generation), supporting out of the box feature such as:<div><ul id="ul-2">
-<li id="l-8"><a href="internal-cross-references" title="internal link">references</a> to <a href="header" title="internal link">headers</a>, <a href="image" title="internal link">images</a>, etc. with amazing error checking and reporting: never break internal links without knoing again, and quickly find out what broke when you do</li>
-<li id="l-9">KaTeX server side <a href="mathematics" title="internal link">mathematics</a></li>
+<li id="l-8"><a href="internal-cross-references" title="internal link
+word count: 26
+descendant count: 122
+descendant word count: 3k">references</a> to <a href="header" title="internal link
+word count: 39
+descendant count: 76
+descendant word count: 3k">headers</a>, <a href="image" title="internal link
+word count: 9
+descendant count: 342
+descendant word count: 2k">images</a>, etc. with amazing error checking and reporting: never break internal links without knoing again, and quickly find out what broke when you do</li>
+<li id="l-9">KaTeX server side <a href="mathematics" title="internal link
+word count: 2
+descendant count: 373
+descendant word count: 549">mathematics</a></li>
 <li id="l-10">multi file features out of the box so you don't need a separate wrapper like Jekyll to make a multi-page website:<div><ul id="ul-3">
-<li id="l-11"><a href="internal-cross-file-references" title="internal link">internal cross file references</a></li>
-<li id="l-12"><a href="table-of-contents" title="internal link">table of contents</a> that crosses input files</li>
+<li id="l-11"><a href="internal-cross-file-references" title="internal link
+word count: 1
+descendant count: 348
+descendant word count: 479">internal cross file references</a></li>
+<li id="l-12"><a href="table-of-contents" title="internal link
+word count: 1
+descendant count: 207
+descendant word count: 464">table of contents</a> that crosses input files</li>
 <li id="l-13"><code>inotifywait</code> watch rebuild server</li>
-<li id="l-14">single-source multi-format output based on <a href="includes" title="internal link">includes</a> and build options:<div><ul id="ul-4">
+<li id="l-14">single-source multi-format output based on <a href="includes" title="internal link
+word count: 5
+descendant count: 417
+descendant word count: 512">includes</a> and build options:<div><ul id="ul-4">
 <li id="l-15">one HTML per source with includes rendered as links between pages</li>
-<li id="l-16"><a href="embed-includes" title="internal link"><code>--embed-includes</code></a> single file output. Includes are parsed smartly, not just source copy pasted, e.g. included headers are shifted from <code>h1</code> to <code>h2</code> correctly</li>
-<li id="l-17"><a href="split-headers" title="internal link"><code>--split-headers</code></a> option to output one spearate header per output flie</li>
-<li id="l-18">supports both local serverless rendering to HTML files for local viewing, and server oriented rendering such as GItHub pages, e.g. <a href="internal-cross-references" title="internal link">internal cross references</a> automatically get <code>.html</code> extension and or not</li>
+<li id="l-16"><a href="embed-includes" title="internal link
+word count: 0
+descendant count: 181
+descendant word count: 181"><code>--embed-includes</code></a> single file output. Includes are parsed smartly, not just source copy pasted, e.g. included headers are shifted from <code>h1</code> to <code>h2</code> correctly</li>
+<li id="l-17"><a href="split-headers" title="internal link
+word count: 0
+descendant count: 444
+descendant word count: 444"><code>--split-headers</code></a> option to output one spearate header per output flie</li>
+<li id="l-18">supports both local serverless rendering to HTML files for local viewing, and server oriented rendering such as GItHub pages, e.g. <a href="internal-cross-references" title="internal link
+word count: 26
+descendant count: 122
+descendant word count: 3k">internal cross references</a> automatically get <code>.html</code> extension and or not</li>
 </ul></div></li>
 <li id="l-19">cross file configuration files to factor out common page parts like headers and footers</li>
 </ul></div></li>
 <li id="l-20">advanced header/ID related features:<div><ul id="ul-5">
-<li id="l-21"><a href="scope" title="internal link">header <code>scope</code> argument</a></li>
-<li id="l-22">tags are regular headers: <a href="x-child-argument" title="internal link">x <code>child</code> argument</a></li>
+<li id="l-21"><a href="scope" title="internal link
+word count: 5
+descendant count: 399
+descendant word count: 551">header <code>scope</code> argument</a></li>
+<li id="l-22">tags are regular headers: <a href="x-child-argument" title="internal link
+word count: 7
+descendant count: 248
+descendant word count: 284">x <code>child</code> argument</a></li>
 </ul></div></li>
 <li id="l-23">is written in JavaScript and therefore runs natively on the browser to allow live previews</li>
 <li id="l-24">helps you with the publishing:<div><ul id="ul-6">
-<li id="l-25"><code>./cirodown --publish</code> helper for single command publishing to the configured target (default GitHub pages): <a href="publish" title="internal link"><code>-p, --publish</code></a></li>
-<li id="l-26">Cirodown tries to deal with media such as images and video intelligently for you, see e.g.: <a href="where-to-store-images" title="internal link">where to store images</a></li>
+<li id="l-25"><code>./cirodown --publish</code> helper for single command publishing to the configured target (default GitHub pages): <a href="publish" title="internal link
+word count: 3
+descendant count: 160
+descendant word count: 448"><code>-p, --publish</code></a></li>
+<li id="l-26">Cirodown tries to deal with media such as images and video intelligently for you, see e.g.: <a href="where-to-store-images" title="internal link
+word count: 3
+descendant count: 0
+descendant word count: 911">where to store images</a></li>
 </ul></div></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
@@ -55,13 +97,19 @@
 </div>
 </div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href="split" title="internal link">Cirodown</a></li>
-<li><a href="insane-macro-shortcuts" title="internal link">Insane macro shortcuts</a></li>
+<li><a href="split" title="internal link
+word count: 178
+descendant count: 91
+descendant word count: 21k">Cirodown</a></li>
+<li><a href="insane-macro-shortcuts" title="internal link
+word count: 3
+descendant count: 146
+descendant word count: 482">Insane macro shortcuts</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a77cc0efdca27af1c2e8dd69e5f45cf0033db21d">a77cc0efdca27af1c2e8dd69e5f45cf0033db21d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e49ddf9cac01ce5ab905888a1122fdd7ada4ef80">e49ddf9cac01ce5ab905888a1122fdd7ada4ef80</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

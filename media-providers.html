@@ -17,9 +17,15 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="media-providers"><a href="" title="link to this element"><code>media-providers</code></a><span>  | <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="cirodown-json" title="parent header">↑ parent "<code>cirodown.json</code>"</a></span></h1>
+<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="media-providers"><a href="" title="link to this element"><code>media-providers</code></a><span>  | <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="cirodown-json" title="parent header">↑ parent "<code>cirodown.json</code>"</a> | <span class="metrics"><span class="word-count" title="word count for this node">266</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="cirodown-json" title="parent header">↑ parent "<code>cirodown.json</code>"</a> | <span class="metrics"><span class="word-count" title="word count for this node">266</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-791">🔗</a></span><div class="p" id="p-791">The <code>media-providers</code> entry of <code>cirodown.json</code> specifies properties of how media such as <a href="image" title="internal link">images</a> and <a href="videos" title="internal link">videos</a> are retrieved and rendered.</div></div><div><span class="hide-hover"><a href="split#p-792">🔗</a></span><div class="p" id="p-792">The general format of <code>media-providers</code> looks like:
+</div><div><span class="hide-hover"><a href="split#p-791">🔗</a></span><div class="p" id="p-791">The <code>media-providers</code> entry of <code>cirodown.json</code> specifies properties of how media such as <a href="image" title="internal link
+word count: 9
+descendant count: 342
+descendant word count: 2k">images</a> and <a href="videos" title="internal link
+word count: 2
+descendant count: 464
+descendant word count: 590">videos</a> are retrieved and rendered.</div></div><div><span class="hide-hover"><a href="split#p-792">🔗</a></span><div class="p" id="p-792">The general format of <code>media-providers</code> looks like:
 <div class="code-caption-container" id="code-306">
 <pre><code>"media-providers": {
   "github": {
@@ -38,28 +44,61 @@
 <li id="l-272"><code>image</code> applies to both <code>image</code> and <code>Image</code></li>
 <li id="l-273">giving <code>Image</code> is an error because that starts with an upper case character</li>
 </ul></div></div></li>
-<li id="l-274"><code>title-from-src</code> (<code>bool</code>): extract the <code>title</code> argument from the <code>src</code> by default for media such as <a href="image" title="internal link">images</a> and <a href="videos" title="internal link">videos</a> as if the <code>titleFromSrc</code> macro argument had been given, see also: <a href="image-id" title="internal link">image IDs and captions</a></li>
+<li id="l-274"><code>title-from-src</code> (<code>bool</code>): extract the <code>title</code> argument from the <code>src</code> by default for media such as <a href="image" title="internal link
+word count: 9
+descendant count: 342
+descendant word count: 2k">images</a> and <a href="videos" title="internal link
+word count: 2
+descendant count: 464
+descendant word count: 590">videos</a> as if the <code>titleFromSrc</code> macro argument had been given, see also: <a href="image-id" title="internal link
+word count: 0
+descendant count: 373
+descendant word count: 373">image IDs and captions</a></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="split#p-796">🔗</a></span><div class="p" id="p-796">Direct children of media-providers and subproperties that are valid only for them specifically:<div><ul id="ul-104">
-<li id="l-275"><code>local</code>: tracked in the current Git repository as mentioned at <a href="store-images-inside-the-repository-itself" title="internal link">Section "Store images inside the repository itself"</a><div><ul id="ul-105">
+<li id="l-275"><code>local</code>: tracked in the current Git repository as mentioned at <a href="store-images-inside-the-repository-itself" title="internal link
+word count: 0
+descendant count: 96
+descendant word count: 96">Section "Store images inside the repository itself"</a><div><ul id="ul-105">
 <li id="l-276"><code>path</code>: location of the cloned local repository relative to the root the main repository</li>
 </ul></div></li>
-<li id="l-277"><code>github</code>: tracked in a separate Git repository as mentioned at <a href="store-images-in-a-separate-media-repository" title="internal link">Section "Store images in a separate media repository"</a><div><ul id="ul-106">
+<li id="l-277"><code>github</code>: tracked in a separate Git repository as mentioned at <a href="store-images-in-a-separate-media-repository" title="internal link
+word count: 0
+descendant count: 510
+descendant word count: 510">Section "Store images in a separate media repository"</a><div><ul id="ul-106">
 <li id="l-278"><code>path</code>: same as for <code>local</code></li>
 <li id="l-279"><code>remote</code>: <code>&lt;github-username&gt;/&lt;repo-name&gt;</code></li>
 </ul></div></li>
-<li id="l-280"><code>youtube</code>: YouTube <a href="videos" title="internal link">videos</a></li>
+<li id="l-280"><code>youtube</code>: YouTube <a href="videos" title="internal link
+word count: 2
+descendant count: 464
+descendant word count: 590">videos</a></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="split#p-797">🔗</a></span><div class="p" id="p-797">See also: <a href="https://github.com/cirosantilli/cirodown/issues/40">https://github.com/cirosantilli/cirodown/issues/40</a></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href="embed-resources" title="internal link"><code>--embed-resources</code></a></li>
-<li><a href="image-id" title="internal link">Image IDs and captions</a></li>
-<li><a href="python-programming-language" title="internal link">Python</a></li>
-<li><a href="store-images-in-a-separate-media-repository" title="internal link">Store images in a separate media repository</a></li>
-<li><a href="store-images-in-wikimedia-commons" title="internal link">Store images in Wikimedia Commons</a></li>
+<li><a href="embed-resources" title="internal link
+word count: 0
+descendant count: 269
+descendant word count: 269"><code>--embed-resources</code></a></li>
+<li><a href="image-id" title="internal link
+word count: 0
+descendant count: 373
+descendant word count: 373">Image IDs and captions</a></li>
+<li><a href="python-programming-language" title="internal link
+word count: 0
+descendant count: 288
+descendant word count: 288">Python</a></li>
+<li><a href="store-images-in-a-separate-media-repository" title="internal link
+word count: 0
+descendant count: 510
+descendant word count: 510">Store images in a separate media repository</a></li>
+<li><a href="store-images-in-wikimedia-commons" title="internal link
+word count: 0
+descendant count: 305
+descendant word count: 305">Store images in Wikimedia Commons</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a77cc0efdca27af1c2e8dd69e5f45cf0033db21d">a77cc0efdca27af1c2e8dd69e5f45cf0033db21d</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e49ddf9cac01ce5ab905888a1122fdd7ada4ef80">e49ddf9cac01ce5ab905888a1122fdd7ada4ef80</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

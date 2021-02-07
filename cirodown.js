@@ -2448,17 +2448,25 @@ function format_number_approx(num, digits) {
   return (num / FORMAT_NUMBER_APPROX_MAP[i].value).toFixed(digits).replace(rx, "$1") + FORMAT_NUMBER_APPROX_MAP[i].symbol;
 }
 
+function get_descendant_count(tree_node) {
+  return [
+    tree_node.descendant_count,
+    tree_node.word_count,
+    tree_node.word_count + tree_node.descendant_word_count
+  ];
+}
+
 function get_descendant_count_html(tree_node) {
-  const descendant_nodes = tree_node.descendant_count;
+  const [descendant_count, word_count, descendant_word_count] = get_descendant_count(tree_node);
   let ret;
-  if (tree_node.word_count > 0 || descendant_nodes > 0) {
+  if (tree_node.word_count > 0 || descendant_count > 0) {
     ret = `<span class="metrics">`;
-    if (tree_node.word_count > 0 || descendant_nodes > 0) {
-      ret += `<span class="word-count" title="word count for this node">${format_number_approx(tree_node.word_count)}</span>`;
+    if (tree_node.word_count > 0 || descendant_count > 0) {
+      ret += `<span class="word-count" title="word count for this node">${format_number_approx(word_count)}</span>`;
     }
-    if (descendant_nodes > 0) {
-      ret += `, <span class="descendant-count" title="number of descendant nodes">${format_number_approx(descendant_nodes)}</span>` +
-            `, <span class="word-count-descendant" title="word count for this node + descendants">${format_number_approx(tree_node.word_count + tree_node.descendant_word_count)}</span>`;
+    if (descendant_count > 0) {
+      ret += `, <span class="descendant-count" title="number of descendant nodes">${format_number_approx(descendant_count)}</span>` +
+            `, <span class="word-count-descendant" title="word count for this node + descendants">${format_number_approx(descendant_word_count)}</span>`;
     }
     ret += `</span>`
   } else {
@@ -4396,7 +4404,7 @@ function x_get_href_content(ast, context) {
     // Explicit content given, just use it then.
     content = convert_arg(content_arg, context);
   }
-  return [href, content];
+  return [href, content, target_id_ast];
 }
 
 /** Calculate the href value to a given target AstNode.
@@ -5187,6 +5195,7 @@ const DEFAULT_MACRO_LIST = [
       if (parent_links) {
         ret += `${HEADER_MENU_ITEM_SEP}${parent_links}`;
       }
+      ret += `${HEADER_MENU_ITEM_SEP}${get_descendant_count_html(ast.header_graph_node)}`;
 
       ret += `</span>`;
       ret += `</h${level_int_capped}>\n`;
@@ -5988,10 +5997,24 @@ const DEFAULT_MACRO_LIST = [
       }),
     ],
     function(ast, context) {
-      const [href, content] = x_get_href_content(ast, context);
-      if (context.x_parents.size == 0) {
+      const [href, content, target_ast] = x_get_href_content(ast, context);
+      if (context.x_parents.size === 0) {
+        // Counts.
+        let counts_str;
+        if (
+          // Happens for cross links. TODO make those work too...
+          target_ast.parent_node === undefined
+        ) {
+          counts_str = '';
+        } else {
+          const counts = get_descendant_count(target_ast.header_graph_node);
+          for (let i = 0; i < counts.length; i++) {
+            counts[i] = format_number_approx(counts[i]);
+          }
+          counts_str = `\nword count: ${counts[0]}\ndescendant count: ${counts[1]}\ndescendant word count: ${counts[2]}`;
+        }
         const attrs = html_convert_attrs_id(ast, context);
-        return `<a${href}${attrs}${html_attr('title', 'internal link')}>${content}</a>`;
+        return `<a${href}${attrs}${html_attr('title', 'internal link' + counts_str)}>${content}</a>`;
       } else {
         return content;
       }
@@ -6155,7 +6178,7 @@ const MACRO_CONVERT_FUNCIONS = {
     [Macro.TR_MACRO_NAME]: id_convert_simple_elem(),
     'Ul': id_convert_simple_elem(),
     'x': function(ast, context) {
-      const [href, content] = x_get_href_content(ast, context);
+      const [href, content, target_ast] = x_get_href_content(ast, context);
       return content;
     },
     'Video': macro_image_video_block_convert_function,
@@ -6193,7 +6216,7 @@ const MACRO_CONVERT_FUNCIONS = {
     [Macro.TR_MACRO_NAME]: id_convert_simple_elem(),
     'Ul': id_convert_simple_elem(),
     'x': function(ast, context) {
-      const [href, content] = x_get_href_content(ast, context);
+      const [href, content, target_ast] = x_get_href_content(ast, context);
       return content;
     },
     'Video': macro_image_video_block_convert_function,
