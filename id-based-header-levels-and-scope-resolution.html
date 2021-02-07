@@ -19,11 +19,11 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="id-based-header-levels-and-scope-resolution"><a href="" title="link to this element">ID-based header levels and scope resolution</a><span>  | <a title="view all headers in a single page" href=".#id-based-header-levels-and-scope-resolution">🗖 nosplit</a> | <a href="id-based-header-levels" title="parent header">↑ parent "ID-based header levels"</a></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#id-based-header-levels-and-scope-resolution">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="id-based-header-levels" title="parent header">↑ parent "ID-based header levels"</a> | <span class="metrics"><span class="word-count" title="word count for this node">177</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-251">🔗</a></span><div class="p" id="p-251">When mixing both <a href="id-based-header-levels" title="internal link">ID-based header levels</a> and <a href="scope" title="internal link">header <code>scope</code> argument</a>, things get a bit complicated, because when writing or parsing, we have to first determine the parent header before resolving scopes.</div></div><div><span class="hide-hover"><a href="split#p-252">🔗</a></span><div class="p" id="p-252">As a result, the follow simple rules are used:<div><ul id="ul-25">
+</div><div><span class="hide-hover"><a href="split#p-253">🔗</a></span><div class="p" id="p-253">When mixing both <a href="id-based-header-levels" title="internal link">ID-based header levels</a> and <a href="scope" title="internal link">header <code>scope</code> argument</a>, things get a bit complicated, because when writing or parsing, we have to first determine the parent header before resolving scopes.</div></div><div><span class="hide-hover"><a href="split#p-254">🔗</a></span><div class="p" id="p-254">As a result, the follow simple rules are used:<div><ul id="ul-25">
 <li id="l-72">start from the last header of the highest level</li>
 <li id="l-73">check if the <code>{parent=XXX}</code> is a suffix of its ID</li>
 <li id="l-74">if not, proceed to the next smaller level, and so on, until a suffix is found</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-253">🔗</a></span><div class="p" id="p-253">Following those rules for example, a file <code>tmp.ciro</code>:
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-255">🔗</a></span><div class="p" id="p-255">Following those rules for example, a file <code>tmp.ciro</code>:
 <div class="code-caption-container" id="code-106">
 <pre><code>= h1
 {scope}
@@ -66,7 +66,7 @@ will lead to the following header tree with <a href="log-headers" title="interna
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/390da271359cdf165da660c413eebe69d1b8fee1">390da271359cdf165da660c413eebe69d1b8fee1</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a77cc0efdca27af1c2e8dd69e5f45cf0033db21d">a77cc0efdca27af1c2e8dd69e5f45cf0033db21d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

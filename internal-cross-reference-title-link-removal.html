@@ -18,8 +18,8 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="internal-cross-reference-title-link-removal"><a href="" title="link to this element">Internal cross reference title link removal</a><span>  | <a title="view all headers in a single page" href=".#internal-cross-reference-title-link-removal">🗖 nosplit</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#internal-cross-reference-title-link-removal">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a> | <span class="metrics"><span class="word-count" title="word count for this node">158</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-233">🔗</a></span><div class="p" id="p-233">If the target <code>title</code> argument contains a link from either another <a href="internal-cross-references" title="internal link">internal cross references</a> or a regular <a href="links" title="internal link">external hyperlink</a>, Cirodown automatically prevents that link from rendering as a link when no explicit body is given.</div></div><div><span class="hide-hover"><a href="split#p-234">🔗</a></span><div class="p" id="p-234">This is done because <a href="https://stackoverflow.com/questions/9882916/are-you-allowed-to-nest-a-link-inside-of-a-link">nested links are illegal in HTML</a>, and the result would be confusing.</div></div><div><span class="hide-hover"><a href="split#p-235">🔗</a></span><div class="p" id="p-235">This use case is most common when dealing with media such as <a href="images" title="internal link">images</a>. For example in:
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#internal-cross-reference-title-link-removal">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="internal-cross-references" title="parent header">↑ parent "Internal cross references"</a> | <span class="metrics"><span class="word-count" title="word count for this node">157</span></span></div></div>
+</div><div><span class="hide-hover"><a href="split#p-235">🔗</a></span><div class="p" id="p-235">If the target <code>title</code> argument contains a link from either another <a href="internal-cross-references" title="internal link">internal cross references</a> or a regular <a href="links" title="internal link">external hyperlink</a>, Cirodown automatically prevents that link from rendering as a link when no explicit body is given.</div></div><div><span class="hide-hover"><a href="split#p-236">🔗</a></span><div class="p" id="p-236">This is done because <a href="https://stackoverflow.com/questions/9882916/are-you-allowed-to-nest-a-link-inside-of-a-link">nested links are illegal in HTML</a>, and the result would be confusing.</div></div><div><span class="hide-hover"><a href="split#p-237">🔗</a></span><div class="p" id="p-237">This use case is most common when dealing with media such as <a href="image" title="internal link">images</a>. For example in:
 <div class="code-caption-container" id="code-95">
 <pre><code>= afds
 
@@ -39,13 +39,13 @@ the <code>\x[image-aa-zxcv-lolol-bb]</code> renders something like:
 and not:
 <div class="code-caption-container" id="code-97">
 <pre><code>&lt;a href="#image-aa-zxcv-lolol-bb"&gt;aa &lt;a href="zxcv"&gt;zxcv&lt;/a&gt; &lt;a href="http://example.com"&gt;lolol&lt;/a&gt; bb&lt;/a&gt;
-</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-236">🔗</a></span><div class="p" id="p-236">Live example:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-238">🔗</a></span><div class="p" id="p-238">Live example:
 <div class="code-caption-container" id="code-98">
 <pre><code>This is a nice image: \x[image-aa-zxcv-lolol-bb].
 
 \Image[Tank_man_standing_in_front_of_some_tanks.jpg]
 {title=aa \x[internal-cross-reference-title-link-removal][zxcv] \a[http://example.com][lolol] bb}
-</code></pre></div><div class="p" id="p-237">which renders as:</div><blockquote id="q-46"><div class="p" id="p-238">This is a nice image: <a href="#image-aa-zxcv-lolol-bb" title="internal link">Figure 3. "aa zxcv lolol bb"</a>.</div><figure id="image-aa-zxcv-lolol-bb">
+</code></pre></div><div class="p" id="p-239">which renders as:</div><blockquote id="q-46"><div class="p" id="p-240">This is a nice image: <a href="#image-aa-zxcv-lolol-bb" title="internal link">Figure 3. "aa zxcv lolol bb"</a>.</div><figure id="image-aa-zxcv-lolol-bb">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-aa-zxcv-lolol-bb"><span class="caption-prefix">Figure 3</span></a>. aa <a href="" title="internal link">zxcv</a> <a href="http://example.com">lolol</a> bb</figcaption>
 </figure>
@@ -56,7 +56,7 @@ and not:
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/390da271359cdf165da660c413eebe69d1b8fee1">390da271359cdf165da660c413eebe69d1b8fee1</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/a77cc0efdca27af1c2e8dd69e5f45cf0033db21d">a77cc0efdca27af1c2e8dd69e5f45cf0033db21d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

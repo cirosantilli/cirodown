@@ -3402,7 +3402,14 @@ assert_executable(
         "//x:div[@class='p']//x:a[@href='#h2' and text()='My h2 synonym']",
         // Across files to test sqlite db.
         "//x:div[@class='p']//x:a[@href='notindex.html#notindex-h2' and text()='my notindex h2 synonym']",
-      ]
+      ],
+      'h2.html': [
+        // It does not generate a split header for `My h2 synonym`.
+        "//x:div[@class='p']//x:a[@href='' and text()='h2']",
+      ],
     },
+    expect_not_exists: [
+      'my-notindex-h2-synonym.html',
+    ],
   }
 );
