@@ -399,7 +399,7 @@ function assert_executable(
       );
     }
     for (const relpath in options.expect_filesystem_xpath) {
-      const assert_msg_xpath = `path: ${relpath}\n\n` + assert_msg;
+      const assert_msg_xpath = `path should match xpath: ${relpath}\n\n` + assert_msg;
       const fullpath = path.join(tmpdir, relpath);
       assert.ok(fs.existsSync(fullpath), assert_msg_xpath);
       const html = fs.readFileSync(fullpath).toString(cirodown_nodejs.ENCODING);
@@ -408,7 +408,7 @@ function assert_executable(
       }
     }
     for (const relpath in options.expect_filesystem_not_xpath) {
-      const assert_msg_xpath = `path: ${relpath}\n\n` + assert_msg;
+      const assert_msg_xpath = `path should not match xpath: ${relpath}\n\n` + assert_msg;
       const fullpath = path.join(tmpdir, relpath);
       assert.ok(fs.existsSync(fullpath), assert_msg_xpath);
       const html = fs.readFileSync(fullpath).toString(cirodown_nodejs.ENCODING);
@@ -418,11 +418,11 @@ function assert_executable(
     }
     for (const relpath of options.expect_exists) {
       const fullpath = path.join(tmpdir, relpath);
-      assert.ok(fs.existsSync(fullpath), relpath);
+      assert.ok(fs.existsSync(fullpath), 'path should exist: ' + relpath);
     }
     for (const relpath of options.expect_not_exists) {
       const fullpath = path.join(tmpdir, relpath);
-      assert.ok(!fs.existsSync(fullpath), relpath);
+      assert.ok(!fs.existsSync(fullpath), 'path should not exist: ' + relpath);
     }
     fs.rmdirSync(tmpdir, {recursive: true});
   });
@@ -3407,9 +3407,10 @@ assert_executable(
         // It does not generate a split header for `My h2 synonym`.
         "//x:div[@class='p']//x:a[@href='' and text()='h2']",
       ],
-    },
-    expect_not_exists: [
-      'my-notindex-h2-synonym.html',
-    ],
+      // Redirect.
+      'my-notindex-h2-synonym.html': [
+        "//x:script[text()=\"location='notindex.html#notindex-h2'\"]",
+      ],
+    }
   }
 );

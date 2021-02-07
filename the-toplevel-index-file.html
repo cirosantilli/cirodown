@@ -22,14 +22,14 @@
 </div><div><span class="hide-hover"><a href="split#p-676">🔗</a></span><div class="p" id="p-676">The toplevel index file is the index file that is present on the root directory of a Cirodown project.</div></div><div><span class="hide-hover"><a href="split#p-677">🔗</a></span><div class="p" id="p-677">This directory is determined by checking the presence of a <a href="cirodown-json" title="internal link
 word count: 3
 descendant count: 257
-descendant word count: 748"><code>cirodown.json</code></a> file.</div></div><div><span class="hide-hover"><a href="split#p-678">🔗</a></span><div class="p" id="p-678">We were tempted to not require the <code>cirodown.json</code> check and just use the input directory instead, but this would lead to subdir builds having different toplevel IDs, which is not desirable. For example, if we have a file structure:</div></div><div><span class="hide-hover"><a href="split#ul-83">🔗</a></span><div><ul id="ul-83">
-<li id="l-225"><code>cirodown.json</code></li>
-<li id="l-226"><code>subdir/myfile.ciro</code></li>
+descendant word count: 779"><code>cirodown.json</code></a> file.</div></div><div><span class="hide-hover"><a href="split#p-678">🔗</a></span><div class="p" id="p-678">We were tempted to not require the <code>cirodown.json</code> check and just use the input directory instead, but this would lead to subdir builds having different toplevel IDs, which is not desirable. For example, if we have a file structure:</div></div><div><span class="hide-hover"><a href="split#ul-83">🔗</a></span><div><ul id="ul-83">
+<li id="l-226"><code>cirodown.json</code></li>
+<li id="l-227"><code>subdir/myfile.ciro</code></li>
 </ul></div></div><div><span class="hide-hover"><a href="split#p-679">🔗</a></span><div class="p" id="p-679">then all IDs under <code>myfile.ciro</code> are prefixed with <code>subdir</code> (note that this could also be achieved with <a href="scope" title="internal link
 word count: 5
 descendant count: 399
 descendant word count: 551">header <code>scope</code> argument</a>).</div></div><div><span class="hide-hover"><a href="split#p-680">🔗</a></span><div class="p" id="p-680">So for this reason users should basically always add a <code>cirodown.json</code> to their projects.</div></div><div><span class="hide-hover"><a href="split#p-681">🔗</a></span><div class="p" id="p-681">Being the toplevel index file has the following implications:<div><ul id="ul-84">
-<li id="l-227">its ID is derived fromthe header itself, not the directory, see also: <a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
+<li id="l-228">its ID is derived fromthe header itself, not the directory, see also: <a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
 word count: 0
 descendant count: 264
 descendant word count: 264">the ID of the first header is derived from the filename</a></li>
@@ -38,7 +38,7 @@ descendant word count: 264">the ID of the first header is derived from the filen
 <li><a href="cirodown-json" title="internal link
 word count: 3
 descendant count: 257
-descendant word count: 748"><code>cirodown.json</code></a></li>
+descendant word count: 779"><code>cirodown.json</code></a></li>
 <li><a href="directory-based-scope" title="internal link
 word count: 0
 descendant count: 53
@@ -51,7 +51,7 @@ descendant word count: 264">The ID of the first header is derived from the filen
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e49ddf9cac01ce5ab905888a1122fdd7ada4ef80">e49ddf9cac01ce5ab905888a1122fdd7ada4ef80</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/3893f0a53238c0c813e1878d20fda5794fd9572f">3893f0a53238c0c813e1878d20fda5794fd9572f</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

@@ -20,7 +20,7 @@
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="split-headers"><a href="" title="link to this element"><code>--split-headers</code></a><span>  | <a title="view all headers in a single page" href=".#split-headers">🗖 nosplit</a> | <a href="cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">444</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#split-headers">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">444</span></span></div></div>
 </div><div><span class="hide-hover"><a href="split#p-759">🔗</a></span><div class="p" id="p-759">Split each header into its own separate HTML output file.</div></div><div><span class="hide-hover"><a href="split#p-760">🔗</a></span><div class="p" id="p-760">This option allows you to keep all headers in a single file, which is much more convenient than working with a billion separate source files, and let them grow naturally as new information is added, but still be able to get a small output page on the rendered website that contains just the content of the given header. Such split pages load faster on the browser, and might get better Google PageRank.</div></div><div><span class="hide-hover"><a href="split#p-761">🔗</a></span><div class="p" id="p-761">For example given an input file called <code>hello.ciro</code> and containing:
-<div class="code-caption-container" id="code-294">
+<div class="code-caption-container" id="code-295">
 <pre><code>= h1
 
 h1 content.
@@ -40,30 +40,30 @@ h1-1-1 content.
 h1-1-2 content.
 </code></pre></div>
 a conversion command:
-<div class="code-caption-container" id="code-295">
+<div class="code-caption-container" id="code-296">
 <pre><code>cirodown --split-headers hello.ciro
 </code></pre></div>
 would produce the following output files:<div><ul id="ul-94">
-<li id="l-248"><div class="p" id="p-762"><code>hello.html</code>: contains the entire rendered document as usual.</div><div class="p" id="p-763">Remember that this is called <code>hello.html</code> instead of <code>h1.html</code> because <a href="the-toplevel-header" title="internal link
+<li id="l-249"><div class="p" id="p-762"><code>hello.html</code>: contains the entire rendered document as usual.</div><div class="p" id="p-763">Remember that this is called <code>hello.html</code> instead of <code>h1.html</code> because <a href="the-toplevel-header" title="internal link
 word count: 2
 descendant count: 39
 descendant word count: 355">the toplevel header ID is automatically derived from its filename</a>.</div><div class="p" id="p-764">Each header contains a on-hover link to the single-file split version of the header.</div></li>
-<li id="l-249"><code>hello-split.html</code>: contains only the contents directly under <code>= h1</code>, but not under any of the subheaders, e.g.:<div><ul id="ul-95">
-<li id="l-250"><code>h1 content.</code> appears in this rendered output</li>
-<li id="l-251"><code>h1-1-1</code> does not appear in this rendered output
+<li id="l-250"><code>hello-split.html</code>: contains only the contents directly under <code>= h1</code>, but not under any of the subheaders, e.g.:<div><ul id="ul-95">
+<li id="l-251"><code>h1 content.</code> appears in this rendered output</li>
+<li id="l-252"><code>h1-1-1</code> does not appear in this rendered output
 </li>
 </ul></div>The <code>-split</code> suffix can be customized with the <a href="splitsuffix" title="internal link
 word count: 0
 descendant count: 265
 descendant word count: 265">header <code>splitSuffix</code> argument</a> option.
 The <code>-split</code> suffix is appended in order to differentiate the output path from <code>hello.html</code></li>
-<li id="l-252"><code>h1-1.html</code>, <code>h1-1-1.html</code>, <code>h1-1-2.html</code>: contain only the contents direcly under their headers, analogously to <code>hello-split.html</code>, but now we don't need to worry about the input filename and collisiont, and just directly use the ID of each header</li>
+<li id="l-253"><code>h1-1.html</code>, <code>h1-1-1.html</code>, <code>h1-1-2.html</code>: contain only the contents direcly under their headers, analogously to <code>hello-split.html</code>, but now we don't need to worry about the input filename and collisiont, and just directly use the ID of each header</li>
 </ul></div></div></div><div><span class="hide-hover"><a href="split#p-765">🔗</a></span><div class="p" id="p-765"><a href="internal-cross-references" title="internal link
 word count: 26
 descendant count: 122
 descendant word count: 3k">internal cross references</a> such as <code>\x[h1-1]</code> automatically point to the same type of split/non-split output as the current output file, for example:<div><ul id="ul-96">
-<li id="l-253">in <code>hello.html</code>, it points to the section in the current (non-split) file</li>
-<li id="l-254">in <code>hello-split.html</code>, it points to the section the separate split <code>h1-1.html</code> output file
+<li id="l-254">in <code>hello.html</code>, it points to the section in the current (non-split) file</li>
+<li id="l-255">in <code>hello-split.html</code>, it points to the section the separate split <code>h1-1.html</code> output file
 </li>
 </ul></div>The same applies to <a href="internal-cross-file-references" title="internal link
 word count: 1
@@ -74,7 +74,7 @@ descendant count: 160
 descendant word count: 448"><code>-p, --publish</code></a>: the published website will automatically get the split pages. There is no way to turn it off currently. A pull request would be accepted, especially if it offers a <a href="cirodown-json" title="internal link
 word count: 3
 descendant count: 257
-descendant word count: 748"><code>cirodown.json</code></a> way to do it. Maybe it would be nice to have a more generalized way of setting any CLI option equivalent from the <code>cirodown.json</code>, and an option <code>cli</code> vs <code>cli-publish</code> so that <code>cli-publish</code> is publish only. Just lazy for now/not enough pressing use case met.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+descendant word count: 779"><code>cirodown.json</code></a> way to do it. Maybe it would be nice to have a more generalized way of setting any CLI option equivalent from the <code>cirodown.json</code>, and an option <code>cli</code> vs <code>cli-publish</code> so that <code>cli-publish</code> is publish only. Just lazy for now/not enough pressing use case met.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href="design-goals" title="internal link
 word count: 2
@@ -84,6 +84,10 @@ descendant word count: 996">Design goals</a></li>
 word count: 0
 descendant count: 265
 descendant word count: 265">Header <code>splitSuffix</code> argument</a></li>
+<li><a href="synonym" title="internal link
+word count: 1
+descendant count: 175
+descendant word count: 285">Header <code>synonym</code> argument</a></li>
 <li><a href="table-of-contents" title="internal link
 word count: 1
 descendant count: 207
@@ -92,7 +96,7 @@ descendant word count: 464">Table of contents</a></li>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e49ddf9cac01ce5ab905888a1122fdd7ada4ef80">e49ddf9cac01ce5ab905888a1122fdd7ada4ef80</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/3893f0a53238c0c813e1878d20fda5794fd9572f">3893f0a53238c0c813e1878d20fda5794fd9572f</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

@@ -23,36 +23,36 @@
 word count: 0
 descendant count: 96
 descendant word count: 96">store images inside the repository itself</a> if you are going to have a lot of images.</div></div><div><span class="hide-hover"><a href="split#p-405">🔗</a></span><div class="p" id="p-405">When using this approach, you could of course just point directly to the final image URL, e.g. as in:
-<div class="code-caption-container" id="code-165">
+<div class="code-caption-container" id="code-166">
 <pre><code>\Image[https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg]
 </code></pre></div><div class="p" id="p-406">which renders as:</div><blockquote id="q-66"><figure id="image-16">
 <a href="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg"><img src="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg" loading="lazy" height="315" alt="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg"></a>
 </figure>
 </blockquote>
 but Cirodown allows you use configurations that allow you to enter just the image basename: <code>Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg</code> which we will cover next.</div></div><div><span class="hide-hover"><a href="split#p-407">🔗</a></span><div class="p" id="p-407">In order to get this to work, the recommended repository setup is:<div><ul id="ul-54">
-<li id="l-155"><code>./main-repo/.git</code>: main repository at <a href="https://github.com/username/main-repo">https://github.com/username/main-repo</a></li>
-<li id="l-156"><code>./main-repo/data/media/.git/</code>: media repository at <a href="https://github.com/username/main-repo-media">https://github.com/username/main-repo-media</a>, and where <code>data/</code> is gitignored.
+<li id="l-156"><code>./main-repo/.git</code>: main repository at <a href="https://github.com/username/main-repo">https://github.com/username/main-repo</a></li>
+<li id="l-157"><code>./main-repo/data/media/.git/</code>: media repository at <a href="https://github.com/username/main-repo-media">https://github.com/username/main-repo-media</a>, and where <code>data/</code> is gitignored.
 </li>
 </ul></div>The directory and repository names are not mandatory, but if you place media in <code>data/media</code> and name its repository by adding the <code>*-media</code> suffix, then <code>cirodown</code> will handle everything for you without any further configuration in <a href="media-providers" title="internal link
 word count: 0
 descendant count: 266
 descendant word count: 266"><code>media-providers</code></a>.</div></div><div><span class="hide-hover"><a href="split#p-408">🔗</a></span><div class="p" id="p-408">This particular documentation repository does have a different setup as can be seen from its <a href="cirodown.json">cirodown.json</a>. Then, when everything is setup correctly, we can refer to images simply as:
-<div class="code-caption-container" id="code-166">
+<div class="code-caption-container" id="code-167">
 <pre><code>\Image[Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg]{provider=github}
 </code></pre></div><div class="p" id="p-409">which renders as:</div><blockquote id="q-67"><figure id="image-17">
 <a href="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg"><img src="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg" loading="lazy" height="315" alt="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg"></a>
 </figure>
 </blockquote>
 In this example, we also needed to set <code>{provider=github}</code> explicitly since it was not set as the default image provider in our <code>cirodown.json</code>. In most projects however, all of your images will be in the default repository, so this won't be needed.</div></div><div><span class="hide-hover"><a href="split#p-410">🔗</a></span><div class="p" id="p-410"><code>provider</code> must not be given when a full URL is given because we automatically detect providers from URLs, e.g.:
-<div class="code-caption-container" id="code-167">
+<div class="code-caption-container" id="code-168">
 <pre><code>\Image[https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg]{provider=github}
 </code></pre></div>
 is an error.</div></div><div><span class="hide-hover"><a href="split#p-411">🔗</a></span><div class="p" id="p-411">TODO implement: <code>cirodown</code> will even automatically add and push used images in the <code>my-tutorial-media</code> repository for you <a href="publish" title="internal link
 word count: 3
 descendant count: 160
 descendant word count: 448">during publishing</a>!</div></div><div><span class="hide-hover"><a href="split#p-412">🔗</a></span><div class="p" id="p-412">You should then use the following rules inside <code>my-tutorial-media</code>:<div><ul id="ul-55">
-<li id="l-157">give every file a very descriptive and unique name as a full English sentence</li>
-<li id="l-158">never ever delete any files, nor change their content, unless it is an improvement in format that does change the information contained of the image TODO link to nice Wikimedia Commons guideline page
+<li id="l-158">give every file a very descriptive and unique name as a full English sentence</li>
+<li id="l-159">never ever delete any files, nor change their content, unless it is an improvement in format that does change the information contained of the image TODO link to nice Wikimedia Commons guideline page
 </li>
 </ul></div>This way, even though the repositories are not fully in sync, anyone who clones the latest version of the <code>*-media</code> directory will be able to view any version of the main repository.</div></div><div><span class="hide-hover"><a href="split#p-413">🔗</a></span><div class="p" id="p-413">Then, if one day the media repository ever blows up GitHub's limit, you can just migrate the images to another image server that allows arbitrary basenames, e.g. AWS, and just configure your project to use that new media base URL with the <a href="media-providers" title="internal link
 word count: 0
@@ -79,7 +79,7 @@ descendant word count: 590">Videos</a></li>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e49ddf9cac01ce5ab905888a1122fdd7ada4ef80">e49ddf9cac01ce5ab905888a1122fdd7ada4ef80</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/3893f0a53238c0c813e1878d20fda5794fd9572f">3893f0a53238c0c813e1878d20fda5794fd9572f</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

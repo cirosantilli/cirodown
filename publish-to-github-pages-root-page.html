@@ -20,15 +20,15 @@
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="publish-to-github-pages-root-page"><a href="" title="link to this element">Publish to GitHub pages root page</a><span>  | <a title="view all headers in a single page" href=".#publish-to-github-pages-root-page">🗖 nosplit</a> | <a href="publish-to-github-pages" title="parent header">↑ parent "Publish to GitHub Pages"</a> | <span class="metrics"><span class="word-count" title="word count for this node">153</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#publish-to-github-pages-root-page">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="publish-to-github-pages" title="parent header">↑ parent "Publish to GitHub Pages"</a> | <span class="metrics"><span class="word-count" title="word count for this node">153</span></span></div></div>
 </div><div><span class="hide-hover"><a href="split#p-749">🔗</a></span><div class="p" id="p-749">If you want to publish your root user page, which appears at <code>/</code> (e.g. <a href="https://github.com/cirosantilli/cirosantilli.github.io">https://github.com/cirosantilli/cirosantilli.github.io</a> for the user <code>cirosantilli</code>), GitHub annoyingly forces you to use the <code>master</code> branch for the HTML output:<div><ul id="ul-92">
-<li id="l-244"><a href="https://github.com/isaacs/github/issues/212">https://github.com/isaacs/github/issues/212</a></li>
-<li id="l-245"><a href="https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages">https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages</a></li>
+<li id="l-245"><a href="https://github.com/isaacs/github/issues/212">https://github.com/isaacs/github/issues/212</a></li>
+<li id="l-246"><a href="https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages">https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages</a></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="split#p-750">🔗</a></span><div class="p" id="p-750">This means that you must place your <code>.ciro</code> input files in a branch other than <code>master</code> to clear up <code>master</code> for the generated HTML.</div></div><div><span class="hide-hover"><a href="split#p-751">🔗</a></span><div class="p" id="p-751"><code>cirodown</code> automatically detects if your repository ois a root repository or not by parsing <code>git remote</code> output, but you must setup the branches correctly yourself.</div></div><div><span class="hide-hover"><a href="split#p-752">🔗</a></span><div class="p" id="p-752">So on a new repository, you must <a href="https://stackoverflow.com/questions/42871542/how-to-create-a-git-repository-with-the-default-branch-name-other-than-master">first checkout to a different branch</a> as in:
-<div class="code-caption-container" id="code-290">
+<div class="code-caption-container" id="code-291">
 <pre><code>git init
 git checkout -b dev
 </code></pre></div>
 or to move an existing repository to a non-master branch:
-<div class="code-caption-container" id="code-291">
+<div class="code-caption-container" id="code-292">
 <pre><code>git checkout -b dev
 git push origin dev:dev
 git branch -D master
@@ -43,7 +43,7 @@ descendant word count: 288">Publish to GitHub Pages</a></li>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e49ddf9cac01ce5ab905888a1122fdd7ada4ef80">e49ddf9cac01ce5ab905888a1122fdd7ada4ef80</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/3893f0a53238c0c813e1878d20fda5794fd9572f">3893f0a53238c0c813e1878d20fda5794fd9572f</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

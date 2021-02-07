@@ -295,6 +295,13 @@ function convert_input(input, options, convert_input_options={}) {
     fs.mkdirSync(path.dirname(output_path), {recursive: true});
     fs.writeFileSync(output_path, new_options.extra_returns.rendered_outputs[id]);
   }
+  if (new_options.split_headers) {
+    for (const header_ast of new_options.extra_returns.context.synonym_headers) {
+      let new_options_redir = Object.assign({}, new_options);
+      new_options_redir.id_provider = new_options_redir.extra_returns.context.id_provider;
+      generate_redirect(new_options_redir, header_ast.id, header_ast.synonym, convert_input_options.outdir);
+    }
+  }
   if (convert_input_options.log.tokens) {
     console.error('tokens:');
     console.error(JSON.stringify(new_options.extra_returns.tokens, null, 2));
@@ -318,8 +325,11 @@ function convert_input(input, options, convert_input_options={}) {
     console.error(`perf render_post ${new_options.extra_returns.debug_perf.render_post}`);
     console.error(`perf end ${new_options.extra_returns.debug_perf.end}`);
   }
-  for (const error of new_options.extra_returns.errors) {
-    console.error(error.toString());
+  // Remove duplicate messages due to split header rendering. We could not collect
+  // errors from that case at all maybe, but do we really want to run the risk of
+  // missing errors?
+  for (const error_string of remove_duplicates_sorted_array(new_options.extra_returns.errors.map(e => e.toString()))) {
+    console.error(error_string);
   }
   convert_input_options.extra_returns = new_options.extra_returns;
   if (new_options.extra_returns.errors.length > 0) {
@@ -595,21 +605,15 @@ function create_db(convert_input_options) {
   convert_input_options.id_provider = new SqliteIdProvider(convert_input_options);
 }
 
-function generate_redirects(
-  options,
-  cirodown_json,
-  outdir
-) {
-  for (let redirect_src_id in cirodown_json.redirects) {
-    const redirect_target_id = cirodown_json.redirects[redirect_src_id];
-    options = Object.assign({}, options);
-    options.input_path = redirect_src_id;
-    const redirect_href = cirodown.convert_x_href(redirect_target_id, options);
-    if (redirect_href === undefined) {
-      cli_error(`redirection target ID "${redirect_target_id}" not found`);
-    }
-    // https://stackoverflow.com/questions/10178304/what-is-the-best-approach-for-redirection-of-old-pages-in-jekyll-and-github-page/36848440#36848440
-    fs.writeFileSync(path.join(outdir, redirect_src_id + '.' + cirodown.HTML_EXT),
+function generate_redirect(options, redirect_src_id, redirect_target_id, outdir) {
+  options = Object.assign({}, options);
+  options.input_path = redirect_src_id;
+  const redirect_href = cirodown.convert_x_href(redirect_target_id, options);
+  if (redirect_href === undefined) {
+    cli_error(`redirection target ID "${redirect_target_id}" not found`);
+  }
+  // https://stackoverflow.com/questions/10178304/what-is-the-best-approach-for-redirection-of-old-pages-in-jekyll-and-github-page/36848440#36848440
+  fs.writeFileSync(path.join(outdir, redirect_src_id + '.' + cirodown.HTML_EXT),
 `<!DOCTYPE html>
 <html>
 <head>
@@ -625,6 +629,16 @@ function generate_redirects(
 </body>
 </html>
 `);
+}
+
+function generate_redirects(
+  options,
+  cirodown_json,
+  outdir
+) {
+  for (let redirect_src_id in cirodown_json.redirects) {
+    const redirect_target_id = cirodown_json.redirects[redirect_src_id];
+    generate_redirect(options, redirect_src_id, redirect_target_id, outdir);
   }
 }
 
@@ -637,6 +651,11 @@ function git_sha(input_path, src_branch) {
     args.push(src_branch);
   }
   return cmd_get_stdout('git', args, {show_cmd: false, throw_on_error: true}).slice(0, -1);
+}
+
+// https://stackoverflow.com/questions/9355403/deleting-duplicates-on-sorted-array/61974900#61974900
+function remove_duplicates_sorted_array(arr) {
+  return arr.filter((e, i, a) => e !== a[i - 1]);
 }
 
 /** https://stackoverflow.com/questions/5827612/node-js-fs-readdir-recursive-directory-search

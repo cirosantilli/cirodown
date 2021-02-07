@@ -20,31 +20,31 @@
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cirodown-executable"><a href="" title="link to this element"><code>cirodown</code> executable</a><span>  | <a title="view all headers in a single page" href=".#cirodown-executable">🗖 nosplit</a> | <a href="tooling" title="parent header">↑ parent "Tooling"</a> | <span class="metrics"><span class="word-count" title="word count for this node">182</span>, <span class="descendant-count" title="number of descendant nodes">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#cirodown-executable">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="tooling" title="parent header">↑ parent "Tooling"</a> | <span class="metrics"><span class="word-count" title="word count for this node">182</span>, <span class="descendant-count" title="number of descendant nodes">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span></span></div></div>
 </div><div><span class="hide-hover"><a href="split#p-667">🔗</a></span><div class="p" id="p-667">Convert a <code>.ciro</code> file to HTML and output the HTML to a file with the same basename without extension, e.g.:
-<div class="code-caption-container" id="code-270">
+<div class="code-caption-container" id="code-271">
 <pre><code>cirodown hello.ciro
 firefox hello.html
 </code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-668">🔗</a></span><div class="p" id="p-668">Files named <code>README.ciro</code> are automatically converted to <code>index.html</code> so that they will show on both GitHub READMEs and at the website's base address:
-<div class="code-caption-container" id="code-271">
+<div class="code-caption-container" id="code-272">
 <pre><code>cirodown README.ciro
 firefox hello.html
 </code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-669">🔗</a></span><div class="p" id="p-669">Convert all <code>.ciro</code> files in a directory to HTML files next to each corresponding <code>.ciro</code> file, e.g. <code>somefile.ciro</code> to <code>somefile.html</code>:
-<div class="code-caption-container" id="code-272">
+<div class="code-caption-container" id="code-273">
 <pre><code>cirodown .
 </code></pre></div>
 The HTML output files are placed right next to each corresponding <code>.ciro</code>.</div></div><div><span class="hide-hover"><a href="split#p-670">🔗</a></span><div class="p" id="p-670">The output file can be selected explicitly with: <a href="outfile" title="internal link
 word count: 0
 descendant count: 50
 descendant word count: 50"><code>--outfile &lt;outfie&gt;</code></a>.</div></div><div><span class="hide-hover"><a href="split#p-671">🔗</a></span><div class="p" id="p-671">Output to stdout instead of saving it to a file:
-<div class="code-caption-container" id="code-273">
+<div class="code-caption-container" id="code-274">
 <pre><code>cirodown --stdout README.ciro
 </code></pre></div></div></div><div><span class="hide-hover"><a href="split#p-672">🔗</a></span><div class="p" id="p-672">In order to resolve <a href="internal-cross-file-references" title="internal link
 word count: 1
 descendant count: 348
 descendant word count: 479">internal cross file references</a>, this actually does two passes:<div><ul id="ul-80">
-<li id="l-219">first an ID extraction pass, which parses all inputs and dumps their IDs to the ID database</li>
-<li id="l-220">then a second render pass, which uses the IDs in the ID database</li>
+<li id="l-220">first an ID extraction pass, which parses all inputs and dumps their IDs to the ID database</li>
+<li id="l-221">then a second render pass, which uses the IDs in the ID database</li>
 </ul></div></div></div><div><span class="hide-hover"><a href="split#p-673">🔗</a></span><div class="p" id="p-673">Convert a <code>.ciro</code> file from stdin to HTML and output the contents of <code>&lt;body&gt;</code> to stdout:
-<div class="code-caption-container" id="code-274">
+<div class="code-caption-container" id="code-275">
 <pre><code>printf 'ab\ncd\n' | cirodown --body-only
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
@@ -96,11 +96,11 @@ descendant word count: 479">internal cross file references</a>, this actually do
 <li><div id="toc-watch"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="watch">2.15. <code>--watch</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">171</span></span><span class="hover-metadata"> | <a href="#toc-watch" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#watch">🗖 nosplit</a> | <a href="#toc-cirodown-executable-options" title="parent ToC entry">↑ parent "<code>cirodown</code> executable options"</a></span></div></li>
 <li><div id="toc-template"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="template">2.16. <code>--template</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">281</span></span><span class="hover-metadata"> | <a href="#toc-template" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#template">🗖 nosplit</a> | <a href="#toc-cirodown-executable-options" title="parent ToC entry">↑ parent "<code>cirodown</code> executable options"</a></span></div></li>
 </ul>
-<li class="has-child"><div id="toc-cirodown-json"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="cirodown-json">3. <code>cirodown.json</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">748</span></span><span class="hover-metadata"> | <a href="#toc-cirodown-json" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown</code> executable"</a></span></div>
+<li class="has-child"><div id="toc-cirodown-json"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="cirodown-json">3. <code>cirodown.json</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">779</span></span><span class="hover-metadata"> | <a href="#toc-cirodown-json" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown</code> executable"</a></span></div>
 <ul>
 <li><div id="toc-media-providers"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="media-providers">3.1. <code>media-providers</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">266</span></span><span class="hover-metadata"> | <a href="#toc-media-providers" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="#toc-cirodown-json" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
 <li><div id="toc-prepublish"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="prepublish">3.2. <code>prepublish</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">91</span></span><span class="hover-metadata"> | <a href="#toc-prepublish" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#prepublish">🗖 nosplit</a> | <a href="#toc-cirodown-json" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
-<li><div id="toc-redirects"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="redirects">3.3. <code>redirects</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">134</span></span><span class="hover-metadata"> | <a href="#toc-redirects" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#redirects">🗖 nosplit</a> | <a href="#toc-cirodown-json" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
+<li><div id="toc-redirects"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="redirects">3.3. <code>redirects</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">165</span></span><span class="hover-metadata"> | <a href="#toc-redirects" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#redirects">🗖 nosplit</a> | <a href="#toc-cirodown-json" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
 </ul>
 </li>
 </ul>
@@ -117,7 +117,7 @@ descendant word count: 44">Xss-unsafe</a></li>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e49ddf9cac01ce5ab905888a1122fdd7ada4ef80">e49ddf9cac01ce5ab905888a1122fdd7ada4ef80</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/3893f0a53238c0c813e1878d20fda5794fd9572f">3893f0a53238c0c813e1878d20fda5794fd9572f</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
