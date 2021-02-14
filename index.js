@@ -5863,8 +5863,10 @@ const DEFAULT_MACRO_LIST = [
 
         let root_page;
         if (context.options.html_x_extension) {
+          context.options.template_vars.html_ext = '.html';
           root_page = context.options.template_vars.root_relpath + INDEX_BASENAME_NOEXT + '.' + HTML_EXT;
         } else {
+          context.options.template_vars.html_ext = '';
           if (context.options.template_vars.root_relpath === '') {
             root_page = '.'
           } else {
