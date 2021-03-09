@@ -201,6 +201,9 @@ class AstNode {
     if (!('id_conversion' in context)) {
       context.id_conversion = false;
     }
+    if (!('ignore_errors' in context)) {
+      context.ignore_errors = false;
+    }
     if (!('katex_macros' in context)) {
       context.katex_macros = {};
     }
@@ -209,14 +212,14 @@ class AstNode {
     }
     if (!('source_location' in context)) {
       // Set a source location to this element and the entire subtree.
-      // This allwos for less verbose manual construction of trees with
-      // a single dummy source_loctaion.
+      // This allows for less verbose manual construction of trees with
+      // a single dummy source_location.
       context.source_location = undefined;
     }
     if (!('validate_ast' in context)) {
       // Do validate_ast to this element and the entire subtree.
       // This allwos for less verbose manual construction of trees with
-      // a single dummy source_loctaion.
+      // a single dummy source_location.
       context.validate_ast = false;
     }
     if (!('x_parents' in context)) {
@@ -229,8 +232,11 @@ class AstNode {
     ) {
       return '';
     }
-    if (context.source_loction) {
+    if (context.source_location !== undefined) {
       this.source_location = context.source_location;
+      for (const argname in this.args) {
+        this.args[argname].source_location = context.source_location;
+      }
     }
     if (context.validate_ast) {
       validate_ast(this, context);
@@ -4187,7 +4193,9 @@ function rename_basename(original) {
 }
 
 function render_error(context, message, source_location) {
-  context.errors.push(new ErrorMessage(message, source_location));
+  if (!context.ignore_errors) {
+    context.errors.push(new ErrorMessage(message, source_location));
+  }
 }
 
 // Fuck JavaScript? Can't find a built-in way to get the symbol string without the "Symbol(" part.
@@ -5240,7 +5248,12 @@ const DEFAULT_MACRO_LIST = [
       const tag_ids = context.id_provider.get_from_header_ids_of_xrefs_to(
         INCLUDES_TABLE_NAME_X_CHILD, ast.id);
       const new_context = clone_and_set(context, 'validate_ast', true);
-      new_context['source_location'] = ast.source_location;
+      new_context.source_location = ast.source_location;
+      // This is needed because in case of an an undefined \\x with {parent},
+      // the undefined target would render as a link on the parent, leading
+      // to an error that happens on the header, which is before the actual
+      // root cause.
+      new_context.ignore_errors = true;
       const tag_ids_html_array = [];
       for (const target_id of Array.from(tag_ids).sort()) {
         const x_ast = new AstNode(

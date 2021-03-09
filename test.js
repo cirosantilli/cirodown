@@ -319,7 +319,13 @@ function assert_equal(description, output, expected_output) {
 }
 
 /** Assert that the conversion fails in a controlled way, giving correct
- * error line and column, and without throwing an exception. */
+ * error line and column as the first error, and without throwing an
+ * exception. Ideally, we should assert all errors. However, asserting
+ * the first one correctly is the most critical part of it, because
+ * errors can compound up, making later errors meaningless. So the message
+ * only has to be 100% correct on the first error pointed out, to allow
+ * the user to deterministically solve that problem first, and then move
+ * on to the next. */
 function assert_error(description, input, line, column, path, options={}) {
   const new_convert_opts = Object.assign({}, options);
   new_convert_opts.error_line = line;
@@ -1747,6 +1753,13 @@ bb
   {
     convert_before: ['include-two-levels'],
   }
+);
+assert_error('internal cross references with parent to undefined ID does not throw',
+  `= aa
+
+\\x[bb]{parent}
+`,
+  3, 3
 );
 
 // Infinite recursion.
