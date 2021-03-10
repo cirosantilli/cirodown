@@ -445,9 +445,13 @@ class AstArgument extends Array {
 }
 
 class ErrorMessage {
-  constructor(message, source_location) {
+  /**
+   * @param {number} severity 1: most severe, 2: next, 3...
+   */
+  constructor(message, source_location, severity=1) {
     this.message = message;
     this.source_location = source_location;
+    this.severity = severity;
   }
 
   toString(path) {
@@ -2112,6 +2116,10 @@ function convert(
       if (ret !== 0)
         return ret;
     }
+    if (a.severity < b.severity)
+      return -1;
+    if (a.severity > b.severity)
+      return 1;
     if (a.source_location.line < b.source_location.line)
       return -1;
     if (a.source_location.line > b.source_location.line)
@@ -4193,9 +4201,9 @@ function rename_basename(original) {
   }
 }
 
-function render_error(context, message, source_location) {
+function render_error(context, message, source_location, severity=1) {
   if (!context.ignore_errors) {
-    context.errors.push(new ErrorMessage(message, source_location));
+    context.errors.push(new ErrorMessage(message, source_location, severity));
   }
 }
 
@@ -4361,7 +4369,7 @@ function x_get_href_content(ast, context) {
   let href;
   if (target_id_ast === undefined) {
     let message = `cross reference to unknown id: "${target_id}"`;
-    render_error(context, message, ast.args.href.source_location);
+    render_error(context, message, ast.args.href.source_location, 2);
     return [href, error_message_in_output(message, context)];
   } else {
     href = x_href_attr(target_id_ast, context);

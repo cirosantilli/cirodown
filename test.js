@@ -1601,7 +1601,16 @@ assert_no_error('cross reference without content nor target title style full',
 
 \\x[cd]
 `);
-assert_error('cross reference undefined', '\\x[ab]', 1, 3);
+assert_error('cross reference undefined fails gracefully', '\\x[ab]', 1, 3);
+// https://cirosantilli.com/cirodown#order-of-reported-errors
+assert_error('cross reference undefined errors show after other errors',
+  `= a
+
+\\x[b]
+
+\`\`
+== b
+`, 5, 1);
 assert_convert_ast('cross reference to non-included header in another file',
   `= aa
 
