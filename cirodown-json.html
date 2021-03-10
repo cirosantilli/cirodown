@@ -19,11 +19,11 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cirodown-json"><a href="" title="link to this element"><code>cirodown.json</code></a><span>  | <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href="cirodown-executable" title="parent header">↑ parent "<code>cirodown</code> executable"</a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">779</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="cirodown-executable" title="parent header">↑ parent "<code>cirodown</code> executable"</a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">779</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-801">🔗</a></span><div class="p" id="p-801">Cirodown configuration file that affects the behaviour of cirodown for all files in the directory.</div></div><div><span class="hide-hover"><a href="split#p-802">🔗</a></span><div class="p" id="p-802"><code>cirodown.json</code> not used for input from stdin, since we are mostly doing quick tests in that case.</div></div><div><span class="hide-hover"><a href="split#p-803">🔗</a></span><div class="p" id="p-803">While <code>cirodown.json</code> is optional, it is used to determine the toplevel directory of a Cirodown project, which has some effects such as those mentioned at <a href="the-toplevel-index-file" title="internal link
+</div><div><span class="hide-hover"><a href="split#p-805">🔗</a></span><div class="p" id="p-805">Cirodown configuration file that affects the behaviour of cirodown for all files in the directory.</div></div><div><span class="hide-hover"><a href="split#p-806">🔗</a></span><div class="p" id="p-806"><code>cirodown.json</code> not used for input from stdin, since we are mostly doing quick tests in that case.</div></div><div><span class="hide-hover"><a href="split#p-807">🔗</a></span><div class="p" id="p-807">While <code>cirodown.json</code> is optional, it is used to determine the toplevel directory of a Cirodown project, which has some effects such as those mentioned at <a href="the-toplevel-index-file" title="internal link
 word count: 0
 descendant count: 142
-descendant word count: 142">the toplevel index file</a>.</div></div><div><span class="hide-hover"><a href="split#p-804">🔗</a></span><div class="p" id="p-804">Therefore, it is recommended that you always have a <code>cirodown.json</code> in your project's toplevel directory, even if it is going to be an empty JSON <code>{}</code>.</div></div><div><span class="hide-hover"><a href="split#p-805">🔗</a></span><div class="p" id="p-805">For example, if you convert a file in a subdirectory such as:
-<div class="code-caption-container" id="code-311">
+descendant word count: 142">the toplevel index file</a>.</div></div><div><span class="hide-hover"><a href="split#p-808">🔗</a></span><div class="p" id="p-808">Therefore, it is recommended that you always have a <code>cirodown.json</code> in your project's toplevel directory, even if it is going to be an empty JSON <code>{}</code>.</div></div><div><span class="hide-hover"><a href="split#p-809">🔗</a></span><div class="p" id="p-809">For example, if you convert a file in a subdirectory such as:
+<div class="code-caption-container" id="code-312">
 <pre><code>cirodown subdir/notindex.ciro
 </code></pre></div>
 then <code>cirodown</code> walks up the filesystem tree looking for <code>cirodown.json</code>, e.g.:<div><ul id="ul-99">
@@ -32,7 +32,7 @@ then <code>cirodown</code> walks up the filesystem tree looking for <code>cirodo
 <li id="l-270">otherwise, is there a <code>../cirodown.json</code>?</li>
 <li id="l-271">otherwise, is there a <code>../../cirodown.json</code>?
 </li>
-</ul></div>and so on.</div></div><div><span class="hide-hover"><a href="split#p-806">🔗</a></span><div class="p" id="p-806">Then, in that case:<div><ul id="ul-100">
+</ul></div>and so on.</div></div><div><span class="hide-hover"><a href="split#p-810">🔗</a></span><div class="p" id="p-810">Then, in that case:<div><ul id="ul-100">
 <li id="l-272">if no <code>cirodown.json</code> file is found, we don't know any better output toplevel than <code>subdir</code>/ itself, and so:<div><ul id="ul-101">
 <li id="l-273">the first header of subdir/notindex.ciro will have ID <code>notindex</code>, instead of <code>subdir/notindex</code> as per <a href="directory-based-scope" title="internal link
 word count: 0
@@ -106,7 +106,7 @@ descendant word count: 44">Xss-unsafe</a></li>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/59e25f79d2b30da9eacaa6ccde504340220a7719">59e25f79d2b30da9eacaa6ccde504340220a7719</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c921129920d48ed2a91864e2ef10e35f6c012a7e">c921129920d48ed2a91864e2ef10e35f6c012a7e</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

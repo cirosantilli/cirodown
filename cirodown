@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const child_process = require('child_process');
+const china_dictatorship = require('china-dictatorship');
+if (!china_dictatorship.get_data().includes("Tiannmen Square protests")) throw 0;
 const fs = require('fs');
 const path = require('path');
 const { PerformanceObserver, performance } = require('perf_hooks');
@@ -682,7 +684,8 @@ function* walk_files_recursively(file_or_dir, skip_basenames) {
 
 // CLI options.
 commander.option('--body-only', 'output only the content inside the HTLM body element', false);
-commander.option('--debug-perf', 'https://cirosantilli.com/linux-kernel-module-cheat#debug-perf', false);
+commander.option('--china', 'https://cirosantilli.com/cirodown#debug-perf', false);
+commander.option('--debug-perf', 'https://cirosantilli.com/cirodown#debug-perf', false);
 commander.option('--dry-run', "don't run most external commands https://github.com/cirosantilli/cirodown#dry-run", false);
 commander.option('--embed-includes', 'http://cirosantilli.com/cirodown#embed-include', false);
 commander.option('--embed-resources', 'http://cirosantilli.com/cirodown#embed-resources', false);
@@ -716,6 +719,8 @@ commander.parse(process.argv);
 // Action.
 if (commander.helpMacros) {
   console.log(JSON.stringify(cirodown.macro_list(), null, 2));
+} else if (commander.china) {
+  console.log(china_dictatorship.get_data());
 } else {
   let input;
   let title;

@@ -19,12 +19,12 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href="">🔗</a></span><h1 id="template"><a href="" title="link to this element"><code>--template</code></a><span>  | <a title="view all headers in a single page" href=".#template">🗖 nosplit</a> | <a href="cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">344</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#template">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">344</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-786">🔗</a></span><div class="p" id="p-786">Select a custom <a href="https://github.com/harttle/liquidjs">Liquid template</a> file for the output.</div></div><div><span class="hide-hover"><a href="split#p-787">🔗</a></span><div class="p" id="p-787">The recommended file name for this file is:
-<div class="code-caption-container" id="code-304">
+</div><div><span class="hide-hover"><a href="split#p-790">🔗</a></span><div class="p" id="p-790">Select a custom <a href="https://github.com/harttle/liquidjs">Liquid template</a> file for the output.</div></div><div><span class="hide-hover"><a href="split#p-791">🔗</a></span><div class="p" id="p-791">The recommended file name for this file is:
+<div class="code-caption-container" id="code-305">
 <pre><code>main.liquid.html
 </code></pre></div>
-which is already ignored by default from the published output.</div></div><div><span class="hide-hover"><a href="split#p-788">🔗</a></span><div class="p" id="p-788">This repository has a sample <code>main.liquid.html</code> at: <a href="main.liquid.html">main.liquid.html</a>.</div></div><div><span class="hide-hover"><a href="split#p-789">🔗</a></span><div class="p" id="p-789">If not given, the default template at one point was:
-<div class="code-caption-container" id="code-305">
+which is already ignored by default from the published output.</div></div><div><span class="hide-hover"><a href="split#p-792">🔗</a></span><div class="p" id="p-792">This repository has a sample <code>main.liquid.html</code> at: <a href="main.liquid.html">main.liquid.html</a>.</div></div><div><span class="hide-hover"><a href="split#p-793">🔗</a></span><div class="p" id="p-793">If not given, the default template at one point was:
+<div class="code-caption-container" id="code-306">
 <pre><code>&lt;!doctype html&gt;
 &lt;html lang=en&gt;
 &lt;head&gt;
@@ -37,33 +37,33 @@ which is already ignored by default from the published output.</div></div><div><
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre></div>
-This will get out of sync sooner or later with the code, but this should still serve as a good base example for this documentation.</div></div><div><span class="hide-hover"><a href="split#p-790">🔗</a></span><div class="p" id="p-790">Defined variables:<div><ul id="ul-98">
+This will get out of sync sooner or later with the code, but this should still serve as a good base example for this documentation.</div></div><div><span class="hide-hover"><a href="split#p-794">🔗</a></span><div class="p" id="p-794">Defined variables:<div><ul id="ul-98">
 <li id="l-261"><code>body</code>: the rendered body</li>
 <li id="l-262"><code>git_sha</code>: SHA of the latest git commit of the source code if in a git repository</li>
-<li id="l-263"><div class="p" id="p-791"><code>html_ext</code>: <code>.html</code> for local renders, empty for server renders.</div><div class="p" id="p-792">So e.g. to link to an ID <code>myid</code> you can use:</div><div class="code-caption-container" id="code-306">
+<li id="l-263"><div class="p" id="p-795"><code>html_ext</code>: <code>.html</code> for local renders, empty for server renders.</div><div class="p" id="p-796">So e.g. to link to an ID <code>myid</code> you can use:</div><div class="code-caption-container" id="code-307">
 <pre><code>&lt;a href="{{ root_relpath }}myid{{ html_ext }}"&gt;
-</code></pre></div><div class="p" id="p-793">This will ideally be replaced with a more generic link to arbitrary ID mechnism at some point: <a href="https://github.com/cirosantilli/cirodown/issues/135">https://github.com/cirosantilli/cirodown/issues/135</a></div></li>
+</code></pre></div><div class="p" id="p-797">This will ideally be replaced with a more generic link to arbitrary ID mechnism at some point: <a href="https://github.com/cirosantilli/cirodown/issues/135">https://github.com/cirosantilli/cirodown/issues/135</a></div></li>
 <li id="l-264"><code>root_page</code>: relative path to the toplevel page, e.g. either <code>index.html</code>, <code>../index.html</code> locally or <code>./</code>, <code>../</code> on server oriented rendereing</li>
-<li id="l-265"><div class="p" id="p-794"><code>root_replath</code>: relative path from the rendered output to the toplevel directory.</div><div class="p" id="p-795">This allows for toplevel resources like CSS to be found seamlessly form inside subdirectories, specially when rendering locally.</div><div class="p" id="p-796">For example, for the toplevel <a href="css" title="internal link
+<li id="l-265"><div class="p" id="p-798"><code>root_replath</code>: relative path from the rendered output to the toplevel directory.</div><div class="p" id="p-799">This allows for toplevel resources like CSS to be found seamlessly form inside subdirectories, specially when rendering locally.</div><div class="p" id="p-800">For example, for the toplevel <a href="css" title="internal link
 word count: 0
 descendant count: 80
 descendant word count: 80">CSS</a> <code>main.css</code> which is generated from <a href="main.scss">main.scss</a>, we can use:
-<div class="code-caption-container" id="code-307">
-<pre><code>&lt;link rel="stylesheet" type="text/css" href="{{ root_relpath }}main.css"&gt;
-</code></pre></div></div><div class="p" id="p-797">Then, when a file is locally, for example under a subdirectory <code>mysubdir/myfile.html</code>, Cirodown will set:
 <div class="code-caption-container" id="code-308">
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="{{ root_relpath }}main.css"&gt;
+</code></pre></div></div><div class="p" id="p-801">Then, when a file is locally, for example under a subdirectory <code>mysubdir/myfile.html</code>, Cirodown will set:
+<div class="code-caption-container" id="code-309">
 <pre><code>root_relpath=../
 </code></pre></div>
 giving the desired:
-<div class="code-caption-container" id="code-309">
-<pre><code>&lt;link rel="stylesheet" type="text/css" href="../main.css"&gt;
-</code></pre></div></div><div class="p" id="p-798">And if the output path were instead just <code>myohterfile.html</code>, <code>root_replath</code> expands to an empty string, giving again the correct:
 <div class="code-caption-container" id="code-310">
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="../main.css"&gt;
+</code></pre></div></div><div class="p" id="p-802">And if the output path were instead just <code>myohterfile.html</code>, <code>root_replath</code> expands to an empty string, giving again the correct:
+<div class="code-caption-container" id="code-311">
 <pre><code>&lt;link rel="stylesheet" type="text/css" href="main.css"&gt;
-</code></pre></div></div><div class="p" id="p-799">This will ideally be replaced with a more generic link to arbitrary ID mechnism at some point: <a href="https://github.com/cirosantilli/cirodown/issues/135">https://github.com/cirosantilli/cirodown/issues/135</a></div></li>
+</code></pre></div></div><div class="p" id="p-803">This will ideally be replaced with a more generic link to arbitrary ID mechnism at some point: <a href="https://github.com/cirosantilli/cirodown/issues/135">https://github.com/cirosantilli/cirodown/issues/135</a></div></li>
 <li id="l-266"><code>style</code>: default Cirodown stylesheets</li>
 <li id="l-267"><code>title</code></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="split#p-800">🔗</a></span><div class="p" id="p-800">We pick Liquid because it is server-side safe: if we ever some day offer a compilation service, Liquid is designed to prevent arbitrary code execution and infinite loops in templates.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+</ul></div></div></div><div><span class="hide-hover"><a href="split#p-804">🔗</a></span><div class="p" id="p-804">We pick Liquid because it is server-side safe: if we ever some day offer a compilation service, Liquid is designed to prevent arbitrary code execution and infinite loops in templates.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href="css" title="internal link
 word count: 0
@@ -73,7 +73,7 @@ descendant word count: 80">CSS</a></li>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/59e25f79d2b30da9eacaa6ccde504340220a7719">59e25f79d2b30da9eacaa6ccde504340220a7719</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c921129920d48ed2a91864e2ef10e35f6c012a7e">c921129920d48ed2a91864e2ef10e35f6c012a7e</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
