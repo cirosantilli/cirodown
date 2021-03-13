@@ -73,6 +73,9 @@ class AstNode {
       // The header tree is currently not even connected via arguments.
       options.parent_node = undefined;
     }
+    if (!('split_default' in options)) {
+      options.split_default = false;
+    }
     if (!('synonym' in options)) {
       options.synonym = undefined;
     }
@@ -113,6 +116,7 @@ class AstNode {
     this.parent_node = options.parent_node;
     // AstArgument
     this.parent_argument = undefined;
+    this.split_default = options.split_default;
     // {HeaderTreeNode} that points to the element.
     // This is used for both headers and non headers:
     // the only difference is that non-headers are not connected as
@@ -309,6 +313,18 @@ class AstNode {
     }
   }
 
+  /* Return split_default, if not in a HEADER, inherit from the parent header. */
+  get_split_default(context) {
+    let ast;
+    if (this.macro_name !== Macro.HEADER_MACRO_NAME) {
+      ast = this.get_header_parent(context)
+    }
+    if (ast === undefined) {
+      ast = this;
+    }
+    return ast.split_default;
+  }
+
   is_header_descendant(other, context) {
     let cur_ast = this;
     const other_id = other.id;
@@ -342,6 +358,7 @@ class AstNode {
         is_first_header_in_input_file: json.is_first_header_in_input_file,
         header_graph_node_parent_id: json.header_graph_node_parent_id,
         scope: json.scope,
+        split_default: json.split_default,
         synonym: json.synonym,
         word_count: json.word_count,
       }
@@ -380,11 +397,12 @@ class AstNode {
       scope:      this.scope,
       source_location: this.source_location,
       text:       this.text,
-      args:       this.args,
       first_toplevel_child: this.first_toplevel_child,
       is_first_header_in_input_file: this.is_first_header_in_input_file,
+      split_default: this.split_default,
       synonym:    this.synonym,
       word_count: this.word_count,
+      args:       this.args,
     }
     if (
       this.header_graph_node !== undefined &&
@@ -2056,12 +2074,43 @@ function convert(
     if (context.options.log['split-headers']) {
       console.error('split-headers non-split: ' + context.options.input_path);
     }
+
+    // For non-split header toplevel conversion.
+    if (context.options.outfile === undefined) {
+      let outpath;
+      if (context.options.input_path !== undefined) {
+        let id;
+        if (context.toplevel_id === undefined) {
+          const toplevel_header_node = context.header_graph.children[0];
+          if (toplevel_header_node === undefined) {
+            id = undefined
+          } else {
+            const toplevel_header_ast = toplevel_header_node.value;
+            id = toplevel_header_ast.id;
+          }
+          context.toplevel_id = id;
+        } else {
+          id = context.toplevel_id;
+        }
+        if (id !== undefined) {
+          outpath = output_path(
+            context.options.input_path,
+            id,
+            clone_and_set(context, 'to_split_headers', false)
+          )[0];
+        }
+      }
+      context.toplevel_output_path = outpath;
+    }
+
+    // First render.
     context.extra_returns.rendered_outputs = {};
     extra_returns.debug_perf.render_pre = globals.performance.now();
     output = ast.convert(context);
     context.katex_macros = Object.assign({}, context.options.katex_macros);
 
     // We render a second time because indexing operations such as \x[...]{child}
+    // for per-section incoming links
     // are only indexed at render time. But headers before that \x might need that
     // parent list. This does add a bit of time. One option would be to have a fast
     // render mode that disables this. That could be the default render mode, and
@@ -2199,7 +2248,7 @@ function convert_header(cur_arg_list, context, has_toc) {
       },
       first_ast.source_location,
     );
-    options.toplevel_id = first_ast.id;
+    context.toplevel_id = first_ast.id;
     context.in_split_headers = true;
     // When not in simple header mode, we always have a value-less node, with
     // children with values. Now things are a bit more complicated, because we
@@ -2212,7 +2261,10 @@ function convert_header(cur_arg_list, context, has_toc) {
     first_ast.header_graph_node = clone_object(first_ast.header_graph_node);
     context.header_graph.add_child(first_ast.header_graph_node);
     context.header_graph_top_level = first_ast.header_graph_node.get_level();
-    const output_path = output_path_from_ast(first_ast, context)[0];
+    const output_path = output_path_from_ast(
+      first_ast,
+      clone_and_set(context, 'to_split_headers', true)
+    )[0];
     if (options.log['split-headers']) {
       console.error('split-headers: ' + output_path);
     }
@@ -2331,14 +2383,17 @@ function convert_init_context(options={}, extra_returns={}) {
   if (!('input_path' in options)) { options.input_path = undefined; }
   if (!('katex_macros' in options)) { options.katex_macros = {}; }
   if (!('log' in options)) { options.log = {}; }
-  // Override the default calculated output file for the main input.
-  if (!('outfile' in options)) { options.outfile = undefined; }
+  if (!('outfile' in options)) {
+    // Override the default calculated output file for the main input.
+    options.outfile = undefined;
+  }
   if (!('output_format' in options)) { options.output_format = OUTPUT_FORMAT_HTML; }
   if (!('path_sep' in options)) { options.path_sep = undefined; }
   if (!('render' in options)) { options.render = true; }
   if (!('start_line' in options)) { options.start_line = 1; }
-  // A toplevel scope, to implement conversion of files in subdirectories.
-  if (!('split_headers' in options)) { options.split_headers = false; }
+  if (!('split_headers' in options)) {
+    options.split_headers = false;
+  }
   if (!('template' in options)) { options.template = undefined; }
   if (!('template_scripts_relative' in options)) {
     // Like template_styles_relative but for sripts.
@@ -2359,10 +2414,12 @@ function convert_init_context(options={}, extra_returns={}) {
     if (!('root_relpath' in options.template_vars)) { options.template_vars.root_relpath = ''; }
     if (!('post_body' in options.template_vars)) { options.template_vars.post_body = ''; }
     if (!('style' in options.template_vars)) { options.template_vars.style = ''; }
-  // If given, force the toplevel header to have this ID.
-  // Otherwise, derive the ID from the title.
-  // https://cirosantilli.com/cirodown#the-id-of-the-first-header-is-derived-from-the-filename
-  if (!('toplevel_id' in options)) { options.toplevel_id = undefined; }
+  if (!('toplevel_id' in options)) {
+    // If given, force the toplevel header to have this ID.
+    // Otherwise, derive the ID from the title.
+    // https://cirosantilli.com/cirodown#the-id-of-the-first-header-is-derived-from-the-filename
+    options.toplevel_id = undefined;
+  }
   if (!('toplevel_has_scope' in options)) {
     // Set for index files in subdirectories. Is equivalent to
     // adding a {scope} to the toplevel header.
@@ -2391,16 +2448,10 @@ function convert_init_context(options={}, extra_returns={}) {
     macros: macro_list_to_macros(),
     options: options,
     synonym_headers: new Set(),
+    toplevel_id: options.toplevel_id,
+    toplevel_output_path: options.outfile,
   };
 
-  // Non-split header toplevel conversion.
-  let outpath;
-  if (context.options.outfile !== undefined) {
-    outpath = context.options.outfile;
-  } else if (context.options.input_path !== undefined) {
-    outpath = output_path(context.options.input_path, context.options.toplevel_id, context)[0];
-  }
-  context.toplevel_output_path = outpath;
   return context;
 }
 
@@ -2706,7 +2757,7 @@ function html_katex_convert(ast, context) {
       }
     );
   } catch(error) {
-    // TODO get working remove the crap KaTeX adds to the end of the string.
+    // TODO remove the crap KaTeX adds to the end of the string.
     // It uses Unicode char hacks to add underlines... and there are two trailing
     // chars after the final newline, so the error message is taking up two lines
     let message = error.toString().replace(/\n\xcc\xb2$/, '');
@@ -2716,7 +2767,10 @@ function html_katex_convert(ast, context) {
 }
 
 function html_self_link(ast, context) {
-  return x_href_attr(ast, context);
+  return x_href_attr(
+    ast,
+    clone_and_set(context, 'to_split_headers', context.in_split_headers)
+  );
 }
 
 /** https://stackoverflow.com/questions/14313183/javascript-regex-how-do-i-check-if-the-string-is-ascii-only/14313213#14313213 */
@@ -2931,67 +2985,115 @@ function output_path_from_ast(ast, context) {
   return output_path(ast.source_location.path, ast.id, context, split_suffix);
 }
 
-/* Return dirname and basename without extension of the
+/* This is the centerpiece of path calculation. It determines where a given header
+ * will land considering notably:.
+ *
+ * * README.ciro -> index.ciro renaming
+ * * split header stuff
+ *
+ * Note that the links need to do additional processing to determine this.
+ *
+ * Notably, this function does not determine if something is in the current file
+ * or not: it always assumes it is not.
+ *
+ * Return an array [dirname, basename without extension] of the
  * path to where an AST gets rendered to. */
 function output_path_parts(input_path, id, context, split_suffix=undefined) {
   let ret = '';
   let custom_split_suffix;
   const [dirname, basename] = path_split(input_path, context.options.path_sep);
   const renamed_basename_noext = rename_basename(noext(basename));
-  if (is_to_split_headers(context)) {
-    const ast = context.id_provider.get(id, context);
-    // We are the first header, or something that comes before it.
-    let first_header_or_before = false;
-    if (ast === undefined) {
-      first_header_or_before = true;
+  const ast = context.id_provider.get(id, context);
+  // We are the first header, or something that comes before it.
+  let first_header_or_before = false;
+  let header_ast;
+  if (ast === undefined) {
+    return [dirname, renamed_basename_noext];
+  } else {
+    if (ast.macro_name === Macro.HEADER_MACRO_NAME) {
+      header_ast = ast;
     } else {
-      if (ast.macro_name === Macro.HEADER_MACRO_NAME) {
-        if (ast.is_first_header_in_input_file) {
-          first_header_or_before = true;
-        }
-      } else {
-        id = ast.get_header_parent_id();
-      }
+      header_ast = ast.get_header_parent(context);
     }
-    let dirname_ret;
-    let basename_ret;
-    const [id_dirname, id_basename] = path_split(id, URL_SEP);
-    if (first_header_or_before) {
-      // For toplevel elements in split header mode, we have
-      // to take care of index and -split suffix.
-      if (renamed_basename_noext === INDEX_BASENAME_NOEXT) {
-        basename_ret = '';
-        if (id_dirname === '') {
-          dirname_ret = dirname;
-        } else {
-          // Not a https://cirosantilli.com/cirodown#the-toplevel-index-file
-          dirname_ret = path_join(id_dirname, id_basename, context.options.path_sep);
-        }
-      } else {
-        dirname_ret = dirname;
+    if (header_ast.is_first_header_in_input_file) {
+      first_header_or_before = true;
+    }
+    id = header_ast.id;
+  }
+  let dirname_ret;
+  let basename_ret;
+  const [id_dirname, id_basename] = path_split(id, URL_SEP);
+  const to_split_headers = is_to_split_headers(header_ast, context);
+  if (
+    first_header_or_before ||
+    (
+      context.to_split_headers !== undefined &&
+      !context.to_split_headers
+    )
+  ) {
+    // For toplevel elements in split header mode, we have
+    // to take care of index and -split suffix.
+    if (renamed_basename_noext === INDEX_BASENAME_NOEXT) {
+      // basename_ret
+      if (to_split_headers === header_ast.split_default) {
+        // The name is just index.html.
         basename_ret = renamed_basename_noext;
+      } else {
+        // The name is split.html or nosplit.html.
+        basename_ret = '';
+      }
+
+      // dirname_ret
+      if (id_dirname === '') {
+        dirname_ret = dirname;
+      } else {
+        // Not a https://cirosantilli.com/cirodown#the-toplevel-index-file
+        dirname_ret = path_join(id_dirname, id_basename, context.options.path_sep);
       }
     } else {
+      dirname_ret = dirname;
+      basename_ret = renamed_basename_noext;
+    }
+  } else {
+    if (to_split_headers) {
       // Non-toplevel elements in split header mode are simple,
       // the ID just gives the output path directly.
       dirname_ret = id_dirname;
       basename_ret = id_basename;
+    } else {
+      dirname_ret = dirname;
+      basename_ret = renamed_basename_noext;
     }
-    if (first_header_or_before || split_suffix !== undefined) {
-      if (split_suffix === undefined || split_suffix === '') {
+  }
+
+  // Add -split, -nosplit or custom suffixes.
+  if (
+    first_header_or_before ||
+    (
+      to_split_headers &&
+      split_suffix !== undefined
+    ) ||
+    (
+      context.to_split_headers !== undefined &&
+      !context.to_split_headers
+    )
+  ) {
+    if (split_suffix === undefined || split_suffix === '') {
+      if (to_split_headers && !header_ast.split_default) {
         split_suffix = 'split';
+      } else if (!to_split_headers && header_ast.split_default) {
+        split_suffix = 'nosplit';
       }
+    }
+    if (split_suffix !== undefined) {
       if (basename_ret !== '') {
         basename_ret += '-';
       }
       basename_ret += split_suffix;
     }
-    return [dirname_ret, basename_ret];
-  } else {
-    // Non-split headers, so things are simple, the output path is
-    // easily determined from the input path.
-    return [dirname, renamed_basename_noext];
   }
+
+  return [dirname_ret, basename_ret];
 }
 exports.output_path_parts = output_path_parts;
 
@@ -3337,6 +3439,12 @@ function parse(tokens, options, context, extra_returns={}) {
         const header_level = parseInt(
           convert_arg_noescape(ast.args.level, context)
         )
+        // splitDefault propagation to children.
+        if (ast.validation_output.splitDefault.given) {
+          ast.split_default = ast.validation_output.splitDefault.boolean;
+        } else if (include_options.cur_header !== undefined) {
+          ast.split_default = include_options.cur_header.split_default;
+        }
         if (is_synonym) {
           if (include_options.cur_header === undefined) {
             const message = `the first header of an input file cannot be a synonym`;
@@ -3360,6 +3468,7 @@ function parse(tokens, options, context, extra_returns={}) {
           include_options.cur_header = ast;
           cur_header_level = header_level + options.h_parse_level_offset;;
         }
+
         let parent_tree_node_error = false;
         let parent_id;
         if (ast.validation_output.parent.given) {
@@ -3416,7 +3525,7 @@ function parse(tokens, options, context, extra_returns={}) {
 
         // Create the header tree.
         if (is_first_header) {
-          ast.id = options.toplevel_id;
+          ast.id = context.toplevel_id;
           if (options.toplevel_has_scope) {
             // TODO why isn't the fake argument below enough?
             ast.validation_output.scope.boolean = true;
@@ -4461,12 +4570,16 @@ function x_href(target_id_ast, context) {
 // id='subdir/subdir-h2'     -> ['subdir', 'subdir-h2']
 // id='subdir/notindex'      -> ['subdir', 'notindex']
 // id='subdir/notindex-h2'   -> ['subdir', 'notindex-h2']
-function is_to_split_headers(context) {
-  return (context.to_split_headers === undefined && context.in_split_headers) ||
+function is_to_split_headers(ast, context) {
+  return (context.to_split_headers === undefined && ast.get_split_default(context)) ||
          (context.to_split_headers !== undefined && context.to_split_headers);
 }
 
 /** This is the centerpiece of x href calculation!
+ *
+ * This code is crap. There are too many cases for my brain to handle.
+ * So I just write tests, and hack the code until the tests pass, but
+ * I'm not capable of factoring it nicely.
  *
  * @param {AstNode} target_id_ast
  */
@@ -4479,6 +4592,15 @@ function x_href_parts(target_id_ast, context) {
   if (target_id_ast.synonym !== undefined) {
     target_id_ast = context.id_provider.get(target_id_ast.synonym, context);
   }
+  let to_split_headers = is_to_split_headers(target_id_ast, context);
+  // Linking to the toplevel of the current output path.
+  let to_current_toplevel =
+      // Linkting to the current output file.
+      target_id_ast.id === context.toplevel_id &&
+      // Also requires outputting to the same type of split/nonsplit
+      // as the current one.
+      context.in_split_headers === to_split_headers
+  ;
 
   // href_path
   let href_path;
@@ -4487,10 +4609,22 @@ function x_href_parts(target_id_ast, context) {
     target_id_ast.source_location.path === undefined ||
     context.toplevel_output_path === undefined ||
     (
+      // Nosplit header link to a header that renders on the
+      // same page.
       !context.in_split_headers &&
-      context.to_split_headers === undefined &&
+      !(
+        context.to_split_headers !== undefined &&
+        context.to_split_headers
+      ) &&
       context.include_path_set.has(target_input_path)
-    )
+    ) ||
+    (
+      // Split header link to image in current header.
+      context.in_split_headers &&
+      target_id_ast.macro_name !== Macro.HEADER_MACRO_NAME &&
+      target_id_ast.get_header_parent_id() === context.toplevel_id
+    ) ||
+    to_current_toplevel
   ) {
     href_path = '';
   } else {
@@ -4504,6 +4638,7 @@ function x_href_parts(target_id_ast, context) {
       target_id_ast,
       context,
     );
+    // The target path is the same as the current path being output.
     if (full_output_path === context.toplevel_output_path) {
       href_path = ''
     } else {
@@ -4532,25 +4667,26 @@ function x_href_parts(target_id_ast, context) {
   }
 
   // Fragment
-  const to_split_headers = is_to_split_headers(context);
+  if (
+    !context.in_split_headers &&
+    context.include_path_set.has(target_input_path) &&
+    !(context.to_split_headers !== undefined && context.to_split_headers)
+  ) {
+    // We are not in split headears, and the output is in the current file.
+    // Therefore, don't use the split header target no matter what its
+    // splitDefault is, use the non-split one.
+    to_split_headers = false;
+  }
   let fragment;
   if (
     // Linking to a toplevel ID.
     target_id_ast.first_toplevel_child ||
-    // Linking towards a split header.
+    // Linking towards a split header not included in the current output.
     (
       target_id_ast.macro_name === Macro.HEADER_MACRO_NAME &&
       to_split_headers
     ) ||
-    // Linking to the toplevel of the current output path.
-    (
-      target_id_ast.id === context.options.toplevel_id &&
-      // Linking from a split header to the corresponding nonsplit one.
-      !(
-        context.to_split_headers !== undefined &&
-        !context.to_split_headers
-      )
-    )
+    to_current_toplevel
   ) {
     // An empty href means the beginning of the page.
     fragment = '';
@@ -4656,9 +4792,12 @@ function x_text(ast, context, options={}) {
         // When in split headers, numbers are only added to headers that
         // are descendants of the toplevel header, thus matching the current ToC.
         // The numbers don't make much sense for other headers.
-        !is_to_split_headers(context) ||
         ast.macro_name !== Macro.HEADER_MACRO_NAME ||
-        ast.is_header_descendant(context.toplevel_ast, context)
+        (
+          // Possible in case of broken header parent=.
+          context.toplevel_ast !== undefined &&
+          ast.is_header_descendant(context.toplevel_ast, context)
+        )
       )
     ) {
       number = macro.options.get_number(ast, context);
@@ -5030,7 +5169,10 @@ const DEFAULT_MACRO_LIST = [
       }),
     ],
     function(ast, context) {
-      const [href, content] = link_get_href_content(ast, context);
+      let [href, content] = link_get_href_content(ast, context);
+      if (ast.validation_output.ref.boolean) {
+        content = '*';
+      }
       if (context.x_parents.size == 0) {
         const attrs = html_convert_attrs_id(ast, context);
         return `<a${html_attr('href',  href)}${attrs}>${content}</a>`;
@@ -5039,6 +5181,12 @@ const DEFAULT_MACRO_LIST = [
       }
     },
     {
+      named_args: [
+        new MacroArgument({
+          name: 'ref',
+          boolean: true,
+        }),
+      ],
       phrasing: true,
     }
   ),
@@ -5322,6 +5470,10 @@ const DEFAULT_MACRO_LIST = [
         }),
         new MacroArgument({
           name: 'scope',
+          boolean: true,
+        }),
+        new MacroArgument({
+          name: 'splitDefault',
           boolean: true,
         }),
         new MacroArgument({
@@ -5828,11 +5980,10 @@ const DEFAULT_MACRO_LIST = [
 </head>
 <body class="cirodown">
 <header>
-<a href="{{ root_page }}">{{ title }}</a>
+<a href="{{ root_page }}">Homepage</a>
 </header>
 {{ body }}
-{{ post_body }}
-</body>
+{{ post_body }}</body>
 </html>
 `;
         }
@@ -6021,7 +6172,17 @@ const DEFAULT_MACRO_LIST = [
       }),
     ],
     function(ast, context) {
-      const [href, content, target_ast] = x_get_href_content(ast, context);
+      let [href, content, target_ast] = x_get_href_content(ast, context);
+      if (
+        ast.validation_output.full.given &&
+        ast.validation_output.ref.given
+      ) {
+        const message = `"full" and "ref" are incompatible`;
+        render_error(context, message, ast.source_location);
+        content = error_message_in_output(message, context);
+      } else if (ast.validation_output.ref.boolean) {
+        content = '*';
+      }
       if (context.x_parents.size === 0) {
         // Counts.
         let counts_str;
@@ -6067,6 +6228,10 @@ const DEFAULT_MACRO_LIST = [
         new MacroArgument({
           // https://github.com/cirosantilli/cirodown/issues/92
           name: 'parent',
+          boolean: true,
+        }),
+        new MacroArgument({
+          name: 'ref',
           boolean: true,
         }),
       ],

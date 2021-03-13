@@ -17,12 +17,12 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="lists"><a href="" title="link to this element">Lists (<code>* </code>, <code>\L</code>, <code>\Ul</code>, <code>\Ol</code>)</a><span>  | <a title="view all headers in a single page" href=".#lists">🗖 nosplit</a> | <a href="split" title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">345</span></span></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#lists">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="split" title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">345</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-347">🔗</a></span><div class="p" id="p-347"><a href="insane-macro-shortcuts" title="internal link
+<div><span class="hide-hover"><a href=".#lists">🔗</a></span><h1 id="lists"><a href="" title="link to this element">Lists (<code>* </code>, <code>\L</code>, <code>\Ul</code>, <code>\Ol</code>)</a><span>  | <a title="view all headers in a single page" href=".#lists">🗖 nosplit</a> | <a href="." title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">350</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#lists">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="." title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">350</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-347">🔗</a></span><div class="p" id="p-347"><a href=".#insane-macro-shortcuts" title="internal link
 word count: 3
-descendant count: 146
-descendant word count: 482">Insane</a> with <code>* </code> (asterisk space):
+descendant count: 155
+descendant word count: 492">Insane</a> with <code>* </code> (asterisk space):
 <div class="code-caption-container" id="code-144">
 <pre><code>* a
 * b
@@ -31,10 +31,10 @@ descendant word count: 482">Insane</a> with <code>* </code> (asterisk space):
 <li id="l-108">a</li>
 <li id="l-109">b</li>
 <li id="l-110">c</li>
-</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-349">🔗</a></span><div class="p" id="p-349">Equivalent saner with <a href="auto-parent" title="internal link
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-349">🔗</a></span><div class="p" id="p-349">Equivalent saner with <a href=".#auto-parent" title="internal link
 word count: 0
-descendant count: 66
-descendant word count: 66">implicit <code>ul</code> container</a>:
+descendant count: 68
+descendant word count: 68">implicit <code>ul</code> container</a>:
 <div class="code-caption-container" id="code-145">
 <pre><code>\L[a]
 \L[b]
@@ -43,7 +43,7 @@ descendant word count: 66">implicit <code>ul</code> container</a>:
 <li id="l-111">a</li>
 <li id="l-112">b</li>
 <li id="l-113">c</li>
-</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-351">🔗</a></span><div class="p" id="p-351">Equivalent fully sane with explicit container:
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-351">🔗</a></span><div class="p" id="p-351">Equivalent fully sane with explicit container:
 <div class="code-caption-container" id="code-146">
 <pre><code>\Ul[
 \L[a]
@@ -54,7 +54,7 @@ descendant word count: 66">implicit <code>ul</code> container</a>:
 <li id="l-114">a</li>
 <li id="l-115">b</li>
 <li id="l-116">c</li>
-</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-353">🔗</a></span><div class="p" id="p-353">The explicit container is required if you want to pass extra arguments properties to the <code>ul</code> list macro, e.g. a title and an ID: <a href="#list-my-id" title="internal link
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-353">🔗</a></span><div class="p" id="p-353">The explicit container is required if you want to pass extra arguments properties to the <code>ul</code> list macro, e.g. a title and an ID: <a href="#list-my-id" title="internal link
 word count: 0
 descendant count: 0
 descendant word count: 0">Ul 1</a>:
@@ -71,7 +71,7 @@ descendant word count: 0">Ul 1</a>:
 <li id="l-118">b</li>
 <li id="l-119">c</li>
 </ul></div></blockquote>
-This is the case because without the explicit container in an implicit <code>ul</code> list, the arguments would stick to the last list item instead of the list itself.</div></div><div><span class="hide-hover"><a href="split#p-355">🔗</a></span><div class="p" id="p-355">It is also required if you want ordered lists:
+This is the case because without the explicit container in an implicit <code>ul</code> list, the arguments would stick to the last list item instead of the list itself.</div></div><div><span class="hide-hover"><a href="#p-355">🔗</a></span><div class="p" id="p-355">It is also required if you want ordered lists:
 <div class="code-caption-container" id="code-148">
 <pre><code>\Ol[
 \L[first]
@@ -82,7 +82,7 @@ This is the case because without the explicit container in an implicit <code>ul<
 <li id="l-120">first</li>
 <li id="l-121">second</li>
 <li id="l-122">third</li>
-</ol></blockquote></div></div><div><span class="hide-hover"><a href="split#p-357">🔗</a></span><div class="p" id="p-357">Insane nested list with two space indentation:
+</ol></blockquote></div></div><div><span class="hide-hover"><a href="#p-357">🔗</a></span><div class="p" id="p-357">Insane nested list with two space indentation:
 <div class="code-caption-container" id="code-149">
 <pre><code>* a
   * a1
@@ -99,7 +99,7 @@ This is the case because without the explicit container in an implicit <code>ul<
 <li id="l-127">b</li>
 <li id="l-128">c</li>
 </ul></div></blockquote>
-The indentation must always be exactly equal to two spaces, anything else leads to errors or unintended output.</div></div><div><span class="hide-hover"><a href="split#p-359">🔗</a></span><div class="p" id="p-359">Equivalent saner nested lists with implicit containers:
+The indentation must always be exactly equal to two spaces, anything else leads to errors or unintended output.</div></div><div><span class="hide-hover"><a href="#p-359">🔗</a></span><div class="p" id="p-359">Equivalent saner nested lists with implicit containers:
 <div class="code-caption-container" id="code-150">
 <pre><code>\L[
 a
@@ -118,7 +118,7 @@ a
 </ul></div></li>
 <li id="l-133">b</li>
 <li id="l-134">c</li>
-</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-361">🔗</a></span><div class="p" id="p-361">Insane list item with a paragraph inside of it:
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-361">🔗</a></span><div class="p" id="p-361">Insane list item with a paragraph inside of it:
 <div class="code-caption-container" id="code-151">
 <pre><code>* a
 * I have
@@ -139,7 +139,7 @@ a
 <li id="l-140">list</li>
 </ul></div></li>
 <li id="l-141">c</li>
-</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-365">🔗</a></span><div class="p" id="p-365">Equivalent sane version:
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-365">🔗</a></span><div class="p" id="p-365">Equivalent sane version:
 <div class="code-caption-container" id="code-152">
 <pre><code>\L[a]
 \L[
@@ -162,42 +162,42 @@ Multiple paragraphs.
 <li id="l-147">list</li>
 </ul></div></li>
 <li id="l-148">c</li>
-</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-369">🔗</a></span><div class="p" id="p-369">Insane lists may be escaped with a backslash as usual:
+</ul></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-369">🔗</a></span><div class="p" id="p-369">Insane lists may be escaped with a backslash as usual:
 <div class="code-caption-container" id="code-153">
 <pre><code>\* paragraph starting with an asterisk.
-</code></pre></div><div class="p" id="p-370">which renders as:</div><blockquote id="q-56"><div class="p" id="p-371">* paragraph starting with an asterisk.</div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-372">🔗</a></span><div class="p" id="p-372">And now a list outside of <a href="cirodownexample" title="internal link
+</code></pre></div><div class="p" id="p-370">which renders as:</div><blockquote id="q-56"><div class="p" id="p-371">* paragraph starting with an asterisk.</div></blockquote></div></div><div><span class="hide-hover"><a href="#p-372">🔗</a></span><div class="p" id="p-372">And now a list outside of <a href=".#cirodownexample" title="internal link
 word count: 0
 descendant count: 57
-descendant word count: 57"><code>CirodownExample</code></a> to test how it looks directly under <a href="toplevel" title="internal link
+descendant word count: 57"><code>CirodownExample</code></a> to test how it looks directly under <a href=".#toplevel" title="internal link
 word count: 1
 descendant count: 105
-descendant word count: 136">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="split#ul-51">🔗</a></span><div><ul id="ul-51">
+descendant word count: 136">the <code>\Toplevel</code> implicit macro</a>:</div></div><div><span class="hide-hover"><a href="#ul-51">🔗</a></span><div><ul id="ul-51">
 <li id="l-149">a</li>
 <li id="l-150">b</li>
 <li id="l-151">c</li>
 </ul></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href="argument-leading-newline-removal" title="internal link
+<li><a href=".#argument-leading-newline-removal" title="internal link
 word count: 0
-descendant count: 137
-descendant word count: 137">Argument leading newline removal</a></li>
-<li><a href="auto-parent" title="internal link
+descendant count: 140
+descendant word count: 140">Argument leading newline removal</a></li>
+<li><a href=".#auto-parent" title="internal link
 word count: 0
-descendant count: 66
-descendant word count: 66"><code>auto_parent</code> macro property</a></li>
-<li><a href="insane-macro-shortcuts" title="internal link
+descendant count: 68
+descendant word count: 68"><code>auto_parent</code> macro property</a></li>
+<li><a href=".#insane-macro-shortcuts" title="internal link
 word count: 3
-descendant count: 146
-descendant word count: 482">Insane macro shortcuts</a></li>
-<li><a href="tables" title="internal link
+descendant count: 155
+descendant word count: 492">Insane macro shortcuts</a></li>
+<li><a href=".#tables" title="internal link
 word count: 1
-descendant count: 457
-descendant word count: 523">Tables</a></li>
+descendant count: 464
+descendant word count: 531">Tables</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c921129920d48ed2a91864e2ef10e35f6c012a7e">c921129920d48ed2a91864e2ef10e35f6c012a7e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/f07c8abe19ce5cb97c1abadddbe0084a66f0d768">f07c8abe19ce5cb97c1abadddbe0084a66f0d768</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

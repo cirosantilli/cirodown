@@ -17,25 +17,25 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="paragraphs"><a href="" title="link to this element">Paragraphs (<code>\P</code>)</a><span>  | <a title="view all headers in a single page" href=".#paragraphs">🗖 nosplit</a> | <a href="split" title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">180</span></span></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#paragraphs">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="split" title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">180</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-30">🔗</a></span><div class="p" id="p-30">OK, this is too common, so we opted for some <a href="insane-macro-shortcuts" title="internal link
+<div><span class="hide-hover"><a href=".#paragraphs">🔗</a></span><h1 id="paragraphs"><a href="" title="link to this element">Paragraphs (<code>\P</code>)</a><span>  | <a title="view all headers in a single page" href=".#paragraphs">🗖 nosplit</a> | <a href="." title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">182</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#paragraphs">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="." title="parent header">↑ parent "Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">182</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-30">🔗</a></span><div class="p" id="p-30">OK, this is too common, so we opted for some <a href=".#insane-macro-shortcuts" title="internal link
 word count: 3
-descendant count: 146
-descendant word count: 482">insanity</a> here: double newline is a paragraph!
+descendant count: 155
+descendant word count: 492">insanity</a> here: double newline is a paragraph!
 <div class="code-caption-container" id="code-14">
 <pre><code>Paragraph 1.
 
 Paragraph 2.
-</code></pre></div><div class="p" id="p-31">which renders as:</div><blockquote id="q-1"><div class="p" id="p-32">Paragraph 1.</div><div class="p" id="p-33">Paragraph 2.</div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-34">🔗</a></span><div class="p" id="p-34">Equivalently however, you can use an explicit <code>\P</code> macros as well, which is required for example to add properties to a paragraph, e.g.:
+</code></pre></div><div class="p" id="p-31">which renders as:</div><blockquote id="q-1"><div class="p" id="p-32">Paragraph 1.</div><div class="p" id="p-33">Paragraph 2.</div></blockquote></div></div><div><span class="hide-hover"><a href="#p-34">🔗</a></span><div class="p" id="p-34">Equivalently however, you can use an explicit <code>\P</code> macros as well, which is required for example to add properties to a paragraph, e.g.:
 <div class="code-caption-container" id="code-15">
 <pre><code>\P{id=paragraph-1}[Paragraph 1]
 \P{id=paragraph-2}[Paragraph 2]
 </code></pre></div><div class="p" id="p-35">which renders as:</div><blockquote id="q-2"><div class="p" id="p-36"><div class="p" id="paragraph-1">Paragraph 1</div>
-<div class="p" id="paragraph-2">Paragraph 2</div></div></blockquote></div></div><div><span class="hide-hover"><a href="split#p-39">🔗</a></span><div class="p" id="p-39">Paragraphs are created automatically inside <a href="macro-argument-syntax" title="internal link
+<div class="p" id="paragraph-2">Paragraph 2</div></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-39">🔗</a></span><div class="p" id="p-39">Paragraphs are created automatically inside <a href=".#macro-argument-syntax" title="internal link
 word count: 11
 descendant count: 0
-descendant word count: 2k">macro argument</a> whenever a double newline appears.</div></div><div><span class="hide-hover"><a href="split#p-40">🔗</a></span><div class="p" id="p-40">Note that Cirodown paragraphs render in HTML as <code>div</code> with <code>class="p"</code> and not as <code>p</code>. This means that you can add basically anything inside them, e.g. a list:
+descendant word count: 2k">macro argument</a> whenever a double newline appears.</div></div><div><span class="hide-hover"><a href="#p-40">🔗</a></span><div class="p" id="p-40">Note that Cirodown paragraphs render in HTML as <code>div</code> with <code>class="p"</code> and not as <code>p</code>. This means that you can add basically anything inside them, e.g. a list:
 <div class="code-caption-container" id="code-16">
 <pre><code>My favorite list is:
 \Ul[
@@ -44,21 +44,21 @@ descendant word count: 2k">macro argument</a> whenever a double newline appears.
 ]
 because it is simple.
 </code></pre></div>
-which renders as a single paragraph.</div></div><div><span class="hide-hover"><a href="split#p-41">🔗</a></span><div class="p" id="p-41">One major advantage of this, is that when writing documentation, you often want to keep lists or code blocks inside a given paragraph, so that it is easy to reference the entire paragraph with an ID. Think for example of paragraphs in the C++ standard.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+which renders as a single paragraph.</div></div><div><span class="hide-hover"><a href="#p-41">🔗</a></span><div class="p" id="p-41">One major advantage of this, is that when writing documentation, you often want to keep lists or code blocks inside a given paragraph, so that it is easy to reference the entire paragraph with an ID. Think for example of paragraphs in the C++ standard.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href="insane-macro-shortcuts" title="internal link
+<li><a href=".#insane-macro-shortcuts" title="internal link
 word count: 3
-descendant count: 146
-descendant word count: 482">Insane macro shortcuts</a></li>
-<li><a href="saner" title="internal link
+descendant count: 155
+descendant word count: 492">Insane macro shortcuts</a></li>
+<li><a href=".#saner" title="internal link
 word count: 0
-descendant count: 443
-descendant word count: 443">Saner</a></li>
+descendant count: 449
+descendant word count: 449">Saner</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c921129920d48ed2a91864e2ef10e35f6c012a7e">c921129920d48ed2a91864e2ef10e35f6c012a7e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/f07c8abe19ce5cb97c1abadddbe0084a66f0d768">f07c8abe19ce5cb97c1abadddbe0084a66f0d768</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

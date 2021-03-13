@@ -17,69 +17,69 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="store-images-in-a-separate-media-repository"><a href="" title="link to this element">Store images in a separate media repository</a><span>  | <a title="view all headers in a single page" href=".#store-images-in-a-separate-media-repository">🗖 nosplit</a> | <a href="where-to-store-images" title="parent header">↑ parent "Where to store images"</a> | <span class="metrics"><span class="word-count" title="word count for this node">510</span></span></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#store-images-in-a-separate-media-repository">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="where-to-store-images" title="parent header">↑ parent "Where to store images"</a> | <span class="metrics"><span class="word-count" title="word count for this node">510</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-404">🔗</a></span><div class="p" id="p-404">In this approach, you create a separate GitHub repository in addition to the main one containing the text to contain only media such as images.</div></div><div><span class="hide-hover"><a href="split#p-405">🔗</a></span><div class="p" id="p-405">This approach is more suitable than <a href="store-images-inside-the-repository-itself" title="internal link
+<div><span class="hide-hover"><a href=".#store-images-in-a-separate-media-repository">🔗</a></span><h1 id="store-images-in-a-separate-media-repository"><a href="" title="link to this element">Store images in a separate media repository</a><span>  | <a title="view all headers in a single page" href=".#store-images-in-a-separate-media-repository">🗖 nosplit</a> | <a href=".#where-to-store-images" title="parent header">↑ parent "Where to store images"</a> | <span class="metrics"><span class="word-count" title="word count for this node">519</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#store-images-in-a-separate-media-repository">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#where-to-store-images" title="parent header">↑ parent "Where to store images"</a> | <span class="metrics"><span class="word-count" title="word count for this node">519</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-404">🔗</a></span><div class="p" id="p-404">In this approach, you create a separate GitHub repository in addition to the main one containing the text to contain only media such as images.</div></div><div><span class="hide-hover"><a href="#p-405">🔗</a></span><div class="p" id="p-405">This approach is more suitable than <a href=".#store-images-inside-the-repository-itself" title="internal link
 word count: 0
 descendant count: 96
-descendant word count: 96">store images inside the repository itself</a> if you are going to have a lot of images.</div></div><div><span class="hide-hover"><a href="split#p-406">🔗</a></span><div class="p" id="p-406">When using this approach, you could of course just point directly to the final image URL, e.g. as in:
+descendant word count: 96">store images inside the repository itself</a> if you are going to have a lot of images.</div></div><div><span class="hide-hover"><a href="#p-406">🔗</a></span><div class="p" id="p-406">When using this approach, you could of course just point directly to the final image URL, e.g. as in:
 <div class="code-caption-container" id="code-166">
 <pre><code>\Image[https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg]
 </code></pre></div><div class="p" id="p-407">which renders as:</div><blockquote id="q-66"><figure id="image-16">
 <a href="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg"><img src="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg" loading="lazy" height="315" alt="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg"></a>
 </figure>
 </blockquote>
-but Cirodown allows you use configurations that allow you to enter just the image basename: <code>Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg</code> which we will cover next.</div></div><div><span class="hide-hover"><a href="split#p-408">🔗</a></span><div class="p" id="p-408">In order to get this to work, the recommended repository setup is:<div><ul id="ul-54">
+but Cirodown allows you use configurations that allow you to enter just the image basename: <code>Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg</code> which we will cover next.</div></div><div><span class="hide-hover"><a href="#p-408">🔗</a></span><div class="p" id="p-408">In order to get this to work, the recommended repository setup is:<div><ul id="ul-54">
 <li id="l-156"><code>./main-repo/.git</code>: main repository at <a href="https://github.com/username/main-repo">https://github.com/username/main-repo</a></li>
 <li id="l-157"><code>./main-repo/data/media/.git/</code>: media repository at <a href="https://github.com/username/main-repo-media">https://github.com/username/main-repo-media</a>, and where <code>data/</code> is gitignored.
 </li>
-</ul></div>The directory and repository names are not mandatory, but if you place media in <code>data/media</code> and name its repository by adding the <code>*-media</code> suffix, then <code>cirodown</code> will handle everything for you without any further configuration in <a href="media-providers" title="internal link
+</ul></div>The directory and repository names are not mandatory, but if you place media in <code>data/media</code> and name its repository by adding the <code>*-media</code> suffix, then <code>cirodown</code> will handle everything for you without any further configuration in <a href=".#media-providers" title="internal link
 word count: 0
-descendant count: 266
-descendant word count: 266"><code>media-providers</code></a>.</div></div><div><span class="hide-hover"><a href="split#p-409">🔗</a></span><div class="p" id="p-409">This particular documentation repository does have a different setup as can be seen from its <a href="cirodown.json">cirodown.json</a>. Then, when everything is setup correctly, we can refer to images simply as:
+descendant count: 275
+descendant word count: 275"><code>media-providers</code></a>.</div></div><div><span class="hide-hover"><a href="#p-409">🔗</a></span><div class="p" id="p-409">This particular documentation repository does have a different setup as can be seen from its <a href="cirodown.json">cirodown.json</a>. Then, when everything is setup correctly, we can refer to images simply as:
 <div class="code-caption-container" id="code-167">
 <pre><code>\Image[Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg]{provider=github}
 </code></pre></div><div class="p" id="p-410">which renders as:</div><blockquote id="q-67"><figure id="image-17">
 <a href="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg"><img src="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg" loading="lazy" height="315" alt="https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg"></a>
 </figure>
 </blockquote>
-In this example, we also needed to set <code>{provider=github}</code> explicitly since it was not set as the default image provider in our <code>cirodown.json</code>. In most projects however, all of your images will be in the default repository, so this won't be needed.</div></div><div><span class="hide-hover"><a href="split#p-411">🔗</a></span><div class="p" id="p-411"><code>provider</code> must not be given when a full URL is given because we automatically detect providers from URLs, e.g.:
+In this example, we also needed to set <code>{provider=github}</code> explicitly since it was not set as the default image provider in our <code>cirodown.json</code>. In most projects however, all of your images will be in the default repository, so this won't be needed.</div></div><div><span class="hide-hover"><a href="#p-411">🔗</a></span><div class="p" id="p-411"><code>provider</code> must not be given when a full URL is given because we automatically detect providers from URLs, e.g.:
 <div class="code-caption-container" id="code-168">
 <pre><code>\Image[https://raw.githubusercontent.com/cirosantilli/media/master/Chrysanthemum_Xi_Jinping_with_black_red_liusi_added_by_Ciro_Santilli.jpg]{provider=github}
 </code></pre></div>
-is an error.</div></div><div><span class="hide-hover"><a href="split#p-412">🔗</a></span><div class="p" id="p-412">TODO implement: <code>cirodown</code> will even automatically add and push used images in the <code>my-tutorial-media</code> repository for you <a href="publish" title="internal link
+is an error.</div></div><div><span class="hide-hover"><a href="#p-412">🔗</a></span><div class="p" id="p-412">TODO implement: <code>cirodown</code> will even automatically add and push used images in the <code>my-tutorial-media</code> repository for you <a href=".#publish" title="internal link
 word count: 3
-descendant count: 160
-descendant word count: 448">during publishing</a>!</div></div><div><span class="hide-hover"><a href="split#p-413">🔗</a></span><div class="p" id="p-413">You should then use the following rules inside <code>my-tutorial-media</code>:<div><ul id="ul-55">
+descendant count: 162
+descendant word count: 459">during publishing</a>!</div></div><div><span class="hide-hover"><a href="#p-413">🔗</a></span><div class="p" id="p-413">You should then use the following rules inside <code>my-tutorial-media</code>:<div><ul id="ul-55">
 <li id="l-158">give every file a very descriptive and unique name as a full English sentence</li>
 <li id="l-159">never ever delete any files, nor change their content, unless it is an improvement in format that does change the information contained of the image TODO link to nice Wikimedia Commons guideline page
 </li>
-</ul></div>This way, even though the repositories are not fully in sync, anyone who clones the latest version of the <code>*-media</code> directory will be able to view any version of the main repository.</div></div><div><span class="hide-hover"><a href="split#p-414">🔗</a></span><div class="p" id="p-414">Then, if one day the media repository ever blows up GitHub's limit, you can just migrate the images to another image server that allows arbitrary basenames, e.g. AWS, and just configure your project to use that new media base URL with the <a href="media-providers" title="internal link
+</ul></div>This way, even though the repositories are not fully in sync, anyone who clones the latest version of the <code>*-media</code> directory will be able to view any version of the main repository.</div></div><div><span class="hide-hover"><a href="#p-414">🔗</a></span><div class="p" id="p-414">Then, if one day the media repository ever blows up GitHub's limit, you can just migrate the images to another image server that allows arbitrary basenames, e.g. AWS, and just configure your project to use that new media base URL with the <a href=".#media-providers" title="internal link
 word count: 0
-descendant count: 266
-descendant word count: 266"><code>media-providers</code></a> option.</div></div><div><span class="hide-hover"><a href="split#p-415">🔗</a></span><div class="p" id="p-415">The reason why images should be kept in a separate repository is that images are hundreds or thousands of times larger than hand written text.</div></div><div><span class="hide-hover"><a href="split#p-416">🔗</a></span><div class="p" id="p-416">Therefore, images could easily fill up the maximum repository size you are allowed: <a href="https://webapps.stackexchange.com/questions/45254/file-size-and-storage-limits-on-github#84746">https://webapps.stackexchange.com/questions/45254/file-size-and-storage-limits-on-github#84746</a> and then what will you do when GitHub comes asking you to reduce the repository size?</div></div><div><span class="hide-hover"><a href="split#p-417">🔗</a></span><div class="p" id="p-417"><a href="https://git-lfs.github.com/">Git LFS</a> is one approach to deal with this, but we feel that it adds too much development overhead.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+descendant count: 275
+descendant word count: 275"><code>media-providers</code></a> option.</div></div><div><span class="hide-hover"><a href="#p-415">🔗</a></span><div class="p" id="p-415">The reason why images should be kept in a separate repository is that images are hundreds or thousands of times larger than hand written text.</div></div><div><span class="hide-hover"><a href="#p-416">🔗</a></span><div class="p" id="p-416">Therefore, images could easily fill up the maximum repository size you are allowed: <a href="https://webapps.stackexchange.com/questions/45254/file-size-and-storage-limits-on-github#84746">https://webapps.stackexchange.com/questions/45254/file-size-and-storage-limits-on-github#84746</a> and then what will you do when GitHub comes asking you to reduce the repository size?</div></div><div><span class="hide-hover"><a href="#p-417">🔗</a></span><div class="p" id="p-417"><a href="https://git-lfs.github.com/">Git LFS</a> is one approach to deal with this, but we feel that it adds too much development overhead.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href="known-url-protocols" title="internal link
+<li><a href=".#known-url-protocols" title="internal link
 word count: 0
-descendant count: 62
-descendant word count: 62">Known URL protocols</a></li>
-<li><a href="media-providers" title="internal link
+descendant count: 64
+descendant word count: 64">Known URL protocols</a></li>
+<li><a href=".#media-providers" title="internal link
 word count: 0
-descendant count: 266
-descendant word count: 266"><code>media-providers</code></a></li>
-<li><a href="store-images-in-wikimedia-commons" title="internal link
+descendant count: 275
+descendant word count: 275"><code>media-providers</code></a></li>
+<li><a href=".#store-images-in-wikimedia-commons" title="internal link
 word count: 0
-descendant count: 305
-descendant word count: 305">Store images in Wikimedia Commons</a></li>
-<li><a href="videos" title="internal link
+descendant count: 309
+descendant word count: 309">Store images in Wikimedia Commons</a></li>
+<li><a href=".#videos" title="internal link
 word count: 2
-descendant count: 464
-descendant word count: 590">Videos</a></li>
+descendant count: 474
+descendant word count: 602">Videos</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c921129920d48ed2a91864e2ef10e35f6c012a7e">c921129920d48ed2a91864e2ef10e35f6c012a7e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/f07c8abe19ce5cb97c1abadddbe0084a66f0d768">f07c8abe19ce5cb97c1abadddbe0084a66f0d768</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

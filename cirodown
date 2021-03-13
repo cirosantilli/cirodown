@@ -610,12 +610,14 @@ function create_db(convert_input_options) {
 function generate_redirect(options, redirect_src_id, redirect_target_id, outdir) {
   options = Object.assign({}, options);
   options.input_path = redirect_src_id;
+  const outpath = path.join(outdir, redirect_src_id + '.' + cirodown.HTML_EXT);
+  options.outfile = outpath;
   const redirect_href = cirodown.convert_x_href(redirect_target_id, options);
   if (redirect_href === undefined) {
     cli_error(`redirection target ID "${redirect_target_id}" not found`);
   }
   // https://stackoverflow.com/questions/10178304/what-is-the-best-approach-for-redirection-of-old-pages-in-jekyll-and-github-page/36848440#36848440
-  fs.writeFileSync(path.join(outdir, redirect_src_id + '.' + cirodown.HTML_EXT),
+  fs.writeFileSync(outpath,
 `<!DOCTYPE html>
 <html>
 <head>

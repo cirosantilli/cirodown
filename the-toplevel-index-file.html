@@ -17,41 +17,41 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="the-toplevel-index-file"><a href="" title="link to this element">The toplevel index file</a><span>  | <a title="view all headers in a single page" href=".#the-toplevel-index-file">🗖 nosplit</a> | <a href="index-files" title="parent header">↑ parent "Index files"</a> | <span class="metrics"><span class="word-count" title="word count for this node">142</span></span></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#the-toplevel-index-file">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="index-files" title="parent header">↑ parent "Index files"</a> | <span class="metrics"><span class="word-count" title="word count for this node">142</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-688">🔗</a></span><div class="p" id="p-688">The toplevel index file is the index file that is present on the root directory of a Cirodown project.</div></div><div><span class="hide-hover"><a href="split#p-689">🔗</a></span><div class="p" id="p-689">This directory is determined by checking the presence of a <a href="cirodown-json" title="internal link
+<div><span class="hide-hover"><a href=".#the-toplevel-index-file">🔗</a></span><h1 id="the-toplevel-index-file"><a href="" title="link to this element">The toplevel index file</a><span>  | <a title="view all headers in a single page" href=".#the-toplevel-index-file">🗖 nosplit</a> | <a href=".#index-files" title="parent header">↑ parent "Index files"</a> | <span class="metrics"><span class="word-count" title="word count for this node">145</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#the-toplevel-index-file">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#index-files" title="parent header">↑ parent "Index files"</a> | <span class="metrics"><span class="word-count" title="word count for this node">145</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-689">🔗</a></span><div class="p" id="p-689">The toplevel index file is the index file that is present on the root directory of a Cirodown project.</div></div><div><span class="hide-hover"><a href="#p-690">🔗</a></span><div class="p" id="p-690">This directory is determined by checking the presence of a <a href=".#cirodown-json" title="internal link
 word count: 3
-descendant count: 257
-descendant word count: 779"><code>cirodown.json</code></a> file.</div></div><div><span class="hide-hover"><a href="split#p-690">🔗</a></span><div class="p" id="p-690">We were tempted to not require the <code>cirodown.json</code> check and just use the input directory instead, but this would lead to subdir builds having different toplevel IDs, which is not desirable. For example, if we have a file structure:</div></div><div><span class="hide-hover"><a href="split#ul-84">🔗</a></span><div><ul id="ul-84">
+descendant count: 263
+descendant word count: 802"><code>cirodown.json</code></a> file.</div></div><div><span class="hide-hover"><a href="#p-691">🔗</a></span><div class="p" id="p-691">We were tempted to not require the <code>cirodown.json</code> check and just use the input directory instead, but this would lead to subdir builds having different toplevel IDs, which is not desirable. For example, if we have a file structure:</div></div><div><span class="hide-hover"><a href="#ul-84">🔗</a></span><div><ul id="ul-84">
 <li id="l-231"><code>cirodown.json</code></li>
 <li id="l-232"><code>subdir/myfile.ciro</code></li>
-</ul></div></div><div><span class="hide-hover"><a href="split#p-691">🔗</a></span><div class="p" id="p-691">then all IDs under <code>myfile.ciro</code> are prefixed with <code>subdir</code> (note that this could also be achieved with <a href="scope" title="internal link
+</ul></div></div><div><span class="hide-hover"><a href="#p-692">🔗</a></span><div class="p" id="p-692">then all IDs under <code>myfile.ciro</code> are prefixed with <code>subdir</code> (note that this could also be achieved with <a href=".#scope" title="internal link
 word count: 5
-descendant count: 399
-descendant word count: 551">header <code>scope</code> argument</a>).</div></div><div><span class="hide-hover"><a href="split#p-692">🔗</a></span><div class="p" id="p-692">So for this reason users should basically always add a <code>cirodown.json</code> to their projects.</div></div><div><span class="hide-hover"><a href="split#p-693">🔗</a></span><div class="p" id="p-693">Being the toplevel index file has the following implications:<div><ul id="ul-85">
-<li id="l-233">its ID is derived fromthe header itself, not the directory, see also: <a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
+descendant count: 402
+descendant word count: 560">header <code>scope</code> argument</a>).</div></div><div><span class="hide-hover"><a href="#p-693">🔗</a></span><div class="p" id="p-693">So for this reason users should basically always add a <code>cirodown.json</code> to their projects.</div></div><div><span class="hide-hover"><a href="#p-694">🔗</a></span><div class="p" id="p-694">Being the toplevel index file has the following implications:<div><ul id="ul-85">
+<li id="l-233">its ID is derived fromthe header itself, not the directory, see also: <a href=".#the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
 word count: 0
-descendant count: 264
-descendant word count: 264">the ID of the first header is derived from the filename</a></li>
+descendant count: 270
+descendant word count: 270">the ID of the first header is derived from the filename</a></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href="cirodown-json" title="internal link
+<li><a href=".#cirodown-json" title="internal link
 word count: 3
-descendant count: 257
-descendant word count: 779"><code>cirodown.json</code></a></li>
-<li><a href="directory-based-scope" title="internal link
+descendant count: 263
+descendant word count: 802"><code>cirodown.json</code></a></li>
+<li><a href=".#directory-based-scope" title="internal link
 word count: 0
-descendant count: 53
-descendant word count: 53">Directory-based <code>scope</code></a></li>
-<li><a href="the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
+descendant count: 55
+descendant word count: 55">Directory-based <code>scope</code></a></li>
+<li><a href=".#the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
 word count: 0
-descendant count: 264
-descendant word count: 264">The ID of the first header is derived from the filename</a></li>
+descendant count: 270
+descendant word count: 270">The ID of the first header is derived from the filename</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c921129920d48ed2a91864e2ef10e35f6c012a7e">c921129920d48ed2a91864e2ef10e35f6c012a7e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/f07c8abe19ce5cb97c1abadddbe0084a66f0d768">f07c8abe19ce5cb97c1abadddbe0084a66f0d768</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

@@ -17,12 +17,12 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href="">🔗</a></span><h1 id="cirodown-json"><a href="" title="link to this element"><code>cirodown.json</code></a><span>  | <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href="cirodown-executable" title="parent header">↑ parent "<code>cirodown</code> executable"</a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">779</span></span></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href="cirodown-executable" title="parent header">↑ parent "<code>cirodown</code> executable"</a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">779</span></span></div></div>
-</div><div><span class="hide-hover"><a href="split#p-805">🔗</a></span><div class="p" id="p-805">Cirodown configuration file that affects the behaviour of cirodown for all files in the directory.</div></div><div><span class="hide-hover"><a href="split#p-806">🔗</a></span><div class="p" id="p-806"><code>cirodown.json</code> not used for input from stdin, since we are mostly doing quick tests in that case.</div></div><div><span class="hide-hover"><a href="split#p-807">🔗</a></span><div class="p" id="p-807">While <code>cirodown.json</code> is optional, it is used to determine the toplevel directory of a Cirodown project, which has some effects such as those mentioned at <a href="the-toplevel-index-file" title="internal link
+<div><span class="hide-hover"><a href=".#cirodown-json">🔗</a></span><h1 id="cirodown-json"><a href="" title="link to this element"><code>cirodown.json</code></a><span>  | <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href=".#cirodown-executable" title="parent header">↑ parent "<code>cirodown</code> executable"</a> | <span class="metrics"><span class="word-count" title="word count for this node">263</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">802</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#cirodown-json">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#cirodown-executable" title="parent header">↑ parent "<code>cirodown</code> executable"</a> | <span class="metrics"><span class="word-count" title="word count for this node">263</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">802</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-806">🔗</a></span><div class="p" id="p-806">Cirodown configuration file that affects the behaviour of cirodown for all files in the directory.</div></div><div><span class="hide-hover"><a href="#p-807">🔗</a></span><div class="p" id="p-807"><code>cirodown.json</code> not used for input from stdin, since we are mostly doing quick tests in that case.</div></div><div><span class="hide-hover"><a href="#p-808">🔗</a></span><div class="p" id="p-808">While <code>cirodown.json</code> is optional, it is used to determine the toplevel directory of a Cirodown project, which has some effects such as those mentioned at <a href=".#the-toplevel-index-file" title="internal link
 word count: 0
-descendant count: 142
-descendant word count: 142">the toplevel index file</a>.</div></div><div><span class="hide-hover"><a href="split#p-808">🔗</a></span><div class="p" id="p-808">Therefore, it is recommended that you always have a <code>cirodown.json</code> in your project's toplevel directory, even if it is going to be an empty JSON <code>{}</code>.</div></div><div><span class="hide-hover"><a href="split#p-809">🔗</a></span><div class="p" id="p-809">For example, if you convert a file in a subdirectory such as:
+descendant count: 145
+descendant word count: 145">the toplevel index file</a>.</div></div><div><span class="hide-hover"><a href="#p-809">🔗</a></span><div class="p" id="p-809">Therefore, it is recommended that you always have a <code>cirodown.json</code> in your project's toplevel directory, even if it is going to be an empty JSON <code>{}</code>.</div></div><div><span class="hide-hover"><a href="#p-810">🔗</a></span><div class="p" id="p-810">For example, if you convert a file in a subdirectory such as:
 <div class="code-caption-container" id="code-312">
 <pre><code>cirodown subdir/notindex.ciro
 </code></pre></div>
@@ -32,81 +32,81 @@ then <code>cirodown</code> walks up the filesystem tree looking for <code>cirodo
 <li id="l-270">otherwise, is there a <code>../cirodown.json</code>?</li>
 <li id="l-271">otherwise, is there a <code>../../cirodown.json</code>?
 </li>
-</ul></div>and so on.</div></div><div><span class="hide-hover"><a href="split#p-810">🔗</a></span><div class="p" id="p-810">Then, in that case:<div><ul id="ul-100">
+</ul></div>and so on.</div></div><div><span class="hide-hover"><a href="#p-811">🔗</a></span><div class="p" id="p-811">Then, in that case:<div><ul id="ul-100">
 <li id="l-272">if no <code>cirodown.json</code> file is found, we don't know any better output toplevel than <code>subdir</code>/ itself, and so:<div><ul id="ul-101">
-<li id="l-273">the first header of subdir/notindex.ciro will have ID <code>notindex</code>, instead of <code>subdir/notindex</code> as per <a href="directory-based-scope" title="internal link
+<li id="l-273">the first header of subdir/notindex.ciro will have ID <code>notindex</code>, instead of <code>subdir/notindex</code> as per <a href=".#directory-based-scope" title="internal link
 word count: 0
-descendant count: 53
-descendant word count: 53">directory-based <code>scope</code></a></li>
-<li id="l-274"><a href="the-out-directory" title="internal link
+descendant count: 55
+descendant word count: 55">directory-based <code>scope</code></a></li>
+<li id="l-274"><a href=".#the-out-directory" title="internal link
 word count: 0
-descendant count: 38
-descendant word count: 38">the <code>out</code> directory</a> is located at <code>./subdir/out</code></li>
+descendant count: 39
+descendant word count: 39">the <code>out</code> directory</a> is located at <code>./subdir/out</code></li>
 </ul></div></li>
 <li id="l-275">otherwise, if <code>./cirodown.json</code> file is found:<div><ul id="ul-102">
 <li id="l-276">the first header of subdir/notindex.ciro will have ID <code>subdir/notindex</code>. Cirodown understands that <code>subdir</code> is relative to the toplevel at <code>.</code></li>
-<li id="l-277"><a href="the-out-directory" title="internal link
+<li id="l-277"><a href=".#the-out-directory" title="internal link
 word count: 0
-descendant count: 38
-descendant word count: 38">the <code>out</code> directory</a> is located at <code>./out</code>
+descendant count: 39
+descendant word count: 39">the <code>out</code> directory</a> is located at <code>./out</code>
 </li>
 </ul></div></li>
-</ul></div>If given, the <a href="outdir" title="internal link
+</ul></div>If given, the <a href=".#outdir" title="internal link
 word count: 0
 descendant count: 53
-descendant word count: 53"><code>--outdir &lt;outdir&gt;</code></a> option forces <a href="the-out-directory" title="internal link
+descendant word count: 53"><code>--outdir &lt;outdir&gt;</code></a> option forces <a href=".#the-out-directory" title="internal link
 word count: 0
-descendant count: 38
-descendant word count: 38">the <code>out</code> directory</a> to be placed in <code>--outdir</code> however.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+descendant count: 39
+descendant word count: 39">the <code>out</code> directory</a> to be placed in <code>--outdir</code> however.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">779</span></span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">263</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">802</span></span></div>
 <ul>
-<li><div id="toc-media-providers"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="media-providers">1. <code>media-providers</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">266</span></span><span class="hover-metadata"> | <a href="#toc-media-providers" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
-<li><div id="toc-prepublish"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="prepublish">2. <code>prepublish</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">91</span></span><span class="hover-metadata"> | <a href="#toc-prepublish" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#prepublish">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
-<li><div id="toc-redirects"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="redirects">3. <code>redirects</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">165</span></span><span class="hover-metadata"> | <a href="#toc-redirects" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#redirects">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
+<li><div id="toc-media-providers"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#media-providers">1. <code>media-providers</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">275</span></span><span class="hover-metadata"> | <a href="#toc-media-providers" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#media-providers">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
+<li><div id="toc-prepublish"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#prepublish">2. <code>prepublish</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">92</span></span><span class="hover-metadata"> | <a href="#toc-prepublish" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#prepublish">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
+<li><div id="toc-redirects"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#redirects">3. <code>redirects</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">172</span></span><span class="hover-metadata"> | <a href="#toc-redirects" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#redirects">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>cirodown.json</code>"</a></span></div></li>
 </ul>
 </li>
 </ul>
 </div>
 </div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href="image-lazy-loading" title="internal link
+<li><a href=".#image-lazy-loading" title="internal link
 word count: 0
-descendant count: 70
-descendant word count: 70">Image lazy loading</a></li>
-<li><a href="publish" title="internal link
+descendant count: 71
+descendant word count: 71">Image lazy loading</a></li>
+<li><a href=".#publish" title="internal link
 word count: 3
-descendant count: 160
-descendant word count: 448"><code>-p, --publish</code></a></li>
-<li><a href="split-headers" title="internal link
+descendant count: 162
+descendant word count: 459"><code>-p, --publish</code></a></li>
+<li><a href=".#split-headers" title="internal link
 word count: 0
-descendant count: 444
-descendant word count: 444"><code>--split-headers</code></a></li>
-<li><a href="synonym" title="internal link
+descendant count: 450
+descendant word count: 450"><code>--split-headers</code></a></li>
+<li><a href=".#synonym" title="internal link
 word count: 1
-descendant count: 175
-descendant word count: 285">Header <code>synonym</code> argument</a></li>
-<li><a href="the-out-directory" title="internal link
+descendant count: 182
+descendant word count: 293">Header <code>synonym</code> argument</a></li>
+<li><a href=".#the-out-directory" title="internal link
 word count: 0
-descendant count: 38
-descendant word count: 38">The <code>out</code> directory</a></li>
-<li><a href="the-toplevel-index-file" title="internal link
+descendant count: 39
+descendant word count: 39">The <code>out</code> directory</a></li>
+<li><a href=".#the-toplevel-index-file" title="internal link
 word count: 0
-descendant count: 142
-descendant word count: 142">The toplevel index file</a></li>
-<li><a href="videos" title="internal link
+descendant count: 145
+descendant word count: 145">The toplevel index file</a></li>
+<li><a href=".#videos" title="internal link
 word count: 2
-descendant count: 464
-descendant word count: 590">Videos</a></li>
-<li><a href="xss-unsafe" title="internal link
+descendant count: 474
+descendant word count: 602">Videos</a></li>
+<li><a href=".#xss-unsafe" title="internal link
 word count: 0
-descendant count: 44
-descendant word count: 44">Xss-unsafe</a></li>
+descendant count: 46
+descendant word count: 46">Xss-unsafe</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c921129920d48ed2a91864e2ef10e35f6c012a7e">c921129920d48ed2a91864e2ef10e35f6c012a7e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/f07c8abe19ce5cb97c1abadddbe0084a66f0d768">f07c8abe19ce5cb97c1abadddbe0084a66f0d768</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
