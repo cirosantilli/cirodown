@@ -3261,9 +3261,10 @@ function parse(tokens, options, context, extra_returns={}) {
       if (ast.validation_output.parent.given) {
         [parent_id, parent_ast] = get_parent_argument_ast(ast, context, prev_header, include_options)
         if (parent_ast === undefined) {
-          const message = `header parent either is a previous ID of a level, a future ID, or an invalid ID: ${parent_id}`;
-          //ast.args[Macro.TITLE_ARGUMENT_NAME].push(
-            //new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location));
+          const message = Macro.INCLUDE_MACRO_NAME + ' ' + HEADER_PARENT_ERROR_MESSAGE + parent_id;
+          const error_ast = new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location);
+          error_ast.parent_node = ast.parent_node;
+          parent_arg.push(error_ast);
           parse_error(state, message, ast.args.parent.source_location);
         }
       }
@@ -3629,7 +3630,7 @@ function parse(tokens, options, context, extra_returns={}) {
 
         // https://github.com/cirosantilli/cirodown/issues/100
         if (parent_tree_node_error) {
-          const message = `header parent either is a previous ID of a level, a future ID, or an invalid ID: ${parent_id}`;
+          const message = HEADER_PARENT_ERROR_MESSAGE + parent_id;
           ast.args[Macro.TITLE_ARGUMENT_NAME].push(
             new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location));
           parse_error(state, message, ast.args.parent.source_location);
@@ -4942,6 +4943,7 @@ const INCLUDES_TABLE_NAMES = [
 const END_NAMED_ARGUMENT_CHAR = '}';
 const END_POSITIONAL_ARGUMENT_CHAR = ']';
 const ESCAPE_CHAR = '\\';
+const HEADER_PARENT_ERROR_MESSAGE = 'header parent either is a previous ID of a level, a future ID, or an invalid ID: '
 const HTML_ASCII_WHITESPACE = new Set([' ', '\r', '\n', '\f', '\t']);
 const HTML_EXT = 'html';
 exports.HTML_EXT = HTML_EXT;
