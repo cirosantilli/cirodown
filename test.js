@@ -1466,7 +1466,7 @@ assert_convert_ast('link with multiple paragraphs',
   ]
 );
 
-// Cross references \x
+// Internal cross references \x
 assert_no_error('cross reference simple',
   `= My header
 
@@ -1747,37 +1747,6 @@ assert_convert_ast('cross reference to non-included header in another file',
 //    ['', 'index']
 //  );
 //});
-assert_convert_ast('include simple with paragraph with no embed',
-  `= aa
-
-bb
-
-\\Include[include-two-levels]
-`,
-  [
-    a('H', undefined, {level: [t('1')], title: [t('aa')]}),
-    a('P', [t('bb')]),
-    a('Toc'),
-    a('H', undefined, {level: [t('2')], title: [t('ee')]}),
-    a('P', [
-      a(
-        'x',
-        [t('This section is present in another page, follow this link to view it.')],
-        {'href': [t('include-two-levels')]}
-      ),
-    ]),
-  ],
-  {
-    convert_before: ['include-two-levels'],
-  }
-);
-assert_error('internal cross references with parent to undefined ID does not throw',
-  `= aa
-
-\\x[bb]{parent}
-`,
-  3, 3
-);
 
 // Infinite recursion.
 // failing https://github.com/cirosantilli/cirodown/issues/34
@@ -1905,6 +1874,13 @@ assert_convert_ast('cross reference from image to following header without x con
       title: [t('gh')],
     }),
   ]
+);
+assert_error('cross reference with parent to undefined ID does not throw',
+  `= aa
+
+\\x[bb]{parent}
+`,
+  3, 3
 );
 
 // Scope.
@@ -2565,6 +2541,20 @@ assert_error('toc is a reserved id',
 == toc
 `,
   3, 1);
+// https://github.com/cirosantilli/cirodown/issues/143
+// TODO
+//assert_convert_ast('header with insane paragraph in the content',
+//  `\\H[1][a
+//
+//b]
+//`,
+//  [
+//    a('H', undefined, {level: [t('1')], title: [
+//      a('P', [t('a')]),
+//      a('P', [t('b')]),
+//    ]})
+//  ]
+//);
 
 // Math. Minimal testing since this is mostly factored out with code tests.
 assert_convert_ast('math inline sane',
@@ -2618,6 +2608,59 @@ bb
     a('P', [t('ff')]),
   ],
   include_opts
+);
+assert_convert_ast('include parent argument with embed',
+  `= h1
+
+== h2
+
+\\Include[include-one-level-1]{parent=h1}
+`,
+  [
+    a('H', undefined, {level: [t('1')], title: [t('h1')]}),
+    a('Toc'),
+    a('H', undefined, {level: [t('2')], title: [t('h2')]}),
+    // This is level 2, not three, since it's parent is h1.
+    a('H', undefined, {level: [t('2')], title: [t('cc')]}),
+    a('P', [t('dd')]),
+  ],
+  include_opts
+);
+assert_error('include parent argument to old ID fails gracefully',
+  `= h1
+
+== h2
+
+== h2 2
+
+\\Include[include-one-level-1]{parent=h2}
+`,
+  7, 30, undefined, include_opts,
+);
+assert_convert_ast('include simple with paragraph with no embed',
+  `= aa
+
+bb
+
+\\Include[include-two-levels]
+`,
+  [
+    a('H', undefined, {level: [t('1')], title: [t('aa')]}),
+    a('P', [t('bb')]),
+    a('Toc'),
+    a('H', undefined, {level: [t('2')], title: [t('ee')]}),
+    a('P', [
+      a(
+        'x',
+        [t('This section is present in another page, follow this link to view it.')],
+        {'href': [t('include-two-levels')]}
+      ),
+    ]),
+  ],
+  {
+    convert_before: ['include-two-levels'],
+  },
+  include_opts,
 );
 assert_convert_ast('cross reference to embed include header',
   `= aa

@@ -2554,6 +2554,35 @@ function get_from_ids(target_id, context) {
   return from_ids;
 }
 
+/** Get the AST from the parent argument of headers or includes. */
+function get_parent_argument_ast(ast, context, prev_header, include_options) {
+  let parent_id;
+  let parent_ast;
+  parent_id = convert_arg_noescape(ast.args.parent, context);
+  if (
+    // Happens for the first header
+    prev_header !== undefined
+  ) {
+    if (parent_id[0] === Macro.HEADER_SCOPE_SEPARATOR) {
+      parent_ast = context.id_provider.get_noscope(parent_id.substr(1), context);
+    } else {
+      // We can't use context.id_provider.get here because we don't know who
+      // the parent node is, because scope can affect that choice.
+      // https://cirosantilli.com/cirodown#id-based-header-levels-and-scope-resolution
+      let sorted_keys = [...include_options.header_graph_stack.keys()].sort((a, b) => a - b);
+      let largest_level = sorted_keys[sorted_keys.length - 1];
+      for (let level = largest_level; level > 0; level--) {
+        let ast = include_options.header_graph_stack.get(level).value;
+        if (id_is_suffix(parent_id, ast.id)) {
+          parent_ast = ast;
+          break;
+        }
+      }
+    }
+  }
+  return [parent_id, parent_ast];
+}
+
 /** Convert a key value already fully HTML escaped strings
  * to an HTML attribute. The callers MUST escape any untrusted chars.
   e.g. with html_attr_value.
@@ -3219,11 +3248,31 @@ function parse(tokens, options, context, extra_returns={}) {
     ast.source_location.path = options.input_path;
     if (macro_name === Macro.INCLUDE_MACRO_NAME) {
       let peek_ast = todo_visit[todo_visit.length - 1][1];
-      if (peek_ast.node_type === AstType.PLAINTEXT && peek_ast.text == '\n') {
+      if (peek_ast.node_type === AstType.PLAINTEXT && peek_ast.text === '\n') {
         todo_visit.pop();
       }
       const href = convert_arg_noescape(ast.args.href, context);
-      include_options.cur_header.includes.push(href);
+
+      // \Include parent argument handling.
+      let parent_ast;
+      let parent_id;
+      validate_ast(ast, context);
+      if (ast.validation_output.parent.given) {
+        [parent_id, parent_ast] = get_parent_argument_ast(ast, context, prev_header, include_options)
+        if (parent_ast === undefined) {
+          const message = `header parent either is a previous ID of a level, a future ID, or an invalid ID: ${parent_id}`;
+          //ast.args[Macro.TITLE_ARGUMENT_NAME].push(
+            //new PlaintextAstNode(' ' + error_message_in_output(message), ast.source_location));
+          parse_error(state, message, ast.args.parent.source_location);
+        }
+      }
+      if (parent_ast === undefined) {
+        parent_ast = include_options.cur_header;
+      }
+      const parent_ast_header_graph_node = parent_ast.header_graph_node;
+      const parent_ast_header_level = parent_ast_header_graph_node.get_level();
+
+      parent_ast.includes.push(href);
       const read_include_ret = options.read_include(href);
       if (read_include_ret === undefined) {
         let message = `could not find include: "${href}"`;
@@ -3249,7 +3298,7 @@ function parse(tokens, options, context, extra_returns={}) {
             new_child_nodes = convert_include(
               include_content,
               include_options,
-              cur_header_level,
+              parent_ast_header_level,
               include_path,
               href,
               {
@@ -3288,7 +3337,7 @@ function parse(tokens, options, context, extra_returns={}) {
                 'level': new AstArgument(
                   [
                     new PlaintextAstNode(
-                      (cur_header_level + 1).toString(),
+                      (parent_ast_header_level + 1).toString(),
                       ast.source_location
                     )
                   ],
@@ -3309,7 +3358,7 @@ function parse(tokens, options, context, extra_returns={}) {
                 force_no_index: true,
                 from_include: true,
                 id: href,
-                level: cur_header_level + 1,
+                level: parent_ast_header_level + 1,
               },
             );
             // This is a bit nasty and duplicates the below header processing code,
@@ -3317,8 +3366,8 @@ function parse(tokens, options, context, extra_returns={}) {
             // and all includes and headers must be parsed concurrently since includes get
             // injected under the last header.
             validate_ast(header_ast, context);
-            header_ast.header_graph_node = new HeaderTreeNode(header_ast, cur_header_graph_node);
-            cur_header_graph_node.add_child(header_ast.header_graph_node);
+            header_ast.header_graph_node = new HeaderTreeNode(header_ast, parent_ast_header_graph_node);
+            parent_ast_header_graph_node.add_child(header_ast.header_graph_node);
             new_child_nodes = [
               header_ast,
               new AstNode(
@@ -3472,6 +3521,7 @@ function parse(tokens, options, context, extra_returns={}) {
         let parent_tree_node_error = false;
         let parent_id;
         if (ast.validation_output.parent.given) {
+          let parent_ast;
           if (is_synonym) {
             const message = `synonym and parent are incompatible`;
             parse_error(state, message, ast.args.level.source_location);
@@ -3483,32 +3533,10 @@ function parse(tokens, options, context, extra_returns={}) {
             );
             parse_error(state, message, ast.args.level.source_location);
           }
+          [parent_id, parent_ast] = get_parent_argument_ast(ast, context, prev_header, include_options);
           let parent_tree_node;
-          parent_id = convert_arg_noescape(ast.args.parent, context);
-          if (
-            // Happens for the first header
-            prev_header !== undefined
-          ) {
-            let parent_ast;
-            if (parent_id[0] === Macro.HEADER_SCOPE_SEPARATOR) {
-              parent_ast = context.id_provider.get_noscope(parent_id.substr(1), context);
-            } else {
-              // We can't use context.id_provider.get here because we don't know who
-              // the parent node is, because scope can affect that choice.
-              // https://cirosantilli.com/cirodown#id-based-header-levels-and-scope-resolution
-              let sorted_keys = [...include_options.header_graph_stack.keys()].sort((a, b) => a - b);
-              let largest_level = sorted_keys[sorted_keys.length - 1];
-              for (let level = largest_level; level > 0; level--) {
-                let ast = include_options.header_graph_stack.get(level).value;
-                if (id_is_suffix(parent_id, ast.id)) {
-                  parent_ast = ast;
-                  break;
-                }
-              }
-            }
-            if (parent_ast !== undefined) {
-              parent_tree_node = include_options.header_graph_id_stack.get(parent_ast.id);
-            }
+          if (parent_ast !== undefined) {
+            parent_tree_node = include_options.header_graph_id_stack.get(parent_ast.id);
           }
           if (parent_tree_node === undefined) {
             parent_tree_node_error = true;
@@ -5502,7 +5530,12 @@ const DEFAULT_MACRO_LIST = [
     ],
     unconvertible(),
     {
-      macro_counts_ignore: function(ast) { return true; }
+      macro_counts_ignore: function(ast) { return true; },
+      named_args: [
+        new MacroArgument({
+          name: 'parent',
+        }),
+      ],
     }
   ),
   new Macro(
