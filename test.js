@@ -3528,6 +3528,9 @@ assert_executable(
 \\x[notindex-h2][h2 to notindex h2]
 
 \\Image[img.jpg]{title=My image h2}
+
+== Split suffix
+{splitSuffix}
 `,
       'notindex.ciro': `= Notindex
 
@@ -3623,6 +3626,8 @@ assert_executable(
 
         // Spilt/nosplit. TODO
         `//x:h1[@id='h2']//x:a[@href='nosplit.html#h2' and text()='${cirodown.NOSPLIT_MARKER}']`,
+      ],
+      'split-suffix-split.html': [
       ],
       'notindex.html': [
         // Link so the split one of index because that's the default of that page.

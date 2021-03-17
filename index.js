@@ -3033,6 +3033,7 @@ function output_path_parts(input_path, id, context, split_suffix=undefined) {
   const [dirname, basename] = path_split(input_path, context.options.path_sep);
   const renamed_basename_noext = rename_basename(noext(basename));
   const ast = context.id_provider.get(id, context);
+
   // We are the first header, or something that comes before it.
   let first_header_or_before = false;
   let header_ast;
@@ -3049,6 +3050,9 @@ function output_path_parts(input_path, id, context, split_suffix=undefined) {
     }
     id = header_ast.id;
   }
+
+
+  // Calculate the base basename_ret and dirname_ret.
   let dirname_ret;
   let basename_ret;
   const [id_dirname, id_basename] = path_split(id, URL_SEP);
@@ -3095,31 +3099,34 @@ function output_path_parts(input_path, id, context, split_suffix=undefined) {
     }
   }
 
-  // Add -split, -nosplit or custom suffixes.
+  // Add -split, -nosplit or custom suffixes to basename_ret.
+  let suffix_to_add;
+  if (split_suffix === undefined || split_suffix === '') {
+    suffix_to_add = to_split_headers ? 'split' : 'nosplit';
+  } else {
+    suffix_to_add = split_suffix;
+  }
   if (
-    first_header_or_before ||
     (
       to_split_headers &&
-      split_suffix !== undefined
+      (
+        // To split.html
+        (
+          first_header_or_before &&
+          !header_ast.split_default
+        ) ||
+
+        // User explcitly gave {splitSuffix}
+        split_suffix !== undefined
+      )
     ) ||
-    (
-      context.to_split_headers !== undefined &&
-      !context.to_split_headers
-    )
+    // User gave {splitDefault}, so we link to nosplit.
+    !to_split_headers && header_ast.split_default
   ) {
-    if (split_suffix === undefined || split_suffix === '') {
-      if (to_split_headers && !header_ast.split_default) {
-        split_suffix = 'split';
-      } else if (!to_split_headers && header_ast.split_default) {
-        split_suffix = 'nosplit';
-      }
+    if (basename_ret !== '') {
+      basename_ret += '-';
     }
-    if (split_suffix !== undefined) {
-      if (basename_ret !== '') {
-        basename_ret += '-';
-      }
-      basename_ret += split_suffix;
-    }
+    basename_ret += suffix_to_add;
   }
 
   return [dirname_ret, basename_ret];
