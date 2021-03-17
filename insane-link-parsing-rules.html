@@ -17,60 +17,60 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href=".#insane-link-parsing-rules">🔗</a></span><h1 id="insane-link-parsing-rules"><a href="" title="link to this element">Insane link parsing rules</a><span>  | <a title="view all headers in a single page" href=".#insane-link-parsing-rules">🗖 nosplit</a> | <a href=".#links" title="parent header">↑ parent "Links"</a> | <span class="metrics"><span class="word-count" title="word count for this node">272</span></span></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#insane-link-parsing-rules">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#links" title="parent header">↑ parent "Links"</a> | <span class="metrics"><span class="word-count" title="word count for this node">272</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-60">🔗</a></span><div class="p" id="p-60">Insane start at any of the recognized protocols are the ones shown at: <a href=".#known-url-protocols" title="internal link
+<div><span class="hide-hover"><a href=".#insane-link-parsing-rules">🔗</a></span><h1 id="insane-link-parsing-rules"><a href="" title="link to this element">Insane link parsing rules</a><span>  | <a title="view all headers in a single page" href=".#insane-link-parsing-rules">🗖 nosplit</a> | <a href=".#link" title="parent header">↑ parent "Link"</a> | <span class="metrics"><span class="word-count" title="word count for this node">272</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#insane-link-parsing-rules">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#link" title="parent header">↑ parent "Link"</a> | <span class="metrics"><span class="word-count" title="word count for this node">272</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-56">🔗</a></span><div class="p" id="p-56">Insane start at any of the recognized protocols are the ones shown at: <a href=".#known-url-protocols" title="internal link
 word count: 0
 descendant count: 64
-descendant word count: 64">Section "Known URL protocols"</a>.<div><ul id="ul-13">
-<li id="l-41"><code>http://</code></li>
-<li id="l-42"><code>https://</code>
+descendant word count: 64">Section "Known URL protocols"</a>.<div><ul id="ul-17">
+<li id="l-57"><code>http://</code></li>
+<li id="l-58"><code>https://</code>
 </li>
 </ul></div>absolutely anywhere if not escaped, e.g.:
-<div class="code-caption-container" id="code-23">
+<div class="code-caption-container" id="code-21">
 <pre><code>ahttp://example.com
 </code></pre></div>
 renders something like:
-<div class="code-caption-container" id="code-24">
+<div class="code-caption-container" id="code-22">
 <pre><code>a &lt;a href="http://example.com"&gt;
 </code></pre></div>
 To prevent expansion, you have to escape the protocol with a backslash <code>\</code>, e.g.:
-<div class="code-caption-container" id="code-25">
+<div class="code-caption-container" id="code-23">
 <pre><code>\http://example.com
 </code></pre></div>
 Empty domains like:
-<div class="code-caption-container" id="code-26">
+<div class="code-caption-container" id="code-24">
 <pre><code>http://
 </code></pre></div>
 don't becomes links however. But this one does:
-<div class="code-caption-container" id="code-27">
+<div class="code-caption-container" id="code-25">
 <pre><code>http://a
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-61">🔗</a></span><div class="p" id="p-61">Insane links end when either the end of the document or one of the following characters is found:<div><ul id="ul-14">
-<li id="l-43">space <code> </code></li>
-<li id="l-44">newline <code>\n</code></li>
-<li id="l-45">open or close square bracket <code>[</code> or <code>]</code></li>
-<li id="l-46">open or close curly braces <code>{</code> or <code>}</code></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-62">🔗</a></span><div class="p" id="p-62">As a consequence, to have an insane link followed immediately by a punctuation like a period you should use an empty argument as in:
-<div class="code-caption-container" id="code-28">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-57">🔗</a></span><div class="p" id="p-57">Insane links end when either the end of the document or one of the following characters is found:<div><ul id="ul-18">
+<li id="l-59">space <code> </code></li>
+<li id="l-60">newline <code>\n</code></li>
+<li id="l-61">open or close square bracket <code>[</code> or <code>]</code></li>
+<li id="l-62">open or close curly braces <code>{</code> or <code>}</code></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-58">🔗</a></span><div class="p" id="p-58">As a consequence, to have an insane link followed immediately by a punctuation like a period you should use an empty argument as in:
+<div class="code-caption-container" id="code-26">
 <pre><code>Check out this website: http://example.com[].
-</code></pre></div><div class="p" id="p-63">which renders as:</div><blockquote id="q-11"><div class="p" id="p-64">Check out this website: <a href="http://example.com">http://example.com</a>.</div></blockquote>
+</code></pre></div><div class="p" id="p-59">which renders as:</div><blockquote id="q-10"><div class="p" id="p-60">Check out this website: <a href="http://example.com">http://example.com</a>.</div></blockquote>
 otherwise the punctuation will go in it. Another common use case is:
-<div class="code-caption-container" id="code-29">
+<div class="code-caption-container" id="code-27">
 <pre><code>As mentioned on the tutorial (http://example.com[see this link]).
-</code></pre></div><div class="p" id="p-65">which renders as:</div><blockquote id="q-12"><div class="p" id="p-66">As mentioned on the tutorial (<a href="http://example.com">see this link</a>).</div></blockquote></div></div><div><span class="hide-hover"><a href="#p-67">🔗</a></span><div class="p" id="p-67">If you want your link to include one of the terminating characters, e.g. <code>]</code>, all characters can be escaped with a backslash, e.g.:
-<div class="code-caption-container" id="code-30">
+</code></pre></div><div class="p" id="p-61">which renders as:</div><blockquote id="q-11"><div class="p" id="p-62">As mentioned on the tutorial (<a href="http://example.com">see this link</a>).</div></blockquote></div></div><div><span class="hide-hover"><a href="#p-63">🔗</a></span><div class="p" id="p-63">If you want your link to include one of the terminating characters, e.g. <code>]</code>, all characters can be escaped with a backslash, e.g.:
+<div class="code-caption-container" id="code-28">
 <pre><code>Hello http://example.com/\]a\}b\\c\ d world.
-</code></pre></div><div class="p" id="p-68">which renders as:</div><blockquote id="q-13"><div class="p" id="p-69">Hello <a href="http://example.com/]a}b\c d">http://example.com/]a}b\c d</a> world.</div></blockquote></div></div><div><span class="hide-hover"><a href="#p-70">🔗</a></span><div class="p" id="p-70">Note that the <code>http://example.com</code> inside <code>\a[http://example.com]</code> only works because we do some post-processing magic that prevents its expansion, otherwise the link would expand twice:
-<div class="code-caption-container" id="code-31">
+</code></pre></div><div class="p" id="p-64">which renders as:</div><blockquote id="q-12"><div class="p" id="p-65">Hello <a href="http://example.com/]a}b\c d">http://example.com/]a}b\c d</a> world.</div></blockquote></div></div><div><span class="hide-hover"><a href="#p-66">🔗</a></span><div class="p" id="p-66">Note that the <code>http://example.com</code> inside <code>\a[http://example.com]</code> only works because we do some post-processing magic that prevents its expansion, otherwise the link would expand twice:
+<div class="code-caption-container" id="code-29">
 <pre><code>\P[http://example.com]
 
 \a[http://example.com]
-</code></pre></div><div class="p" id="p-71">which renders as:</div><blockquote id="q-14"><div class="p" id="p-72"><a href="http://example.com">http://example.com</a></div><div class="p" id="p-73"><a href="http://example.com">http://example.com</a></div></blockquote>
+</code></pre></div><div class="p" id="p-67">which renders as:</div><blockquote id="q-13"><div class="p" id="p-68"><a href="http://example.com">http://example.com</a></div><div class="p" id="p-69"><a href="http://example.com">http://example.com</a></div></blockquote>
 This magic can be observed with <a href=".#help-macros" title="internal link
 word count: 0
 descendant count: 14
 descendant word count: 14"><code>--help-macros</code></a> by seeing that the <code>href</code> argument of the <code>a</code> macro has the property: 
-<div class="code-caption-container" id="code-32">
+<div class="code-caption-container" id="code-30">
 <pre><code>"elide_link_only": true,
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
@@ -78,15 +78,15 @@ descendant word count: 14"><code>--help-macros</code></a> by seeing that the <co
 word count: 0
 descendant count: 64
 descendant word count: 64">Known URL protocols</a></li>
-<li><a href=".#links" title="internal link
-word count: 1
+<li><a href=".#link" title="internal link
+word count: 2
 descendant count: 184
-descendant word count: 456">Links</a></li>
+descendant word count: 483">Link</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/801ecdafb61d4c7b4102cde2fb075c6186767d97">801ecdafb61d4c7b4102cde2fb075c6186767d97</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b0e89d55b91e76677ae588286d58841a91aff19d">b0e89d55b91e76677ae588286d58841a91aff19d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

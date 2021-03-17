@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Paragraph</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
+<style>@import "cirodown.min.css";
+
+</style>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+<header>
+<a href="/">Ciro Santilli???</a>
+<a href=".">Cirodown!!!</a>
+<a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
+<a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
+</header>
+<main class="cirodown">
+<div><span class="hide-hover"><a href=".#paragraph">🔗</a></span><h1 id="paragraph"><a href="" title="link to this element">Paragraph (<code>\P</code>)</a><span>  | <a title="view all headers in a single page" href=".#paragraph">🗖 nosplit</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">182</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#paragraph">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">182</span></span></div><div class="nav"> Tags: <a href=".#macros-with-insane-shortcut" title="internal link
+word count: 0
+descendant count: 77
+descendant word count: 77">Macros with insane shortcut</a></div></div>
+</div><div><span class="hide-hover"><a href="#p-377">🔗</a></span><div class="p" id="p-377">OK, this is too common, so we opted for some <a href=".#insane-macro-shortcuts" title="internal link
+word count: 4
+descendant count: 70
+descendant word count: 484">insanity</a> here: double newline is a paragraph!
+<div class="code-caption-container" id="code-148">
+<pre><code>Paragraph 1.
+
+Paragraph 2.
+</code></pre></div><div class="p" id="p-378">which renders as:</div><blockquote id="q-68"><div class="p" id="p-379">Paragraph 1.</div><div class="p" id="p-380">Paragraph 2.</div></blockquote></div></div><div><span class="hide-hover"><a href="#p-381">🔗</a></span><div class="p" id="p-381">Equivalently however, you can use an explicit <code>\P</code> macros as well, which is required for example to add properties to a paragraph, e.g.:
+<div class="code-caption-container" id="code-149">
+<pre><code>\P{id=paragraph-1}[Paragraph 1]
+\P{id=paragraph-2}[Paragraph 2]
+</code></pre></div><div class="p" id="p-382">which renders as:</div><blockquote id="q-69"><div class="p" id="p-383"><div class="p" id="paragraph-1">Paragraph 1</div>
+<div class="p" id="paragraph-2">Paragraph 2</div></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-386">🔗</a></span><div class="p" id="p-386">Paragraphs are created automatically inside <a href=".#macro-argument-syntax" title="internal link
+word count: 11
+descendant count: 0
+descendant word count: 2k">macro argument</a> whenever a double newline appears.</div></div><div><span class="hide-hover"><a href="#p-387">🔗</a></span><div class="p" id="p-387">Note that Cirodown paragraphs render in HTML as <code>div</code> with <code>class="p"</code> and not as <code>p</code>. This means that you can add basically anything inside them, e.g. a list:
+<div class="code-caption-container" id="code-150">
+<pre><code>My favorite list is:
+\Ul[
+\li[aa]
+\li[bb]
+]
+because it is simple.
+</code></pre></div>
+which renders as a single paragraph.</div></div><div><span class="hide-hover"><a href="#p-388">🔗</a></span><div class="p" id="p-388">One major advantage of this, is that when writing documentation, you often want to keep lists or code blocks inside a given paragraph, so that it is easy to reference the entire paragraph with an ID. Think for example of paragraphs in the C++ standard.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+<div><ul>
+<li><a href=".#macros-with-insane-shortcut" title="internal link
+word count: 0
+descendant count: 77
+descendant word count: 77">Macros with insane shortcut</a></li>
+<li><a href=".#saner" title="internal link
+word count: 0
+descendant count: 447
+descendant word count: 447">Saner</a></li>
+</ul></div></main>
+<footer>
+<div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
+<div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b0e89d55b91e76677ae588286d58841a91aff19d">b0e89d55b91e76677ae588286d58841a91aff19d</a></div>
+</footer>
+<script>
+<!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-47867706-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+</body>
+</html>

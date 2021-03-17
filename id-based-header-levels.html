@@ -1,111 +1,14 @@
-<!doctype html>
-<html lang=en>
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset=utf-8>
-<title>ID-based header levels</title>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
-<style>@import "cirodown.min.css";
-
-</style>
-<link rel="stylesheet" type="text/css" href="main.css">
+<meta charset="utf-8">
+<title>Redirecting...</title>
+<link rel="canonical" href="../../../../#h-parent-argument"/>
+<meta http-equiv="refresh" content="0;url=../../../../#h-parent-argument" />
 </head>
 <body>
-<header>
-<a href="/">Ciro Santilli???</a>
-<a href=".">Cirodown!!!</a>
-<a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
-<a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
-</header>
-<main class="cirodown">
-<div><span class="hide-hover"><a href=".#id-based-header-levels">🔗</a></span><h1 id="id-based-header-levels"><a href="" title="link to this element">ID-based header levels (<code>{parent=&lt;parent-id&gt;}</code>)</a><span>  | <a title="view all headers in a single page" href=".#id-based-header-levels">🗖 nosplit</a> | <a href=".#header" title="parent header">↑ parent "Header"</a> | <span class="metrics"><span class="word-count" title="word count for this node">312</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">492</span></span></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#id-based-header-levels">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#header" title="parent header">↑ parent "Header"</a> | <span class="metrics"><span class="word-count" title="word count for this node">312</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">492</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-246">🔗</a></span><div class="p" id="p-246">In addition to the basic way of specifying header levels with an explicit level number, as mentioned at <a href=".#header" title="internal link
-word count: 39
-descendant count: 78
-descendant word count: 3k">Section "Header (<code>\H</code>)"</a>, Cirodown also supports a more indirect ID-based mechanism.</div></div><div><span class="hide-hover"><a href="#p-247">🔗</a></span><div class="p" id="p-247">For example, the following fixed level syntax:
-<div class="code-caption-container" id="code-103">
-<pre><code>= My h1
-
-== My h2 1
-
-== My h2 2
-
-=== My h3 2 1
-</code></pre></div>
-is equivalent to the following ID-based version:
-<div class="code-caption-container" id="code-104">
-<pre><code>= My h1
-
-= My h2 1
-{parent=my-h1}
-
-= My h2 2
-{parent=my-h1}
-
-= My h3 2 1
-{parent=my-h2-h}
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-248">🔗</a></span><div class="p" id="p-248">The main advantages of this syntax are felt when you have a huge document with <a href=".#unlimited-header-levels" title="internal link
-word count: 10
-descendant count: 139
-descendant word count: 139">very large header depths</a>. In that case:<div><ul id="ul-24">
-<li id="l-70">it becomes easy to get levels wrong with so many large level numbers to deal with. It is much harder to get an ID wrong.</li>
-<li id="l-71"><div class="p" id="p-249">when you want to move headers around to improve organization, things are quite painful without a refactoring tool (which we intend to provide in the <a href=".#editor-with-preview" title="internal link
-word count: 0
-descendant count: 178
-descendant word count: 178">editor with preview</a>), as you need to fix up the levels of every single header.</div><div class="p" id="p-250">If you are using the ID-based syntax however, you only have to move the chunk of headers, and change the <code>parent</code> argument of a single top-level header being moved.</div></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-251">🔗</a></span><div class="p" id="p-251">Note that when the <code>parent=</code> argument is given, the header level must be <code>1</code>, otherwise Cirodown assumes that something is weird and gives an error. E.g. the following gives an error:
-<div class="code-caption-container" id="code-105">
-<pre><code>= My h1
-
-== My h2
-{parent=my-h1}
-</code></pre></div>
-because the second header has level <code>2</code> instead of the required <code>= My h2</code>.</div></div><div><span class="hide-hover"><a href="#p-252">🔗</a></span><div class="p" id="p-252">When <a href=".#scope" title="internal link
-word count: 5
-descendant count: 402
-descendant word count: 560">scopes</a> are involved, the rules are the same as those of internal reference resolution, including the leading <code>/</code> to break out of the scope in case of conflicts.</div></div><div><span class="hide-hover"><a href="#p-253">🔗</a></span><div class="p" id="p-253">See also: <a href=".#header-explicit-levels-vs-nesting-design-choice" title="internal link
-word count: 0
-descendant count: 82
-descendant word count: 82">Section "Header explicit levels vs nesting design choice"</a> for further rationale.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
-<ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">312</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">492</span></span></div>
-<ul>
-<li><div id="toc-id-based-header-levels-and-scope-resolution"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#id-based-header-levels-and-scope-resolution">1. ID-based header levels and scope resolution</a> | <span class="metrics"><span class="word-count" title="word count for this node">180</span></span><span class="hover-metadata"> | <a href="#toc-id-based-header-levels-and-scope-resolution" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#id-based-header-levels-and-scope-resolution">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "ID-based header levels"</a></span></div></li>
-</ul>
-</li>
-</ul>
-</div>
-</div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
-<div><ul>
-<li><a href=".#header-explicit-levels-vs-nesting-design-choice" title="internal link
-word count: 0
-descendant count: 82
-descendant word count: 82">Header explicit levels vs nesting design choice</a></li>
-<li><a href=".#id-based-header-levels-and-scope-resolution" title="internal link
-word count: 0
-descendant count: 180
-descendant word count: 180">ID-based header levels and scope resolution</a></li>
-</ul></div></main>
-<footer>
-<div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
-<div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/801ecdafb61d4c7b4102cde2fb075c6186767d97">801ecdafb61d4c7b4102cde2fb075c6186767d97</a></div>
-</footer>
-<script>
-<!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-47867706-1', 'auto');
-ga('send', 'pageview');
-</script>
-<script src="cirodown.runtime.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+<h1>Redirecting...</h1>
+<a href="../../../../#h-parent-argument">Click here if you are not redirected.<a>
+<script>location='../../../../#h-parent-argument'</script>
 </body>
 </html>

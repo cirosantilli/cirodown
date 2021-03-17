@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Include</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
+<style>@import "cirodown.min.css";
+
+</style>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+<header>
+<a href="/">Ciro Santilli???</a>
+<a href=".">Cirodown!!!</a>
+<a class="font-awesome-container" href="https://stackoverflow.com/users/895245"><i class="fab fa-stack-overflow fa-fw"></i></a>
+<a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
+</header>
+<main class="cirodown">
+<div><span class="hide-hover"><a href=".#include">🔗</a></span><h1 id="include"><a href="" title="link to this element">Include (<code>\Include</code>)</a><span>  | <a title="view all headers in a single page" href=".#include">🗖 nosplit</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">430</span>, <span class="descendant-count" title="number of descendant nodes">7</span>, <span class="word-count-descendant" title="word count for this node + descendants">637</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#include">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">430</span>, <span class="descendant-count" title="number of descendant nodes">7</span>, <span class="word-count-descendant" title="word count for this node + descendants">637</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-289">🔗</a></span><div class="p" id="p-289">The <code>\Include</code> macro allows including an external Cirodown headers under the current header.</div></div><div><span class="hide-hover"><a href="#p-290">🔗</a></span><div class="p" id="p-290">It exists to allow optional single page HTML output while still retaining the ability to:<div><ul id="ul-47">
+<li id="l-134">split up large input files into multiple files to make renders faster during document development</li>
+<li id="l-135">suggest an optional custom output split with one HTML output per Cirodown input, in order to avoid extremely large HTML pages which could be slow to load</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-291">🔗</a></span><div class="p" id="p-291"><code>\Include</code> takes one mandatory argument: the ID of the section to be included, much like <a href=".#internal-cross-reference" title="internal link
+word count: 25
+descendant count: 123
+descendant word count: 2k">internal cross references</a>.</div></div><div><span class="hide-hover"><a href="#p-292">🔗</a></span><div class="p" id="p-292">There is however one restriction: only <a href=".#the-toplevel-header" title="internal link
+word count: 2
+descendant count: 39
+descendant word count: 361">the toplevel headers</a> can be pointed to. This restriction allows us to easily find the included file in the filesystem, and dispenses the need to do a first <code>./cirodown</code> run to generate the <a href=".#internal-cross-file-reference-internals" title="internal link
+word count: 0
+descendant count: 131
+descendant word count: 131">ID database</a>. This works because <a href=".#the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
+word count: 0
+descendant count: 270
+descendant word count: 270">the ID of the first header is derived from the filename</a>.</div></div><div><span class="hide-hover"><a href="#p-293">🔗</a></span><div class="p" id="p-293">Headers of the included document are automatically shifted to match the level of the child of the level where they are being included.</div></div><div><span class="hide-hover"><a href="#p-294">🔗</a></span><div class="p" id="p-294">If <a href=".#embed-includes" title="internal link
+word count: 0
+descendant count: 182
+descendant word count: 182"><code>--embed-includes</code></a> is given, the external document is rendered embedded into the current document directly, essentially as if the source had been copy pasted (except for small corrections such as the header offsets).</div></div><div><span class="hide-hover"><a href="#p-295">🔗</a></span><div class="p" id="p-295">Otherwise, the following effects happen:<div><ul id="ul-48">
+<li id="l-136"><div class="p" id="p-296">The headers of the included tree appear in the <a href=".#table-of-contents" title="internal link
+word count: 1
+descendant count: 254
+descendant word count: 512">table of contents</a> of the document as links to the corresponding external files.</div><div class="p" id="p-297">This is implemented simply by reading a previously generated database file much like <a href=".#internal-cross-file-reference-internals" title="internal link
+word count: 0
+descendant count: 131
+descendant word count: 131">internal cross file reference internals</a>, which avoids the slowdown of parsing all included files every time.</div><div class="p" id="p-298">As a result, you have to do an initial parse of all files in the project to extract their headers however, just as you would need to do when linking to those headers.</div></li>
+<li id="l-137">the include itself renders as a link to the included document</li>
+<li id="l-138"><a href=".#embed-includes" title="internal link
+word count: 0
+descendant count: 182
+descendant word count: 182"><code>--embed-includes</code></a></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-299">🔗</a></span><div class="p" id="p-299">Here is an example of inclusion of the files <code>not-readme.ciro</code> and <code>not-readme-2.ciro</code>:
+<div class="code-caption-container" id="code-115">
+<pre><code>\Include[not-readme]
+\Include[not-readme-2]
+\Include[not-readme-with-scope]
+</code></pre></div>
+The above is the recommended and slightly <a href=".#insane-macro-shortcuts" title="internal link
+word count: 4
+descendant count: 70
+descendant word count: 484">insaner</a> version of:
+<div class="code-caption-container" id="code-116">
+<pre><code>\Include[not-readme]
+
+\Include[not-readme-2]
+
+\Include[not-readme-with-scope]
+</code></pre></div>
+The insaner version is a bit insaner because the <code>\Include</code> magically discards the following newline node that follows it if it just a plaintext node containing exactly a newline. With a double newline, the newline would already have been previously taken out on the lexing stage as part of a paragraph.</div></div><div><span class="hide-hover"><a href="#p-300">🔗</a></span><div class="p" id="p-300"><a href=".#include-example" title="internal link
+word count: 5
+descendant count: 6
+descendant word count: 106">Section 2. "<code>\Include</code> example"</a> shows what those actually render like.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+<ul>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">430</span>, <span class="descendant-count" title="number of descendant nodes">7</span>, <span class="word-count-descendant" title="word count for this node + descendants">637</span></span></div>
+<ul>
+<li><div id="toc-include-parent-argument"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#include-parent-argument">1. <code>\Include</code> <code>parent</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">101</span></span><span class="hover-metadata"> | <a href="#toc-include-parent-argument" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#include-parent-argument">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Include"</a></span></div></li>
+<li class="has-child"><div id="toc-include-example"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#include-example">2. <code>\Include</code> example</a> | <span class="metrics"><span class="word-count" title="word count for this node">6</span>, <span class="descendant-count" title="number of descendant nodes">5</span>, <span class="word-count-descendant" title="word count for this node + descendants">106</span></span><span class="hover-metadata"> | <a href="#toc-include-example" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#include-example">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Include"</a></span></div>
+<ul>
+<li><div id="toc-not-readme"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="not-readme">Not the README</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span></span><span class="hover-metadata"> | <a href="#toc-not-readme" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href="not-readme">🗖 nosplit</a></span></div></li>
+<li><div id="toc-not-readme-2"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="not-readme-2">Not the README 2</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span></span><span class="hover-metadata"> | <a href="#toc-not-readme-2" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href="not-readme-2">🗖 nosplit</a></span></div></li>
+<li><div id="toc-not-readme-with-scope"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="not-readme-with-scope">Not the README with scope</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span></span><span class="hover-metadata"> | <a href="#toc-not-readme-with-scope" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href="not-readme-with-scope">🗖 nosplit</a></span></div></li>
+<li><div id="toc-subdir"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="subdir/">subdir index</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span></span><span class="hover-metadata"> | <a href="#toc-subdir" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href="subdir/">🗖 nosplit</a></span></div></li>
+<li><div id="toc-subdir/notindex"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href="subdir/notindex">subdir/notindex</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span></span><span class="hover-metadata"> | <a href="#toc-subdir/notindex" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href="subdir/notindex">🗖 nosplit</a></span></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+<div><ul>
+<li><a href=".#embed-includes" title="internal link
+word count: 0
+descendant count: 182
+descendant word count: 182"><code>--embed-includes</code></a></li>
+<li><a href=".#features" title="internal link
+word count: 0
+descendant count: 332
+descendant word count: 332">Features</a></li>
+<li><a href=".#h-splitdefault-argument" title="internal link
+word count: 0
+descendant count: 566
+descendant word count: 566"><code>\H</code> <code>splitDefault</code> argument</a></li>
+<li><a href=".#include-parent-argument" title="internal link
+word count: 0
+descendant count: 101
+descendant word count: 101"><code>\Include</code> <code>parent</code> argument</a></li>
+<li><a href=".#quick-start" title="internal link
+word count: 0
+descendant count: 327
+descendant word count: 327">Quick start</a></li>
+<li><a href=".#table-of-contents" title="internal link
+word count: 1
+descendant count: 254
+descendant word count: 512">Table of contents</a></li>
+<li><a href=".#the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
+word count: 0
+descendant count: 270
+descendant word count: 270">The ID of the first header is derived from the filename</a></li>
+</ul></div></main>
+<footer>
+<div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
+<div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b0e89d55b91e76677ae588286d58841a91aff19d">b0e89d55b91e76677ae588286d58841a91aff19d</a></div>
+</footer>
+<script>
+<!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-47867706-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="cirodown.runtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.dotsep.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+</body>
+</html>

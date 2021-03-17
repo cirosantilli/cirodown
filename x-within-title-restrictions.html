@@ -17,48 +17,48 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href=".#x-within-title-restrictions">🔗</a></span><h1 id="x-within-title-restrictions"><a href="" title="link to this element"><code>\x</code> within <code>title</code> restrictions</a><span>  | <a title="view all headers in a single page" href=".#x-within-title-restrictions">🗖 nosplit</a> | <a href=".#internal-cross-references" title="parent header">↑ parent "Internal cross references"</a> | <span class="metrics"><span class="word-count" title="word count for this node">351</span></span></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#x-within-title-restrictions">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#internal-cross-references" title="parent header">↑ parent "Internal cross references"</a> | <span class="metrics"><span class="word-count" title="word count for this node">351</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-185">🔗</a></span><div class="p" id="p-185">If you use <code>\x</code> within a <code>title</code>, which most commonly happens for <a href=".#image" title="internal link
+<div><span class="hide-hover"><a href=".#x-within-title-restrictions">🔗</a></span><h1 id="x-within-title-restrictions"><a href="" title="link to this element"><code>\x</code> within <code>title</code> restrictions</a><span>  | <a title="view all headers in a single page" href=".#x-within-title-restrictions">🗖 nosplit</a> | <a href=".#internal-cross-reference" title="parent header">↑ parent "Internal cross reference"</a> | <span class="metrics"><span class="word-count" title="word count for this node">351</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#x-within-title-restrictions">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#internal-cross-reference" title="parent header">↑ parent "Internal cross reference"</a> | <span class="metrics"><span class="word-count" title="word count for this node">351</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-520">🔗</a></span><div class="p" id="p-520">If you use <code>\x</code> within a <code>title</code>, which most commonly happens for <a href=".#image" title="internal link
 word count: 9
-descendant count: 350
-descendant word count: 2k">image titles</a>, that can generate complex dependencies, which would either be harder to implement, or lead to infinite recursion.</div></div><div><span class="hide-hover"><a href="#p-186">🔗</a></span><div class="p" id="p-186">To prevent such problems, Cirodown emits an error if you use an <code>\x</code> without content in the <code>title</code> of one of the following elements without an explicit ID:<div><ul id="ul-22">
-<li id="l-64"><div class="p" id="p-187"><a href=".#header" title="internal link
-word count: 39
-descendant count: 78
-descendant word count: 3k">header</a>. For example, the following gives an error:
-<div class="code-caption-container" id="code-68">
+descendant count: 345
+descendant word count: 2k">image titles</a>, that can generate complex dependencies, which would either be harder to implement, or lead to infinite recursion.</div></div><div><span class="hide-hover"><a href="#p-521">🔗</a></span><div class="p" id="p-521">To prevent such problems, Cirodown emits an error if you use an <code>\x</code> without content in the <code>title</code> of one of the following elements without an explicit ID:<div><ul id="ul-75">
+<li id="l-213"><div class="p" id="p-522"><a href=".#header" title="internal link
+word count: 40
+descendant count: 77
+descendant word count: 4k">header</a>. For example, the following gives an error:
+<div class="code-caption-container" id="code-192">
 <pre><code>= h1
 {id=myh1}
 
 == \x[myh1]
-</code></pre></div></div><div class="p" id="p-188">This could be solved by either adding a content to the reference:
-<div class="code-caption-container" id="code-69">
+</code></pre></div></div><div class="p" id="p-523">This could be solved by either adding a content to the reference:
+<div class="code-caption-container" id="code-193">
 <pre><code>= h1
 {id=myh1}
 
 == \x[myh1][mycontent]
 </code></pre></div>
 or by adding an explicit ID to the header:
-<div class="code-caption-container" id="code-70">
+<div class="code-caption-container" id="code-194">
 <pre><code>= h1
 {id=myh1}
 
 == \x[myh1]
 {id=myh2}
 </code></pre></div></div></li>
-<li id="l-65"><div class="p" id="p-189">non-header (e.g. an <a href=".#image" title="internal link
+<li id="l-214"><div class="p" id="p-524">non-header (e.g. an <a href=".#image" title="internal link
 word count: 9
-descendant count: 350
-descendant word count: 2k">image</a>) that links to the title of another non-header</div><div class="p" id="p-190">For non-headers, things are a bit more relaxed, and we can link to headers, e.g.:
-<div class="code-caption-container" id="code-71">
+descendant count: 345
+descendant word count: 2k">image</a>) that links to the title of another non-header</div><div class="p" id="p-525">For non-headers, things are a bit more relaxed, and we can link to headers, e.g.:
+<div class="code-caption-container" id="code-195">
 <pre><code>= h1
 
 \Image[myimg.jpg]
 {title=my \x[h1].}
 </code></pre></div>
-This is allowed because Cirodown calculates IDs in two stages: first for all headers, and only later non non-headers.</div><div class="p" id="p-191">What you cannot do is link to another image e.g.:
-<div class="code-caption-container" id="code-72">
+This is allowed because Cirodown calculates IDs in two stages: first for all headers, and only later non non-headers.</div><div class="p" id="p-526">What you cannot do is link to another image e.g.:
+<div class="code-caption-container" id="code-196">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=My image 1.}
@@ -67,7 +67,7 @@ This is allowed because Cirodown calculates IDs in two stages: first for all hea
 {title=my \x[h1].}
 </code></pre></div>
 and there the workaround are much the same as for headers: either explicitly set the cross reference content:
-<div class="code-caption-container" id="code-73">
+<div class="code-caption-container" id="code-197">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=My image 1.}
@@ -76,7 +76,7 @@ and there the workaround are much the same as for headers: either explicitly set
 {title=my \x[h1][My image 1].}
 </code></pre></div>
 or explicitly set an ID:
-<div class="code-caption-container" id="code-74">
+<div class="code-caption-container" id="code-198">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=My image 1.}
@@ -85,8 +85,8 @@ or explicitly set an ID:
 {id=myimage2}
 {title=my \x[h1].}
 </code></pre></div></div></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-192">🔗</a></span><div class="p" id="p-192">While it is technically possible implement the above limitations, it would require a bit of extra work which we don't want to put in right now: <a href="https://github.com/cirosantilli/cirodown/issues/95">https://github.com/cirosantilli/cirodown/issues/95</a>.</div></div><div><span class="hide-hover"><a href="#p-193">🔗</a></span><div class="p" id="p-193">Furthermore, the above rules do not exclude infinite rendering loops, but Cirodown detects such loops and gives a nice error message, this has been fixed at: <a href="https://github.com/cirosantilli/cirodown/issues/34">https://github.com/cirosantilli/cirodown/issues/34</a> </div></div><div><span class="hide-hover"><a href="#p-194">🔗</a></span><div class="p" id="p-194">For example this would contain an infinite loop:
-<div class="code-caption-container" id="code-75">
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-527">🔗</a></span><div class="p" id="p-527">While it is technically possible implement the above limitations, it would require a bit of extra work which we don't want to put in right now: <a href="https://github.com/cirosantilli/cirodown/issues/95">https://github.com/cirosantilli/cirodown/issues/95</a>.</div></div><div><span class="hide-hover"><a href="#p-528">🔗</a></span><div class="p" id="p-528">Furthermore, the above rules do not exclude infinite rendering loops, but Cirodown detects such loops and gives a nice error message, this has been fixed at: <a href="https://github.com/cirosantilli/cirodown/issues/34">https://github.com/cirosantilli/cirodown/issues/34</a> </div></div><div><span class="hide-hover"><a href="#p-529">🔗</a></span><div class="p" id="p-529">For example this would contain an infinite loop:
+<div class="code-caption-container" id="code-199">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=\x[myimage2].}
@@ -94,8 +94,8 @@ or explicitly set an ID:
 \Image[myimg.jpg]
 {id=myimage2}
 {title=\x[myimage1].}
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-195">🔗</a></span><div class="p" id="p-195">This infinite recursion is fundamentally not technically solved: the user has to manually break the loop by providing an <code>x</code> content explicitly, e.g. in either:
-<div class="code-caption-container" id="code-76">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-530">🔗</a></span><div class="p" id="p-530">This infinite recursion is fundamentally not technically solved: the user has to manually break the loop by providing an <code>x</code> content explicitly, e.g. in either:
+<div class="code-caption-container" id="code-200">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=\x[myimage2][my content 2].}
@@ -105,7 +105,7 @@ or explicitly set an ID:
 {title=\x[myimage1].}
 </code></pre></div>
 or:
-<div class="code-caption-container" id="code-77">
+<div class="code-caption-container" id="code-201">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=\x[myimage2].}
@@ -117,7 +117,7 @@ or:
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/801ecdafb61d4c7b4102cde2fb075c6186767d97">801ecdafb61d4c7b4102cde2fb075c6186767d97</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b0e89d55b91e76677ae588286d58841a91aff19d">b0e89d55b91e76677ae588286d58841a91aff19d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

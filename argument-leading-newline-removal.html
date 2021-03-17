@@ -17,10 +17,10 @@
 <a class="font-awesome-container" href="https://github.com/cirosantilli"><i class="fab fa-github fa-fw"></i></a>
 </header>
 <main class="cirodown">
-<div><span class="hide-hover"><a href=".#argument-leading-newline-removal">🔗</a></span><h1 id="argument-leading-newline-removal"><a href="" title="link to this element">Argument leading newline removal</a><span>  | <a title="view all headers in a single page" href=".#argument-leading-newline-removal">🗖 nosplit</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">140</span></span></span></h1>
-<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#argument-leading-newline-removal">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">140</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-646">🔗</a></span><div class="p" id="p-646">If the very first character of an argument is a newline, then that character is ignored if it would be part of a regular plaintext node.</div></div><div><span class="hide-hover"><a href="#p-647">🔗</a></span><div class="p" id="p-647">For example:
-<div class="code-caption-container" id="code-259">
+<div><span class="hide-hover"><a href=".#argument-leading-newline-removal">🔗</a></span><h1 id="argument-leading-newline-removal"><a href="" title="link to this element">Argument leading newline removal</a><span>  | <a title="view all headers in a single page" href=".#argument-leading-newline-removal">🗖 nosplit</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">139</span></span></span></h1>
+<div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#argument-leading-newline-removal">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">139</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-671">🔗</a></span><div class="p" id="p-671">If the very first character of an argument is a newline, then that character is ignored if it would be part of a regular plaintext node.</div></div><div><span class="hide-hover"><a href="#p-672">🔗</a></span><div class="p" id="p-672">For example:
+<div class="code-caption-container" id="code-266">
 <pre><code>\C[[
 a
 
@@ -28,51 +28,51 @@ b
 ]]
 </code></pre></div>
 generates something like:
-<div class="code-caption-container" id="code-260">
+<div class="code-caption-container" id="code-267">
 <pre><code>&lt;pre&gt;&lt;code&gt;a
 
 b
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre></div>
 instead of:
-<div class="code-caption-container" id="code-261">
+<div class="code-caption-container" id="code-268">
 <pre><code>&lt;pre&gt;&lt;code&gt;
 a
 
 b
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre></div>
-This is extremely convenient to improve the readability of code blocks and similar constructs.</div></div><div><span class="hide-hover"><a href="#p-648">🔗</a></span><div class="p" id="p-648">The newline is however considered if it would be part of some <a href=".#insane-macro-shortcuts" title="internal link
-word count: 3
-descendant count: 155
-descendant word count: 492">insane macro shortcut</a>. For example, we can start an <a href=".#lists" title="internal link
+This is extremely convenient to improve the readability of code blocks and similar constructs.</div></div><div><span class="hide-hover"><a href="#p-673">🔗</a></span><div class="p" id="p-673">The newline is however considered if it would be part of some <a href=".#insane-macro-shortcuts" title="internal link
+word count: 4
+descendant count: 70
+descendant word count: 484">insane macro shortcut</a>. For example, we can start an <a href=".#list" title="internal link
 word count: 0
 descendant count: 350
-descendant word count: 350">insane list</a> inside a <a href=".#quotations" title="internal link
+descendant word count: 350">insane list</a> inside a <a href=".#quotation" title="internal link
 word count: 0
 descendant count: 38
-descendant word count: 38">quotation</a> as in:
-<div class="code-caption-container" id="code-262">
+descendant word count: 38">quotations</a> as in:
+<div class="code-caption-container" id="code-269">
 <pre><code>\Q[
 * a
 * b
 ]
-</code></pre></div><div class="p" id="p-649">which renders as:</div><blockquote id="q-128"><blockquote id="q-129"><div><ul id="ul-74">
-<li id="l-207">a</li>
-<li id="l-208">b
+</code></pre></div><div class="p" id="p-674">which renders as:</div><blockquote id="q-129"><blockquote id="q-130"><div><ul id="ul-84">
+<li id="l-236">a</li>
+<li id="l-237">b
 </li>
 </ul></div></blockquote></blockquote>
 where the insane list requires a leading newline <code>\n* </code> to work. That newline is not ignored, even though it comes immediately after the <code>\Q[</code> opening.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href=".#code" title="internal link
+<li><a href=".#code-block" title="internal link
 word count: 0
 descendant count: 516
-descendant word count: 516">Code</a></li>
+descendant word count: 516">Code block</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/801ecdafb61d4c7b4102cde2fb075c6186767d97">801ecdafb61d4c7b4102cde2fb075c6186767d97</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b0e89d55b91e76677ae588286d58841a91aff19d">b0e89d55b91e76677ae588286d58841a91aff19d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

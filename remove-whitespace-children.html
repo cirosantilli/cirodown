@@ -19,40 +19,40 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#remove-whitespace-children">🔗</a></span><h1 id="remove-whitespace-children"><a href="" title="link to this element"><code>remove_whitespace_children</code> macro argument property</a><span>  | <a title="view all headers in a single page" href=".#remove-whitespace-children">🗖 nosplit</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">110</span></span></span></h1>
 <div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#remove-whitespace-children">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">110</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-658">🔗</a></span><div class="p" id="p-658">In HTML, certain elements such as <code>&lt;ul&gt;</code> cannot have any <code>text</code> nodes in them, and any whitespace is ignored, see <a href="https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802">https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802</a>.</div></div><div><span class="hide-hover"><a href="#p-659">🔗</a></span><div class="p" id="p-659">A similar concept applies to Cirodown, e.g.:
-<div class="code-caption-container" id="code-269">
+</div><div><span class="hide-hover"><a href="#p-683">🔗</a></span><div class="p" id="p-683">In HTML, certain elements such as <code>&lt;ul&gt;</code> cannot have any <code>text</code> nodes in them, and any whitespace is ignored, see <a href="https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802">https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802</a>.</div></div><div><span class="hide-hover"><a href="#p-684">🔗</a></span><div class="p" id="p-684">A similar concept applies to Cirodown, e.g.:
+<div class="code-caption-container" id="code-276">
 <pre><code>\Ul[
 \L[aa]
 \L[bb]
 ]
 </code></pre></div>
 does not parse as:
-<div class="code-caption-container" id="code-270">
+<div class="code-caption-container" id="code-277">
 <pre><code>\Ul[\L[aa]&lt;NEWLINE&gt;\L[bb]&lt;NEWLINE&gt;]
 </code></pre></div>
 but rather as:
-<div class="code-caption-container" id="code-271">
+<div class="code-caption-container" id="code-278">
 <pre><code>\Ul[\L[aa]\L[bb]]
 </code></pre></div>
-because the <code>content</code> argument of <code>ul</code> is marked with <code>remove_whitespace_children</code> and automatically removes any whitespace children (such as a newline) as a result.</div></div><div><span class="hide-hover"><a href="#p-660">🔗</a></span><div class="p" id="p-660">This also applies to consecutive sequences of <a href=".#auto-parent" title="internal link
+because the <code>content</code> argument of <code>ul</code> is marked with <code>remove_whitespace_children</code> and automatically removes any whitespace children (such as a newline) as a result.</div></div><div><span class="hide-hover"><a href="#p-685">🔗</a></span><div class="p" id="p-685">This also applies to consecutive sequences of <a href=".#auto-parent" title="internal link
 word count: 0
-descendant count: 68
-descendant word count: 68"><code>auto_parent</code> macro property</a> macros, e.g.:
-<div class="code-caption-container" id="code-272">
+descendant count: 66
+descendant word count: 66"><code>auto_parent</code> macro property</a> macros, e.g.:
+<div class="code-caption-container" id="code-279">
 <pre><code>\L[aa]
 \L[bb]
 </code></pre></div>
-also does not include the newline between the list items.</div></div><div><span class="hide-hover"><a href="#p-661">🔗</a></span><div class="p" id="p-661">The definition of whitespace is the same as the ASCII whitespace definition of HTML5: <code> \r\n\f\t</code>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+also does not include the newline between the list items.</div></div><div><span class="hide-hover"><a href="#p-686">🔗</a></span><div class="p" id="p-686">The definition of whitespace is the same as the ASCII whitespace definition of HTML5: <code> \r\n\f\t</code>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
-<li><a href=".#tables" title="internal link
+<li><a href=".#table" title="internal link
 word count: 1
-descendant count: 464
-descendant word count: 531">Tables</a></li>
+descendant count: 463
+descendant word count: 530">Table</a></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/801ecdafb61d4c7b4102cde2fb075c6186767d97">801ecdafb61d4c7b4102cde2fb075c6186767d97</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/b0e89d55b91e76677ae588286d58841a91aff19d">b0e89d55b91e76677ae588286d58841a91aff19d</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
