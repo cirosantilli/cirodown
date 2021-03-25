@@ -5355,7 +5355,10 @@ const DEFAULT_MACRO_LIST = [
         level_int_capped = level_int_output;
       }
       let attrs = html_convert_attrs_id(ast, context, [], custom_args);
-      let ret = `<h${level_int_capped}${attrs}><a${html_self_link(ast, context)} title="link to this element">`;
+      let ret = '';
+      // Div that contains h + on hover span.
+      ret += `<div class="h">`;
+      ret += `<h${level_int_capped}${attrs}><a${html_self_link(ast, context)} title="link to this element">`;
       let x_text_options = {
         show_caption_prefix: false,
         show_number: level_int !== context.header_graph_top_level,
@@ -5363,44 +5366,55 @@ const DEFAULT_MACRO_LIST = [
       };
       ret += x_text(ast, context, x_text_options);
       ret += `</a>`;
-      ret += `<span> `;
-      let link_to_split;
-      if (context.options.split_headers) {
-        link_to_split = link_to_split_opposite(ast, context);
-        ret += `${HEADER_MENU_ITEM_SEP}${link_to_split}`;
-      }
-      let toc_href;
-      if (level_int !== context.header_graph_top_level && context.has_toc) {
-        toc_href = html_attr('href', '#' + toc_id(ast, context));
-        ret += `${HEADER_MENU_ITEM_SEP}<a${toc_href} class="cirodown-h-to-toc"${html_attr('title', 'ToC entry for this header')}>\u21d1 toc</a>`;
-      }
-
-      // Parent links.
-      let parent_asts = [];
-      let parent_tree_node = ast.header_graph_node.parent_node;
-      if (
-        // Undefined on toplevel.
-        parent_tree_node !== undefined &&
-        // May fail if there was a header skip error previously.
-        parent_tree_node.value !== undefined
-      ) {
-        parent_asts.push(parent_tree_node.value);
-      }
-      parent_asts.push(...context.id_provider.get_includes(ast.id, context));
-      let parent_links = [];
-      for (const parent_ast of parent_asts) {
-        let parent_href = x_href_attr(parent_ast, context);
-        let parent_body = convert_arg(parent_ast.args[Macro.TITLE_ARGUMENT_NAME], context);
-        parent_links.push(`<a${parent_href}${html_attr('title', 'parent header')}>${PARENT_MARKER} "${parent_body}"</a>`);
-      }
-      parent_links = parent_links.join(HEADER_MENU_ITEM_SEP);
-      if (parent_links) {
-        ret += `${HEADER_MENU_ITEM_SEP}${parent_links}`;
-      }
-      ret += `${HEADER_MENU_ITEM_SEP}${get_descendant_count_html(ast.header_graph_node)}`;
-
-      ret += `</span>`;
       ret += `</h${level_int_capped}>\n`;
+
+      // On hover metadata.
+      let link_to_split;
+      let parent_links;
+      {
+        ret += `<span class="hover-meta"> `;
+        if (context.options.split_headers) {
+          link_to_split = link_to_split_opposite(ast, context);
+          ret += `${HEADER_MENU_ITEM_SEP}${link_to_split}`;
+        }
+        let toc_href;
+        if (level_int !== context.header_graph_top_level && context.has_toc) {
+          toc_href = html_attr('href', '#' + toc_id(ast, context));
+          ret += `${HEADER_MENU_ITEM_SEP}<a${toc_href} class="cirodown-h-to-toc"${html_attr('title', 'ToC entry for this header')}>\u21d1 toc</a>`;
+        }
+
+        // Parent links.
+        let parent_asts = [];
+        let parent_tree_node = ast.header_graph_node.parent_node;
+        if (
+          // Undefined on toplevel.
+          parent_tree_node !== undefined &&
+          // May fail if there was a header skip error previously.
+          parent_tree_node.value !== undefined
+        ) {
+          parent_asts.push(parent_tree_node.value);
+        }
+        parent_asts.push(...context.id_provider.get_includes(ast.id, context));
+        parent_links = [];
+        for (const parent_ast of parent_asts) {
+          let parent_href = x_href_attr(parent_ast, context);
+          let parent_body = convert_arg(parent_ast.args[Macro.TITLE_ARGUMENT_NAME], context);
+          parent_links.push(`<a${parent_href}${html_attr('title', 'parent header')}>${PARENT_MARKER} "${parent_body}"</a>`);
+        }
+        parent_links = parent_links.join(HEADER_MENU_ITEM_SEP);
+        if (parent_links) {
+          ret += `${HEADER_MENU_ITEM_SEP}${parent_links}`;
+        }
+        let descendant_count = get_descendant_count_html(ast.header_graph_node);
+        if (descendant_count !== '') {
+          ret += `${HEADER_MENU_ITEM_SEP}${descendant_count}`;
+        }
+
+        ret += `</span>`;
+      }
+      ret += `</div>`;
+
+      // Metadata that shows on separate lines below toplevel header.
       let wiki_link;
       if (ast.validation_output.wiki.given) {
         let wiki = convert_arg(ast.args.wiki, context);
