@@ -69,6 +69,20 @@ window.onload = function() {
     });
   }
 
+  // Video click to play.
+  // https://github.com/cirosantilli/cirodown/issues/122
+  const videos = document.getElementsByTagName('video');
+  for(const video of videos) {
+    const parentNode = video.parentNode;
+    let first = true;
+    video.addEventListener('click', () => {
+      if (first) {
+        video.play();
+      }
+      first = false;
+    });
+  }
+
   // tablesort
   const tables = document.getElementsByTagName('table');
   for(const table of tables) {
