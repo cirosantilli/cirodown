@@ -2530,8 +2530,8 @@ assert_convert_ast('split headers have correct table of contents',
         // The Toc entries of split output headers automatically cull out a level
         // of the full number tree. E.g this entry is `2.1` on the toplevel ToC,
         // but on this sub-ToC it is just `1.`.
-        "//*[@id='toc']//x:a[@href='notindex.html#h1-2-1' and text()='1. h1 2 1']",
-        "//*[@id='toc']//x:a[@href='notindex.html#h1-2-1-1' and text()='1.1. h1 2 1 1']",
+        "//*[@id='toc']//x:a[@href='h1-2-1.html' and text()='1. h1 2 1']",
+        "//*[@id='toc']//x:a[@href='h1-2-1-1.html' and text()='1.1. h1 2 1 1']",
 
         // ToC links in split headers have parent toc entry links.
         `//*[@id='toc']//*[@id='toc-h1-2-1']//x:a[@href='#toc' and text()='${cirodown.PARENT_MARKER} \"h1 2\"']`,
@@ -3216,7 +3216,9 @@ assert_executable(
         // CirodownExample renders in split header.
         "//x:blockquote[text()='A Cirodown example!']",
 
-        // ToC entries of includes point directly to the separate file.
+        // ToC entries point to the split version of articles.
+        "//*[@id='toc']//x:a[@href='h2.html' and text()='2. h2']",
+        // ToC entries of includes always point directly to the separate file.
         "//*[@id='toc']//x:a[@href='included-by-index.html' and text()='Included by index']",
         // TODO This is more correct with the `1. `. Maybe wait for https://github.com/cirosantilli/cirodown/issues/126
         // to make sure we don't have to rewrite everything.

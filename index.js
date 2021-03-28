@@ -5949,9 +5949,20 @@ const DEFAULT_MACRO_LIST = [
           // Maybe there is a better solution, but can't be bothered right now, this prevents blowouts for now.
           target_id_ast = tree_node.value;
         }
-        let content = x_text(target_id_ast, context, {style_full: true, show_caption_prefix: false});
-        let href = x_href_attr(target_id_ast, context);
-        const my_toc_id = toc_id(target_id_ast, context);
+
+        // ToC entries always link to the same split/nosplit type, except for included sources.
+        // This might be handled more generally through: https://github.com/cirosantilli/cirodown/issues/146
+        // but for now we are just taking care of this specific and important ToC subcase.
+        let cur_context;
+        if (ast.source_location.path === target_id_ast.source_location.path) {
+          cur_context = clone_and_set(context, 'to_split_headers', context.in_split_headers);
+        } else {
+          cur_context = context;
+        }
+
+        let content = x_text(target_id_ast, cur_context, {style_full: true, show_caption_prefix: false});
+        let href = x_href_attr(target_id_ast, cur_context);
+        const my_toc_id = toc_id(target_id_ast, cur_context);
         let id_to_toc = html_attr(Macro.ID_ARGUMENT_NAME, my_toc_id);
         ret += '<li';
         if (tree_node.children.length > 0) {
@@ -5965,10 +5976,10 @@ const DEFAULT_MACRO_LIST = [
 
         let toc_href = html_attr('href', '#' + my_toc_id);
         ret += `${HEADER_MENU_ITEM_SEP}<a${toc_href}${html_attr('title', 'link to this ToC entry')}>${UNICODE_LINK} link</a>`;
-        if (context.options.split_headers) {
-          ret += `${HEADER_MENU_ITEM_SEP}${link_to_split_opposite(target_id_ast, context)}`;
+        if (cur_context.options.split_headers) {
+          ret += `${HEADER_MENU_ITEM_SEP}${link_to_split_opposite(target_id_ast, cur_context)}`;
         }
-        let parent_ast = target_id_ast.get_header_parent(context);
+        let parent_ast = target_id_ast.get_header_parent(cur_context);
         if (
           // Possible on broken h1 level.
           parent_ast !== undefined
@@ -5976,11 +5987,11 @@ const DEFAULT_MACRO_LIST = [
           let parent_href_target;
           if (
             parent_ast.header_graph_node !== undefined &&
-            parent_ast.header_graph_node.get_level() === context.header_graph_top_level
+            parent_ast.header_graph_node.get_level() === cur_context.header_graph_top_level
           ) {
             parent_href_target = Macro.TOC_ID;
           } else {
-            parent_href_target = toc_id(parent_ast, context);
+            parent_href_target = toc_id(parent_ast, cur_context);
           }
           let parent_href = html_attr('href', '#' + parent_href_target);
           let parent_body = convert_arg(parent_ast.args[Macro.TITLE_ARGUMENT_NAME], context);
