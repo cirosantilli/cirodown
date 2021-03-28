@@ -18,32 +18,32 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#publish">🔗</a></span><div class="h"><h1 id="publish"><a href="" title="link to this element"><code>-p, --publish</code></a></h1>
-<span class="hover-meta">  | <a title="view all headers in a single page" href=".#publish">🗖 nosplit</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">162</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">459</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#publish">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">162</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">459</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-779">🔗</a></span><div class="p" id="p-779">Cirodown tooling is so amazing that we also take care of the HTML publishing for you!</div></div><div><span class="hide-hover"><a href="#p-780">🔗</a></span><div class="p" id="p-780">Once publish target is properly setup, all you have to do is run:
-<div class="code-caption-container" id="code-301">
+<span class="hover-meta">  | <a title="view all headers in a single page" href=".#publish">🗖 nosplit</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">162</span>, <span class="word-count-descendant" title="word count for this node + descendants">459</span>, <span class="descendant-count" title="number of descendant nodes">3</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#publish">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">162</span>, <span class="word-count-descendant" title="word count for this node + descendants">459</span>, <span class="descendant-count" title="number of descendant nodes">3</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-782">🔗</a></span><div class="p" id="p-782">Cirodown tooling is so amazing that we also take care of the HTML publishing for you!</div></div><div><span class="hide-hover"><a href="#p-783">🔗</a></span><div class="p" id="p-783">Once publish target is properly setup, all you have to do is run:
+<div class="code-caption-container" id="code-302">
 <pre><code>git add README.ciro
 git commit -m 'more content!'
 cirodown --publish
 </code></pre></div>
 and your changes will be published to the  default target specified in <a href=".#cirodown-json" title="internal link
 word count: 3
-descendant count: 263
-descendant word count: 798"><code>cirodown.json</code></a>.</div></div><div><span class="hide-hover"><a href="#p-781">🔗</a></span><div class="p" id="p-781">If not specified, the default target is <a href=".#publish-to-github-pages" title="internal link
+descendant word count: 798
+descendant count: 263"><code>cirodown.json</code></a>.</div></div><div><span class="hide-hover"><a href="#p-784">🔗</a></span><div class="p" id="p-784">If not specified, the default target is <a href=".#publish-to-github-pages" title="internal link
 word count: 2
-descendant count: 78
-descendant word count: 297">publish to GitHub Pages</a>.</div></div><div><span class="hide-hover"><a href="#p-782">🔗</a></span><div class="p" id="p-782">Only changes committed to Git are pushed.</div></div><div><span class="hide-hover"><a href="#p-783">🔗</a></span><div class="p" id="p-783">Files that <code>cirodown</code> knows how to process get processed and only their outputs are added to the published repo, those file types are:<div><ul id="ul-102">
+descendant word count: 297
+descendant count: 78">publish to GitHub Pages</a>.</div></div><div><span class="hide-hover"><a href="#p-785">🔗</a></span><div class="p" id="p-785">Only changes committed to Git are pushed.</div></div><div><span class="hide-hover"><a href="#p-786">🔗</a></span><div class="p" id="p-786">Files that <code>cirodown</code> knows how to process get processed and only their outputs are added to the published repo, those file types are:<div><ul id="ul-102">
 <li id="l-277"><code>.ciro</code> files are converted to <code>.html</code></li>
 <li id="l-278"><code>.scss</code> files are converted to <code>.css</code>
 </li>
-</ul></div>Every other Git-tracked file is pushed as is.</div></div><div><span class="hide-hover"><a href="#p-784">🔗</a></span><div class="p" id="p-784">When <code>--publish</code> is given, stdin input is not accepted, and so the current directory is built by default, i.e. the following two are equivalent:
-<div class="code-caption-container" id="code-302">
+</ul></div>Every other Git-tracked file is pushed as is.</div></div><div><span class="hide-hover"><a href="#p-787">🔗</a></span><div class="p" id="p-787">When <code>--publish</code> is given, stdin input is not accepted, and so the current directory is built by default, i.e. the following two are equivalent:
+<div class="code-caption-container" id="code-303">
 <pre><code>./cirodown --publish
 ./cirodown --publish .
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-785">🔗</a></span><div class="p" id="p-785">Publishing only happens if the build has no errors.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-788">🔗</a></span><div class="p" id="p-788">Publishing only happens if the build has no errors.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">162</span>, <span class="descendant-count" title="number of descendant nodes">3</span>, <span class="word-count-descendant" title="word count for this node + descendants">459</span></span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">162</span>, <span class="word-count-descendant" title="word count for this node + descendants">459</span>, <span class="descendant-count" title="number of descendant nodes">3</span></span></div>
 <ul>
-<li class="has-child"><div id="toc-publish-to-github-pages"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#publish-to-github-pages">1. Publish to GitHub Pages</a> | <span class="metrics"><span class="word-count" title="word count for this node">78</span>, <span class="descendant-count" title="number of descendant nodes">2</span>, <span class="word-count-descendant" title="word count for this node + descendants">297</span></span><span class="hover-metadata"> | <a href="#toc-publish-to-github-pages" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#publish-to-github-pages">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>-p, --publish</code>"</a></span></div>
+<li class="has-child"><div id="toc-publish-to-github-pages"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#publish-to-github-pages">1. Publish to GitHub Pages</a> | <span class="metrics"><span class="word-count" title="word count for this node">78</span>, <span class="word-count-descendant" title="word count for this node + descendants">297</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span><span class="hover-metadata"> | <a href="#toc-publish-to-github-pages" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#publish-to-github-pages">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>-p, --publish</code>"</a></span></div>
 <ul>
 <li><div id="toc-publish-to-github-pages-root-page"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#publish-to-github-pages-root-page">1.1. Publish to GitHub pages root page</a> | <span class="metrics"><span class="word-count" title="word count for this node">158</span></span><span class="hover-metadata"> | <a href="#toc-publish-to-github-pages-root-page" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#publish-to-github-pages-root-page">🗖 nosplit</a> | <a href="#toc-publish-to-github-pages" title="parent ToC entry">↑ parent "Publish to GitHub Pages"</a></span></div></li>
 <li><div id="toc-publish-to-github-common-steps"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#publish-to-github-common-steps">1.2. Publish to GitHub common steps</a> | <span class="metrics"><span class="word-count" title="word count for this node">61</span></span><span class="hover-metadata"> | <a href="#toc-publish-to-github-common-steps" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#publish-to-github-common-steps">🗖 nosplit</a> | <a href="#toc-publish-to-github-pages" title="parent ToC entry">↑ parent "Publish to GitHub Pages"</a></span></div></li>
@@ -53,41 +53,59 @@ descendant word count: 297">publish to GitHub Pages</a>.</div></div><div><span c
 </li>
 </ul>
 </div>
-</div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+</div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+<div><ul>
+<li><a href=".#cirodown-executable-options" title="internal link
+word count: 26
+descendant word count: 3k
+descendant count: 0"><code>cirodown</code> executable options</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">3k</span>, <span class="descendant-count" title="number of descendant nodes">26</span></span></li>
+<li><a href=".#cirodown-executable" title="internal link
+word count: 33
+descendant word count: 4k
+descendant count: 183"><code>cirodown</code> executable</a> | <span class="metrics"><span class="word-count" title="word count for this node">183</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span>, <span class="descendant-count" title="number of descendant nodes">33</span></span></li>
+<li><a href=".#tooling" title="internal link
+word count: 38
+descendant word count: 5k
+descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">38</span></span></li>
+<li><a href="." title="internal link
+word count: 195
+descendant word count: 23k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+</ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#dry-run" title="internal link
 word count: 0
-descendant count: 65
-descendant word count: 65"><code>--dry-run</code></a></li>
+descendant word count: 65
+descendant count: 65"><code>--dry-run</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">65</span></span></li>
 <li><a href=".#features" title="internal link
 word count: 0
-descendant count: 338
-descendant word count: 338">Features</a></li>
+descendant word count: 338
+descendant count: 338">Features</a> | <span class="metrics"><span class="word-count" title="word count for this node">338</span></span></li>
 <li><a href=".#more-powerful" title="internal link
 word count: 0
-descendant count: 259
-descendant word count: 259">More powerful</a></li>
+descendant word count: 259
+descendant count: 259">More powerful</a> | <span class="metrics"><span class="word-count" title="word count for this node">259</span></span></li>
 <li><a href=".#prepublish" title="internal link
 word count: 0
-descendant count: 92
-descendant word count: 92"><code>prepublish</code></a></li>
+descendant word count: 92
+descendant count: 92"><code>prepublish</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">92</span></span></li>
 <li><a href=".#publish-commit" title="internal link
 word count: 0
-descendant count: 71
-descendant word count: 71"><code>-P, --publish-commit &lt;commit-message&gt;</code></a></li>
+descendant word count: 71
+descendant count: 71"><code>-P, --publish-commit &lt;commit-message&gt;</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">71</span></span></li>
 <li><a href=".#split-headers" title="internal link
 word count: 1
-descendant count: 380
-descendant word count: 509"><code>--split-headers</code></a></li>
+descendant word count: 509
+descendant count: 380"><code>--split-headers</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">380</span>, <span class="word-count-descendant" title="word count for this node + descendants">509</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></li>
 <li><a href=".#store-images-in-a-separate-media-repository" title="internal link
 word count: 0
-descendant count: 519
-descendant word count: 519">Store images in a separate media repository</a></li>
+descendant word count: 519
+descendant count: 519">Store images in a separate media repository</a> | <span class="metrics"><span class="word-count" title="word count for this node">519</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/47eacc61f162d34f239e19056bdfccc019760408">47eacc61f162d34f239e19056bdfccc019760408</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/29897b7c5e7db4da564e85ef636ae6f0ba738c2a">29897b7c5e7db4da564e85ef636ae6f0ba738c2a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

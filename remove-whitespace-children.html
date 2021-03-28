@@ -19,40 +19,54 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#remove-whitespace-children">🔗</a></span><div class="h"><h1 id="remove-whitespace-children"><a href="" title="link to this element"><code>remove_whitespace_children</code> macro argument property</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#remove-whitespace-children">🗖 nosplit</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">110</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#remove-whitespace-children">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">110</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-683">🔗</a></span><div class="p" id="p-683">In HTML, certain elements such as <code>&lt;ul&gt;</code> cannot have any <code>text</code> nodes in them, and any whitespace is ignored, see <a href="https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802">https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802</a>.</div></div><div><span class="hide-hover"><a href="#p-684">🔗</a></span><div class="p" id="p-684">A similar concept applies to Cirodown, e.g.:
-<div class="code-caption-container" id="code-276">
+</div><div><span class="hide-hover"><a href="#p-686">🔗</a></span><div class="p" id="p-686">In HTML, certain elements such as <code>&lt;ul&gt;</code> cannot have any <code>text</code> nodes in them, and any whitespace is ignored, see <a href="https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802">https://stackoverflow.com/questions/2161337/can-we-use-any-other-tag-inside-ul-along-with-li/60885802#60885802</a>.</div></div><div><span class="hide-hover"><a href="#p-687">🔗</a></span><div class="p" id="p-687">A similar concept applies to Cirodown, e.g.:
+<div class="code-caption-container" id="code-277">
 <pre><code>\Ul[
 \L[aa]
 \L[bb]
 ]
 </code></pre></div>
 does not parse as:
-<div class="code-caption-container" id="code-277">
+<div class="code-caption-container" id="code-278">
 <pre><code>\Ul[\L[aa]&lt;NEWLINE&gt;\L[bb]&lt;NEWLINE&gt;]
 </code></pre></div>
 but rather as:
-<div class="code-caption-container" id="code-278">
+<div class="code-caption-container" id="code-279">
 <pre><code>\Ul[\L[aa]\L[bb]]
 </code></pre></div>
-because the <code>content</code> argument of <code>ul</code> is marked with <code>remove_whitespace_children</code> and automatically removes any whitespace children (such as a newline) as a result.</div></div><div><span class="hide-hover"><a href="#p-685">🔗</a></span><div class="p" id="p-685">This also applies to consecutive sequences of <a href=".#auto-parent" title="internal link
+because the <code>content</code> argument of <code>ul</code> is marked with <code>remove_whitespace_children</code> and automatically removes any whitespace children (such as a newline) as a result.</div></div><div><span class="hide-hover"><a href="#p-688">🔗</a></span><div class="p" id="p-688">This also applies to consecutive sequences of <a href=".#auto-parent" title="internal link
 word count: 0
-descendant count: 66
-descendant word count: 66"><code>auto_parent</code> macro property</a> macros, e.g.:
-<div class="code-caption-container" id="code-279">
+descendant word count: 66
+descendant count: 66"><code>auto_parent</code> macro property</a> macros, e.g.:
+<div class="code-caption-container" id="code-280">
 <pre><code>\L[aa]
 \L[bb]
 </code></pre></div>
-also does not include the newline between the list items.</div></div><div><span class="hide-hover"><a href="#p-686">🔗</a></span><div class="p" id="p-686">The definition of whitespace is the same as the ASCII whitespace definition of HTML5: <code> \r\n\f\t</code>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+also does not include the newline between the list items.</div></div><div><span class="hide-hover"><a href="#p-689">🔗</a></span><div class="p" id="p-689">The definition of whitespace is the same as the ASCII whitespace definition of HTML5: <code> \r\n\f\t</code>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+<div><ul>
+<li><a href=".#macro-argument-syntax" title="internal link
+word count: 11
+descendant word count: 2k
+descendant count: 0">Macro argument syntax</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">2k</span>, <span class="descendant-count" title="number of descendant nodes">11</span></span></li>
+<li><a href=".#cirodown-syntax" title="internal link
+word count: 22
+descendant word count: 2k
+descendant count: 0">Cirodown syntax</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">2k</span>, <span class="descendant-count" title="number of descendant nodes">22</span></span></li>
+<li><a href="." title="internal link
+word count: 195
+descendant word count: 23k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+</ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#table" title="internal link
 word count: 1
-descendant count: 463
-descendant word count: 530">Table</a></li>
+descendant word count: 530
+descendant count: 463">Table</a> | <span class="metrics"><span class="word-count" title="word count for this node">463</span>, <span class="word-count-descendant" title="word count for this node + descendants">530</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/47eacc61f162d34f239e19056bdfccc019760408">47eacc61f162d34f239e19056bdfccc019760408</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/29897b7c5e7db4da564e85ef636ae6f0ba738c2a">29897b7c5e7db4da564e85ef636ae6f0ba738c2a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

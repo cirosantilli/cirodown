@@ -19,8 +19,8 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#argument-leading-newline-removal">🔗</a></span><div class="h"><h1 id="argument-leading-newline-removal"><a href="" title="link to this element">Argument leading newline removal</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#argument-leading-newline-removal">🗖 nosplit</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">139</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#argument-leading-newline-removal">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">139</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-671">🔗</a></span><div class="p" id="p-671">If the very first character of an argument is a newline, then that character is ignored if it would be part of a regular plaintext node.</div></div><div><span class="hide-hover"><a href="#p-672">🔗</a></span><div class="p" id="p-672">For example:
-<div class="code-caption-container" id="code-266">
+</div><div><span class="hide-hover"><a href="#p-674">🔗</a></span><div class="p" id="p-674">If the very first character of an argument is a newline, then that character is ignored if it would be part of a regular plaintext node.</div></div><div><span class="hide-hover"><a href="#p-675">🔗</a></span><div class="p" id="p-675">For example:
+<div class="code-caption-container" id="code-267">
 <pre><code>\C[[
 a
 
@@ -28,51 +28,65 @@ b
 ]]
 </code></pre></div>
 generates something like:
-<div class="code-caption-container" id="code-267">
+<div class="code-caption-container" id="code-268">
 <pre><code>&lt;pre&gt;&lt;code&gt;a
 
 b
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre></div>
 instead of:
-<div class="code-caption-container" id="code-268">
+<div class="code-caption-container" id="code-269">
 <pre><code>&lt;pre&gt;&lt;code&gt;
 a
 
 b
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre></div>
-This is extremely convenient to improve the readability of code blocks and similar constructs.</div></div><div><span class="hide-hover"><a href="#p-673">🔗</a></span><div class="p" id="p-673">The newline is however considered if it would be part of some <a href=".#insane-macro-shortcuts" title="internal link
+This is extremely convenient to improve the readability of code blocks and similar constructs.</div></div><div><span class="hide-hover"><a href="#p-676">🔗</a></span><div class="p" id="p-676">The newline is however considered if it would be part of some <a href=".#insane-macro-shortcuts" title="internal link
 word count: 4
-descendant count: 70
-descendant word count: 484">insane macro shortcut</a>. For example, we can start an <a href=".#list" title="internal link
+descendant word count: 484
+descendant count: 70">insane macro shortcut</a>. For example, we can start an <a href=".#list" title="internal link
 word count: 0
-descendant count: 350
-descendant word count: 350">insane list</a> inside a <a href=".#quotation" title="internal link
+descendant word count: 350
+descendant count: 350">insane list</a> inside a <a href=".#quotation" title="internal link
 word count: 0
-descendant count: 38
-descendant word count: 38">quotations</a> as in:
-<div class="code-caption-container" id="code-269">
+descendant word count: 38
+descendant count: 38">quotations</a> as in:
+<div class="code-caption-container" id="code-270">
 <pre><code>\Q[
 * a
 * b
 ]
-</code></pre></div><div class="p" id="p-674">which renders as:</div><blockquote id="q-129"><blockquote id="q-130"><div><ul id="ul-84">
+</code></pre></div><div class="p" id="p-677">which renders as:</div><blockquote id="q-130"><blockquote id="q-131"><div><ul id="ul-84">
 <li id="l-236">a</li>
 <li id="l-237">b
 </li>
 </ul></div></blockquote></blockquote>
-where the insane list requires a leading newline <code>\n* </code> to work. That newline is not ignored, even though it comes immediately after the <code>\Q[</code> opening.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+where the insane list requires a leading newline <code>\n* </code> to work. That newline is not ignored, even though it comes immediately after the <code>\Q[</code> opening.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+<div><ul>
+<li><a href=".#macro-argument-syntax" title="internal link
+word count: 11
+descendant word count: 2k
+descendant count: 0">Macro argument syntax</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">2k</span>, <span class="descendant-count" title="number of descendant nodes">11</span></span></li>
+<li><a href=".#cirodown-syntax" title="internal link
+word count: 22
+descendant word count: 2k
+descendant count: 0">Cirodown syntax</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">2k</span>, <span class="descendant-count" title="number of descendant nodes">22</span></span></li>
+<li><a href="." title="internal link
+word count: 195
+descendant word count: 23k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+</ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#code-block" title="internal link
 word count: 0
-descendant count: 516
-descendant word count: 516">Code block</a></li>
+descendant word count: 516
+descendant count: 516">Code block</a> | <span class="metrics"><span class="word-count" title="word count for this node">516</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/47eacc61f162d34f239e19056bdfccc019760408">47eacc61f162d34f239e19056bdfccc019760408</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/29897b7c5e7db4da564e85ef636ae6f0ba738c2a">29897b7c5e7db4da564e85ef636ae6f0ba738c2a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

@@ -18,11 +18,11 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#h-parent-argument">🔗</a></span><div class="h"><h1 id="h-parent-argument"><a href="" title="link to this element"><code>\H</code> <code>parent</code> argument (ID-based header levels)</a></h1>
-<span class="hover-meta">  | <a title="view all headers in a single page" href=".#h-parent-argument">🗖 nosplit</a> | <a href=".#h-arguments" title="parent header">↑ parent "<code>\H</code> arguments"</a> | <span class="metrics"><span class="word-count" title="word count for this node">330</span>, <span class="descendant-count" title="number of descendant nodes">2</span>, <span class="word-count-descendant" title="word count for this node + descendants">591</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#h-parent-argument">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#h-arguments" title="parent header">↑ parent "<code>\H</code> arguments"</a> | <span class="metrics"><span class="word-count" title="word count for this node">330</span>, <span class="descendant-count" title="number of descendant nodes">2</span>, <span class="word-count-descendant" title="word count for this node + descendants">591</span></span></div></div>
+<span class="hover-meta">  | <a title="view all headers in a single page" href=".#h-parent-argument">🗖 nosplit</a> | <a href=".#h-arguments" title="parent header">↑ parent "<code>\H</code> arguments"</a> | <span class="metrics"><span class="word-count" title="word count for this node">330</span>, <span class="word-count-descendant" title="word count for this node + descendants">591</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#h-parent-argument">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#h-arguments" title="parent header">↑ parent "<code>\H</code> arguments"</a> | <span class="metrics"><span class="word-count" title="word count for this node">330</span>, <span class="word-count-descendant" title="word count for this node + descendants">591</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></div></div>
 </div><div><span class="hide-hover"><a href=".#h-parent-argument">🔗</a></span></div><div><span class="hide-hover"><a href="#p-147">🔗</a></span><div class="p" id="p-147">In addition to the basic way of specifying header levels with an explicit level number as mentioned at <a href=".#header" title="internal link
 word count: 40
-descendant count: 77
-descendant word count: 4k">Section "Header (<code>\H</code>)"</a>, Cirodown also supports a more indirect ID-based mechanism with the <code>parent</code> argument of the <code>\H</code> element.</div></div><div><span class="hide-hover"><a href="#p-148">🔗</a></span><div class="p" id="p-148">We hightly recommend using <code>parent</code> for all but the most trivial documents.</div></div><div><span class="hide-hover"><a href="#p-149">🔗</a></span><div class="p" id="p-149">For example, the following fixed level syntax:
+descendant word count: 4k
+descendant count: 77">Section "Header (<code>\H</code>)"</a>, Cirodown also supports a more indirect ID-based mechanism with the <code>parent</code> argument of the <code>\H</code> element.</div></div><div><span class="hide-hover"><a href="#p-148">🔗</a></span><div class="p" id="p-148">We hightly recommend using <code>parent</code> for all but the most trivial documents.</div></div><div><span class="hide-hover"><a href="#p-149">🔗</a></span><div class="p" id="p-149">For example, the following fixed level syntax:
 <div class="code-caption-container" id="code-63">
 <pre><code>= My h1
 
@@ -46,13 +46,13 @@ is equivalent to the following ID-based version:
 {parent=my-h2-h}
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#p-150">🔗</a></span><div class="p" id="p-150">The main advantages of this syntax are felt when you have a huge document with <a href=".#unlimited-header-levels" title="internal link
 word count: 11
-descendant count: 139
-descendant word count: 139">very large header depths</a>. In that case:<div><ul id="ul-23">
+descendant word count: 139
+descendant count: 139">very large header depths</a>. In that case:<div><ul id="ul-23">
 <li id="l-75">it becomes easy to get levels wrong with so many large level numbers to deal with. It is much harder to get an ID wrong.</li>
 <li id="l-76"><div class="p" id="p-151">when you want to move headers around to improve organization, things are quite painful without a refactoring tool (which we intend to provide in the <a href=".#editor-with-preview" title="internal link
 word count: 0
-descendant count: 185
-descendant word count: 185">editor with preview</a>), as you need to fix up the levels of every single header.</div><div class="p" id="p-152">If you are using the ID-based syntax however, you only have to move the chunk of headers, and change the <code>parent</code> argument of a single top-level header being moved.</div></li>
+descendant word count: 185
+descendant count: 185">editor with preview</a>), as you need to fix up the levels of every single header.</div><div class="p" id="p-152">If you are using the ID-based syntax however, you only have to move the chunk of headers, and change the <code>parent</code> argument of a single top-level header being moved.</div></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#p-153">🔗</a></span><div class="p" id="p-153">Note that when the <code>parent=</code> argument is given, the header level must be <code>1</code>, otherwise Cirodown assumes that something is weird and gives an error. E.g. the following gives an error:
 <div class="code-caption-container" id="code-65">
 <pre><code>= My h1
@@ -62,13 +62,13 @@ descendant word count: 185">editor with preview</a>), as you need to fix up the 
 </code></pre></div>
 because the second header has level <code>2</code> instead of the required <code>= My h2</code>.</div></div><div><span class="hide-hover"><a href="#p-154">🔗</a></span><div class="p" id="p-154">When <a href=".#h-scope-argument" title="internal link
 word count: 5
-descendant count: 401
-descendant word count: 559">scopes</a> are involved, the rules are the same as those of internal reference resolution, including the leading <code>/</code> to break out of the scope in case of conflicts.</div></div><div><span class="hide-hover"><a href="#p-155">🔗</a></span><div class="p" id="p-155">See also: <a href=".#header-explicit-levels-vs-nesting-design-choice" title="internal link
+descendant word count: 559
+descendant count: 401">scopes</a> are involved, the rules are the same as those of internal reference resolution, including the leading <code>/</code> to break out of the scope in case of conflicts.</div></div><div><span class="hide-hover"><a href="#p-155">🔗</a></span><div class="p" id="p-155">See also: <a href=".#header-explicit-levels-vs-nesting-design-choice" title="internal link
 word count: 0
-descendant count: 82
-descendant word count: 82">Section 2. "Header explicit levels vs nesting design choice"</a> for further rationale.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+descendant word count: 82
+descendant count: 82">Section 2. "Header explicit levels vs nesting design choice"</a> for further rationale.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">330</span>, <span class="descendant-count" title="number of descendant nodes">2</span>, <span class="word-count-descendant" title="word count for this node + descendants">591</span></span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">330</span>, <span class="word-count-descendant" title="word count for this node + descendants">591</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></div>
 <ul>
 <li><div id="toc-id-based-header-levels-and-scope-resolution"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#id-based-header-levels-and-scope-resolution">1. ID-based header levels and scope resolution</a> | <span class="metrics"><span class="word-count" title="word count for this node">179</span></span><span class="hover-metadata"> | <a href="#toc-id-based-header-levels-and-scope-resolution" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#id-based-header-levels-and-scope-resolution">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>\H</code> <code>parent</code> argument"</a></span></div></li>
 <li><div id="toc-header-explicit-levels-vs-nesting-design-choice"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#header-explicit-levels-vs-nesting-design-choice">2. Header explicit levels vs nesting design choice</a> | <span class="metrics"><span class="word-count" title="word count for this node">82</span></span><span class="hover-metadata"> | <a href="#toc-header-explicit-levels-vs-nesting-design-choice" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#header-explicit-levels-vs-nesting-design-choice">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>\H</code> <code>parent</code> argument"</a></span></div></li>
@@ -76,25 +76,43 @@ descendant word count: 82">Section 2. "Header explicit levels vs nesting design 
 </li>
 </ul>
 </div>
-</div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+</div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+<div><ul>
+<li><a href=".#h-arguments" title="internal link
+word count: 22
+descendant word count: 3k
+descendant count: 0"><code>\H</code> arguments</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">3k</span>, <span class="descendant-count" title="number of descendant nodes">22</span></span></li>
+<li><a href=".#header" title="internal link
+word count: 40
+descendant word count: 4k
+descendant count: 77">Header</a> | <span class="metrics"><span class="word-count" title="word count for this node">77</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span>, <span class="descendant-count" title="number of descendant nodes">40</span></span></li>
+<li><a href=".#macro" title="internal link
+word count: 108
+descendant word count: 13k
+descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
+<li><a href="." title="internal link
+word count: 195
+descendant word count: 23k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+</ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#header-explicit-levels-vs-nesting-design-choice" title="internal link
 word count: 0
-descendant count: 82
-descendant word count: 82">Header explicit levels vs nesting design choice</a></li>
+descendant word count: 82
+descendant count: 82">Header explicit levels vs nesting design choice</a> | <span class="metrics"><span class="word-count" title="word count for this node">82</span></span></li>
 <li><a href=".#id-based-header-levels-and-scope-resolution" title="internal link
 word count: 0
-descendant count: 179
-descendant word count: 179">ID-based header levels and scope resolution</a></li>
+descendant word count: 179
+descendant count: 179">ID-based header levels and scope resolution</a> | <span class="metrics"><span class="word-count" title="word count for this node">179</span></span></li>
 <li><a href=".#include-parent-argument" title="internal link
 word count: 0
-descendant count: 101
-descendant word count: 101"><code>\Include</code> <code>parent</code> argument</a></li>
+descendant word count: 101
+descendant count: 101"><code>\Include</code> <code>parent</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">101</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/47eacc61f162d34f239e19056bdfccc019760408">47eacc61f162d34f239e19056bdfccc019760408</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/29897b7c5e7db4da564e85ef636ae6f0ba738c2a">29897b7c5e7db4da564e85ef636ae6f0ba738c2a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

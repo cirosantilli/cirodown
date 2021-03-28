@@ -18,9 +18,9 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#split-headers">🔗</a></span><div class="h"><h1 id="split-headers"><a href="" title="link to this element"><code>--split-headers</code></a></h1>
-<span class="hover-meta">  | <a title="view all headers in a single page" href=".#split-headers">🗖 nosplit</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">380</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">509</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#split-headers">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">380</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">509</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-800">🔗</a></span><div class="p" id="p-800">Split each header into its own separate HTML output file.</div></div><div><span class="hide-hover"><a href="#p-801">🔗</a></span><div class="p" id="p-801">This option allows you to keep all headers in a single file, which is much more convenient than working with a billion separate source files, and let them grow naturally as new information is added, but still be able to get a small output page on the rendered website that contains just the content of the given header. Such split pages load faster on the browser, and might get better Google PageRank.</div></div><div><span class="hide-hover"><a href="#p-802">🔗</a></span><div class="p" id="p-802">For example given an input file called <code>hello.ciro</code> and containing:
-<div class="code-caption-container" id="code-307">
+<span class="hover-meta">  | <a title="view all headers in a single page" href=".#split-headers">🗖 nosplit</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">380</span>, <span class="word-count-descendant" title="word count for this node + descendants">509</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#split-headers">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">380</span>, <span class="word-count-descendant" title="word count for this node + descendants">509</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-803">🔗</a></span><div class="p" id="p-803">Split each header into its own separate HTML output file.</div></div><div><span class="hide-hover"><a href="#p-804">🔗</a></span><div class="p" id="p-804">This option allows you to keep all headers in a single file, which is much more convenient than working with a billion separate source files, and let them grow naturally as new information is added, but still be able to get a small output page on the rendered website that contains just the content of the given header. Such split pages load faster on the browser, and might get better Google PageRank.</div></div><div><span class="hide-hover"><a href="#p-805">🔗</a></span><div class="p" id="p-805">For example given an input file called <code>hello.ciro</code> and containing:
+<div class="code-caption-container" id="code-308">
 <pre><code>= h1
 
 h1 content.
@@ -40,70 +40,88 @@ h1-1-1 content.
 h1-1-2 content.
 </code></pre></div>
 a conversion command:
-<div class="code-caption-container" id="code-308">
+<div class="code-caption-container" id="code-309">
 <pre><code>cirodown --split-headers hello.ciro
 </code></pre></div>
 would produce the following output files:<div><ul id="ul-105">
-<li id="l-283"><div class="p" id="p-803"><code>hello.html</code>: contains the entire rendered document as usual.</div><div class="p" id="p-804">Remember that this is called <code>hello.html</code> instead of <code>h1.html</code> because <a href=".#the-toplevel-header" title="internal link
+<li id="l-283"><div class="p" id="p-806"><code>hello.html</code>: contains the entire rendered document as usual.</div><div class="p" id="p-807">Remember that this is called <code>hello.html</code> instead of <code>h1.html</code> because <a href=".#the-toplevel-header" title="internal link
 word count: 2
-descendant count: 39
-descendant word count: 361">the toplevel header ID is automatically derived from its filename</a>.</div><div class="p" id="p-805">Each header contains a on-hover link to the single-file split version of the header.</div></li>
+descendant word count: 361
+descendant count: 39">the toplevel header ID is automatically derived from its filename</a>.</div><div class="p" id="p-808">Each header contains a on-hover link to the single-file split version of the header.</div></li>
 <li id="l-284"><code>hello-split.html</code>: contains only the contents directly under <code>= h1</code>, but not under any of the subheaders, e.g.:<div><ul id="ul-106">
 <li id="l-285"><code>h1 content.</code> appears in this rendered output</li>
 <li id="l-286"><code>h1-1-1</code> does not appear in this rendered output
 </li>
 </ul></div>The <code>-split</code> suffix can be customized with the <a href=".#h-splitsuffix-argument" title="internal link
 word count: 0
-descendant count: 272
-descendant word count: 272"><code>\H</code> <code>splitSuffix</code> argument</a> option.
+descendant word count: 272
+descendant count: 272"><code>\H</code> <code>splitSuffix</code> argument</a> option.
 The <code>-split</code> suffix is appended in order to differentiate the output path from <code>hello.html</code></li>
 <li id="l-287"><code>h1-1.html</code>, <code>h1-1-1.html</code>, <code>h1-1-2.html</code>: contain only the contents direcly under their headers, analogously to <code>hello-split.html</code>, but now we don't need to worry about the input filename and collisiont, and just directly use the ID of each header</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-806">🔗</a></span><div class="p" id="p-806"><code>--split-headers</code> is implied by <a href=".#publish" title="internal link
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-809">🔗</a></span><div class="p" id="p-809"><code>--split-headers</code> is implied by <a href=".#publish" title="internal link
 word count: 3
-descendant count: 162
-descendant word count: 459"><code>-p, --publish</code></a>: the published website will automatically get the split pages. There is no way to turn it off currently. A pull request would be accepted, especially if it offers a <a href=".#cirodown-json" title="internal link
+descendant word count: 459
+descendant count: 162"><code>-p, --publish</code></a>: the published website will automatically get the split pages. There is no way to turn it off currently. A pull request would be accepted, especially if it offers a <a href=".#cirodown-json" title="internal link
 word count: 3
-descendant count: 263
-descendant word count: 798"><code>cirodown.json</code></a> way to do it. Maybe it would be nice to have a more generalized way of setting any CLI option equivalent from the <code>cirodown.json</code>, and an option <code>cli</code> vs <code>cli-publish</code> so that <code>cli-publish</code> is publish only. Just lazy for now/not enough pressing use case met.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+descendant word count: 798
+descendant count: 263"><code>cirodown.json</code></a> way to do it. Maybe it would be nice to have a more generalized way of setting any CLI option equivalent from the <code>cirodown.json</code>, and an option <code>cli</code> vs <code>cli-publish</code> so that <code>cli-publish</code> is publish only. Just lazy for now/not enough pressing use case met.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">380</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">509</span></span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">380</span>, <span class="word-count-descendant" title="word count for this node + descendants">509</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></div>
 <ul>
 <li><div id="toc-internal-cross-reference-targets-in-split-headers"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#internal-cross-reference-targets-in-split-headers">1. Internal cross reference targets in split headers</a> | <span class="metrics"><span class="word-count" title="word count for this node">129</span></span><span class="hover-metadata"> | <a href="#toc-internal-cross-reference-targets-in-split-headers" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#internal-cross-reference-targets-in-split-headers">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "<code>--split-headers</code>"</a></span></div></li>
 </ul>
 </li>
 </ul>
 </div>
-</div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+</div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+<div><ul>
+<li><a href=".#cirodown-executable-options" title="internal link
+word count: 26
+descendant word count: 3k
+descendant count: 0"><code>cirodown</code> executable options</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">3k</span>, <span class="descendant-count" title="number of descendant nodes">26</span></span></li>
+<li><a href=".#cirodown-executable" title="internal link
+word count: 33
+descendant word count: 4k
+descendant count: 183"><code>cirodown</code> executable</a> | <span class="metrics"><span class="word-count" title="word count for this node">183</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span>, <span class="descendant-count" title="number of descendant nodes">33</span></span></li>
+<li><a href=".#tooling" title="internal link
+word count: 38
+descendant word count: 5k
+descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">38</span></span></li>
+<li><a href="." title="internal link
+word count: 195
+descendant word count: 23k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+</ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#features" title="internal link
 word count: 0
-descendant count: 338
-descendant word count: 338">Features</a></li>
+descendant word count: 338
+descendant count: 338">Features</a> | <span class="metrics"><span class="word-count" title="word count for this node">338</span></span></li>
 <li><a href=".#h-splitdefault-argument" title="internal link
 word count: 0
-descendant count: 566
-descendant word count: 566"><code>\H</code> <code>splitDefault</code> argument</a></li>
+descendant word count: 566
+descendant count: 566"><code>\H</code> <code>splitDefault</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">566</span></span></li>
 <li><a href=".#h-splitsuffix-argument" title="internal link
 word count: 0
-descendant count: 272
-descendant word count: 272"><code>\H</code> <code>splitSuffix</code> argument</a></li>
+descendant word count: 272
+descendant count: 272"><code>\H</code> <code>splitSuffix</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">272</span></span></li>
 <li><a href=".#h-synonym-argument" title="internal link
 word count: 1
-descendant count: 181
-descendant word count: 292"><code>\H</code> <code>synonym</code> argument</a></li>
+descendant word count: 292
+descendant count: 181"><code>\H</code> <code>synonym</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">181</span>, <span class="word-count-descendant" title="word count for this node + descendants">292</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></li>
 <li><a href=".#internal-cross-reference-targets-in-split-headers" title="internal link
 word count: 0
-descendant count: 129
-descendant word count: 129">Internal cross reference targets in split headers</a></li>
+descendant word count: 129
+descendant count: 129">Internal cross reference targets in split headers</a> | <span class="metrics"><span class="word-count" title="word count for this node">129</span></span></li>
 <li><a href=".#table-of-contents" title="internal link
 word count: 1
-descendant count: 254
-descendant word count: 512">Table of contents</a></li>
+descendant word count: 512
+descendant count: 254">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">254</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/47eacc61f162d34f239e19056bdfccc019760408">47eacc61f162d34f239e19056bdfccc019760408</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/29897b7c5e7db4da564e85ef636ae6f0ba738c2a">29897b7c5e7db4da564e85ef636ae6f0ba738c2a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

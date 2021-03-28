@@ -19,17 +19,17 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#internal-cross-reference-title-link-removal">🔗</a></span><div class="h"><h1 id="internal-cross-reference-title-link-removal"><a href="" title="link to this element">Internal cross reference title link removal</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#internal-cross-reference-title-link-removal">🗖 nosplit</a> | <a href=".#internal-cross-file-reference" title="parent header">↑ parent "Internal cross file reference"</a> | <span class="metrics"><span class="word-count" title="word count for this node">163</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#internal-cross-reference-title-link-removal">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#internal-cross-file-reference" title="parent header">↑ parent "Internal cross file reference"</a> | <span class="metrics"><span class="word-count" title="word count for this node">163</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-567">🔗</a></span><div class="p" id="p-567">If the target <code>title</code> argument contains a link from either another <a href=".#internal-cross-reference" title="internal link
+</div><div><span class="hide-hover"><a href="#p-570">🔗</a></span><div class="p" id="p-570">If the target <code>title</code> argument contains a link from either another <a href=".#internal-cross-reference" title="internal link
 word count: 25
-descendant count: 123
-descendant word count: 2k">internal cross references</a> or a regular <a href=".#link" title="internal link
+descendant word count: 2k
+descendant count: 123">internal cross references</a> or a regular <a href=".#link" title="internal link
 word count: 2
-descendant count: 184
-descendant word count: 483">external hyperlink</a>, Cirodown automatically prevents that link from rendering as a link when no explicit body is given.</div></div><div><span class="hide-hover"><a href="#p-568">🔗</a></span><div class="p" id="p-568">This is done because <a href="https://stackoverflow.com/questions/9882916/are-you-allowed-to-nest-a-link-inside-of-a-link">nested links are illegal in HTML</a>, and the result would be confusing.</div></div><div><span class="hide-hover"><a href="#p-569">🔗</a></span><div class="p" id="p-569">This use case is most common when dealing with media such as <a href=".#image" title="internal link
+descendant word count: 483
+descendant count: 184">external hyperlink</a>, Cirodown automatically prevents that link from rendering as a link when no explicit body is given.</div></div><div><span class="hide-hover"><a href="#p-571">🔗</a></span><div class="p" id="p-571">This is done because <a href="https://stackoverflow.com/questions/9882916/are-you-allowed-to-nest-a-link-inside-of-a-link">nested links are illegal in HTML</a>, and the result would be confusing.</div></div><div><span class="hide-hover"><a href="#p-572">🔗</a></span><div class="p" id="p-572">This use case is most common when dealing with media such as <a href=".#image" title="internal link
 word count: 9
-descendant count: 345
-descendant word count: 2k">images</a>. For example in:
-<div class="code-caption-container" id="code-219">
+descendant word count: 2k
+descendant count: 345">images</a>. For example in:
+<div class="code-caption-container" id="code-220">
 <pre><code>= afds
 
 \x[image-aa-zxcv-lolol-bb]
@@ -42,39 +42,57 @@ descendant word count: 2k">images</a>. For example in:
 == zxcv
 </code></pre></div>
 the <code>\x[image-aa-zxcv-lolol-bb]</code> renders something like:
-<div class="code-caption-container" id="code-220">
+<div class="code-caption-container" id="code-221">
 <pre><code>&lt;a href="#image-aa-zxcv-lolol-bb"&gt;aa zxcv lolol bb&lt;/a&gt;
 </code></pre></div>
 and not:
-<div class="code-caption-container" id="code-221">
-<pre><code>&lt;a href="#image-aa-zxcv-lolol-bb"&gt;aa &lt;a href="zxcv"&gt;zxcv&lt;/a&gt; &lt;a href="http://example.com"&gt;lolol&lt;/a&gt; bb&lt;/a&gt;
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-570">🔗</a></span><div class="p" id="p-570">Live example:
 <div class="code-caption-container" id="code-222">
+<pre><code>&lt;a href="#image-aa-zxcv-lolol-bb"&gt;aa &lt;a href="zxcv"&gt;zxcv&lt;/a&gt; &lt;a href="http://example.com"&gt;lolol&lt;/a&gt; bb&lt;/a&gt;
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-573">🔗</a></span><div class="p" id="p-573">Live example:
+<div class="code-caption-container" id="code-223">
 <pre><code>This is a nice image: \x[image-aa-zxcv-lolol-bb].
 
 \Image[Tank_man_standing_in_front_of_some_tanks.jpg]
 {title=aa \x[internal-cross-reference-title-link-removal][zxcv] \a[http://example.com][lolol] bb}
-</code></pre></div><div class="p" id="p-571">which renders as:</div><blockquote id="q-113"><div class="p" id="p-572">This is a nice image: <a href="#image-aa-zxcv-lolol-bb" title="internal link
+</code></pre></div><div class="p" id="p-574">which renders as:</div><blockquote id="q-114"><div class="p" id="p-575">This is a nice image: <a href="#image-aa-zxcv-lolol-bb" title="internal link
 word count: 0
-descendant count: 0
-descendant word count: 0">Figure 16. "aa zxcv lolol bb"</a>.</div><figure id="image-aa-zxcv-lolol-bb">
+descendant word count: 0
+descendant count: 0">Figure 16. "aa zxcv lolol bb"</a>.</div><figure id="image-aa-zxcv-lolol-bb">
 <a href="Tank_man_standing_in_front_of_some_tanks.jpg"><img src="Tank_man_standing_in_front_of_some_tanks.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-aa-zxcv-lolol-bb"><span class="caption-prefix">Figure 16</span></a>. aa <a href=".#internal-cross-reference-title-link-removal" title="internal link
 word count: 0
-descendant count: 163
-descendant word count: 163">zxcv</a> <a href="http://example.com">lolol</a> bb</figcaption>
+descendant word count: 163
+descendant count: 163">zxcv</a> <a href="http://example.com">lolol</a> bb</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+</blockquote></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+<div><ul>
+<li><a href=".#internal-cross-file-reference" title="internal link
+word count: 2
+descendant word count: 660
+descendant count: 366">Internal cross file reference</a> | <span class="metrics"><span class="word-count" title="word count for this node">366</span>, <span class="word-count-descendant" title="word count for this node + descendants">660</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></li>
+<li><a href=".#internal-cross-reference" title="internal link
+word count: 25
+descendant word count: 2k
+descendant count: 123">Internal cross reference</a> | <span class="metrics"><span class="word-count" title="word count for this node">123</span>, <span class="word-count-descendant" title="word count for this node + descendants">2k</span>, <span class="descendant-count" title="number of descendant nodes">25</span></span></li>
+<li><a href=".#macro" title="internal link
+word count: 108
+descendant word count: 13k
+descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
+<li><a href="." title="internal link
+word count: 195
+descendant word count: 23k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+</ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#internal-cross-reference-title-link-removal" title="internal link
 word count: 0
-descendant count: 163
-descendant word count: 163">Internal cross reference title link removal</a></li>
+descendant word count: 163
+descendant count: 163">Internal cross reference title link removal</a> | <span class="metrics"><span class="word-count" title="word count for this node">163</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/47eacc61f162d34f239e19056bdfccc019760408">47eacc61f162d34f239e19056bdfccc019760408</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/29897b7c5e7db4da564e85ef636ae6f0ba738c2a">29897b7c5e7db4da564e85ef636ae6f0ba738c2a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

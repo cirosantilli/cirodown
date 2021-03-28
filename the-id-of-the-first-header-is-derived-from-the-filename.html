@@ -21,22 +21,22 @@
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#the-id-of-the-first-header-is-derived-from-the-filename">🗖 nosplit</a> | <a href=".#the-toplevel-header" title="parent header">↑ parent "The toplevel header"</a> | <span class="metrics"><span class="word-count" title="word count for this node">270</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#the-id-of-the-first-header-is-derived-from-the-filename">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#the-toplevel-header" title="parent header">↑ parent "The toplevel header"</a> | <span class="metrics"><span class="word-count" title="word count for this node">270</span></span></div></div>
 </div><div><span class="hide-hover"><a href="#p-121">🔗</a></span><div class="p" id="p-121">TODO: we kind of wanted this to be the ID of the toplevel header instead of the first header, but this would require an extra postprocessing pass (to determine if the first header is toplevel or not), which might affect performance, so we are not doing it right now.</div></div><div><span class="hide-hover"><a href="#p-122">🔗</a></span><div class="p" id="p-122">When the Cirodown input comes from a file (and not e.g. stdin), the default ID of the first header in the document is derived from the basename of the Cirodown input source file rather than from its title.</div></div><div><span class="hide-hover"><a href="#p-123">🔗</a></span><div class="p" id="p-123">This is specially relevant when <a href=".#include" title="internal link
 word count: 7
-descendant count: 430
-descendant word count: 637">including</a> other files.</div></div><div><span class="hide-hover"><a href="#p-124">🔗</a></span><div class="p" id="p-124">For example, in file named <code>my-file.ciro</code> which contains:
+descendant word count: 637
+descendant count: 430">including</a> other files.</div></div><div><span class="hide-hover"><a href="#p-124">🔗</a></span><div class="p" id="p-124">For example, in file named <code>my-file.ciro</code> which contains:
 <div class="code-caption-container" id="code-57">
 <pre><code>= Awesome cirodown file
 ]]
 </code></pre></div>
 the ID of the header is <code>my-file</code> rather than <code>awesome-cirodown-file</code>. See also: <a href=".#automatic-id-from-title" title="internal link
 word count: 0
-descendant count: 257
-descendant word count: 257">automatic ID from title</a>.</div></div><div><span class="hide-hover"><a href="#p-125">🔗</a></span><div class="p" id="p-125">If the file is an <a href=".#index-files" title="internal link
+descendant word count: 257
+descendant count: 257">automatic ID from title</a>.</div></div><div><span class="hide-hover"><a href="#p-125">🔗</a></span><div class="p" id="p-125">If the file is an <a href=".#index-files" title="internal link
 word count: 1
-descendant count: 91
-descendant word count: 236">index file</a> other than <a href=".#the-toplevel-index-file" title="internal link
+descendant word count: 236
+descendant count: 91">index file</a> other than <a href=".#the-toplevel-index-file" title="internal link
 word count: 0
-descendant count: 145
-descendant word count: 145">the toplevel index file</a>, then the basename of the parent directory is used instead, e.g. the toplevel ID of a file:
+descendant word count: 145
+descendant count: 145">the toplevel index file</a>, then the basename of the parent directory is used instead, e.g. the toplevel ID of a file:
 <div class="code-caption-container" id="code-58">
 <pre><code>my-subdir/README.ciro</code></pre></div>
 would be:
@@ -46,29 +46,47 @@ rather than:
 <div class="code-caption-container" id="code-60">
 <pre><code>#README.ciro</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-126">🔗</a></span><div class="p" id="p-126">For the toplevel index file however, the ID is just taken from the header itself as usual. This is done because you often can't general control the directory name of a project.</div></div><div><span class="hide-hover"><a href="#p-127">🔗</a></span><div class="p" id="p-127">For example, a <a href=".#publish-to-github-pages" title="internal link
 word count: 2
-descendant count: 78
-descendant word count: 297">GitHub pages</a> root directory must be named as <code>&lt;username&gt;.github.io</code>. And users may need to rename directories to avoid naming conflicts.</div></div><div><span class="hide-hover"><a href="#p-128">🔗</a></span><div class="p" id="p-128">As a consequence of this, the toplevel index file cannot <a href=".#include" title="internal link
+descendant word count: 297
+descendant count: 78">GitHub pages</a> root directory must be named as <code>&lt;username&gt;.github.io</code>. And users may need to rename directories to avoid naming conflicts.</div></div><div><span class="hide-hover"><a href="#p-128">🔗</a></span><div class="p" id="p-128">As a consequence of this, the toplevel index file cannot <a href=".#include" title="internal link
 word count: 7
-descendant count: 430
-descendant word count: 637">be included in other files</a>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+descendant word count: 637
+descendant count: 430">be included in other files</a>.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+<div><ul>
+<li><a href=".#the-toplevel-header" title="internal link
+word count: 2
+descendant word count: 361
+descendant count: 39">The toplevel header</a> | <span class="metrics"><span class="word-count" title="word count for this node">39</span>, <span class="word-count-descendant" title="word count for this node + descendants">361</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></li>
+<li><a href=".#header" title="internal link
+word count: 40
+descendant word count: 4k
+descendant count: 77">Header</a> | <span class="metrics"><span class="word-count" title="word count for this node">77</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span>, <span class="descendant-count" title="number of descendant nodes">40</span></span></li>
+<li><a href=".#macro" title="internal link
+word count: 108
+descendant word count: 13k
+descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
+<li><a href="." title="internal link
+word count: 195
+descendant word count: 23k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+</ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#automatic-id-from-title" title="internal link
 word count: 0
-descendant count: 257
-descendant word count: 257">Automatic ID from title</a></li>
+descendant word count: 257
+descendant count: 257">Automatic ID from title</a> | <span class="metrics"><span class="word-count" title="word count for this node">257</span></span></li>
 <li><a href=".#include" title="internal link
 word count: 7
-descendant count: 430
-descendant word count: 637">Include</a></li>
+descendant word count: 637
+descendant count: 430">Include</a> | <span class="metrics"><span class="word-count" title="word count for this node">430</span>, <span class="word-count-descendant" title="word count for this node + descendants">637</span>, <span class="descendant-count" title="number of descendant nodes">7</span></span></li>
 <li><a href=".#the-toplevel-index-file" title="internal link
 word count: 0
-descendant count: 145
-descendant word count: 145">The toplevel index file</a></li>
+descendant word count: 145
+descendant count: 145">The toplevel index file</a> | <span class="metrics"><span class="word-count" title="word count for this node">145</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/47eacc61f162d34f239e19056bdfccc019760408">47eacc61f162d34f239e19056bdfccc019760408</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/29897b7c5e7db4da564e85ef636ae6f0ba738c2a">29897b7c5e7db4da564e85ef636ae6f0ba738c2a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

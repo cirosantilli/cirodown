@@ -19,42 +19,60 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#embed-resources">🔗</a></span><div class="h"><h1 id="embed-resources"><a href="" title="link to this element"><code>--embed-resources</code></a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#embed-resources">🗖 nosplit</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">273</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#embed-resources">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#cirodown-executable-options" title="parent header">↑ parent "<code>cirodown</code> executable options"</a> | <span class="metrics"><span class="word-count" title="word count for this node">273</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-733">🔗</a></span><div class="p" id="p-733">Embed as many external resources such as images and CSS as possible into the HTML output files, rather than linking to external resources.</div></div><div><span class="hide-hover"><a href="#p-734">🔗</a></span><div class="p" id="p-734">The use case for this option is to produce a single HTML file for an entire build that is fully self contained, and can therefore be given to consumers and viewed offline, much like a PDF.</div></div><div><span class="hide-hover"><a href="#p-735">🔗</a></span><div class="p" id="p-735">Examples of embeddings done:<div><ul id="ul-97">
-<li id="l-264"><div class="p" id="p-736">CSS and JavaScript are copy pasted in place into the HTML.</div><div class="p" id="p-737">The default built-in CSS and JavaScript files used by Cirodown (e.g. the KaTeX CSS <a href=".#mathematics" title="internal link
+</div><div><span class="hide-hover"><a href="#p-736">🔗</a></span><div class="p" id="p-736">Embed as many external resources such as images and CSS as possible into the HTML output files, rather than linking to external resources.</div></div><div><span class="hide-hover"><a href="#p-737">🔗</a></span><div class="p" id="p-737">The use case for this option is to produce a single HTML file for an entire build that is fully self contained, and can therefore be given to consumers and viewed offline, much like a PDF.</div></div><div><span class="hide-hover"><a href="#p-738">🔗</a></span><div class="p" id="p-738">Examples of embeddings done:<div><ul id="ul-97">
+<li id="l-264"><div class="p" id="p-739">CSS and JavaScript are copy pasted in place into the HTML.</div><div class="p" id="p-740">The default built-in CSS and JavaScript files used by Cirodown (e.g. the KaTeX CSS <a href=".#mathematics" title="internal link
 word count: 2
-descendant count: 380
-descendant word count: 556">used for mathematics</a>) are currently all automatically downloaded as NPM package dependencies to cirodown</div><div class="p" id="p-738">Without <code>--embed-resources</code>, those CSS and JavaScript use their main cloud CDN URLs, and therefore require Internet connection to view the generated documents.</div><div class="p" id="p-739">The embedded version of the document can be viewed offline however.</div></li>
-<li id="l-265"><div class="p" id="p-740"><a href=".#image" title="internal link
+descendant word count: 556
+descendant count: 380">used for mathematics</a>) are currently all automatically downloaded as NPM package dependencies to cirodown</div><div class="p" id="p-741">Without <code>--embed-resources</code>, those CSS and JavaScript use their main cloud CDN URLs, and therefore require Internet connection to view the generated documents.</div><div class="p" id="p-742">The embedded version of the document can be viewed offline however.</div></li>
+<li id="l-265"><div class="p" id="p-743"><a href=".#image" title="internal link
 word count: 9
-descendant count: 345
-descendant word count: 2k">images</a> are downloaded if needed and embedded as <code>data:</code> URLs.</div><div class="p" id="p-741">Images that are managed by the project itself and already locally present, such as those inside the project itself or due to <a href=".#media-providers" title="internal link
+descendant word count: 2k
+descendant count: 345">images</a> are downloaded if needed and embedded as <code>data:</code> URLs.</div><div class="p" id="p-744">Images that are managed by the project itself and already locally present, such as those inside the project itself or due to <a href=".#media-providers" title="internal link
 word count: 0
-descendant count: 271
-descendant word count: 271"><code>media-providers</code></a> usually don't require download.</div><div class="p" id="p-742">For images linked directly from the web, we maintain a local download cache, and skip downloads if the image is already in the cache.</div><div class="p" id="p-743">To re-download due to image updates, use either:</div><div><ul id="ul-98">
+descendant word count: 271
+descendant count: 271"><code>media-providers</code></a> usually don't require download.</div><div class="p" id="p-745">For images linked directly from the web, we maintain a local download cache, and skip downloads if the image is already in the cache.</div><div class="p" id="p-746">To re-download due to image updates, use either:</div><div><ul id="ul-98">
 <li id="l-266"><code>--asset-cache-update</code>: download all images such that the local disk timestamp is older than the HTTP modification date with <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since"><code>If-Modified-Since</code></a></li>
 <li id="l-267"><code>--asset-cache-update-force</code>: forcefully redownload all assets</li>
 </ul></div></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-744">🔗</a></span><div class="p" id="p-744">Keep in mind that certain things can never be embedded, e.g.:<div><ul id="ul-99">
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-747">🔗</a></span><div class="p" id="p-747">Keep in mind that certain things can never be embedded, e.g.:<div><ul id="ul-99">
 <li id="l-268">YouTube videos, since YouTube does not offer any download API</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+</ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+<div><ul>
+<li><a href=".#cirodown-executable-options" title="internal link
+word count: 26
+descendant word count: 3k
+descendant count: 0"><code>cirodown</code> executable options</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">3k</span>, <span class="descendant-count" title="number of descendant nodes">26</span></span></li>
+<li><a href=".#cirodown-executable" title="internal link
+word count: 33
+descendant word count: 4k
+descendant count: 183"><code>cirodown</code> executable</a> | <span class="metrics"><span class="word-count" title="word count for this node">183</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span>, <span class="descendant-count" title="number of descendant nodes">33</span></span></li>
+<li><a href=".#tooling" title="internal link
+word count: 38
+descendant word count: 5k
+descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">38</span></span></li>
+<li><a href="." title="internal link
+word count: 195
+descendant word count: 23k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+</ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#build-sass" title="internal link
 word count: 0
-descendant count: 125
-descendant word count: 125"><code>build-sass</code></a></li>
+descendant word count: 125
+descendant count: 125"><code>build-sass</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">125</span></span></li>
 <li><a href=".#embed-includes" title="internal link
 word count: 0
-descendant count: 182
-descendant word count: 182"><code>--embed-includes</code></a></li>
+descendant word count: 182
+descendant count: 182"><code>--embed-includes</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">182</span></span></li>
 <li><a href=".#quick-start" title="internal link
 word count: 0
-descendant count: 327
-descendant word count: 327">Quick start</a></li>
+descendant word count: 327
+descendant count: 327">Quick start</a> | <span class="metrics"><span class="word-count" title="word count for this node">327</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/47eacc61f162d34f239e19056bdfccc019760408">47eacc61f162d34f239e19056bdfccc019760408</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/29897b7c5e7db4da564e85ef636ae6f0ba738c2a">29897b7c5e7db4da564e85ef636ae6f0ba738c2a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

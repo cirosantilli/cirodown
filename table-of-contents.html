@@ -18,12 +18,12 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#table-of-contents">🔗</a></span><div class="h"><h1 id="table-of-contents"><a href="" title="link to this element">Table of contents (<code>\Toc</code>)</a></h1>
-<span class="hover-meta">  | <a title="view all headers in a single page" href=".#table-of-contents">🗖 nosplit</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">254</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#table-of-contents">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">254</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-420">🔗</a></span><div class="p" id="p-420">Cirodown automatically adds a ToC at the end of the first <a href=".#the-toplevel-header" title="internal link
+<span class="hover-meta">  | <a title="view all headers in a single page" href=".#table-of-contents">🗖 nosplit</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">254</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#table-of-contents">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">254</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#p-423">🔗</a></span><div class="p" id="p-423">Cirodown automatically adds a ToC at the end of the first <a href=".#the-toplevel-header" title="internal link
 word count: 2
-descendant count: 39
-descendant word count: 361">non-toplevel header</a> of every document.</div></div><div><span class="hide-hover"><a href="#p-421">🔗</a></span><div class="p" id="p-421">For example, on a standard document with a single toplevel header:
-<div class="code-caption-container" id="code-160">
+descendant word count: 361
+descendant count: 39">non-toplevel header</a> of every document.</div></div><div><span class="hide-hover"><a href="#p-424">🔗</a></span><div class="p" id="p-424">For example, on a standard document with a single toplevel header:
+<div class="code-caption-container" id="code-161">
 <pre><code>= Animal
 
 Animals are cute!
@@ -33,7 +33,7 @@ Animals are cute!
 == Cat
 </code></pre></div>
 the ToC is rendered like:
-<div class="code-caption-container" id="code-161">
+<div class="code-caption-container" id="code-162">
 <pre><code>= Animal
 
 Animals are cute!
@@ -45,75 +45,85 @@ Table of Contents
 == Dog
 
 == Cat
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-422">🔗</a></span><div class="p" id="p-422">You may customize ToC placement with <code>\Toc</code> macro, but just don't do it, it will just go against common convention and confuse readers.</div></div><div><span class="hide-hover"><a href="#p-423">🔗</a></span><div class="p" id="p-423">This is especially important when considering <a href=".#split-headers" title="internal link
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-425">🔗</a></span><div class="p" id="p-425">You may customize ToC placement with <code>\Toc</code> macro, but just don't do it, it will just go against common convention and confuse readers.</div></div><div><span class="hide-hover"><a href="#p-426">🔗</a></span><div class="p" id="p-426">This is especially important when considering <a href=".#split-headers" title="internal link
 word count: 1
-descendant count: 380
-descendant word count: 509"><code>--split-headers</code></a>, where you almost always want an automatically generated ToC for every split header, otherwise you would need to add them all manually.</div></div><div><span class="hide-hover"><a href="#p-424">🔗</a></span><div class="p" id="p-424">Only one ToC is rendered per document. Any ToC besides the first one is ignored. In particular, this means that <a href=".#include" title="internal link
+descendant word count: 509
+descendant count: 380"><code>--split-headers</code></a>, where you almost always want an automatically generated ToC for every split header, otherwise you would need to add them all manually.</div></div><div><span class="hide-hover"><a href="#p-427">🔗</a></span><div class="p" id="p-427">Only one ToC is rendered per document. Any ToC besides the first one is ignored. In particular, this means that <a href=".#include" title="internal link
 word count: 7
-descendant count: 430
-descendant word count: 637">includes</a> with <a href=".#embed-includes" title="internal link
+descendant word count: 637
+descendant count: 430">includes</a> with <a href=".#embed-includes" title="internal link
 word count: 0
-descendant count: 182
-descendant word count: 182"><code>--embed-includes</code></a> work seamlessly and render a single table of contents, even if multiple <code>\Toc</code> macros are present in the included pages.</div></div><div><span class="hide-hover"><a href="#p-425">🔗</a></span><div class="p" id="p-425">The <a href=".#internal-cross-reference" title="internal link
+descendant word count: 182
+descendant count: 182"><code>--embed-includes</code></a> work seamlessly and render a single table of contents, even if multiple <code>\Toc</code> macros are present in the included pages.</div></div><div><span class="hide-hover"><a href="#p-428">🔗</a></span><div class="p" id="p-428">The <a href=".#internal-cross-reference" title="internal link
 word count: 25
-descendant count: 123
-descendant word count: 2k">ID</a> of the ToC is always fixed to <code>#toc</code>. If you try to use that for another element, you will get the following error:
-<div class="code-caption-container" id="code-162">
+descendant word count: 2k
+descendant count: 123">ID</a> of the ToC is always fixed to <code>#toc</code>. If you try to use that for another element, you will get the following error:
+<div class="code-caption-container" id="code-163">
 <pre><code>error: tmp.ciro:3:1: reserved ID "toc"
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-426">🔗</a></span><div class="p" id="p-426">The ToC ignores <a href=".#the-toplevel-header" title="internal link
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-429">🔗</a></span><div class="p" id="p-429">The ToC ignores <a href=".#the-toplevel-header" title="internal link
 word count: 2
-descendant count: 39
-descendant word count: 361">the toplevel header</a> if you have one.</div></div><div><span class="hide-hover"><a href="#p-427">🔗</a></span><div class="p" id="p-427">For when you want a quick outline of the header tree on the terminal, also consider the <a href=".#log-headers" title="internal link
+descendant word count: 361
+descendant count: 39">the toplevel header</a> if you have one.</div></div><div><span class="hide-hover"><a href="#p-430">🔗</a></span><div class="p" id="p-430">For when you want a quick outline of the header tree on the terminal, also consider the <a href=".#log-headers" title="internal link
 word count: 0
-descendant count: 126
-descendant word count: 126"><code>--log headers</code></a> option.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+descendant word count: 126
+descendant count: 126"><code>--log headers</code></a> option.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
-<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">254</span>, <span class="descendant-count" title="number of descendant nodes">1</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span></span></div>
+<li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">254</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></div>
 <ul>
 <li><div id="toc-table-of-contents-javascript-open-close-interaction"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a href=".#table-of-contents-javascript-open-close-interaction">1. Table of contents JavaScript open close interaction</a> | <span class="metrics"><span class="word-count" title="word count for this node">258</span></span><span class="hover-metadata"> | <a href="#toc-table-of-contents-javascript-open-close-interaction" title="link to this ToC entry">🔗 link</a> | <a title="view all headers in a single page" href=".#table-of-contents-javascript-open-close-interaction">🗖 nosplit</a> | <a href="#toc" title="parent ToC entry">↑ parent "Table of contents"</a></span></div></li>
 </ul>
 </li>
 </ul>
 </div>
-</div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
+</div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+<div><ul>
+<li><a href=".#macro" title="internal link
+word count: 108
+descendant word count: 13k
+descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
+<li><a href="." title="internal link
+word count: 195
+descendant word count: 23k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+</ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#autogenerated-tests" title="internal link
 word count: 1
-descendant count: 53
-descendant word count: 68">Autogenerated tests</a></li>
+descendant word count: 68
+descendant count: 53">Autogenerated tests</a> | <span class="metrics"><span class="word-count" title="word count for this node">53</span>, <span class="word-count-descendant" title="word count for this node + descendants">68</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></li>
 <li><a href=".#features" title="internal link
 word count: 0
-descendant count: 338
-descendant word count: 338">Features</a></li>
+descendant word count: 338
+descendant count: 338">Features</a> | <span class="metrics"><span class="word-count" title="word count for this node">338</span></span></li>
 <li><a href=".#h-synonym-argument" title="internal link
 word count: 1
-descendant count: 181
-descendant word count: 292"><code>\H</code> <code>synonym</code> argument</a></li>
+descendant word count: 292
+descendant count: 181"><code>\H</code> <code>synonym</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">181</span>, <span class="word-count-descendant" title="word count for this node + descendants">292</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></li>
 <li><a href=".#h-title2-argument" title="internal link
 word count: 0
-descendant count: 255
-descendant word count: 255"><code>\H</code> <code>title2</code> argument</a></li>
+descendant word count: 255
+descendant count: 255"><code>\H</code> <code>title2</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">255</span></span></li>
 <li><a href=".#include" title="internal link
 word count: 7
-descendant count: 430
-descendant word count: 637">Include</a></li>
+descendant word count: 637
+descendant count: 430">Include</a> | <span class="metrics"><span class="word-count" title="word count for this node">430</span>, <span class="word-count-descendant" title="word count for this node + descendants">637</span>, <span class="descendant-count" title="number of descendant nodes">7</span></span></li>
 <li><a href=".#log-headers" title="internal link
 word count: 0
-descendant count: 126
-descendant word count: 126"><code>--log headers</code></a></li>
+descendant word count: 126
+descendant count: 126"><code>--log headers</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">126</span></span></li>
 <li><a href=".#skipping-header-levels" title="internal link
 word count: 0
-descendant count: 98
-descendant word count: 98">Skipping header levels</a></li>
+descendant word count: 98
+descendant count: 98">Skipping header levels</a> | <span class="metrics"><span class="word-count" title="word count for this node">98</span></span></li>
 <li><a href=".#x-child-argument" title="internal link
 word count: 7
-descendant count: 251
-descendant word count: 290"><code>\x</code> <code>child</code> argument</a></li>
+descendant word count: 290
+descendant count: 251"><code>\x</code> <code>child</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">251</span>, <span class="word-count-descendant" title="word count for this node + descendants">290</span>, <span class="descendant-count" title="number of descendant nodes">7</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/47eacc61f162d34f239e19056bdfccc019760408">47eacc61f162d34f239e19056bdfccc019760408</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/29897b7c5e7db4da564e85ef636ae6f0ba738c2a">29897b7c5e7db4da564e85ef636ae6f0ba738c2a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
