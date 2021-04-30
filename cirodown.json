@@ -1,4 +1,7 @@
 {
+  "ignore": [
+    "web"
+  ],
   "media-providers": {
     "github": {
       "path": "../media",

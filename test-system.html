@@ -19,27 +19,27 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#test-system">🔗</a></span><div class="h"><h1 id="test-system"><a href="" title="link to this element">Test system</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#test-system">🗖 nosplit</a> | <a href=".#developing-cirodown" title="parent header">↑ parent "Developing Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">174</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#test-system">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#developing-cirodown" title="parent header">↑ parent "Developing Cirodown"</a> | <span class="metrics"><span class="word-count" title="word count for this node">174</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-886">🔗</a></span><div class="p" id="p-886">Run all tests:
-<div class="code-caption-container" id="code-329">
+</div><div><span class="hide-hover"><a href="#p-905">🔗</a></span><div class="p" id="p-905">Run all tests:
+<div class="code-caption-container" id="code-338">
 <pre><code>npm test
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-887">🔗</a></span><div class="p" id="p-887">List all tests:
-<div class="code-caption-container" id="code-330">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-906">🔗</a></span><div class="p" id="p-906">List all tests:
+<div class="code-caption-container" id="code-339">
 <pre><code>node node_modules/mocha-list-tests/mocha-list-tests.js main.js
 </code></pre></div>
-as per: <a href="https://stackoverflow.com/questions/41380137/list-all-mocha-tests-without-executing-them/58573986#58573986">https://stackoverflow.com/questions/41380137/list-all-mocha-tests-without-executing-them/58573986#58573986</a>.</div></div><div><span class="hide-hover"><a href="#p-888">🔗</a></span><div class="p" id="p-888">Run just one test by name:
-<div class="code-caption-container" id="code-331">
+as per: <a href="https://stackoverflow.com/questions/41380137/list-all-mocha-tests-without-executing-them/58573986#58573986">https://stackoverflow.com/questions/41380137/list-all-mocha-tests-without-executing-them/58573986#58573986</a>.</div></div><div><span class="hide-hover"><a href="#p-907">🔗</a></span><div class="p" id="p-907">Run just one test by name:
+<div class="code-caption-container" id="code-340">
 <pre><code>npm test -- -g 'one paragraph'
 </code></pre></div>
-as per: <a href="https://stackoverflow.com/questions/10832031/how-to-run-a-single-test-with-mocha">https://stackoverflow.com/questions/10832031/how-to-run-a-single-test-with-mocha</a> TODO: what if the test name is a substring?</div></div><div><span class="hide-hover"><a href="#p-889">🔗</a></span><div class="p" id="p-889">Step debug during a test run. Add the statement:
-<div class="code-caption-container" id="code-332">
+as per: <a href="https://stackoverflow.com/questions/10832031/how-to-run-a-single-test-with-mocha">https://stackoverflow.com/questions/10832031/how-to-run-a-single-test-with-mocha</a> TODO: what if the test name is a substring?</div></div><div><span class="hide-hover"><a href="#p-908">🔗</a></span><div class="p" id="p-908">Step debug during a test run. Add the statement:
+<div class="code-caption-container" id="code-341">
 <pre><code>debugger;
 </code></pre></div>
 to where you want to break in the code, and then:
-<div class="code-caption-container" id="code-333">
+<div class="code-caption-container" id="code-342">
 <pre><code>node inspect ./node_modules/.bin/mocha test --ignore-leaks -g 'p with id before'
 </code></pre></div>
 Note however that this does not work for tests that run the <code>cirodown</code> executable itself, since those spawn a separate process. TODO how to do it? Tried along:
-<div class="code-caption-container" id="code-334">
+<div class="code-caption-container" id="code-343">
 <pre><code>    const out = child_process.spawnSync('node', ['inspect', 'cirodown'].concat(options.args), {
       cwd: tmpdir,
       input: options.stdin,
@@ -47,11 +47,11 @@ Note however that this does not work for tests that run the <code>cirodown</code
     });
 </code></pre></div>
 but not working, related: <a href="https://stackoverflow.com/questions/23612087/gulp-target-to-debug-mocha-tests">https://stackoverflow.com/questions/23612087/gulp-target-to-debug-mocha-tests</a> So for now, we are just printing the command being run as in:
-<div class="code-caption-container" id="code-335">
+<div class="code-caption-container" id="code-344">
 <pre><code>cmd: cd /tmp/cirodowniyLn7v &amp;&amp; cirodown --split-headers .
 </code></pre></div>
 so you can just re-run it manually with <code>node inspect</code> as in:
-<div class="code-caption-container" id="code-336">
+<div class="code-caption-container" id="code-345">
 <pre><code>cd /tmp/cirodowniyLn7v &amp;&amp; node inspect "$(which cirodown)" --split-headers .
 </code></pre></div>
 This works since the <code>tmp</code> directory is not deleted in case of failure.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
@@ -61,20 +61,20 @@ word count: 17
 descendant word count: 1k
 descendant count: 0">Developing Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">1k</span>, <span class="descendant-count" title="number of descendant nodes">17</span></span></li>
 <li><a href="." title="internal link
-word count: 195
-descendant word count: 23k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+word count: 203
+descendant word count: 24k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#overview-of-files-in-this-repository" title="internal link
 word count: 0
-descendant word count: 101
-descendant count: 101">Overview of files in this repository</a> | <span class="metrics"><span class="word-count" title="word count for this node">101</span></span></li>
+descendant word count: 106
+descendant count: 106">Overview of files in this repository</a> | <span class="metrics"><span class="word-count" title="word count for this node">106</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c4866039323175a1ae5f335bc6283674af6e6fc9">c4866039323175a1ae5f335bc6283674af6e6fc9</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
@@ -92,5 +92,6 @@ ga('send', 'pageview');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+<script>cirodown_runtime()</script>
 </body>
 </html>

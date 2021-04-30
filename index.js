@@ -7,7 +7,10 @@ if (typeof performance === 'undefined') {
   // Fuck, I can't find how to make this browser/node portable more nicely.
   // https://github.com/nodejs/node/issues/28635
   // https://github.com/browserify/perf-hooks-browserify
-  globals.performance = require('perf_hooks').performance;
+  //
+  // eval('require') because react-scripts build from web/
+  // calls webpack, which for some reason cannot find it.
+  globals.performance = eval('require')('perf_hooks').performance;
 } else {
   globals.performance = performance;
 }
@@ -6241,7 +6244,7 @@ const DEFAULT_MACRO_LIST = [
         for (const script of context.options.template_scripts_relative) {
           relative_scripts.push(`<script src="${context.options.template_vars.root_relpath}${script}"></script>\n`);
         }
-        render_env.post_body = relative_scripts.join('') + render_env.post_body;
+        render_env.post_body = relative_scripts.join('') + render_env.post_body + "<script>cirodown_runtime()</script>\n";
         let relative_styles = [];
         for (const style of context.options.template_styles_relative) {
           relative_styles.push(`@import "${context.options.template_vars.root_relpath}${style}";\n`);

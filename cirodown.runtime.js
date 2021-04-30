@@ -1,10 +1,14 @@
 // https://cirosantilli.com/cirodown#insane-link-parsing-rules
 
-window.onload = function() {
+function cirodown_runtime(toplevel) {
+  if (toplevel === undefined) {
+    toplevel = document;
+  }
+
   // ToC interaction.
   const CLOSE_CLASS = 'close';
   const TOC_CONTAINER_CLASS = 'toc-container';
-  const toc_arrows = document.querySelectorAll(`.${TOC_CONTAINER_CLASS} div.arrow`);
+  const toc_arrows = toplevel.querySelectorAll(`.${TOC_CONTAINER_CLASS} div.arrow`);
   for(const toc_arrow of toc_arrows) {
     toc_arrow.addEventListener('click', () => {
       // https://cirosantilli.com/cirodown#table-of-contents-javascript-open-close-interaction
@@ -58,10 +62,10 @@ window.onload = function() {
   }
 
   // Open ToC when jumping to it from header.
-  const h_to_tocs = document.getElementsByClassName('cirodown-h-to-toc');
+  const h_to_tocs = toplevel.getElementsByClassName('cirodown-h-to-toc');
   for (const h_to_toc of h_to_tocs) {
     h_to_toc.addEventListener('click', () => {
-      let cur_elem = document.getElementById(h_to_toc.getAttribute('href').slice(1)).parentElement;
+      let cur_elem = toplevel.getElementById(h_to_toc.getAttribute('href').slice(1)).parentElement;
       while (!cur_elem.classList.contains(TOC_CONTAINER_CLASS)) {
         cur_elem.classList.remove(CLOSE_CLASS);
         cur_elem = cur_elem.parentElement;
@@ -71,7 +75,7 @@ window.onload = function() {
 
   // Video click to play.
   // https://github.com/cirosantilli/cirodown/issues/122
-  const videos = document.getElementsByTagName('video');
+  const videos = toplevel.getElementsByTagName('video');
   for(const video of videos) {
     const parentNode = video.parentNode;
     let first = true;
@@ -84,12 +88,12 @@ window.onload = function() {
   }
 
   // tablesort
-  const tables = document.getElementsByTagName('table');
+  const tables = toplevel.getElementsByTagName('table');
   for(const table of tables) {
     new Tablesort(table);
   }
 
-  const cirodown_canvas_demo_elems = document.getElementsByClassName('cirodown-js-canvas-demo');
+  const cirodown_canvas_demo_elems = toplevel.getElementsByClassName('cirodown-js-canvas-demo');
   const cirodown_canvas_demo_weakmap = new WeakMap();
   for (const cirodown_canvas_demo_elem of cirodown_canvas_demo_elems) {
     cirodown_canvas_demo_weakmap.set(cirodown_canvas_demo_elem, false);
@@ -126,10 +130,10 @@ async function cirodown_load_scripts(script_urls) {
       if (cirodown_load_scripts.loaded.has(script_url)) {
         resolve();
       } else {
-        var script = document.createElement('script');
+        var script = toplevel.createElement('script');
         script.onload = resolve;
         script.src = script_url
-        document.head.appendChild(script);
+        toplevel.head.appendChild(script);
       }
     });
   }
@@ -378,3 +382,11 @@ class CirodownCanvasDemo {
     this.height = canvas_width
   }
 }
+
+// We want to do two things:
+// - allow it being ran locally without a server. Modules don't work:
+//   https://stackoverflow.com/questions/46992463/es6-module-support-in-chrome-62-chrome-canary-64-does-not-work-locally-cors-er
+// - let webpack pick it up. Globals are not picked up by default.
+//   https://stackoverflow.com/questions/37656592/define-global-variable-with-webpack
+window.cirodown_runtime = cirodown_runtime;
+//export { cirodown_runtime }

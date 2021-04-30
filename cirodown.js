@@ -8,7 +8,10 @@ if (typeof performance === 'undefined') {
   // Fuck, I can't find how to make this browser/node portable more nicely.
   // https://github.com/nodejs/node/issues/28635
   // https://github.com/browserify/perf-hooks-browserify
-  globals.performance = require('perf_hooks').performance;
+  //
+  // eval('require') because react-scripts build from web/
+  // calls webpack, which for some reason cannot find it.
+  globals.performance = eval('require')('perf_hooks').performance;
 } else {
   globals.performance = performance;
 }
@@ -6242,7 +6245,7 @@ const DEFAULT_MACRO_LIST = [
         for (const script of context.options.template_scripts_relative) {
           relative_scripts.push(`<script src="${context.options.template_vars.root_relpath}${script}"></script>\n`);
         }
-        render_env.post_body = relative_scripts.join('') + render_env.post_body;
+        render_env.post_body = relative_scripts.join('') + render_env.post_body + "<script>cirodown_runtime()</script>\n";
         let relative_styles = [];
         for (const style of context.options.template_styles_relative) {
           relative_styles.push(`@import "${context.options.template_vars.root_relpath}${style}";\n`);
@@ -6607,9 +6610,7 @@ const TOPLEVEL_CHILD_MODIFIER = {
   },
 }
 
-},{"katex":4,"liquidjs":5,"lodash":6,"path":3,"perf_hooks":2,"pluralize":7}],2:[function(require,module,exports){
-
-},{}],3:[function(require,module,exports){
+},{"katex":3,"liquidjs":4,"lodash":5,"path":2,"pluralize":6}],2:[function(require,module,exports){
 (function (process){
 // .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
 // backported and transplited with Babel, with backwards-compat fixes
@@ -6915,7 +6916,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":8}],4:[function(require,module,exports){
+},{"_process":7}],3:[function(require,module,exports){
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -24349,7 +24350,7 @@ var katex_renderToHTMLTree = function renderToHTMLTree(expression, options) {
 /***/ })
 /******/ ])["default"];
 });
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /*
  * liquidjs@9.11.6, https://github.com/harttle/liquidjs
  * (c) 2016-2020 harttle
@@ -27987,7 +27988,7 @@ var katex_renderToHTMLTree = function renderToHTMLTree(expression, options) {
 }));
 
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -45152,7 +45153,7 @@ var katex_renderToHTMLTree = function renderToHTMLTree(expression, options) {
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /* global define */
 
 (function (root, pluralize) {
@@ -45657,7 +45658,7 @@ var katex_renderToHTMLTree = function renderToHTMLTree(expression, options) {
   return pluralize;
 });
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 

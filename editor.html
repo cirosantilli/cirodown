@@ -346,6 +346,8 @@ require(["vs/editor/editor.main"], function () {
       {'body_only': true},
       extra_returns
     );
+    // Rebind.
+    cirodown_runtime(output_elem);
     line_to_id = extra_returns.context.line_to_id;
   }
   function scroll_preview_to_source_line(line_number, block) {
@@ -377,7 +379,7 @@ require(["vs/editor/editor.main"], function () {
 <script src="node_modules/tablesort/src/sorts/tablesort.filesize.js"></script>
 <script src="node_modules/tablesort/src/sorts/tablesort.monthname.js"></script>
 <script src="node_modules/tablesort/src/sorts/tablesort.number.js"></script>
-
 <script src="cirodown.runtime.js"></script>
+<script>cirodown_runtime(output_elem)</script>
 </body>
 </html>

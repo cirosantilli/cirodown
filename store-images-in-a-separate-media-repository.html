@@ -33,7 +33,7 @@ but Cirodown allows you use configurations that allow you to enter just the imag
 <li id="l-122"><code>./main-repo/.git</code>: main repository at <a href="https://github.com/username/main-repo">https://github.com/username/main-repo</a></li>
 <li id="l-123"><code>./main-repo/data/media/.git/</code>: media repository at <a href="https://github.com/username/main-repo-media">https://github.com/username/main-repo-media</a>, and where <code>data/</code> is gitignored.
 </li>
-</ul></div>The directory and repository names are not mandatory, but if you place media in <code>data/media</code> and name its repository by adding the <code>*-media</code> suffix, then <code>cirodown</code> will handle everything for you without any further configuration in <a href=".#media-providers" title="internal link
+</ul></div>The directory and repository names are not mandatory, but if you place media in <code>data/media</code> and name its repository by adding the <code>*-media</code> suffix, then <code>cirodown</code> will handle everything for you without any further configuration in <a href=".#cirodown-json/media-providers" title="internal link
 word count: 0
 descendant word count: 271
 descendant count: 271"><code>media-providers</code></a>.</div></div><div><span class="hide-hover"><a href="#p-261">🔗</a></span><div class="p" id="p-261">This particular documentation repository does have a different setup as can be seen from its <a href="cirodown.json">cirodown.json</a>. Then, when everything is setup correctly, we can refer to images simply as:
@@ -54,7 +54,7 @@ descendant count: 162">during publishing</a>!</div></div><div><span class="hide-
 <li id="l-124">give every file a very descriptive and unique name as a full English sentence</li>
 <li id="l-125">never ever delete any files, nor change their content, unless it is an improvement in format that does change the information contained of the image TODO link to nice Wikimedia Commons guideline page
 </li>
-</ul></div>This way, even though the repositories are not fully in sync, anyone who clones the latest version of the <code>*-media</code> directory will be able to view any version of the main repository.</div></div><div><span class="hide-hover"><a href="#p-266">🔗</a></span><div class="p" id="p-266">Then, if one day the media repository ever blows up GitHub's limit, you can just migrate the images to another image server that allows arbitrary basenames, e.g. AWS, and just configure your project to use that new media base URL with the <a href=".#media-providers" title="internal link
+</ul></div>This way, even though the repositories are not fully in sync, anyone who clones the latest version of the <code>*-media</code> directory will be able to view any version of the main repository.</div></div><div><span class="hide-hover"><a href="#p-266">🔗</a></span><div class="p" id="p-266">Then, if one day the media repository ever blows up GitHub's limit, you can just migrate the images to another image server that allows arbitrary basenames, e.g. AWS, and just configure your project to use that new media base URL with the <a href=".#cirodown-json/media-providers" title="internal link
 word count: 0
 descendant word count: 271
 descendant count: 271"><code>media-providers</code></a> option.</div></div><div><span class="hide-hover"><a href="#p-267">🔗</a></span><div class="p" id="p-267">The reason why images should be kept in a separate repository is that images are hundreds or thousands of times larger than hand written text.</div></div><div><span class="hide-hover"><a href="#p-268">🔗</a></span><div class="p" id="p-268">Therefore, images could easily fill up the maximum repository size you are allowed: <a href="https://webapps.stackexchange.com/questions/45254/file-size-and-storage-limits-on-github#84746">https://webapps.stackexchange.com/questions/45254/file-size-and-storage-limits-on-github#84746</a> and then what will you do when GitHub comes asking you to reduce the repository size?</div></div><div><span class="hide-hover"><a href="#p-269">🔗</a></span><div class="p" id="p-269"><a href="https://git-lfs.github.com/">Git LFS</a> is one approach to deal with this, but we feel that it adds too much development overhead.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
@@ -72,19 +72,19 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 195
-descendant word count: 23k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">23k</span>, <span class="descendant-count" title="number of descendant nodes">195</span></span></li>
+word count: 203
+descendant word count: 24k
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
+<li><a href=".#cirodown-json/media-providers" title="internal link
+word count: 0
+descendant word count: 271
+descendant count: 271"><code>media-providers</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">271</span></span></li>
 <li><a href=".#known-url-protocols" title="internal link
 word count: 0
 descendant word count: 64
 descendant count: 64">Known URL protocols</a> | <span class="metrics"><span class="word-count" title="word count for this node">64</span></span></li>
-<li><a href=".#media-providers" title="internal link
-word count: 0
-descendant word count: 271
-descendant count: 271"><code>media-providers</code></a> | <span class="metrics"><span class="word-count" title="word count for this node">271</span></span></li>
 <li><a href=".#store-images-in-wikimedia-commons" title="internal link
 word count: 0
 descendant word count: 309
@@ -97,7 +97,7 @@ descendant count: 481">Video</a> | <span class="metrics"><span class="word-count
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c4866039323175a1ae5f335bc6283674af6e6fc9">c4866039323175a1ae5f335bc6283674af6e6fc9</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
@@ -115,5 +115,6 @@ ga('send', 'pageview');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.filesize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.monthname.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js"></script>
+<script>cirodown_runtime()</script>
 </body>
 </html>
