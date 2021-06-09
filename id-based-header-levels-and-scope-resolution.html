@@ -26,11 +26,11 @@ descendant count: 330"><code>\H</code> <code>parent</code> argument</a> and <a h
 word count: 5
 descendant word count: 559
 descendant count: 401">scopes</a>, things get a bit complicated, because when writing or parsing, we have to first determine the parent header before resolving scopes.</div></div><div><span class="hide-hover"><a href="#p-157">🔗</a></span><div class="p" id="p-157">As a result, the follow simple rules are used:<div><ul id="ul-24">
-<li id="l-77">start from the last header of the highest level</li>
-<li id="l-78">check if the <code>{parent=XXX}</code> is a suffix of its ID</li>
-<li id="l-79">if not, proceed to the next smaller level, and so on, until a suffix is found</li>
+<li id="l-78">start from the last header of the highest level</li>
+<li id="l-79">check if the <code>{parent=XXX}</code> is a suffix of its ID</li>
+<li id="l-80">if not, proceed to the next smaller level, and so on, until a suffix is found</li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#p-158">🔗</a></span><div class="p" id="p-158">Following those rules for example, a file <code>tmp.ciro</code>:
-<div class="code-caption-container" id="code-66">
+<div class="code-caption-container" id="code-67">
 <pre><code>= h1
 {scope}
 
@@ -62,7 +62,7 @@ will lead to the following header tree with <a href=".#log-headers" title="inter
 word count: 0
 descendant word count: 126
 descendant count: 126"><code>--log headers</code></a>:
-<div class="code-caption-container" id="code-67">
+<div class="code-caption-container" id="code-68">
 <pre><code>= h1  tmp
 == h2 1 tmp/h1-1
 === h3 1.1 tmp/h1-1/h1-1-1
@@ -90,14 +90,14 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

@@ -20,13 +20,13 @@
 <div><span class="hide-hover"><a href=".#h-disambiguate-argument">🔗</a></span><div class="h"><h1 id="h-disambiguate-argument"><a href="" title="link to this element"><code>\H</code> <code>disambiguate</code> argument</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#h-disambiguate-argument">🗖 nosplit</a> | <a href=".#h-arguments" title="parent header">↑ parent "<code>\H</code> arguments"</a> | <span class="metrics"><span class="word-count" title="word count for this node">140</span>, <span class="word-count-descendant" title="word count for this node + descendants">436</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#h-disambiguate-argument">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#h-arguments" title="parent header">↑ parent "<code>\H</code> arguments"</a> | <span class="metrics"><span class="word-count" title="word count for this node">140</span>, <span class="word-count-descendant" title="word count for this node + descendants">436</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></div></div>
 </div><div><span class="hide-hover"><a href="#p-131">🔗</a></span><div class="p" id="p-131">Sometimes the short version of a name is ambiguous, and you need to add some extra text to make both its title and ID unique.</div></div><div><span class="hide-hover"><a href="#p-132">🔗</a></span><div class="p" id="p-132">For example, the word "Python" could either refer to:<div><ul id="ul-21">
-<li id="l-69">the programming language: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></li>
-<li id="l-70">the genus of snakes: <a href="https://en.wikipedia.org/wiki/Python_(genus)">https://en.wikipedia.org/wiki/Python_(genus)</a></li>
+<li id="l-70">the programming language: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></li>
+<li id="l-71">the genus of snakes: <a href="https://en.wikipedia.org/wiki/Python_(genus)">https://en.wikipedia.org/wiki/Python_(genus)</a></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#p-133">🔗</a></span><div class="p" id="p-133">The <code>disambiguate</code> <a href=".#positional-vs-named-arguments" title="internal link
 word count: 3
 descendant word count: 621
 descendant count: 291">name argument</a>, which is automatically defined for all macros, helps you deal more neatly with such problems.</div></div><div><span class="hide-hover"><a href="#p-134">🔗</a></span><div class="p" id="p-134">Have a look at this example:
-<div class="code-caption-container" id="code-61">
+<div class="code-caption-container" id="code-62">
 <pre><code>My favorite snakes are \x[python-genus]{p}!
 
 My favorite programming language is \x[python-programming-language]!
@@ -64,21 +64,21 @@ descendant count: 296">Section 2. "Python (programming language, .py)"</a></div>
 
 </div></blockquote>
 from which we observe how <code>disambiguate</code>:<div><ul id="ul-22">
-<li id="l-71">gets added to the ID after conversion following the same rules as <a href=".#automatic-id-from-title" title="internal link
+<li id="l-72">gets added to the ID after conversion following the same rules as <a href=".#automatic-id-from-title" title="internal link
 word count: 0
 descendant word count: 274
 descendant count: 274">automatic ID from title</a></li>
-<li id="l-72">shows up on the header between parenthesis, much like Wikipedia, as well as in <a href=".#x-full-argument" title="internal link
+<li id="l-73">shows up on the header between parenthesis, much like Wikipedia, as well as in <a href=".#x-full-argument" title="internal link
 word count: 1
 descendant word count: 192
 descendant count: 129"><code>full</code> cross references</a></li>
-<li id="l-73">does not show up on non-<code>full</code> references. This makes it much more likely that you will be able to reuse the title automatically on a cross reference without <code>content</code>: we wouldn't want to say "My favorite programming language is Python (programming language)" all the time, would we?</li>
-<li id="l-74">gets added to the default <a href=".#h-wiki-argument" title="internal link
+<li id="l-74">does not show up on non-<code>full</code> references. This makes it much more likely that you will be able to reuse the title automatically on a cross reference without <code>content</code>: we wouldn't want to say "My favorite programming language is Python (programming language)" all the time, would we?</li>
+<li id="l-75">gets added to the default <a href=".#h-wiki-argument" title="internal link
 word count: 3
 descendant word count: 91
 descendant count: 52"><code>\H</code> <code>wiki</code> argument</a> inside parenthesis, following Wikipedia convention, therefore increasing the likelihood that you will be able to go with the default Wikipedia value</li>
 </ul></div></div></div><div><span class="hide-hover"><a href=".#p-140">🔗</a></span><div class="p" id="p-140">Besides disambiguating headers, the <code>disambiguate</code> argument has a second related application: disambiguating IDs of images. For example:
-<div class="code-caption-container" id="code-62">
+<div class="code-caption-container" id="code-63">
 <pre><code>\x[image-the-title-of-my-disambiguate-image]{full=0}
 
 \x[image-the-title-of-my-disambiguate-image-2]{full=0}
@@ -142,9 +142,9 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#h-title2-argument" title="internal link
@@ -155,7 +155,7 @@ descendant count: 255"><code>\H</code> <code>title2</code> argument</a> | <span 
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

@@ -20,30 +20,30 @@
 <div><span class="hide-hover"><a href=".#internal-cross-file-reference">🔗</a></span><div class="h"><h1 id="internal-cross-file-reference"><a href="" title="link to this element">Internal cross file reference</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#internal-cross-file-reference">🗖 nosplit</a> | <a href=".#internal-cross-reference" title="parent header">↑ parent "Internal cross reference"</a> | <span class="metrics"><span class="word-count" title="word count for this node">366</span>, <span class="word-count-descendant" title="word count for this node + descendants">660</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#internal-cross-file-reference">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#internal-cross-reference" title="parent header">↑ parent "Internal cross reference"</a> | <span class="metrics"><span class="word-count" title="word count for this node">366</span>, <span class="word-count-descendant" title="word count for this node + descendants">660</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></div></div>
 </div><div><span class="hide-hover"><a href="#p-534">🔗</a></span><div class="p" id="p-534">Reference to the first header of another file:
-<div class="code-caption-container" id="code-203">
+<div class="code-caption-container" id="code-204">
 <pre><code>\x[not-readme]
 </code></pre></div><div class="p" id="p-535">which renders as:</div><blockquote id="q-106"><div class="p" id="p-536"><a href="not-readme" title="internal link">not the README</a></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-537">🔗</a></span><div class="p" id="p-537">Reference to a non-first header of another file:
-<div class="code-caption-container" id="code-204">
+<div class="code-caption-container" id="code-205">
 <pre><code>\x[h2-in-not-the-readme]
 </code></pre></div><div class="p" id="p-538">which renders as:</div><blockquote id="q-107"><div class="p" id="p-539"><a href="not-readme#h2-in-not-the-readme" title="internal link">h2 in not the README</a></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-540">🔗</a></span><div class="p" id="p-540">To make toplevel links cleaner,if target header is the very first element of the other page, then the link does not get a fragment, e.g.: <code>\x[not-readme]</code> rendered as:
-<div class="code-caption-container" id="code-205">
+<div class="code-caption-container" id="code-206">
 <pre><code>&lt;a href="not-readme"
 </code></pre></div>
 and not:
-<div class="code-caption-container" id="code-206">
+<div class="code-caption-container" id="code-207">
 <pre><code>&lt;a href="not-readme#not-readme"
 </code></pre></div>
 while <code>\x[h2-in-not-the-readme]</code> is rendered with the fragment:
-<div class="code-caption-container" id="code-207">
+<div class="code-caption-container" id="code-208">
 <pre><code>&lt;a href="not-readme#h2-in-not-the-readme"
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#p-541">🔗</a></span><div class="p" id="p-541">Reference to the first header of another file that is a second inclusion:
-<div class="code-caption-container" id="code-208">
+<div class="code-caption-container" id="code-209">
 <pre><code>\x[included-by-not-readme]
 </code></pre></div><div class="p" id="p-542">which renders as:</div><blockquote id="q-108"><div class="p" id="p-543"><a href="included-by-not-readme" title="internal link">included by not the README</a></div></blockquote></div></div><div><span class="hide-hover"><a href="#p-544">🔗</a></span><div class="p" id="p-544">Reference to another header of another file, with <a href=".#x-full-argument" title="internal link
 word count: 1
 descendant word count: 192
 descendant count: 129"><code>full</code></a>:
-<div class="code-caption-container" id="code-209">
+<div class="code-caption-container" id="code-210">
 <pre><code>\x[h2-in-not-the-readme]{full}.
 </code></pre></div><div class="p" id="p-545">which renders as:</div><blockquote id="q-109"><div class="p" id="p-546"><a href="not-readme#h2-in-not-the-readme" title="internal link">Section "h2 in not the README"</a>.</div></blockquote>
 Note that when <code>full</code> is used with references in another file in <a href=".#embed-includes" title="internal link
@@ -53,23 +53,23 @@ descendant count: 182">multi page mode</a>, the number is not rendered as explai
 word count: 0
 descendant word count: 63
 descendant count: 63">Section "<code>\x</code> <code>full</code> argument in internal cross file references"</a>.</div></div><div><span class="hide-hover"><a href="#p-547">🔗</a></span><div class="p" id="p-547">Reference to an image in another file:
-<div class="code-caption-container" id="code-210">
+<div class="code-caption-container" id="code-211">
 <pre><code>\x[image-not-readme-xi]{full}.
 </code></pre></div><div class="p" id="p-548">which renders as:</div><blockquote id="q-110"><div class="p" id="p-549"><a href="not-readme#image-not-readme-xi" title="internal link">Figure "Figure in not the README"</a>.</div></blockquote></div></div><div><span class="hide-hover"><a href="#p-550">🔗</a></span><div class="p" id="p-550">Reference to an image in another file:
-<div class="code-caption-container" id="code-211">
+<div class="code-caption-container" id="code-212">
 <pre><code>\x[image-figure-in-not-the-readme-without-explicit-id]{full}.
 </code></pre></div><div class="p" id="p-551">which renders as:</div><blockquote id="q-111"><div class="p" id="p-552"><a href="not-readme#image-figure-in-not-the-readme-without-explicit-id" title="internal link">Figure "Figure in not the README without explicit id"</a>.</div></blockquote></div></div><div><span class="hide-hover"><a href="#p-553">🔗</a></span><div class="p" id="p-553">Remember that the <a href=".#the-toplevel-header" title="internal link
 word count: 2
 descendant word count: 361
 descendant count: 39">ID of the toplevel header</a> is automatically derived from its file name, that's why we have to use:
-<div class="code-caption-container" id="code-212">
+<div class="code-caption-container" id="code-213">
 <pre><code>\x[not-readme]
 </code></pre></div><div class="p" id="p-554">which renders as:</div><blockquote id="q-112"><div class="p" id="p-555"><a href="not-readme" title="internal link">not the README</a></div></blockquote>
 instead of:
-<div class="code-caption-container" id="code-213">
+<div class="code-caption-container" id="code-214">
 <pre><code>\x[not-the-readme]
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#p-556">🔗</a></span><div class="p" id="p-556">Reference to a subdirectory:
-<div class="code-caption-container" id="code-214">
+<div class="code-caption-container" id="code-215">
 <pre><code>\x[subdir]
 
 \x[subdir/h2]
@@ -82,11 +82,11 @@ Implemented at: <a href="https://github.com/cirosantilli/cirodown/issues/116">ht
 word count: 0
 descendant word count: 182
 descendant count: 182"><code>--embed-includes</code></a> mode, the cross file references end up pointing to an ID inside the current HTML element, e.g.:
-<div class="code-caption-container" id="code-215">
+<div class="code-caption-container" id="code-216">
 <pre><code>&lt;a href="#not-readme"&gt;
 </code></pre></div>
 rather than:
-<div class="code-caption-container" id="code-216">
+<div class="code-caption-container" id="code-217">
 <pre><code>&lt;a href="not-readme.html/#not-readme"&gt;
 </code></pre></div>
 This is why IDs must be unique for elements across all pages.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
@@ -110,9 +110,9 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#cirodown-executable" title="internal link
@@ -151,7 +151,7 @@ descendant count: 63"><code>\x</code> <code>full</code> argument in internal cro
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

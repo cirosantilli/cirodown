@@ -23,7 +23,7 @@
 word count: 40
 descendant word count: 4k
 descendant count: 77">Section "Header (<code>\H</code>)"</a>, Cirodown also supports a more indirect ID-based mechanism with the <code>parent</code> argument of the <code>\H</code> element.</div></div><div><span class="hide-hover"><a href="#p-148">🔗</a></span><div class="p" id="p-148">We hightly recommend using <code>parent</code> for all but the most trivial documents.</div></div><div><span class="hide-hover"><a href="#p-149">🔗</a></span><div class="p" id="p-149">For example, the following fixed level syntax:
-<div class="code-caption-container" id="code-63">
+<div class="code-caption-container" id="code-64">
 <pre><code>= My h1
 
 == My h2 1
@@ -33,7 +33,7 @@ descendant count: 77">Section "Header (<code>\H</code>)"</a>, Cirodown also supp
 === My h3 2 1
 </code></pre></div>
 is equivalent to the following ID-based version:
-<div class="code-caption-container" id="code-64">
+<div class="code-caption-container" id="code-65">
 <pre><code>= My h1
 
 = My h2 1
@@ -48,13 +48,13 @@ is equivalent to the following ID-based version:
 word count: 11
 descendant word count: 139
 descendant count: 139">very large header depths</a>. In that case:<div><ul id="ul-23">
-<li id="l-75">it becomes easy to get levels wrong with so many large level numbers to deal with. It is much harder to get an ID wrong.</li>
-<li id="l-76"><div class="p" id="p-151">when you want to move headers around to improve organization, things are quite painful without a refactoring tool (which we intend to provide in the <a href=".#editor-with-preview" title="internal link
+<li id="l-76">it becomes easy to get levels wrong with so many large level numbers to deal with. It is much harder to get an ID wrong.</li>
+<li id="l-77"><div class="p" id="p-151">when you want to move headers around to improve organization, things are quite painful without a refactoring tool (which we intend to provide in the <a href=".#browser-editor-with-preview" title="internal link
 word count: 0
 descendant word count: 185
-descendant count: 185">editor with preview</a>), as you need to fix up the levels of every single header.</div><div class="p" id="p-152">If you are using the ID-based syntax however, you only have to move the chunk of headers, and change the <code>parent</code> argument of a single top-level header being moved.</div></li>
+descendant count: 185">browser editor with preview</a>), as you need to fix up the levels of every single header.</div><div class="p" id="p-152">If you are using the ID-based syntax however, you only have to move the chunk of headers, and change the <code>parent</code> argument of a single top-level header being moved.</div></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#p-153">🔗</a></span><div class="p" id="p-153">Note that when the <code>parent=</code> argument is given, the header level must be <code>1</code>, otherwise Cirodown assumes that something is weird and gives an error. E.g. the following gives an error:
-<div class="code-caption-container" id="code-65">
+<div class="code-caption-container" id="code-66">
 <pre><code>= My h1
 
 == My h2
@@ -91,9 +91,9 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#header-explicit-levels-vs-nesting-design-choice" title="internal link
@@ -108,11 +108,15 @@ descendant count: 179">ID-based header levels and scope resolution</a> | <span c
 word count: 0
 descendant word count: 101
 descendant count: 101"><code>\Include</code> <code>parent</code> argument</a> | <span class="metrics"><span class="word-count" title="word count for this node">101</span></span></li>
+<li><a href=".#vim" title="internal link
+word count: 0
+descendant word count: 210
+descendant count: 210">Vim</a> | <span class="metrics"><span class="word-count" title="word count for this node">210</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

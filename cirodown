@@ -147,7 +147,7 @@ function cmd_get_stdout(cmd, args=[], options={}) {
         msg += `stdout: \n${out.stdout.toString(cirodown_nodejs.ENCODING)}\n`;
       }
       if (out.stderr !== null) {
-        msg += `stdout: \n${out.stdout.toString(cirodown_nodejs.ENCODING)}\n`;
+        msg += `stderr: \n${out.stderr.toString(cirodown_nodejs.ENCODING)}\n`;
       }
       throw msg;
     }

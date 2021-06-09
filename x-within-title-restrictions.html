@@ -23,42 +23,42 @@
 word count: 9
 descendant word count: 2k
 descendant count: 345">image titles</a>, that can generate complex dependencies, which would either be harder to implement, or lead to infinite recursion.</div></div><div><span class="hide-hover"><a href="#p-524">🔗</a></span><div class="p" id="p-524">To prevent such problems, Cirodown emits an error if you use an <code>\x</code> without content in the <code>title</code> of one of the following elements without an explicit ID:<div><ul id="ul-75">
-<li id="l-213"><div class="p" id="p-525"><a href=".#header" title="internal link
+<li id="l-214"><div class="p" id="p-525"><a href=".#header" title="internal link
 word count: 40
 descendant word count: 4k
 descendant count: 77">header</a>. For example, the following gives an error:
-<div class="code-caption-container" id="code-193">
+<div class="code-caption-container" id="code-194">
 <pre><code>= h1
 {id=myh1}
 
 == \x[myh1]
 </code></pre></div></div><div class="p" id="p-526">This could be solved by either adding a content to the reference:
-<div class="code-caption-container" id="code-194">
+<div class="code-caption-container" id="code-195">
 <pre><code>= h1
 {id=myh1}
 
 == \x[myh1][mycontent]
 </code></pre></div>
 or by adding an explicit ID to the header:
-<div class="code-caption-container" id="code-195">
+<div class="code-caption-container" id="code-196">
 <pre><code>= h1
 {id=myh1}
 
 == \x[myh1]
 {id=myh2}
 </code></pre></div></div></li>
-<li id="l-214"><div class="p" id="p-527">non-header (e.g. an <a href=".#image" title="internal link
+<li id="l-215"><div class="p" id="p-527">non-header (e.g. an <a href=".#image" title="internal link
 word count: 9
 descendant word count: 2k
 descendant count: 345">image</a>) that links to the title of another non-header</div><div class="p" id="p-528">For non-headers, things are a bit more relaxed, and we can link to headers, e.g.:
-<div class="code-caption-container" id="code-196">
+<div class="code-caption-container" id="code-197">
 <pre><code>= h1
 
 \Image[myimg.jpg]
 {title=my \x[h1].}
 </code></pre></div>
 This is allowed because Cirodown calculates IDs in two stages: first for all headers, and only later non non-headers.</div><div class="p" id="p-529">What you cannot do is link to another image e.g.:
-<div class="code-caption-container" id="code-197">
+<div class="code-caption-container" id="code-198">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=My image 1.}
@@ -67,7 +67,7 @@ This is allowed because Cirodown calculates IDs in two stages: first for all hea
 {title=my \x[h1].}
 </code></pre></div>
 and there the workaround are much the same as for headers: either explicitly set the cross reference content:
-<div class="code-caption-container" id="code-198">
+<div class="code-caption-container" id="code-199">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=My image 1.}
@@ -76,7 +76,7 @@ and there the workaround are much the same as for headers: either explicitly set
 {title=my \x[h1][My image 1].}
 </code></pre></div>
 or explicitly set an ID:
-<div class="code-caption-container" id="code-199">
+<div class="code-caption-container" id="code-200">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=My image 1.}
@@ -86,7 +86,7 @@ or explicitly set an ID:
 {title=my \x[h1].}
 </code></pre></div></div></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#p-530">🔗</a></span><div class="p" id="p-530">While it is technically possible implement the above limitations, it would require a bit of extra work which we don't want to put in right now: <a href="https://github.com/cirosantilli/cirodown/issues/95">https://github.com/cirosantilli/cirodown/issues/95</a>.</div></div><div><span class="hide-hover"><a href="#p-531">🔗</a></span><div class="p" id="p-531">Furthermore, the above rules do not exclude infinite rendering loops, but Cirodown detects such loops and gives a nice error message, this has been fixed at: <a href="https://github.com/cirosantilli/cirodown/issues/34">https://github.com/cirosantilli/cirodown/issues/34</a> </div></div><div><span class="hide-hover"><a href="#p-532">🔗</a></span><div class="p" id="p-532">For example this would contain an infinite loop:
-<div class="code-caption-container" id="code-200">
+<div class="code-caption-container" id="code-201">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=\x[myimage2].}
@@ -95,7 +95,7 @@ or explicitly set an ID:
 {id=myimage2}
 {title=\x[myimage1].}
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#p-533">🔗</a></span><div class="p" id="p-533">This infinite recursion is fundamentally not technically solved: the user has to manually break the loop by providing an <code>x</code> content explicitly, e.g. in either:
-<div class="code-caption-container" id="code-201">
+<div class="code-caption-container" id="code-202">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=\x[myimage2][my content 2].}
@@ -105,7 +105,7 @@ or explicitly set an ID:
 {title=\x[myimage1].}
 </code></pre></div>
 or:
-<div class="code-caption-container" id="code-202">
+<div class="code-caption-container" id="code-203">
 <pre><code>\Image[myimg.jpg]
 {id=myimage1}
 {title=\x[myimage2].}
@@ -124,14 +124,14 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

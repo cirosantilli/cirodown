@@ -18,34 +18,34 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#local-optimized-frontend">🔗</a></span><div class="h"><h1 id="local-optimized-frontend"><a href="" title="link to this element">Local optimized frontend</a></h1>
-<span class="hover-meta">  | <a title="view all headers in a single page" href=".#local-optimized-frontend">🗖 nosplit</a> | <a href=".#dynamic-website" title="parent header">↑ parent "Dynamic website"</a> | <span class="metrics"><span class="word-count" title="word count for this node">93</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#local-optimized-frontend">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#dynamic-website" title="parent header">↑ parent "Dynamic website"</a> | <span class="metrics"><span class="word-count" title="word count for this node">93</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#code-330">🔗</a></span><div class="code-caption-container" id="code-330">
+<span class="hover-meta">  | <a title="view all headers in a single page" href=".#local-optimized-frontend">🗖 nosplit</a> | <a href=".#dynamic-website" title="parent header">↑ parent "Dynamic website"</a> | <span class="metrics"><span class="word-count" title="word count for this node">121</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#local-optimized-frontend">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#dynamic-website" title="parent header">↑ parent "Dynamic website"</a> | <span class="metrics"><span class="word-count" title="word count for this node">121</span></span></div></div>
+</div><div><span class="hide-hover"><a href="#code-331">🔗</a></span><div class="code-caption-container" id="code-331">
 <pre><code>cd web
 npm install
-npm run build
+npm run build-dev
 npm start
-</code></pre></div></div><div><span class="hide-hover"><a href="#p-884">🔗</a></span><div class="p" id="p-884">The website can now be seen at: <a href="http://localhost:3000">http://localhost:3000</a></div></div><div><span class="hide-hover"><a href="#p-885">🔗</a></span><div class="p" id="p-885">This setup does not start the front-end development server at <a href="http://localhost:4101">http://localhost:4101</a>, but rather compiles the front-end files statically, and serves them on the public folder of the backend server.</div></div><div><span class="hide-hover"><a href="#p-886">🔗</a></span><div class="p" id="p-886">This is the type of setup that will run in production, with a single server. Running it locally might help debug some front-end deployment issues. But otherwise you will just normally use the <a href=".#local-run-as-identical-to-deployment-as-possible" title="internal link
+</code></pre></div></div><div><span class="hide-hover"><a href="#p-874">🔗</a></span><div class="p" id="p-874">The website can now be seen at: <a href="http://localhost:3000">http://localhost:3000</a></div></div><div><span class="hide-hover"><a href="#p-875">🔗</a></span><div class="p" id="p-875">This is the type of setup that will run in production, with a single server. Running it locally might help debug some front-end deployment issues. But otherwise you will just normally use the <a href=".#local-run-as-identical-to-deployment-as-possible" title="internal link
 word count: 0
 descendant word count: 80
-descendant count: 80">local run as identical to deployment as possible</a> setup instead for devlopment.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+descendant count: 80">local run as identical to deployment as possible</a> setup instead for development.</div></div><div><span class="hide-hover"><a href="#p-876">🔗</a></span><div class="p" id="p-876"><code>build-dev</code> is needed instead of <code>build</code> because it uses <code>NODE_ENV_OVERRIDE</code> which is needed because Next.js forces <code>NODE_ENV=production</code> and wontfixed changing it: <a href="https://github.com/vercel/next.js/issues/4022#issuecomment-374010365">https://github.com/vercel/next.js/issues/4022#issuecomment-374010365</a>, and that would lead to the PostgreSQL database being used, instead of the SQLite one we want.</div></div><div><span class="hide-hover"><a href="#p-877">🔗</a></span><div class="p" id="p-877">Building like this notably runs full typescript type checking, which is a good way to find bugs early.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
 <div><ul>
 <li><a href=".#dynamic-website" title="internal link
-word count: 4
-descendant word count: 344
-descendant count: 28">Dynamic website</a> | <span class="metrics"><span class="word-count" title="word count for this node">28</span>, <span class="word-count-descendant" title="word count for this node + descendants">344</span>, <span class="descendant-count" title="number of descendant nodes">4</span></span></li>
+word count: 5
+descendant word count: 405
+descendant count: 28">Dynamic website</a> | <span class="metrics"><span class="word-count" title="word count for this node">28</span>, <span class="word-count-descendant" title="word count for this node + descendants">405</span>, <span class="descendant-count" title="number of descendant nodes">5</span></span></li>
 <li><a href=".#tooling" title="internal link
-word count: 46
+word count: 49
 descendant word count: 5k
-descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">46</span></span></li>
+descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">49</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

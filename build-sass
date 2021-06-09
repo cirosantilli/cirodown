@@ -30,14 +30,20 @@ const scss_input = fs.readFileSync(path.join(
   __dirname, cirodown_nodejs.PACKAGE_SASS_BASENAME)).toString();
 let result;
 
+// We need to inject here to prevent
+// Error: @use rules must be written before any other rules.
+// because our sass has a `@use "sass:math";`, which is also
+// needed for the web/ webpack build.
+const MAGIC_IMPORT_MARKER = '// CIRODOWN_ADD_IMPORTS_HERE\n'
+
 result = sass.renderSync({
-  data: embed_includes + scss_input,
+  data: scss_input.replace(MAGIC_IMPORT_MARKER, embed_includes),
   outputStyle: 'compressed',
 });
 fs.writeFileSync(cirodown_nodejs.PACKAGE_OUT_CSS_EMBED_PATH, result.css);
 
 result = sass.renderSync({
-  data: external_includes + scss_input,
+  data: scss_input.replace(MAGIC_IMPORT_MARKER, external_includes),
   outputStyle: 'compressed',
 });
 fs.writeFileSync(cirodown_nodejs.PACKAGE_OUT_CSS_PATH, result.css);

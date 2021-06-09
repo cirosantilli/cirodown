@@ -2349,7 +2349,6 @@ function convert_init_context(options={}, extra_returns={}) {
       if (!('media-providers' in cirodown_json)) { cirodown_json['media-providers'] = {}; }
       {
         const media_providers = cirodown_json['media-providers'];
-
         for (const media_provider_type of MEDIA_PROVIDER_TYPES) {
           if (!(media_provider_type in media_providers)) {
             media_providers[media_provider_type] = {};
@@ -2359,10 +2358,10 @@ function convert_init_context(options={}, extra_returns={}) {
             media_provider['title-from-src'] = false;
           }
         }
-        if (!('path' in media_providers.local)) {
+        if (media_providers.local && !('path' in media_providers.local)) {
           media_providers.local.path = '';
         }
-        if (!('remote' in media_providers.github)) {
+        if (media_providers.github && !('remote' in media_providers.github)) {
           media_providers.github.remote = 'TODO determine from git remote origin if any';
         }
         for (const media_provider_name in media_providers) {

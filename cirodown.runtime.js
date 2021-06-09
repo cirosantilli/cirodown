@@ -384,9 +384,16 @@ class CirodownCanvasDemo {
 }
 
 // We want to do two things:
-// - allow it being ran locally without a server. Modules don't work:
+// - allow it being ran locally without a server. ES6 modules (ESM) don't work on file://
 //   https://stackoverflow.com/questions/46992463/es6-module-support-in-chrome-62-chrome-canary-64-does-not-work-locally-cors-er
 // - let webpack pick it up. Globals are not picked up by default.
 //   https://stackoverflow.com/questions/37656592/define-global-variable-with-webpack
-window.cirodown_runtime = cirodown_runtime;
+// Global.
+//window.cirodown_runtime = cirodown_runtime;
+// ESM.
 //export { cirodown_runtime }
+// CJS. We are able to ignore this undefined variable on the browser,
+// and webpack does pick it up.
+if (typeof exports !== 'undefined') {
+  exports.cirodown_runtime = cirodown_runtime;
+}

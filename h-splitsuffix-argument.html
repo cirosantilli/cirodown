@@ -23,53 +23,53 @@
 word count: 1
 descendant word count: 509
 descendant count: 380"><code>--split-headers</code></a>.</div></div><div><span class="hide-hover"><a href="#p-195">🔗</a></span><div class="p" id="p-195">If the given suffix is empty, it defaults to <code>-split</code>.</div></div><div><span class="hide-hover"><a href="#p-196">🔗</a></span><div class="p" id="p-196">For example, given:
-<div class="code-caption-container" id="code-75">
+<div class="code-caption-container" id="code-76">
 <pre><code>= my h1
 
 == my h2
 </code></pre></div>
 a <code>--split-headers</code> conversion would normally place <code>my h2</code> into a file called:
-<div class="code-caption-container" id="code-76">
+<div class="code-caption-container" id="code-77">
 <pre><code>my-h2.html
 </code></pre></div>
 However, if we instead wrote:
-<div class="code-caption-container" id="code-77">
+<div class="code-caption-container" id="code-78">
 <pre><code>== my h2
 {splitSuffix}
 </code></pre></div>
 it would not be placed under:
-<div class="code-caption-container" id="code-78">
+<div class="code-caption-container" id="code-79">
 <pre><code>my-h2-split.html
 </code></pre></div>
 and if we set a custom one as:
-<div class="code-caption-container" id="code-79">
+<div class="code-caption-container" id="code-80">
 <pre><code>== my h2
 {splitSuffix=asdf}
 </code></pre></div>
 it would go instead to:
-<div class="code-caption-container" id="code-80">
+<div class="code-caption-container" id="code-81">
 <pre><code>my-h2-asdf.html
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#p-197">🔗</a></span><div class="p" id="p-197">This option is useful if the root of your website is written in Cirodown, and you want to both:<div><ul id="ul-36">
-<li id="l-108">have a section that talks about some other project</li>
-<li id="l-109">host the documentation of that project inside the project source tree</li>
+<li id="l-109">have a section that talks about some other project</li>
+<li id="l-110">host the documentation of that project inside the project source tree</li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#p-198">🔗</a></span><div class="p" id="p-198">For example, <a href="https://cirosantilli.com">https://cirosantilli.com</a> with source at <a href="https://github.com/cirosantilli/cirosantilli.github.io">https://github.com/cirosantilli/cirosantilli.github.io</a> has a quick section about Cirodown: <a href="https://cirosantilli.com#cirodown">https://cirosantilli.com#cirodown</a>.</div></div><div><span class="hide-hover"><a href="#p-199">🔗</a></span><div class="p" id="p-199">Therefore, without a custom suffix, the split header version of that header would go to <a href="https://cirosantilli.com/cirodown">https://cirosantilli.com/cirodown</a>, which would collide with this documentation, that is present in a separate repository: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a>.</div></div><div><span class="hide-hover"><a href="#p-200">🔗</a></span><div class="p" id="p-200">Therefore a <code>splitSuffix</code> property is used, making the split header version fall under <code>/cirodown-split</code>, and leaving the nicer <code>/cirodown</code> for the more important project toplevel.</div></div><div><span class="hide-hover"><a href="#p-201">🔗</a></span><div class="p" id="p-201">If given on the <a href=".#the-toplevel-header" title="internal link
 word count: 2
 descendant word count: 361
 descendant count: 39">the toplevel headers</a>, which normally gets a suffix by default to differentiate from the non-split version, it replaces the default <code>-split</code> suffix with a custom one.</div></div><div><span class="hide-hover"><a href="#p-202">🔗</a></span><div class="p" id="p-202">For example if you had <code>notindex.ciro</code> as:
-<div class="code-caption-container" id="code-81">
+<div class="code-caption-container" id="code-82">
 <pre><code>= Not index
 </code></pre></div>
 then it would render to:
-<div class="code-caption-container" id="code-82">
+<div class="code-caption-container" id="code-83">
 <pre><code>notindex-split.ciro
 </code></pre></div>
 but if you used instead:
-<div class="code-caption-container" id="code-83">
+<div class="code-caption-container" id="code-84">
 <pre><code>= Not index
 {splitSuffix=asdf}
 </code></pre></div>
 then it would instead be:
-<div class="code-caption-container" id="code-84">
+<div class="code-caption-container" id="code-85">
 <pre><code>notindex-asdf.ciro
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
 <div><ul>
@@ -86,9 +86,9 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#split-headers" title="internal link
@@ -99,7 +99,7 @@ descendant count: 380"><code>--split-headers</code></a> | <span class="metrics">
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

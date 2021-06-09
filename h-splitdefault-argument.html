@@ -32,13 +32,13 @@ descendant count: 129">internal cross reference targets in split headers</a>.</d
 word count: 0
 descendant word count: 183
 descendant count: 183">boolean named argument</a> is given however:<div><ul id="ul-30">
-<li id="l-93">the split header becomes the default, e.g. <code>index.html</code> is now the split one, and <code>nosplit.html</code> is the non-split one</li>
-<li id="l-94">the header it is given for, and all of its descendant headers will use the split header as the default internal cross target, unless the header is already rendered in the current page. This does not propagate across <a href=".#include" title="internal link
+<li id="l-94">the split header becomes the default, e.g. <code>index.html</code> is now the split one, and <code>nosplit.html</code> is the non-split one</li>
+<li id="l-95">the header it is given for, and all of its descendant headers will use the split header as the default internal cross target, unless the header is already rendered in the current page. This does not propagate across <a href=".#include" title="internal link
 word count: 7
 descendant word count: 637
 descendant count: 430">includes</a> however.</li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#p-184">🔗</a></span><div class="p" id="p-184">For example, consider <code>README.ciro</code>:
-<div class="code-caption-container" id="code-73">
+<div class="code-caption-container" id="code-74">
 <pre><code>= Toplevel
 {splitDefault}
 
@@ -51,7 +51,7 @@ descendant count: 430">includes</a> however.</li>
 == h2
 </code></pre></div>
 and <code>notreadme.ciro</code>:
-<div class="code-caption-container" id="code-74">
+<div class="code-caption-container" id="code-75">
 <pre><code>= Notreadme
 
 \x[h2][notreadme to h2]
@@ -61,22 +61,22 @@ and <code>notreadme.ciro</code>:
 == Notreadme h2
 </code></pre></div>
 Then the following links would be generated:<div><ul id="ul-31">
-<li id="l-95"><code>index.html</code>: split version of <code>README.ciro</code>, i.e. does not contain <code>h2</code><div><ul id="ul-32">
-<li id="l-96"><code>toplevel to h2</code>: <code>h2.html</code>. Links to the split version of <code>h2</code>, since <code>h2</code> is also affected by the <code>splitDefault</code> of its parent, and therefore links to it use the split version by default</li>
-<li id="l-97"><code>toplevel to notreadme</code>: <code>notreadme.html</code>. Links to non-split version of <code>notreadme.html</code> since that header is not <code>splitDefault</code>, because <code>splitDefault</code> does not propagate across includes</li>
+<li id="l-96"><code>index.html</code>: split version of <code>README.ciro</code>, i.e. does not contain <code>h2</code><div><ul id="ul-32">
+<li id="l-97"><code>toplevel to h2</code>: <code>h2.html</code>. Links to the split version of <code>h2</code>, since <code>h2</code> is also affected by the <code>splitDefault</code> of its parent, and therefore links to it use the split version by default</li>
+<li id="l-98"><code>toplevel to notreadme</code>: <code>notreadme.html</code>. Links to non-split version of <code>notreadme.html</code> since that header is not <code>splitDefault</code>, because <code>splitDefault</code> does not propagate across includes</li>
 </ul></div></li>
-<li id="l-98"><code>nosplit.html</code> non-split version of <code>README.ciro</code>, i.e. contains <code>h2</code><div><ul id="ul-33">
-<li id="l-99"><code>toplevel to h2</code>: <code>#h2</code>, because even though <code>h2</code> is <code>splitDefault</code>, that header is already present in the current page, so it would be pointless to reload the split one</li>
-<li id="l-100"><code>toplevel to notreadme</code>: <code>notreadme.html</code></li>
+<li id="l-99"><code>nosplit.html</code> non-split version of <code>README.ciro</code>, i.e. contains <code>h2</code><div><ul id="ul-33">
+<li id="l-100"><code>toplevel to h2</code>: <code>#h2</code>, because even though <code>h2</code> is <code>splitDefault</code>, that header is already present in the current page, so it would be pointless to reload the split one</li>
+<li id="l-101"><code>toplevel to notreadme</code>: <code>notreadme.html</code></li>
 </ul></div></li>
-<li id="l-101"><code>h2.html</code> split version of <code>h2</code> from <code>README.ciro</code></li>
-<li id="l-102"><code>notreadme.html</code>: non-split version of <code>notreadme.ciro</code><div><ul id="ul-34">
-<li id="l-103"><code>notreadme to h2</code>: <code>h2.html</code>, because <code>h2</code> is <code>splitDefault</code></li>
-<li id="l-104"><code>notreadme to notreadme h2</code>: <code>#notreadme-h2</code></li>
+<li id="l-102"><code>h2.html</code> split version of <code>h2</code> from <code>README.ciro</code></li>
+<li id="l-103"><code>notreadme.html</code>: non-split version of <code>notreadme.ciro</code><div><ul id="ul-34">
+<li id="l-104"><code>notreadme to h2</code>: <code>h2.html</code>, because <code>h2</code> is <code>splitDefault</code></li>
+<li id="l-105"><code>notreadme to notreadme h2</code>: <code>#notreadme-h2</code></li>
 </ul></div></li>
-<li id="l-105"><code>notreadme-split.html</code>: split version of <code>notreadme.ciro</code><div><ul id="ul-35">
-<li id="l-106"><code>notreadme to h2</code>: <code>h2.html</code>, because <code>h2</code> is <code>splitDefault</code></li>
-<li id="l-107"><code>notreadme to notreadme h2</code>: <code>notreadme.html#notreadme-h2</code>, because <code>notreadme-h2</code> is not <code>splitDefault</code></li>
+<li id="l-106"><code>notreadme-split.html</code>: split version of <code>notreadme.ciro</code><div><ul id="ul-35">
+<li id="l-107"><code>notreadme to h2</code>: <code>h2.html</code>, because <code>h2</code> is <code>splitDefault</code></li>
+<li id="l-108"><code>notreadme to notreadme h2</code>: <code>notreadme.html#notreadme-h2</code>, because <code>notreadme-h2</code> is not <code>splitDefault</code></li>
 </ul></div></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#p-185">🔗</a></span><div class="p" id="p-185">The major application of this is that Ciro likes to work with a huge <code>README.ciro</code> containing thousands of random small topics. This is the case for example for: <a href="https://cirosantilli.com">https://cirosantilli.com</a></div></div><div><span class="hide-hover"><a href="#p-186">🔗</a></span><div class="p" id="p-186">And splitting those into separate source files would be quite laborious, as it would require duplicating IDs on the filename, and setting up <a href=".#include" title="internal link
 word count: 7
@@ -102,9 +102,9 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#internal-cross-reference-targets-in-split-headers" title="internal link
@@ -115,7 +115,7 @@ descendant count: 129">Internal cross reference targets in split headers</a> | <
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

@@ -19,42 +19,42 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#local-run-as-identical-to-deployment-as-possible">🔗</a></span><div class="h"><h1 id="local-run-as-identical-to-deployment-as-possible"><a href="" title="link to this element">Local run as identical to deployment as possible</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#local-run-as-identical-to-deployment-as-possible">🗖 nosplit</a> | <a href=".#dynamic-website" title="parent header">↑ parent "Dynamic website"</a> | <span class="metrics"><span class="word-count" title="word count for this node">80</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#local-run-as-identical-to-deployment-as-possible">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#dynamic-website" title="parent header">↑ parent "Dynamic website"</a> | <span class="metrics"><span class="word-count" title="word count for this node">80</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-887">🔗</a></span><div class="p" id="p-887">Here we use PostgreSQL instead of SQLite with the prebuilt static frontend.</div></div><div><span class="hide-hover"><a href="#p-888">🔗</a></span><div class="p" id="p-888">For when you really need to debug some deployment stuff locally</div></div><div><span class="hide-hover"><a href="#p-889">🔗</a></span><div class="p" id="p-889">Setup:</div></div><div><span class="hide-hover"><a href="#code-331">🔗</a></span><div class="code-caption-container" id="code-331">
+</div><div><span class="hide-hover"><a href="#p-878">🔗</a></span><div class="p" id="p-878">Here we use PostgreSQL instead of SQLite with the prebuilt static frontend.</div></div><div><span class="hide-hover"><a href="#p-879">🔗</a></span><div class="p" id="p-879">For when you really need to debug some deployment stuff locally</div></div><div><span class="hide-hover"><a href="#p-880">🔗</a></span><div class="p" id="p-880">Setup:</div></div><div><span class="hide-hover"><a href="#code-332">🔗</a></span><div class="code-caption-container" id="code-332">
 <pre><code>createdb node_express_sequelize_realworld
 psql -c "CREATE ROLE node_express_sequelize_realworld_user with login password 'a'"
 psql -c 'GRANT ALL PRIVILEGES ON DATABASE node_express_sequelize_realworld TO node_express_sequelize_realworld_user'
 echo "SECRET=$(tr -dc A-Za-z0-9 &lt;/dev/urandom | head -c 256)" &gt;&gt; .env
 npm run build
-</code></pre></div></div><div><span class="hide-hover"><a href="#p-890">🔗</a></span><div class="p" id="p-890">Run:</div></div><div><span class="hide-hover"><a href="#code-332">🔗</a></span><div class="code-caption-container" id="code-332">
+</code></pre></div></div><div><span class="hide-hover"><a href="#p-881">🔗</a></span><div class="p" id="p-881">Run:</div></div><div><span class="hide-hover"><a href="#code-333">🔗</a></span><div class="code-caption-container" id="code-333">
 <pre><code>env $(cat .env | xargs) \
 NODE_ENV=production \
 DATABASE_URL='postgres://node_express_sequelize_realworld_user:a@localhost:5432/node_express_sequelize_realworld' \
 npm start
-</code></pre></div></div><div><span class="hide-hover"><a href="#p-891">🔗</a></span><div class="p" id="p-891">then visit the running website at: <a href="http://localhost:3000/">http://localhost:3000/</a></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
+</code></pre></div></div><div><span class="hide-hover"><a href="#p-882">🔗</a></span><div class="p" id="p-882">then visit the running website at: <a href="http://localhost:3000/">http://localhost:3000/</a></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
 <div><ul>
 <li><a href=".#dynamic-website" title="internal link
-word count: 4
-descendant word count: 344
-descendant count: 28">Dynamic website</a> | <span class="metrics"><span class="word-count" title="word count for this node">28</span>, <span class="word-count-descendant" title="word count for this node + descendants">344</span>, <span class="descendant-count" title="number of descendant nodes">4</span></span></li>
+word count: 5
+descendant word count: 405
+descendant count: 28">Dynamic website</a> | <span class="metrics"><span class="word-count" title="word count for this node">28</span>, <span class="word-count-descendant" title="word count for this node + descendants">405</span>, <span class="descendant-count" title="number of descendant nodes">5</span></span></li>
 <li><a href=".#tooling" title="internal link
-word count: 46
+word count: 49
 descendant word count: 5k
-descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">46</span></span></li>
+descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">49</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#local-optimized-frontend" title="internal link
 word count: 0
-descendant word count: 93
-descendant count: 93">Local optimized frontend</a> | <span class="metrics"><span class="word-count" title="word count for this node">93</span></span></li>
+descendant word count: 121
+descendant count: 121">Local optimized frontend</a> | <span class="metrics"><span class="word-count" title="word count for this node">121</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

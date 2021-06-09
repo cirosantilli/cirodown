@@ -20,15 +20,15 @@
 <div><span class="hide-hover"><a href=".#publish-to-github-pages-root-page">🔗</a></span><div class="h"><h1 id="publish-to-github-pages-root-page"><a href="" title="link to this element">Publish to GitHub pages root page</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#publish-to-github-pages-root-page">🗖 nosplit</a> | <a href=".#publish-to-github-pages" title="parent header">↑ parent "Publish to GitHub Pages"</a> | <span class="metrics"><span class="word-count" title="word count for this node">158</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#publish-to-github-pages-root-page">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#publish-to-github-pages" title="parent header">↑ parent "Publish to GitHub Pages"</a> | <span class="metrics"><span class="word-count" title="word count for this node">158</span></span></div></div>
 </div><div><span class="hide-hover"><a href="#p-794">🔗</a></span><div class="p" id="p-794">If you want to publish your root user page, which appears at <code>/</code> (e.g. <a href="https://github.com/cirosantilli/cirosantilli.github.io">https://github.com/cirosantilli/cirosantilli.github.io</a> for the user <code>cirosantilli</code>), GitHub annoyingly forces you to use the <code>master</code> branch for the HTML output:<div><ul id="ul-103">
-<li id="l-279"><a href="https://github.com/isaacs/github/issues/212">https://github.com/isaacs/github/issues/212</a></li>
-<li id="l-280"><a href="https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages">https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages</a></li>
+<li id="l-280"><a href="https://github.com/isaacs/github/issues/212">https://github.com/isaacs/github/issues/212</a></li>
+<li id="l-281"><a href="https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages">https://stackoverflow.com/questions/31439951/how-can-i-use-a-branch-other-than-master-for-user-github-pages</a></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#p-795">🔗</a></span><div class="p" id="p-795">This means that you must place your <code>.ciro</code> input files in a branch other than <code>master</code> to clear up <code>master</code> for the generated HTML.</div></div><div><span class="hide-hover"><a href="#p-796">🔗</a></span><div class="p" id="p-796"><code>cirodown</code> automatically detects if your repository ois a root repository or not by parsing <code>git remote</code> output, but you must setup the branches correctly yourself.</div></div><div><span class="hide-hover"><a href="#p-797">🔗</a></span><div class="p" id="p-797">So on a new repository, you must <a href="https://stackoverflow.com/questions/42871542/how-to-create-a-git-repository-with-the-default-branch-name-other-than-master">first checkout to a different branch</a> as in:
-<div class="code-caption-container" id="code-304">
+<div class="code-caption-container" id="code-305">
 <pre><code>git init
 git checkout -b dev
 </code></pre></div>
 or to move an existing repository to a non-master branch:
-<div class="code-caption-container" id="code-305">
+<div class="code-caption-container" id="code-306">
 <pre><code>git checkout -b dev
 git push origin dev:dev
 git branch -D master
@@ -52,13 +52,13 @@ word count: 36
 descendant word count: 4k
 descendant count: 183"><code>cirodown</code> executable</a> | <span class="metrics"><span class="word-count" title="word count for this node">183</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span>, <span class="descendant-count" title="number of descendant nodes">36</span></span></li>
 <li><a href=".#tooling" title="internal link
-word count: 46
+word count: 49
 descendant word count: 5k
-descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">46</span></span></li>
+descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">49</span></span></li>
 <li><a href="." title="internal link
-word count: 203
+word count: 206
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">203</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#publish-to-github-pages" title="internal link
@@ -69,7 +69,7 @@ descendant count: 78">Publish to GitHub Pages</a> | <span class="metrics"><span 
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8a1004636bbf28333b103a8e00d4dc89e3d621e">c8a1004636bbf28333b103a8e00d4dc89e3d621e</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
