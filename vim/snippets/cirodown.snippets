@@ -5,3 +5,10 @@ snippet {p
 	{parent=`substitute(substitute(tolower(@+), '[^a-z0-9_]\\+', '-', 'g'), '^-\\|-$', '', 'g')`}
 snippet \x
 	\\x[`substitute(substitute(tolower(@+), '[^a-z0-9_]\\+', '-', 'g'), '^-\\|-$', '', 'g')`]
+
+# Standard format for the web archive of something which must be present in the clipboard, e.g.
+# ``
+# see this link: http://example.com (http/archive.is/XXX[archive])
+# ``
+snippet arch
+	(`@+`[archive])

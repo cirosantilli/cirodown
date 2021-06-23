@@ -18,14 +18,24 @@
 </header>
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#vim">🔗</a></span><div class="h"><h1 id="vim"><a href="" title="link to this element">Vim</a></h1>
-<span class="hover-meta">  | <a title="view all headers in a single page" href=".#vim">🗖 nosplit</a> | <a href=".#editor-support" title="parent header">↑ parent "Editor support"</a> | <span class="metrics"><span class="word-count" title="word count for this node">210</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#vim">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#editor-support" title="parent header">↑ parent "Editor support"</a> | <span class="metrics"><span class="word-count" title="word count for this node">210</span></span></div></div>
+<span class="hover-meta">  | <a title="view all headers in a single page" href=".#vim">🗖 nosplit</a> | <a href=".#editor-support" title="parent header">↑ parent "Editor support"</a> | <span class="metrics"><span class="word-count" title="word count for this node">289</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#vim">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#editor-support" title="parent header">↑ parent "Editor support"</a> | <span class="metrics"><span class="word-count" title="word count for this node">289</span></span></div></div>
 </div><div><span class="hide-hover"><a href="#p-884">🔗</a></span><div class="p" id="p-884">You can install the support with <a href="https://github.com/VundleVim/Vundle.vim">Vundle</a> with:
 <div class="code-caption-container" id="code-335">
-<pre><code>Bundle 'cirosantilli/cirodown', {'rtp': 'vim'}
+<pre><code>set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/vundle'
+let g:snipMate = {}
+let g:snipMate.snippet_version = 1
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'cirosantilli/cirodown', {'rtp': 'vim'}
 </code></pre></div>
 or by directly dropping the files named below under your <code>~/.vim/</code>, e.g. <code>vim/syntax/cirodown.vim</code></div></div><div><span class="hide-hover"><a href="#p-885">🔗</a></span><div class="p" id="p-885">The following support is provided:<div><ul id="ul-124">
-<li id="l-331"><a href="vim/syntax/cirodown.vim">vim/syntax/cirodown.vim</a>: syntax highlighting</li>
-<li id="l-332"><div class="p" id="p-886"><a href="vim/snippets/cirodown.vim">vim/snippets/cirodown.vim</a>: snippets for <a href="https://github.com/honza/vim-snippets">https://github.com/honza/vim-snippets</a>, which you also have to install first for them to work.</div><div class="p" id="p-887">For example, with those snippets installed, you can easily create links to headers. Suppose you have:
+<li id="l-331"><div class="p" id="p-886"><a href="vim/syntax/cirodown.vim">vim/syntax/cirodown.vim</a>: syntax highlighting.</div><div class="p" id="p-887">As for other programming languages, this cannot be perfect without actually parsing, which would be slow for larger files.</div><div class="p" id="p-888">But even the imperfect approximation already covers a lot of the most cases.</div><div class="p" id="p-889">Notably it turns off spelling from parts of the document like URLs and code which would otherwise contain many false positive spelling errors.</div></li>
+<li id="l-332"><div class="p" id="p-890"><a href="vim/snippets/cirodown.vim">vim/snippets/cirodown.vim</a>: snippets for <a href="https://github.com/honza/vim-snippets">https://github.com/honza/vim-snippets</a>, which you also have to install first for them to work.</div><div class="p" id="p-891">For example, with those snippets installed, you can easily create links to headers. Suppose you have:
 <div class="code-caption-container" id="code-336">
 <pre><code>= My long header
 </code></pre></div>
@@ -37,10 +47,10 @@ To create an internal cross reference to it you can:<div><ul id="ul-125">
 <div class="code-caption-container" id="code-337">
 <pre><code>\x[my-long-header]
 </code></pre></div>
-This provides a resonable alternative for ID calculation, until a ctags-like setup gets implemented (never/<a href=".#browser-editor-with-preview" title="internal link
+This provides a reasonable alternative for ID calculation, until a ctags-like setup gets implemented (never/<a href=".#browser-editor-with-preview" title="internal link
 word count: 0
 descendant word count: 185
-descendant count: 185">browser editor with preview</a>-only? ;-))</div><div class="p" id="p-888">Simiplarly for <a href=".#h-parent-argument" title="internal link
+descendant count: 185">browser editor with preview</a>-only? ;-))</div><div class="p" id="p-892">Similarly for <a href=".#h-parent-argument" title="internal link
 word count: 2
 descendant word count: 591
 descendant count: 330"><code>\H</code> <code>parent</code> argument</a> you can do:
@@ -50,13 +60,13 @@ descendant count: 330"><code>\H</code> <code>parent</code> argument</a> you can 
 would expand to:
 <div class="code-caption-container" id="code-339">
 <pre><code>{parent=my-long-header}
-</code></pre></div></div><div class="p" id="p-889">Syntax highlighting can likely never be perfect without a full parser (which is slow), but even the imperfect approximate setup (as provided for most other languages) is already a huge usability improvement.</div><div class="p" id="p-890">We will attempt to err on the side of "misses some stuff but does not destroy the entire page below" whenever possible.</div></li>
+</code></pre></div></div><div class="p" id="p-893">Syntax highlighting can likely never be perfect without a full parser (which is slow), but even the imperfect approximate setup (as provided for most other languages) is already a huge usability improvement.</div><div class="p" id="p-894">We will attempt to err on the side of "misses some stuff but does not destroy the entire page below" whenever possible.</div></li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
 <div><ul>
 <li><a href=".#editor-support" title="internal link
 word count: 2
-descendant word count: 395
-descendant count: 0">Editor support</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">395</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></li>
+descendant word count: 474
+descendant count: 0">Editor support</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">474</span>, <span class="descendant-count" title="number of descendant nodes">2</span></span></li>
 <li><a href=".#tooling" title="internal link
 word count: 49
 descendant word count: 5k
@@ -69,7 +79,7 @@ descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-co
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/e9b507c713736bbdbc2adeedb74cde2a607bb71c">e9b507c713736bbdbc2adeedb74cde2a607bb71c</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
