@@ -19,11 +19,11 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#speed-comparison-to-other-markup-language-implementations">🔗</a></span><div class="h"><h1 id="speed-comparison-to-other-markup-language-implementations"><a href="" title="link to this element">Speed comparison to other markup language implementations</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#speed-comparison-to-other-markup-language-implementations">🗖 nosplit</a> | <a href=".#performance" title="parent header">↑ parent "Performance"</a> | <span class="metrics"><span class="word-count" title="word count for this node">136</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#speed-comparison-to-other-markup-language-implementations">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#performance" title="parent header">↑ parent "Performance"</a> | <span class="metrics"><span class="word-count" title="word count for this node">136</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-930">🔗</a></span><div class="p" id="p-930">One quick and dirty option is to use <code>generate-paragraphs</code> which generates output compatible for most markup languages:
+</div><div><span class="hide-hover"><a href="#p-935">🔗</a></span><div class="p" id="p-935">One quick and dirty option is to use <code>generate-paragraphs</code> which generates output compatible for most markup languages:
 <div class="code-caption-container" id="code-357">
 <pre><code>./generate-paragraphs 100000 &gt; tmp.ciro
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-931">🔗</a></span><div class="p" id="p-931">On Ubuntu 20.04 <a href="https://cirosantilli.com/linux-kernel-module-cheat/#p51">Lenovo ThinkPad P51</a> for example:<div><ul id="ul-138">
-<li id="l-387">Cirodown 54ba49736323264a5c66aa5d419f8232b4ecf8d0 + 1, Node.js v12.18.1
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-936">🔗</a></span><div class="p" id="p-936">On Ubuntu 20.04 <a href="https://cirosantilli.com/linux-kernel-module-cheat/#p51">Lenovo ThinkPad P51</a> for example:<div><ul id="ul-140">
+<li id="l-393">Cirodown 54ba49736323264a5c66aa5d419f8232b4ecf8d0 + 1, Node.js v12.18.1
 <div class="code-caption-container" id="code-358">
 <pre><code>time ./cirodown tmp.ciro
 </code></pre></div>
@@ -33,7 +33,7 @@ outputs:
 user    0m6.323s
 sys     0m0.674s
 </code></pre></div></li>
-<li id="l-388">Asciidoctor 2.0.10, Ruby 2.6.0p0:
+<li id="l-394">Asciidoctor 2.0.10, Ruby 2.6.0p0:
 <div class="code-caption-container" id="code-360">
 <pre><code>cp tmp.ciro tmp.adoc
 time asciidoctor tmp.adoc
@@ -44,7 +44,7 @@ outputs:
 user    0m1.850s
 sys     0m0.060s
 </code></pre></div></li>
-<li id="l-389"><a href="https://github.com/commonmark/cmark">cmark</a> 0.29.0:
+<li id="l-395"><a href="https://github.com/commonmark/cmark">cmark</a> 0.29.0:
 <div class="code-caption-container" id="code-362">
 <pre><code>cp tmp.ciro tmp.md
 time cmark tmp.md &gt; tmp.md.html
@@ -56,7 +56,7 @@ user    0m0.070s
 sys     0m0.021s
 </code></pre></div>
 Holy cow, it is 200x faster than Asciidoctor!</li>
-<li id="l-390"><a href="https://github.com/markdown-it/markdown-it">markdown-it</a> at 5789a3fe9693aa3ef6aa882b0f57e0ea61efafc0 to get an idea of a JavaScript markdown implementation:
+<li id="l-396"><a href="https://github.com/markdown-it/markdown-it">markdown-it</a> at 5789a3fe9693aa3ef6aa882b0f57e0ea61efafc0 to get an idea of a JavaScript markdown implementation:
 <div class="code-caption-container" id="code-364">
 <pre><code>time markdown-it tmp.md &gt; tmp.md.html
 </code></pre></div>
@@ -66,7 +66,7 @@ outputs:
 user    0m0.590s
 sys     0m0.060s
 </code></pre></div></li>
-<li id="l-391"><code>cat</code> just to find the absolute floor:
+<li id="l-397"><code>cat</code> just to find the absolute floor:
 <div class="code-caption-container" id="code-366">
 <pre><code>time cat tmp.ciro &gt; tmp.tmp
 </code></pre></div>
@@ -87,14 +87,14 @@ word count: 17
 descendant word count: 1k
 descendant count: 0">Developing Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">1k</span>, <span class="descendant-count" title="number of descendant nodes">17</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

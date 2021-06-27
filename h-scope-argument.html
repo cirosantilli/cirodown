@@ -19,7 +19,7 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#h-scope-argument">🔗</a></span><div class="h"><h1 id="h-scope-argument"><a href="" title="link to this element"><code>\H</code> <code>scope</code> argument</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#h-scope-argument">🗖 nosplit</a> | <a href=".#h-arguments" title="parent header">↑ parent "<code>\H</code> arguments"</a> | <span class="metrics"><span class="word-count" title="word count for this node">401</span>, <span class="word-count-descendant" title="word count for this node + descendants">559</span>, <span class="descendant-count" title="number of descendant nodes">5</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#h-scope-argument">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#h-arguments" title="parent header">↑ parent "<code>\H</code> arguments"</a> | <span class="metrics"><span class="word-count" title="word count for this node">401</span>, <span class="word-count-descendant" title="word count for this node + descendants">559</span>, <span class="descendant-count" title="number of descendant nodes">5</span></span></div></div>
-</div><div><span class="hide-hover"><a href=".#h-scope-argument">🔗</a></span></div><div><span class="hide-hover"><a href="#p-162">🔗</a></span><div class="p" id="p-162">In some use cases, the sections under a section describe inseparable parts of something.</div></div><div><span class="hide-hover"><a href="#p-163">🔗</a></span><div class="p" id="p-163">For example, when documenting an experiment you executed, you will generally want an "Introduction", then a "Materials" section, and then a "Results" section for every experiment.</div></div><div><span class="hide-hover"><a href="#p-164">🔗</a></span><div class="p" id="p-164">On their own, those sections don't make much sense: they are always referred to in the context of the given experiment.</div></div><div><span class="hide-hover"><a href="#p-165">🔗</a></span><div class="p" id="p-165">The problem is then how to get unique IDs for those sections.</div></div><div><span class="hide-hover"><a href="#p-166">🔗</a></span><div class="p" id="p-166">One solution, would be to manually add the experiment ID as prefix to every subsection, as in:
+</div><div><span class="hide-hover"><a href=".#h-scope-argument">🔗</a></span></div><div><span class="hide-hover"><a href="#p-167">🔗</a></span><div class="p" id="p-167">In some use cases, the sections under a section describe inseparable parts of something.</div></div><div><span class="hide-hover"><a href="#p-168">🔗</a></span><div class="p" id="p-168">For example, when documenting an experiment you executed, you will generally want an "Introduction", then a "Materials" section, and then a "Results" section for every experiment.</div></div><div><span class="hide-hover"><a href="#p-169">🔗</a></span><div class="p" id="p-169">On their own, those sections don't make much sense: they are always referred to in the context of the given experiment.</div></div><div><span class="hide-hover"><a href="#p-170">🔗</a></span><div class="p" id="p-170">The problem is then how to get unique IDs for those sections.</div></div><div><span class="hide-hover"><a href="#p-171">🔗</a></span><div class="p" id="p-171">One solution, would be to manually add the experiment ID as prefix to every subsection, as in:
 <div class="code-caption-container" id="code-70">
 <pre><code>= Experiments
 
@@ -41,13 +41,13 @@ For a more general introduction to all experiments, see: \x[introduction].
 
 === Results
 {id=full-and-unique-experiment-name/results}
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-167">🔗</a></span><div class="p" id="p-167">but this would be very tedious.</div></div><div><span class="hide-hover"><a href="#p-168">🔗</a></span><div class="p" id="p-168">To keep those IDs shorter, Cirodown provides the <code>scope</code> <a href=".#boolean-named-argument" title="internal link
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-172">🔗</a></span><div class="p" id="p-172">but this would be very tedious.</div></div><div><span class="hide-hover"><a href="#p-173">🔗</a></span><div class="p" id="p-173">To keep those IDs shorter, Cirodown provides the <code>scope</code> <a href=".#boolean-named-argument" title="internal link
 word count: 0
 descendant word count: 183
 descendant count: 183">boolean named argument</a> property of <a href=".#header" title="internal link
 word count: 40
 descendant word count: 4k
-descendant count: 77">headers</a>, which works analogously to C++ namespaces with the header IDs.</div></div><div><span class="hide-hover"><a href="#p-169">🔗</a></span><div class="p" id="p-169">Using <code>scope</code>, the previous example could be written more succinctly as:
+descendant count: 77">headers</a>, which works analogously to C++ namespaces with the header IDs.</div></div><div><span class="hide-hover"><a href="#p-174">🔗</a></span><div class="p" id="p-174">Using <code>scope</code>, the previous example could be written more succinctly as:
 <div class="code-caption-container" id="code-71">
 <pre><code>= Experiments
 
@@ -67,11 +67,11 @@ For a more general introduction to all experiments, see: \x[/introduction].
 === Materials
 
 === Results
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-170">🔗</a></span><div class="p" id="p-170">Note how:<div><ul id="ul-25">
-<li id="l-81">full IDs are automatically prefixed by the parent scopes prefixed and joined with a slash <code>/</code></li>
-<li id="l-82">we can refer to other IDs withing the current scope without duplicating the scope. E.g. <code>\x[results]</code> in the example already refers to the ID <code>full-and-unique-experiment-name/materials</code></li>
-<li id="l-83"><div class="p" id="p-171">to refer to an ID outside of the scope and avoid name conflicts with IDs inside of the current scope, we start a reference with a slash <code>/</code></div><div class="p" id="p-172">So in the example above, <code>\x[/introduction]</code> refers to the ID <code>introduction</code>, and not <code>full-and-unique-experiment-name/introduction</code>.</div></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-173">🔗</a></span><div class="p" id="p-173">When nested scopes are involved, <a href=".#internal-cross-reference" title="internal link
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-175">🔗</a></span><div class="p" id="p-175">Note how:<div><ul id="ul-27">
+<li id="l-87">full IDs are automatically prefixed by the parent scopes prefixed and joined with a slash <code>/</code></li>
+<li id="l-88">we can refer to other IDs withing the current scope without duplicating the scope. E.g. <code>\x[results]</code> in the example already refers to the ID <code>full-and-unique-experiment-name/materials</code></li>
+<li id="l-89"><div class="p" id="p-176">to refer to an ID outside of the scope and avoid name conflicts with IDs inside of the current scope, we start a reference with a slash <code>/</code></div><div class="p" id="p-177">So in the example above, <code>\x[/introduction]</code> refers to the ID <code>introduction</code>, and not <code>full-and-unique-experiment-name/introduction</code>.</div></li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-178">🔗</a></span><div class="p" id="p-178">When nested scopes are involved, <a href=".#internal-cross-reference" title="internal link
 word count: 25
 descendant word count: 2k
 descendant count: 123">internal cross references</a> resolution peels off the scopes one by one trying to find the closes match, e.g. the following works as expected:
@@ -87,10 +87,10 @@ descendant count: 123">internal cross references</a> resolution peels off the sc
 
 \x[h2]
 </code></pre></div>
-Here Cirodown:<div><ul id="ul-26">
-<li id="l-84">first tries to loop for an <code>h1/h2/h3/h2</code>, since <code>h1/h2/h3</code> is the current scope, but that ID does not exist</li>
-<li id="l-85">so it removes the <code>h3</code> from the current scope, and looks for <code>h1/h2/h2</code>, which is still not found</li>
-<li id="l-86">then it removes the <code>h2</code>, leading to <code>h1/h2</code>, and that one is found, and therefore is taken</li>
+Here Cirodown:<div><ul id="ul-28">
+<li id="l-90">first tries to loop for an <code>h1/h2/h3/h2</code>, since <code>h1/h2/h3</code> is the current scope, but that ID does not exist</li>
+<li id="l-91">so it removes the <code>h3</code> from the current scope, and looks for <code>h1/h2/h2</code>, which is still not found</li>
+<li id="l-92">then it removes the <code>h2</code>, leading to <code>h1/h2</code>, and that one is found, and therefore is taken</li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
 <li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">401</span>, <span class="word-count-descendant" title="word count for this node + descendants">559</span>, <span class="descendant-count" title="number of descendant nodes">5</span></span></div>
@@ -124,14 +124,14 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

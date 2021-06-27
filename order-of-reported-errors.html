@@ -19,14 +19,14 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#order-of-reported-errors">🔗</a></span><div class="h"><h1 id="order-of-reported-errors"><a href="" title="link to this element">Order of reported errors</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#order-of-reported-errors">🗖 nosplit</a> | <a href=".#error-reporting" title="parent header">↑ parent "Error reporting"</a> | <span class="metrics"><span class="word-count" title="word count for this node">281</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#order-of-reported-errors">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#error-reporting" title="parent header">↑ parent "Error reporting"</a> | <span class="metrics"><span class="word-count" title="word count for this node">281</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-909">🔗</a></span><div class="p" id="p-909">One important philosophy of the error reporting is that the very first message should be the root cause of the problem whenever possible: users should not be forced to search a hundred messages to find the root cause. In this way, the procedure:<div><ul id="ul-132">
-<li id="l-368">solve the first error</li>
-<li id="l-369">reconvert</li>
-<li id="l-370">solving the new first error</li>
-<li id="l-371">reconvert</li>
-<li id="l-372">etc.
+</div><div><span class="hide-hover"><a href="#p-914">🔗</a></span><div class="p" id="p-914">One important philosophy of the error reporting is that the very first message should be the root cause of the problem whenever possible: users should not be forced to search a hundred messages to find the root cause. In this way, the procedure:<div><ul id="ul-134">
+<li id="l-374">solve the first error</li>
+<li id="l-375">reconvert</li>
+<li id="l-376">solving the new first error</li>
+<li id="l-377">reconvert</li>
+<li id="l-378">etc.
 </li>
-</ul></div>should always deterministically lead to a resolution of all problems.</div></div><div><span class="hide-hover"><a href="#p-910">🔗</a></span><div class="p" id="p-910">Error messages are normally sorted by file, line and column, regardless of which conversion stage they happened (e.g. a tokeniser error first gets reported before a parser error).</div></div><div><span class="hide-hover"><a href="#p-911">🔗</a></span><div class="p" id="p-911">There is however one important exception to that: broken internal cross references are always reported last.</div></div><div><span class="hide-hover"><a href="#p-912">🔗</a></span><div class="p" id="p-912">For example, consider the following syntactically wrong document:
+</ul></div>should always deterministically lead to a resolution of all problems.</div></div><div><span class="hide-hover"><a href="#p-915">🔗</a></span><div class="p" id="p-915">Error messages are normally sorted by file, line and column, regardless of which conversion stage they happened (e.g. a tokeniser error first gets reported before a parser error).</div></div><div><span class="hide-hover"><a href="#p-916">🔗</a></span><div class="p" id="p-916">There is however one important exception to that: broken internal cross references are always reported last.</div></div><div><span class="hide-hover"><a href="#p-917">🔗</a></span><div class="p" id="p-917">For example, consider the following syntactically wrong document:
 <div class="code-caption-container" id="code-340">
 <pre><code>= a
 
@@ -35,18 +35,18 @@
 ``
 == b
 </code></pre></div>
-Here we have an unterminated code block at line 5.</div></div><div><span class="hide-hover"><a href="#p-913">🔗</a></span><div class="p" id="p-913">However, this unterminated code block leads the header <code>b</code> not to be seen, and therefore the reference <code>\x[b]</code> on line 3 to fail.</div></div><div><span class="hide-hover"><a href="#p-914">🔗</a></span><div class="p" id="p-914">Therefore, if we sorted naively by line, the broken reference would shoe up first:
+Here we have an unterminated code block at line 5.</div></div><div><span class="hide-hover"><a href="#p-918">🔗</a></span><div class="p" id="p-918">However, this unterminated code block leads the header <code>b</code> not to be seen, and therefore the reference <code>\x[b]</code> on line 3 to fail.</div></div><div><span class="hide-hover"><a href="#p-919">🔗</a></span><div class="p" id="p-919">Therefore, if we sorted naively by line, the broken reference would shoe up first:
 <div class="code-caption-container" id="code-341">
 <pre><code>error: tmp.ciro:3:3: cross reference to unknown id: "b"
 error: tmp.ciro:5:1: unterminated literal argument
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-915">🔗</a></span><div class="p" id="p-915">But in a big document, this case could lead to hundreds of undefined references to show up before the actual root unterminated literal problem.:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-920">🔗</a></span><div class="p" id="p-920">But in a big document, this case could lead to hundreds of undefined references to show up before the actual root unterminated literal problem.:
 <div class="code-caption-container" id="code-342">
 <pre><code>error: tmp.ciro:3:3: cross reference to unknown id: "b"
 error: tmp.ciro:4:3: cross reference to unknown id: "b"
 error: tmp.ciro:5:3: cross reference to unknown id: "b"
 ...
 error: tmp.ciro:1000:1: unterminated literal argument
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-916">🔗</a></span><div class="p" id="p-916">Therefore, we force undefined references to show up last to prevent this common problem:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-921">🔗</a></span><div class="p" id="p-921">Therefore, we force undefined references to show up last to prevent this common problem:
 <div class="code-caption-container" id="code-343">
 <pre><code>error: tmp.ciro:1000:1: unterminated literal argument
 error: tmp.ciro:3:3: cross reference to unknown id: "b"
@@ -64,14 +64,14 @@ word count: 49
 descendant word count: 5k
 descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">49</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

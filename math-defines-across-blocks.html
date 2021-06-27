@@ -19,42 +19,42 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#math-defines-across-blocks">🔗</a></span><div class="h"><h1 id="math-defines-across-blocks"><a href="" title="link to this element">Math defines across blocks</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#math-defines-across-blocks">🗖 nosplit</a> | <a href=".#mathematics" title="parent header">↑ parent "Mathematics"</a> | <span class="metrics"><span class="word-count" title="word count for this node">129</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#math-defines-across-blocks">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#mathematics" title="parent header">↑ parent "Mathematics"</a> | <span class="metrics"><span class="word-count" title="word count for this node">129</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-365">🔗</a></span><div class="p" id="p-365">First here is an invisible block (with <code>{show=0}</code>) defining with a <code>\newcommand</code> definition after this paragraph:
+</div><div><span class="hide-hover"><a href="#p-370">🔗</a></span><div class="p" id="p-370">First here is an invisible block (with <code>{show=0}</code>) defining with a <code>\newcommand</code> definition after this paragraph:
 <div class="code-caption-container" id="code-142">
 <pre><code>$$
 \newcommand{\foo}[0]{bar}
 $${show=0}
-</code></pre></div><div class="p" id="p-366">which renders as:</div><blockquote id="q-63"></blockquote>
-We make it invisible because this block only contains KaTeX definitions, and should not render to anything.</div></div><div><span class="hide-hover"><a href="#p-367">🔗</a></span><div class="p" id="p-367">Then the second math block uses those definitions:
+</code></pre></div><div class="p" id="p-371">which renders as:</div><blockquote id="q-63"></blockquote>
+We make it invisible because this block only contains KaTeX definitions, and should not render to anything.</div></div><div><span class="hide-hover"><a href="#p-372">🔗</a></span><div class="p" id="p-372">Then the second math block uses those definitions:
 <div class="code-caption-container" id="code-143">
 <pre><code>$$
 \foo
 $$
-</code></pre></div><div class="p" id="p-368">which renders as:</div><blockquote id="q-64"><div class="math-container" id="equation-7"><div class="math-equation">
+</code></pre></div><div class="p" id="p-373">which renders as:</div><blockquote id="q-64"><div class="math-container" id="equation-7"><div class="math-equation">
 <div><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span></div>
 <div><a href="#equation-7">(7)</a></div></div>
 </div>
-</blockquote></div></div><div><span class="hide-hover"><a href="#p-369">🔗</a></span><div class="p" id="p-369">Analogously with <code>\def</code>, definition:
+</blockquote></div></div><div><span class="hide-hover"><a href="#p-374">🔗</a></span><div class="p" id="p-374">Analogously with <code>\def</code>, definition:
 <div class="code-caption-container" id="code-144">
 <pre><code>$$
 \gdef\foogdef{bar}
 $${show=0}
-</code></pre></div><div class="p" id="p-370">which renders as:</div><blockquote id="q-65"></blockquote>
+</code></pre></div><div class="p" id="p-375">which renders as:</div><blockquote id="q-65"></blockquote>
 and the second block using it:
 <div class="code-caption-container" id="code-145">
 <pre><code>$$
 \foogdef
 $$
-</code></pre></div><div class="p" id="p-371">which renders as:</div><blockquote id="q-66"><div class="math-container" id="equation-8"><div class="math-equation">
+</code></pre></div><div class="p" id="p-376">which renders as:</div><blockquote id="q-66"><div class="math-container" id="equation-8"><div class="math-equation">
 <div><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span></div>
 <div><a href="#equation-8">(8)</a></div></div>
 </div>
-</blockquote></div></div><div><span class="hide-hover"><a href="#p-372">🔗</a></span><div class="p" id="p-372">And just to test that <code>{show=1}</code> actually shows, although it is useless, and that <code>{show=0}</code> skips incrementing the equation count:
+</blockquote></div></div><div><span class="hide-hover"><a href="#p-377">🔗</a></span><div class="p" id="p-377">And just to test that <code>{show=1}</code> actually shows, although it is useless, and that <code>{show=0}</code> skips incrementing the equation count:
 <div class="code-caption-container" id="code-146">
 <pre><code>$$1 + 1$${show=1}
 $$2 + 2$${show=0}
 $$3 + 3$${show=1}
-</code></pre></div><div class="p" id="p-373">which renders as:</div><blockquote id="q-67"><div class="p" id="p-374"><div class="math-container" id="equation-9"><div class="math-equation">
+</code></pre></div><div class="p" id="p-378">which renders as:</div><blockquote id="q-67"><div class="p" id="p-379"><div class="math-container" id="equation-9"><div class="math-equation">
 <div><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></div>
 <div><a href="#equation-9">(9)</a></div></div>
 </div>
@@ -75,14 +75,14 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

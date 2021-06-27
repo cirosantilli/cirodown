@@ -19,22 +19,22 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#store-images-in-wikimedia-commons">🔗</a></span><div class="h"><h1 id="store-images-in-wikimedia-commons"><a href="" title="link to this element">Store images in Wikimedia Commons</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#store-images-in-wikimedia-commons">🗖 nosplit</a> | <a href=".#where-to-store-images" title="parent header">↑ parent "Where to store images"</a> | <span class="metrics"><span class="word-count" title="word count for this node">309</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#store-images-in-wikimedia-commons">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#where-to-store-images" title="parent header">↑ parent "Where to store images"</a> | <span class="metrics"><span class="word-count" title="word count for this node">309</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-270">🔗</a></span><div class="p" id="p-270">Wikimedia Commons is another great possibility to upload your images to:
+</div><div><span class="hide-hover"><a href="#p-275">🔗</a></span><div class="p" id="p-275">Wikimedia Commons is another great possibility to upload your images to:
 <div class="code-caption-container" id="code-111">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg]
 {source=https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg}
-</code></pre></div><div class="p" id="p-271">which renders as:</div><blockquote id="q-38"><figure id="image-17">
+</code></pre></div><div class="p" id="p-276">which renders as:</div><blockquote id="q-38"><figure id="image-17">
 <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-17"><span class="caption-prefix">Figure 12</span></a>.  <a href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="#p-272">🔗</a></span><div class="p" id="p-272">Cirodown likes Wikimedia Commons so much that we automatically parse the image URL and if it is from Wikimedia Commons, automatically deduce the <code>source</code> for you. So the above image renders the same without the <code>source</code> argument:
+</blockquote></div></div><div><span class="hide-hover"><a href="#p-277">🔗</a></span><div class="p" id="p-277">Cirodown likes Wikimedia Commons so much that we automatically parse the image URL and if it is from Wikimedia Commons, automatically deduce the <code>source</code> for you. So the above image renders the same without the <code>source</code> argument:
 <div class="code-caption-container" id="code-112">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg]
-</code></pre></div><div class="p" id="p-273">which renders as:</div><blockquote id="q-39"><figure id="image-18">
+</code></pre></div><div class="p" id="p-278">which renders as:</div><blockquote id="q-39"><figure id="image-18">
 <a href="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-18"><span class="caption-prefix">Figure 13</span></a>.  <a href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="#p-274">🔗</a></span><div class="p" id="p-274">And like for non-Wikimedia images, you can automatically generate a <code>title</code> from the <code>src</code> by setting the <code>titleFromSrc</code> <a href=".#boolean-named-argument" title="internal link
+</blockquote></div></div><div><span class="hide-hover"><a href="#p-279">🔗</a></span><div class="p" id="p-279">And like for non-Wikimedia images, you can automatically generate a <code>title</code> from the <code>src</code> by setting the <code>titleFromSrc</code> <a href=".#boolean-named-argument" title="internal link
 word count: 0
 descendant word count: 183
 descendant count: 183">boolean named argument</a> or if <code>title-from-src</code> is set as the default <a href=".#cirodown-json/media-providers" title="internal link
@@ -44,40 +44,40 @@ descendant count: 271">media provider</a> for the media type:
 <div class="code-caption-container" id="code-113">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg]
 {titleFromSrc}
-</code></pre></div><div class="p" id="p-275">which renders as:</div><blockquote id="q-40"><figure id="image-gel-electrophoresis-insert-comb">
+</code></pre></div><div class="p" id="p-280">which renders as:</div><blockquote id="q-40"><figure id="image-gel-electrophoresis-insert-comb">
 <a href="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-gel-electrophoresis-insert-comb"><span class="caption-prefix">Figure 14</span></a>. Gel electrophoresis insert comb. <a href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="#p-276">🔗</a></span><div class="p" id="p-276">And a quick test for a more complex thumb resized URL:
+</blockquote></div></div><div><span class="hide-hover"><a href="#p-281">🔗</a></span><div class="p" id="p-281">And a quick test for a more complex thumb resized URL:
 <div class="code-caption-container" id="code-114">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg]
-</code></pre></div><div class="p" id="p-277">which renders as:</div><blockquote id="q-41"><figure id="image-20">
+</code></pre></div><div class="p" id="p-282">which renders as:</div><blockquote id="q-41"><figure id="image-20">
 <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Gel_electrophoresis_insert_comb.jpg/450px-Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315"></a>
 <figcaption><a href="#image-20"><span class="caption-prefix">Figure 15</span></a>.  <a href="https://commons.wikimedia.org/wiki/File:Gel_electrophoresis_insert_comb.jpg">Source</a>.</figcaption>
 </figure>
-</blockquote></div></div><div><span class="hide-hover"><a href="#p-278">🔗</a></span><div class="p" id="p-278">If you really absolutely want to turn off the <code>source</code>, you can explicitly set:
+</blockquote></div></div><div><span class="hide-hover"><a href="#p-283">🔗</a></span><div class="p" id="p-283">If you really absolutely want to turn off the <code>source</code>, you can explicitly set:
 <div class="code-caption-container" id="code-115">
 <pre><code>\Image[https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg]
 {source=}
-</code></pre></div><div class="p" id="p-279">which renders as:</div><blockquote id="q-42"><figure id="image-21">
+</code></pre></div><div class="p" id="p-284">which renders as:</div><blockquote id="q-42"><figure id="image-21">
 <a href="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg" loading="lazy" height="315" alt="https://upload.wikimedia.org/wikipedia/commons/5/5b/Gel_electrophoresis_insert_comb.jpg"></a>
 </figure>
 </blockquote>
-but you don't want to do that for the most commonly Wikimedia Commons used license of CC BY+, do you? :-)</div></div><div><span class="hide-hover"><a href="#p-280">🔗</a></span><div class="p" id="p-280">Upsides of using Wikimedia Commons for your images:<div><ul id="ul-44">
-<li id="l-127">makes it easier for other writers to find and reuse your images</li>
-<li id="l-128">automatically generates resized versions of the uploaded images into several common dimensions so you can pick the smallest one that fits your desired <a href=".#image-height" title="internal link
+but you don't want to do that for the most commonly Wikimedia Commons used license of CC BY+, do you? :-)</div></div><div><span class="hide-hover"><a href="#p-285">🔗</a></span><div class="p" id="p-285">Upsides of using Wikimedia Commons for your images:<div><ul id="ul-46">
+<li id="l-133">makes it easier for other writers to find and reuse your images</li>
+<li id="l-134">automatically generates resized versions of the uploaded images into several common dimensions so you can pick the smallest one that fits your desired <a href=".#image-height" title="internal link
 word count: 0
 descendant word count: 85
 descendant count: 85">image height</a> to reduce bandwidth usage</li>
-<li id="l-129">if you have so many images that they would blow even the size of a <a href=".#store-images-in-a-separate-media-repository" title="internal link
+<li id="l-135">if you have so many images that they would blow even the size of a <a href=".#store-images-in-a-separate-media-repository" title="internal link
 word count: 0
 descendant word count: 519
 descendant count: 519">separate media repository</a>, this will still work
 </li>
-</ul></div>Downsides:<div><ul id="ul-45">
-<li id="l-130">forces you to use the Creative Commons license</li>
-<li id="l-131">requires the content to be educational in nature</li>
-<li id="l-132">uploading a bunch of images to Wikimedia Commons does feel a bit more laborious than it should because you have to write down so much repeated metadata for them</li>
+</ul></div>Downsides:<div><ul id="ul-47">
+<li id="l-136">forces you to use the Creative Commons license</li>
+<li id="l-137">requires the content to be educational in nature</li>
+<li id="l-138">uploading a bunch of images to Wikimedia Commons does feel a bit more laborious than it should because you have to write down so much repeated metadata for them</li>
 </ul></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
 <div><ul>
 <li><a href=".#where-to-store-images" title="internal link
@@ -93,9 +93,9 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#video" title="internal link
@@ -106,7 +106,7 @@ descendant count: 481">Video</a> | <span class="metrics"><span class="word-count
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

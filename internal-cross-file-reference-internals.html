@@ -19,13 +19,13 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#internal-cross-file-reference-internals">🔗</a></span><div class="h"><h1 id="internal-cross-file-reference-internals"><a href="" title="link to this element">Internal cross file reference internals</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#internal-cross-file-reference-internals">🗖 nosplit</a> | <a href=".#internal-cross-file-reference" title="parent header">↑ parent "Internal cross file reference"</a> | <span class="metrics"><span class="word-count" title="word count for this node">131</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#internal-cross-file-reference-internals">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#internal-cross-file-reference" title="parent header">↑ parent "Internal cross file reference"</a> | <span class="metrics"><span class="word-count" title="word count for this node">131</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-564">🔗</a></span><div class="p" id="p-564">When running in Node.js, Cirodown dumps the IDs of all processed files to a <code>out/db.sqlite3</code> file, and then reads from that file when IDs are needed.</div></div><div><span class="hide-hover"><a href="#p-565">🔗</a></span><div class="p" id="p-565">When converting a directory, <code>out/db.sqlite3</code> is placed inside the input directory. When converting individual files, <code>out/db.sqlite3</code> is placed in the current working directory. The file is not created or used when handling input from stdin.</div></div><div><span class="hide-hover"><a href="#p-566">🔗</a></span><div class="p" id="p-566">When running in the browser, the same JavaScript API will send queries to the server instead of a local SQLite database.</div></div><div><span class="hide-hover"><a href="#p-567">🔗</a></span><div class="p" id="p-567">To inspect the ID database to debug it, you can use:
+</div><div><span class="hide-hover"><a href="#p-569">🔗</a></span><div class="p" id="p-569">When running in Node.js, Cirodown dumps the IDs of all processed files to a <code>out/db.sqlite3</code> file, and then reads from that file when IDs are needed.</div></div><div><span class="hide-hover"><a href="#p-570">🔗</a></span><div class="p" id="p-570">When converting a directory, <code>out/db.sqlite3</code> is placed inside the input directory. When converting individual files, <code>out/db.sqlite3</code> is placed in the current working directory. The file is not created or used when handling input from stdin.</div></div><div><span class="hide-hover"><a href="#p-571">🔗</a></span><div class="p" id="p-571">When running in the browser, the same JavaScript API will send queries to the server instead of a local SQLite database.</div></div><div><span class="hide-hover"><a href="#p-572">🔗</a></span><div class="p" id="p-572">To inspect the ID database to debug it, you can use:
 <div class="code-caption-container" id="code-218">
 <pre><code>sqlite3 out/db.sqlite3 .dump
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-568">🔗</a></span><div class="p" id="p-568">It is often useful to dump a single table, e.g. to dump the <code>ids</code> table:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-573">🔗</a></span><div class="p" id="p-573">It is often useful to dump a single table, e.g. to dump the <code>ids</code> table:
 <div class="code-caption-container" id="code-219">
 <pre><code>sqlite3 out/db.sqlite3 '.dump ids'
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-569">🔗</a></span><div class="p" id="p-569">You can force <code>cirodown</code> to not use the ID database with <code>--no-db</code>:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-574">🔗</a></span><div class="p" id="p-574">You can force <code>cirodown</code> to not use the ID database with <code>--no-db</code>:
 <div class="code-caption-container" id="code-220">
 <pre><code>./cirodown --no-db .
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
@@ -43,9 +43,9 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#include" title="internal link
@@ -56,7 +56,7 @@ descendant count: 430">Include</a> | <span class="metrics"><span class="word-cou
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

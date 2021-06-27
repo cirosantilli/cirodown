@@ -19,7 +19,7 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#positional-vs-named-arguments">🔗</a></span><div class="h"><h1 id="positional-vs-named-arguments"><a href="" title="link to this element">Positional vs named arguments (<code>[...]</code> vs <code>{key=...}</code>)</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#positional-vs-named-arguments">🗖 nosplit</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">291</span>, <span class="word-count-descendant" title="word count for this node + descendants">621</span>, <span class="descendant-count" title="number of descendant nodes">3</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#positional-vs-named-arguments">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro-argument-syntax" title="parent header">↑ parent "Macro argument syntax"</a> | <span class="metrics"><span class="word-count" title="word count for this node">291</span>, <span class="word-count-descendant" title="word count for this node + descendants">621</span>, <span class="descendant-count" title="number of descendant nodes">3</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-629">🔗</a></span><div class="p" id="p-629">Every argument in Cirodown is either positional or named.</div></div><div><span class="hide-hover"><a href="#p-630">🔗</a></span><div class="p" id="p-630">For example, in a <a href=".#header" title="internal link
+</div><div><span class="hide-hover"><a href="#p-634">🔗</a></span><div class="p" id="p-634">Every argument in Cirodown is either positional or named.</div></div><div><span class="hide-hover"><a href="#p-635">🔗</a></span><div class="p" id="p-635">For example, in a <a href=".#header" title="internal link
 word count: 40
 descendant word count: 4k
 descendant count: 77">header</a> definition with an ID:
@@ -37,9 +37,9 @@ descendant count: 70">sane</a> version:
 {id=asdf qwer}
 {scope}
 </code></pre></div>
-we have:<div><ul id="ul-79">
-<li id="l-226">two positional argument: <code>[1]</code> and <code>[My asdf]</code>. Those are surrounded by square brackets <code>[]</code> and have no name</li>
-<li id="l-227"><div class="p" id="p-631">two named arguments: <code>{id=asdf qwer}</code> and <code>{scope}</code>.</div><div class="p" id="p-632">The first one has name <code>id</code>, followed by the separator <code>=</code>, followed by the value <code>asdf qwer</code>.</div><div class="p" id="p-633">The separator <code>=</code> always is optional. If not given, it is equivalent to an empty value, e.g.:
+we have:<div><ul id="ul-81">
+<li id="l-232">two positional argument: <code>[1]</code> and <code>[My asdf]</code>. Those are surrounded by square brackets <code>[]</code> and have no name</li>
+<li id="l-233"><div class="p" id="p-636">two named arguments: <code>{id=asdf qwer}</code> and <code>{scope}</code>.</div><div class="p" id="p-637">The first one has name <code>id</code>, followed by the separator <code>=</code>, followed by the value <code>asdf qwer</code>.</div><div class="p" id="p-638">The separator <code>=</code> always is optional. If not given, it is equivalent to an empty value, e.g.:
 <div class="code-caption-container" id="code-253">
 <pre><code>{id=}
 </code></pre></div>
@@ -47,7 +47,7 @@ is the same as:
 <div class="code-caption-container" id="code-254">
 <pre><code>{id}
 </code></pre></div></div></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-634">🔗</a></span><div class="p" id="p-634">You can determine if a macro is positional or named by using <a href=".#help-macros" title="internal link
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-639">🔗</a></span><div class="p" id="p-639">You can determine if a macro is positional or named by using <a href=".#help-macros" title="internal link
 word count: 0
 descendant word count: 14
 descendant count: 14"><code>--help-macros</code></a>. Its output contains something like:
@@ -71,13 +71,13 @@ descendant count: 14"><code>--help-macros</code></a>. Its output contains someth
       }
     },
 </code></pre></div>
-and so we see that <code>level</code> and <code>content</code> are positional arguments, and <code>id</code> and <code>scope</code> are named arguments.</div></div><div><span class="hide-hover"><a href="#p-635">🔗</a></span><div class="p" id="p-635">Generally, positional arguments are few (otherwise it would be hard to know which is which is which), and are almost always used for a given element so that they save us from typing the name too many times.</div></div><div><span class="hide-hover"><a href="#p-636">🔗</a></span><div class="p" id="p-636">The order of positional arguments must of course be fixed, but named arguments can go anywhere. We can even mix positional and named arguments however we want, although this is not advised for clarity.</div></div><div><span class="hide-hover"><a href="#p-637">🔗</a></span><div class="p" id="p-637">The following are therefore all equivalent:
+and so we see that <code>level</code> and <code>content</code> are positional arguments, and <code>id</code> and <code>scope</code> are named arguments.</div></div><div><span class="hide-hover"><a href="#p-640">🔗</a></span><div class="p" id="p-640">Generally, positional arguments are few (otherwise it would be hard to know which is which is which), and are almost always used for a given element so that they save us from typing the name too many times.</div></div><div><span class="hide-hover"><a href="#p-641">🔗</a></span><div class="p" id="p-641">The order of positional arguments must of course be fixed, but named arguments can go anywhere. We can even mix positional and named arguments however we want, although this is not advised for clarity.</div></div><div><span class="hide-hover"><a href="#p-642">🔗</a></span><div class="p" id="p-642">The following are therefore all equivalent:
 <div class="code-caption-container" id="code-256">
 <pre><code>\H[1][My asdf]{id=asdf qwer}{scope}
 \H[1][My asdf]{scope}{id=asdf qwer}
 \H{id=asdf qwer}{scope}[1][My asdf]
 \H{scope}[1]{id=asdf qwer}[My asdf]
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-638">🔗</a></span><div class="p" id="p-638">Just like named arguments, positional arguments are never mandatory.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-643">🔗</a></span><div class="p" id="p-643">Just like named arguments, positional arguments are never mandatory.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
 <ul>
 <li class="has-child toplevel"><div class="title-div"><div class="arrow" title="close children -> close all -> open all"><div></div></div><a class="title" href="#toc">Table of contents</a> | <span class="metrics"><span class="word-count" title="word count for this node">291</span>, <span class="word-count-descendant" title="word count for this node + descendants">621</span>, <span class="descendant-count" title="number of descendant nodes">3</span></span></div>
 <ul>
@@ -101,9 +101,9 @@ word count: 22
 descendant word count: 2k
 descendant count: 0">Cirodown syntax</a> | <span class="metrics"><span class="word-count" title="word count for this node">0</span>, <span class="word-count-descendant" title="word count for this node + descendants">2k</span>, <span class="descendant-count" title="number of descendant nodes">22</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#escape-characters" title="internal link
@@ -122,7 +122,7 @@ descendant count: 447">Saner</a> | <span class="metrics"><span class="word-count
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

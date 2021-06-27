@@ -19,31 +19,31 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#cirodown-executable">🔗</a></span><div class="h"><h1 id="cirodown-executable"><a href="" title="link to this element"><code>cirodown</code> executable</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#cirodown-executable">🗖 nosplit</a> | <a href=".#tooling" title="parent header">↑ parent "Tooling"</a> | <span class="metrics"><span class="word-count" title="word count for this node">183</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span>, <span class="descendant-count" title="number of descendant nodes">36</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#cirodown-executable">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#tooling" title="parent header">↑ parent "Tooling"</a> | <span class="metrics"><span class="word-count" title="word count for this node">183</span>, <span class="word-count-descendant" title="word count for this node + descendants">4k</span>, <span class="descendant-count" title="number of descendant nodes">36</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-708">🔗</a></span><div class="p" id="p-708">Convert a <code>.ciro</code> file to HTML and output the HTML to a file with the same basename without extension, e.g.:
+</div><div><span class="hide-hover"><a href="#p-713">🔗</a></span><div class="p" id="p-713">Convert a <code>.ciro</code> file to HTML and output the HTML to a file with the same basename without extension, e.g.:
 <div class="code-caption-container" id="code-284">
 <pre><code>cirodown hello.ciro
 firefox hello.html
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-709">🔗</a></span><div class="p" id="p-709">Files named <code>README.ciro</code> are automatically converted to <code>index.html</code> so that they will show on both GitHub READMEs and at the website's base address:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-714">🔗</a></span><div class="p" id="p-714">Files named <code>README.ciro</code> are automatically converted to <code>index.html</code> so that they will show on both GitHub READMEs and at the website's base address:
 <div class="code-caption-container" id="code-285">
 <pre><code>cirodown README.ciro
 firefox hello.html
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-710">🔗</a></span><div class="p" id="p-710">Convert all <code>.ciro</code> files in a directory to HTML files next to each corresponding <code>.ciro</code> file, e.g. <code>somefile.ciro</code> to <code>somefile.html</code>:
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-715">🔗</a></span><div class="p" id="p-715">Convert all <code>.ciro</code> files in a directory to HTML files next to each corresponding <code>.ciro</code> file, e.g. <code>somefile.ciro</code> to <code>somefile.html</code>:
 <div class="code-caption-container" id="code-286">
 <pre><code>cirodown .
 </code></pre></div>
-The HTML output files are placed right next to each corresponding <code>.ciro</code>.</div></div><div><span class="hide-hover"><a href="#p-711">🔗</a></span><div class="p" id="p-711">The output file can be selected explicitly with: <a href=".#outfile" title="internal link
+The HTML output files are placed right next to each corresponding <code>.ciro</code>.</div></div><div><span class="hide-hover"><a href="#p-716">🔗</a></span><div class="p" id="p-716">The output file can be selected explicitly with: <a href=".#outfile" title="internal link
 word count: 0
 descendant word count: 50
-descendant count: 50"><code>--outfile &lt;outfie&gt;</code></a>.</div></div><div><span class="hide-hover"><a href="#p-712">🔗</a></span><div class="p" id="p-712">Output to stdout instead of saving it to a file:
+descendant count: 50"><code>--outfile &lt;outfie&gt;</code></a>.</div></div><div><span class="hide-hover"><a href="#p-717">🔗</a></span><div class="p" id="p-717">Output to stdout instead of saving it to a file:
 <div class="code-caption-container" id="code-287">
 <pre><code>cirodown --stdout README.ciro
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-713">🔗</a></span><div class="p" id="p-713">In order to resolve <a href=".#internal-cross-file-reference" title="internal link
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-718">🔗</a></span><div class="p" id="p-718">In order to resolve <a href=".#internal-cross-file-reference" title="internal link
 word count: 2
 descendant word count: 660
-descendant count: 366">internal cross file references</a>, this actually does two passes:<div><ul id="ul-91">
-<li id="l-255">first an ID extraction pass, which parses all inputs and dumps their IDs to the ID database</li>
-<li id="l-256">then a second render pass, which uses the IDs in the ID database</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-714">🔗</a></span><div class="p" id="p-714">Convert a <code>.ciro</code> file from stdin to HTML and output the contents of <code>&lt;body&gt;</code> to stdout:
+descendant count: 366">internal cross file references</a>, this actually does two passes:<div><ul id="ul-93">
+<li id="l-261">first an ID extraction pass, which parses all inputs and dumps their IDs to the ID database</li>
+<li id="l-262">then a second render pass, which uses the IDs in the ID database</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-719">🔗</a></span><div class="p" id="p-719">Convert a <code>.ciro</code> file from stdin to HTML and output the contents of <code>&lt;body&gt;</code> to stdout:
 <div class="code-caption-container" id="code-288">
 <pre><code>printf 'ab\ncd\n' | cirodown --body-only
 </code></pre></div></div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
@@ -127,9 +127,9 @@ word count: 49
 descendant word count: 5k
 descendant count: 31">Tooling</a> | <span class="metrics"><span class="word-count" title="word count for this node">31</span>, <span class="word-count-descendant" title="word count for this node + descendants">5k</span>, <span class="descendant-count" title="number of descendant nodes">49</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#cirodown-json/ignore" title="internal link
@@ -144,7 +144,7 @@ descendant count: 46">Xss-unsafe</a> | <span class="metrics"><span class="word-c
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

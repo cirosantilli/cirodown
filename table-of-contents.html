@@ -19,10 +19,10 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#table-of-contents">🔗</a></span><div class="h"><h1 id="table-of-contents"><a href="" title="link to this element">Table of contents (<code>\Toc</code>)</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#table-of-contents">🗖 nosplit</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">254</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#table-of-contents">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">254</span>, <span class="word-count-descendant" title="word count for this node + descendants">512</span>, <span class="descendant-count" title="number of descendant nodes">1</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-423">🔗</a></span><div class="p" id="p-423">Cirodown automatically adds a ToC at the end of the first <a href=".#the-toplevel-header" title="internal link
+</div><div><span class="hide-hover"><a href="#p-428">🔗</a></span><div class="p" id="p-428">Cirodown automatically adds a ToC at the end of the first <a href=".#the-toplevel-header" title="internal link
 word count: 2
 descendant word count: 361
-descendant count: 39">non-toplevel header</a> of every document.</div></div><div><span class="hide-hover"><a href="#p-424">🔗</a></span><div class="p" id="p-424">For example, on a standard document with a single toplevel header:
+descendant count: 39">non-toplevel header</a> of every document.</div></div><div><span class="hide-hover"><a href="#p-429">🔗</a></span><div class="p" id="p-429">For example, on a standard document with a single toplevel header:
 <div class="code-caption-container" id="code-162">
 <pre><code>= Animal
 
@@ -45,25 +45,25 @@ Table of Contents
 == Dog
 
 == Cat
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-425">🔗</a></span><div class="p" id="p-425">You may customize ToC placement with <code>\Toc</code> macro, but just don't do it, it will just go against common convention and confuse readers.</div></div><div><span class="hide-hover"><a href="#p-426">🔗</a></span><div class="p" id="p-426">This is especially important when considering <a href=".#split-headers" title="internal link
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-430">🔗</a></span><div class="p" id="p-430">You may customize ToC placement with <code>\Toc</code> macro, but just don't do it, it will just go against common convention and confuse readers.</div></div><div><span class="hide-hover"><a href="#p-431">🔗</a></span><div class="p" id="p-431">This is especially important when considering <a href=".#split-headers" title="internal link
 word count: 1
 descendant word count: 509
-descendant count: 380"><code>--split-headers</code></a>, where you almost always want an automatically generated ToC for every split header, otherwise you would need to add them all manually.</div></div><div><span class="hide-hover"><a href="#p-427">🔗</a></span><div class="p" id="p-427">Only one ToC is rendered per document. Any ToC besides the first one is ignored. In particular, this means that <a href=".#include" title="internal link
+descendant count: 380"><code>--split-headers</code></a>, where you almost always want an automatically generated ToC for every split header, otherwise you would need to add them all manually.</div></div><div><span class="hide-hover"><a href="#p-432">🔗</a></span><div class="p" id="p-432">Only one ToC is rendered per document. Any ToC besides the first one is ignored. In particular, this means that <a href=".#include" title="internal link
 word count: 7
 descendant word count: 637
 descendant count: 430">includes</a> with <a href=".#embed-includes" title="internal link
 word count: 0
 descendant word count: 182
-descendant count: 182"><code>--embed-includes</code></a> work seamlessly and render a single table of contents, even if multiple <code>\Toc</code> macros are present in the included pages.</div></div><div><span class="hide-hover"><a href="#p-428">🔗</a></span><div class="p" id="p-428">The <a href=".#internal-cross-reference" title="internal link
+descendant count: 182"><code>--embed-includes</code></a> work seamlessly and render a single table of contents, even if multiple <code>\Toc</code> macros are present in the included pages.</div></div><div><span class="hide-hover"><a href="#p-433">🔗</a></span><div class="p" id="p-433">The <a href=".#internal-cross-reference" title="internal link
 word count: 25
 descendant word count: 2k
 descendant count: 123">ID</a> of the ToC is always fixed to <code>#toc</code>. If you try to use that for another element, you will get the following error:
 <div class="code-caption-container" id="code-164">
 <pre><code>error: tmp.ciro:3:1: reserved ID "toc"
-</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-429">🔗</a></span><div class="p" id="p-429">The ToC ignores <a href=".#the-toplevel-header" title="internal link
+</code></pre></div></div></div><div><span class="hide-hover"><a href="#p-434">🔗</a></span><div class="p" id="p-434">The ToC ignores <a href=".#the-toplevel-header" title="internal link
 word count: 2
 descendant word count: 361
-descendant count: 39">the toplevel header</a> if you have one.</div></div><div><span class="hide-hover"><a href="#p-430">🔗</a></span><div class="p" id="p-430">For when you want a quick outline of the header tree on the terminal, also consider the <a href=".#log-headers" title="internal link
+descendant count: 39">the toplevel header</a> if you have one.</div></div><div><span class="hide-hover"><a href="#p-435">🔗</a></span><div class="p" id="p-435">For when you want a quick outline of the header tree on the terminal, also consider the <a href=".#log-headers" title="internal link
 word count: 0
 descendant word count: 126
 descendant count: 126"><code>--log headers</code></a> option.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
@@ -82,9 +82,9 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#autogenerated-tests" title="internal link
@@ -123,7 +123,7 @@ descendant count: 251"><code>\x</code> <code>child</code> argument</a> | <span c
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

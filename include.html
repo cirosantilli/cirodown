@@ -19,13 +19,13 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#include">🔗</a></span><div class="h"><h1 id="include"><a href="" title="link to this element">Include (<code>\Include</code>)</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#include">🗖 nosplit</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">430</span>, <span class="word-count-descendant" title="word count for this node + descendants">637</span>, <span class="descendant-count" title="number of descendant nodes">7</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#include">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#macro" title="parent header">↑ parent "Macro"</a> | <span class="metrics"><span class="word-count" title="word count for this node">430</span>, <span class="word-count-descendant" title="word count for this node + descendants">637</span>, <span class="descendant-count" title="number of descendant nodes">7</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-289">🔗</a></span><div class="p" id="p-289">The <code>\Include</code> macro allows including an external Cirodown headers under the current header.</div></div><div><span class="hide-hover"><a href="#p-290">🔗</a></span><div class="p" id="p-290">It exists to allow optional single page HTML output while still retaining the ability to:<div><ul id="ul-47">
-<li id="l-135">split up large input files into multiple files to make renders faster during document development</li>
-<li id="l-136">suggest an optional custom output split with one HTML output per Cirodown input, in order to avoid extremely large HTML pages which could be slow to load</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-291">🔗</a></span><div class="p" id="p-291"><code>\Include</code> takes one mandatory argument: the ID of the section to be included, much like <a href=".#internal-cross-reference" title="internal link
+</div><div><span class="hide-hover"><a href="#p-294">🔗</a></span><div class="p" id="p-294">The <code>\Include</code> macro allows including an external Cirodown headers under the current header.</div></div><div><span class="hide-hover"><a href="#p-295">🔗</a></span><div class="p" id="p-295">It exists to allow optional single page HTML output while still retaining the ability to:<div><ul id="ul-49">
+<li id="l-141">split up large input files into multiple files to make renders faster during document development</li>
+<li id="l-142">suggest an optional custom output split with one HTML output per Cirodown input, in order to avoid extremely large HTML pages which could be slow to load</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-296">🔗</a></span><div class="p" id="p-296"><code>\Include</code> takes one mandatory argument: the ID of the section to be included, much like <a href=".#internal-cross-reference" title="internal link
 word count: 25
 descendant word count: 2k
-descendant count: 123">internal cross references</a>.</div></div><div><span class="hide-hover"><a href="#p-292">🔗</a></span><div class="p" id="p-292">There is however one restriction: only <a href=".#the-toplevel-header" title="internal link
+descendant count: 123">internal cross references</a>.</div></div><div><span class="hide-hover"><a href="#p-297">🔗</a></span><div class="p" id="p-297">There is however one restriction: only <a href=".#the-toplevel-header" title="internal link
 word count: 2
 descendant word count: 361
 descendant count: 39">the toplevel headers</a> can be pointed to. This restriction allows us to easily find the included file in the filesystem, and dispenses the need to do a first <code>./cirodown</code> run to generate the <a href=".#internal-cross-file-reference-internals" title="internal link
@@ -34,23 +34,23 @@ descendant word count: 131
 descendant count: 131">ID database</a>. This works because <a href=".#the-id-of-the-first-header-is-derived-from-the-filename" title="internal link
 word count: 0
 descendant word count: 270
-descendant count: 270">the ID of the first header is derived from the filename</a>.</div></div><div><span class="hide-hover"><a href="#p-293">🔗</a></span><div class="p" id="p-293">Headers of the included document are automatically shifted to match the level of the child of the level where they are being included.</div></div><div><span class="hide-hover"><a href="#p-294">🔗</a></span><div class="p" id="p-294">If <a href=".#embed-includes" title="internal link
+descendant count: 270">the ID of the first header is derived from the filename</a>.</div></div><div><span class="hide-hover"><a href="#p-298">🔗</a></span><div class="p" id="p-298">Headers of the included document are automatically shifted to match the level of the child of the level where they are being included.</div></div><div><span class="hide-hover"><a href="#p-299">🔗</a></span><div class="p" id="p-299">If <a href=".#embed-includes" title="internal link
 word count: 0
 descendant word count: 182
-descendant count: 182"><code>--embed-includes</code></a> is given, the external document is rendered embedded into the current document directly, essentially as if the source had been copy pasted (except for small corrections such as the header offsets).</div></div><div><span class="hide-hover"><a href="#p-295">🔗</a></span><div class="p" id="p-295">Otherwise, the following effects happen:<div><ul id="ul-48">
-<li id="l-137"><div class="p" id="p-296">The headers of the included tree appear in the <a href=".#table-of-contents" title="internal link
+descendant count: 182"><code>--embed-includes</code></a> is given, the external document is rendered embedded into the current document directly, essentially as if the source had been copy pasted (except for small corrections such as the header offsets).</div></div><div><span class="hide-hover"><a href="#p-300">🔗</a></span><div class="p" id="p-300">Otherwise, the following effects happen:<div><ul id="ul-50">
+<li id="l-143"><div class="p" id="p-301">The headers of the included tree appear in the <a href=".#table-of-contents" title="internal link
 word count: 1
 descendant word count: 512
-descendant count: 254">table of contents</a> of the document as links to the corresponding external files.</div><div class="p" id="p-297">This is implemented simply by reading a previously generated database file much like <a href=".#internal-cross-file-reference-internals" title="internal link
+descendant count: 254">table of contents</a> of the document as links to the corresponding external files.</div><div class="p" id="p-302">This is implemented simply by reading a previously generated database file much like <a href=".#internal-cross-file-reference-internals" title="internal link
 word count: 0
 descendant word count: 131
-descendant count: 131">internal cross file reference internals</a>, which avoids the slowdown of parsing all included files every time.</div><div class="p" id="p-298">As a result, you have to do an initial parse of all files in the project to extract their headers however, just as you would need to do when linking to those headers.</div></li>
-<li id="l-138">the include itself renders as a link to the included document</li>
-<li id="l-139"><a href=".#embed-includes" title="internal link
+descendant count: 131">internal cross file reference internals</a>, which avoids the slowdown of parsing all included files every time.</div><div class="p" id="p-303">As a result, you have to do an initial parse of all files in the project to extract their headers however, just as you would need to do when linking to those headers.</div></li>
+<li id="l-144">the include itself renders as a link to the included document</li>
+<li id="l-145"><a href=".#embed-includes" title="internal link
 word count: 0
 descendant word count: 182
 descendant count: 182"><code>--embed-includes</code></a></li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-299">🔗</a></span><div class="p" id="p-299">Here is an example of inclusion of the files <code>not-readme.ciro</code> and <code>not-readme-2.ciro</code>:
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-304">🔗</a></span><div class="p" id="p-304">Here is an example of inclusion of the files <code>not-readme.ciro</code> and <code>not-readme-2.ciro</code>:
 <div class="code-caption-container" id="code-116">
 <pre><code>\Include[not-readme]
 \Include[not-readme-2]
@@ -67,7 +67,7 @@ descendant count: 70">insaner</a> version of:
 
 \Include[not-readme-with-scope]
 </code></pre></div>
-The insaner version is a bit insaner because the <code>\Include</code> magically discards the following newline node that follows it if it just a plaintext node containing exactly a newline. With a double newline, the newline would already have been previously taken out on the lexing stage as part of a paragraph.</div></div><div><span class="hide-hover"><a href="#p-300">🔗</a></span><div class="p" id="p-300"><a href=".#include-example" title="internal link
+The insaner version is a bit insaner because the <code>\Include</code> magically discards the following newline node that follows it if it just a plaintext node containing exactly a newline. With a double newline, the newline would already have been previously taken out on the lexing stage as part of a paragraph.</div></div><div><span class="hide-hover"><a href="#p-305">🔗</a></span><div class="p" id="p-305"><a href=".#include-example" title="internal link
 word count: 5
 descendant word count: 106
 descendant count: 6">Section 2. "<code>\Include</code> example"</a> shows what those actually render like.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span><div class="toc-container" id="toc">
@@ -95,9 +95,9 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div><div><span class="hide-hover"><a href="#incomding-links">🔗</a></span><h2 id="#incoming-links"><a href="#incoming-links">Incoming links</a></h2></div>
 <div><ul>
 <li><a href=".#embed-includes" title="internal link
@@ -132,7 +132,7 @@ descendant count: 270">The ID of the first header is derived from the filename</
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->

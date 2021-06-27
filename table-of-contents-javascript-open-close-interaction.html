@@ -19,17 +19,17 @@
 <main class="cirodown">
 <div><span class="hide-hover"><a href=".#table-of-contents-javascript-open-close-interaction">🔗</a></span><div class="h"><h1 id="table-of-contents-javascript-open-close-interaction"><a href="" title="link to this element">Table of contents JavaScript open close interaction</a></h1>
 <span class="hover-meta">  | <a title="view all headers in a single page" href=".#table-of-contents-javascript-open-close-interaction">🗖 nosplit</a> | <a href=".#table-of-contents" title="parent header">↑ parent "Table of contents"</a> | <span class="metrics"><span class="word-count" title="word count for this node">258</span></span></span></div><div class="h-nav h-nav-toplevel"><div class="nav"> <a title="view all headers in a single page" href=".#table-of-contents-javascript-open-close-interaction">🗖 nosplit</a> | <a href="#toc">⇓ toc</a> | <a href=".#table-of-contents" title="parent header">↑ parent "Table of contents"</a> | <span class="metrics"><span class="word-count" title="word count for this node">258</span></span></div></div>
-</div><div><span class="hide-hover"><a href="#p-431">🔗</a></span><div class="p" id="p-431">To the left of table of content entries you can click on an open/close icon to toggle the visibility of different levels of the table of contents.</div></div><div><span class="hide-hover"><a href="#p-432">🔗</a></span><div class="p" id="p-432">The expansion algorithm is optimized so that when you first click on the arrow of a node it will give you an overview of that node, showing only its direct children.</div></div><div><span class="hide-hover"><a href="#p-433">🔗</a></span><div class="p" id="p-433">At the start, all nodes are showing, to facilitate Ctrl + F queries, and so when you first click on a node, it collapses the children of children, so you can see only the direct children the node of interest, without getting a gazillion of sub descendants shown first.</div></div><div><span class="hide-hover"><a href="#p-434">🔗</a></span><div class="p" id="p-434">The exact behaviour is:<div><ul id="ul-65">
-<li id="l-191">if a node is open:<div><ul id="ul-66">
-<li id="l-192">if all children are closed, close the element, This can improve the view of its siblings. The toplevel "Table of Contents" node never closes however, since we never want to close that one.</li>
-<li id="l-193">otherwise, close all children. This Gives a good overview of the children, without any children of children getting in the way.</li>
+</div><div><span class="hide-hover"><a href="#p-436">🔗</a></span><div class="p" id="p-436">To the left of table of content entries you can click on an open/close icon to toggle the visibility of different levels of the table of contents.</div></div><div><span class="hide-hover"><a href="#p-437">🔗</a></span><div class="p" id="p-437">The expansion algorithm is optimized so that when you first click on the arrow of a node it will give you an overview of that node, showing only its direct children.</div></div><div><span class="hide-hover"><a href="#p-438">🔗</a></span><div class="p" id="p-438">At the start, all nodes are showing, to facilitate Ctrl + F queries, and so when you first click on a node, it collapses the children of children, so you can see only the direct children the node of interest, without getting a gazillion of sub descendants shown first.</div></div><div><span class="hide-hover"><a href="#p-439">🔗</a></span><div class="p" id="p-439">The exact behaviour is:<div><ul id="ul-67">
+<li id="l-197">if a node is open:<div><ul id="ul-68">
+<li id="l-198">if all children are closed, close the element, This can improve the view of its siblings. The toplevel "Table of Contents" node never closes however, since we never want to close that one.</li>
+<li id="l-199">otherwise, close all children. This Gives a good overview of the children, without any children of children getting in the way.</li>
 </ul></div></li>
-<li id="l-194">if a node is closed (not showing children), open it and show all children and their descendants.</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-435">🔗</a></span><div class="p" id="p-435">As a result of the above rules, clicking on a node three times goes through a loop of basically all useful states:<div><ul id="ul-67">
-<li id="l-195">node open and children open (initial state</li>
-<li id="l-196">node open and children closed</li>
-<li id="l-197">node closed</li>
-</ul></div></div></div><div><span class="hide-hover"><a href="#p-436">🔗</a></span><div class="p" id="p-436">Clicking on the link from a <a href=".#header" title="internal link
+<li id="l-200">if a node is closed (not showing children), open it and show all children and their descendants.</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-440">🔗</a></span><div class="p" id="p-440">As a result of the above rules, clicking on a node three times goes through a loop of basically all useful states:<div><ul id="ul-69">
+<li id="l-201">node open and children open (initial state</li>
+<li id="l-202">node open and children closed</li>
+<li id="l-203">node closed</li>
+</ul></div></div></div><div><span class="hide-hover"><a href="#p-441">🔗</a></span><div class="p" id="p-441">Clicking on the link from a <a href=".#header" title="internal link
 word count: 40
 descendant word count: 4k
 descendant count: 77">header</a> up to the table of contents also automatically opens up the node for you in case it had been previously closed manually.</div></div><div><span class="hide-hover"><a href="#toc">🔗</a></span></div><div><span class="hide-hover"><a href="#ancestors">🔗</a></span><h2 id="#ancestors"><a href="#ancestors">Ancestors</a></h2></div>
@@ -43,14 +43,14 @@ word count: 108
 descendant word count: 13k
 descendant count: 20">Macro</a> | <span class="metrics"><span class="word-count" title="word count for this node">20</span>, <span class="word-count-descendant" title="word count for this node + descendants">13k</span>, <span class="descendant-count" title="number of descendant nodes">108</span></span></li>
 <li><a href="." title="internal link
-word count: 206
+word count: 207
 descendant word count: 24k
-descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">206</span></span></li>
+descendant count: 100">Cirodown</a> | <span class="metrics"><span class="word-count" title="word count for this node">100</span>, <span class="word-count-descendant" title="word count for this node + descendants">24k</span>, <span class="descendant-count" title="number of descendant nodes">207</span></span></li>
 </ul></div></main>
 <footer>
 <div>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless noted</div>
 <div>Website source code: <a href="https://github.com/cirosantilli/cirodown">https://github.com/cirosantilli/cirodown</a></div>
-<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/65c1beb3b1419926cc92d606fb6734fce8305712">65c1beb3b1419926cc92d606fb6734fce8305712</a></div>
+<div>Website Git version: <a href="https://github.com/cirosantilli/cirodown/commit/c8870d545161ce77c15a8dccfc73933155d8347a">c8870d545161ce77c15a8dccfc73933155d8347a</a></div>
 </footer>
 <script>
 <!-- Google Analytics, AKA selling my soul to Google for some backlinks. -->
